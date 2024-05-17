@@ -1,5 +1,6 @@
 import Game from './game/Game.tsx'
 import styled from  'styled-components'
+import DialoguePopup from './ui/DialoguePopup.tsx'
 
 const RedScreen = styled.div`
   width: 100vw;
@@ -15,6 +16,7 @@ function App() {
     <>
     <div id='app'>
       <Game/>
+      <DialoguePopup/>
     </div>
     </>
   )
