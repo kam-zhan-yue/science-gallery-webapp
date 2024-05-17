@@ -10,14 +10,10 @@ const Game: React.FC = () => {
       type: Phaser.AUTO,
       width: 800,
       height: 600,
-      parent: 'game-container',
       backgroundColor: '#a29177',
       scale: {
         mode: Phaser.Scale.RESIZE,
         autoCenter: Phaser.Scale.CENTER_BOTH,
-        width: 1920,
-        height: 1080,
-        zoom: 3
       },
       physics: {
         default: 'arcade',
