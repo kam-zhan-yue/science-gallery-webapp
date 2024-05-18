@@ -18,10 +18,6 @@ module.exports = {
           loader: "ts-loader",
         },
       },
-      {
-		test: /\.ink$/i,
-		type: 'asset/source',
-      }
     ],
   },
   devServer: {

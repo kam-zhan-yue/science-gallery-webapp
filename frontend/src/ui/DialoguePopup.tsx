@@ -1,8 +1,5 @@
 import React, { forwardRef, useState, useImperativeHandle } from 'react';
 import styled from 'styled-components';
-import * as Inkjs from 'inkjs';
-import data from '../assets/dialogue/test-story.ink';
-
 
 const Overlay = styled.div`
   position: fixed;
@@ -24,8 +21,6 @@ interface DialoguePopupProps {
 }
 
 const DialoguePopup: React.FC<DialoguePopupProps> = (props) => {
-
-    const inkStory = new Inkjs.Compiler(data).Compile();
   return (
     <Overlay>
         Test DialoguePopup
