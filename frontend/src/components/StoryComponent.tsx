@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Story } from 'inkjs/engine/Story';
-import { Compiler } from 'inkjs/compiler/Compiler';
+import {Story} from 'inkjs/engine/Story';
+import {Compiler} from 'inkjs/compiler/Compiler';
 import styled from 'styled-components';
 import {Choice} from "inkjs/engine/Choice";
+import DialogueComponent from "./DialogueComponent.tsx";
+import ChoiceComponent from "./ChoiceComponent.tsx";
 
 const Overlay = styled.div`
   position: fixed;
@@ -13,23 +15,6 @@ const Overlay = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-`
-const DialogueBox = styled.div`
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-`
-
-const DialogueText = styled.div`
-`
-
-const ChoiceOverlay = styled.div`
-  position: absolute;
-`
-
-const ChoiceOption = styled.div`
 `
 
 const StoryComponent: React.FC = () => {
@@ -96,28 +81,17 @@ const StoryComponent: React.FC = () => {
 
   return (
       <>
-
-        <DialogueBox>
-          <DialogueText>
-            {storyText}
-          </DialogueText>
-        </DialogueBox>
-
+        <DialogueComponent text={storyText}></DialogueComponent>
 
         <Overlay onClick={handleOverlayClick}>
         </Overlay>
 
-
         {showingChoices &&
-            <>
-              <ChoiceOverlay>
-                {choices.map((choice, index) => (
-                    <ChoiceOption key={index} onClick={() => handleChoiceClick(index)}>
-                      {choice.text}
-                    </ChoiceOption>
-                ))}
-              </ChoiceOverlay>
-            </>}
+        <ChoiceComponent
+            choices={choices}
+            handleChoiceClick={handleChoiceClick}
+            />
+        }
       </>
   );
 };

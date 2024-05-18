@@ -10,7 +10,7 @@ const Game: React.FC = () => {
       type: Phaser.AUTO,
       width: 800,
       height: 600,
-      backgroundColor: '#a29177',
+      backgroundColor: '#1f1137',
       scale: {
         mode: Phaser.Scale.RESIZE,
         autoCenter: Phaser.Scale.CENTER_BOTH,
@@ -36,12 +36,12 @@ const Game: React.FC = () => {
   }, []);
 
   const preload = function (this: Phaser.Scene) {
-    this.load.image('logo', 'logo.png');
+    // this.load.image('logo', 'logo.png');
   };
 
   const create = function (this: Phaser.Scene) {
-    const logo = this.add.image(400, 300, 'logo');
-    logo.setScale(0.5);
+    // const logo = this.add.image(400, 300, 'logo');
+    // logo.setScale(0.5);
   };
 
   return <div ref={gameRef} />;

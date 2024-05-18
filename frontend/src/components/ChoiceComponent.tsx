@@ -1,0 +1,38 @@
+import React from 'react';
+import styled from 'styled-components';
+import {Choice} from "inkjs/engine/Choice";
+
+const ChoiceOverlay = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+`
+
+const ChoiceOption = styled.button`
+  margin: 5px;
+  padding: 10px 20px;
+  background-color: #f0f0f0;
+  border: none;
+  cursor: pointer;
+`
+
+interface ChoiceComponentProps {
+    choices: Choice[];
+    handleChoiceClick: (choiceIndex: number) => void;
+}
+
+const ChoiceComponent: React.FC<ChoiceComponentProps> = ({ choices, handleChoiceClick }) => {
+    return (
+        <ChoiceOverlay>
+            {choices.map((choice, index) => (
+                <ChoiceOption key={index} onClick={() => handleChoiceClick(index)}>
+                    {choice.text}
+                </ChoiceOption>
+            ))}
+        </ChoiceOverlay>
+    );
+};
+
+export default ChoiceComponent;
