@@ -7,7 +7,9 @@ const ChoiceOverlay = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  text-align: center;
+  display: flex;
+  flex-direction: column; /* Display choices vertically */
+  align-items: center; /* Center horizontally */
 `
 
 const ChoiceOption = styled.button`
@@ -16,6 +18,8 @@ const ChoiceOption = styled.button`
   background-color: #f0f0f0;
   border: none;
   cursor: pointer;
+  width: 200px;
+  box-sizing: border-box;
 `
 
 interface ChoiceComponentProps {
