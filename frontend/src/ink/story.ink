@@ -7,8 +7,10 @@ Hello, {name}! Welcome to the adventure.
 
 === choice_one ===
 You chose the first option.
+This is another line.
 -> END
 
 === choice_two ===
 You chose the second option.
+This is another line.
 -> END
