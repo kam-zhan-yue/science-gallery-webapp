@@ -25,7 +25,7 @@ const StoryComponent: React.FC = () => {
 
   useEffect(() => {
     const loadStory = async () => {
-      const response: Response = await fetch('/ink/characters.ink');
+      const response: Response = await fetch('/ink/game.ink');
       const storyContent: string = await response.text();
       const storyCompiled: Story | null = new Compiler(storyContent).Compile();
       setStory(storyCompiled);
