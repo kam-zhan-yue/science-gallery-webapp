@@ -1,11 +1,15 @@
 // src/Game.tsx
 import React, { useEffect, useRef } from 'react';
 import Phaser from 'phaser';
+import {Boot} from "./scenes/Boot.tsx";
+import {Universe} from "./scenes/Universe.tsx";
 
 const Game: React.FC = () => {
   const gameRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const bootScene: Boot = new Boot();
+    const universeScene: Universe = new Universe();
     const config: Phaser.Types.Core.GameConfig = {
       type: Phaser.AUTO,
       width: 800,
@@ -14,6 +18,7 @@ const Game: React.FC = () => {
       scale: {
         mode: Phaser.Scale.RESIZE,
         autoCenter: Phaser.Scale.CENTER_BOTH,
+        zoom: 10
       },
       physics: {
         default: 'arcade',
@@ -21,10 +26,7 @@ const Game: React.FC = () => {
           gravity: { x: 0, y: 0 },
         },
       },
-      scene: {
-        preload,
-        create,
-      },
+      scene: [bootScene, universeScene],
     };
 
     const game = new Phaser.Game(config);
@@ -34,15 +36,6 @@ const Game: React.FC = () => {
       game.destroy(true);
     };
   }, []);
-
-  const preload = function (this: Phaser.Scene) {
-    // this.load.image('logo', 'logo.png');
-  };
-
-  const create = function (this: Phaser.Scene) {
-    // const logo = this.add.image(400, 300, 'logo');
-    // logo.setScale(0.5);
-  };
 
   return <div ref={gameRef} />;
 };
