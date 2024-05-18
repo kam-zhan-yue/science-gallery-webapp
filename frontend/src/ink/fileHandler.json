@@ -1,0 +1,4 @@
+{
+  "game.ink": "INCLUDE globals.ink",
+  "globals.ink": "This content is included"
+}

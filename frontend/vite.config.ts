@@ -11,6 +11,10 @@ export default defineConfig({
         {
           src: 'src/ink/*.ink',
           dest: 'ink'
+        },
+        {
+          src: 'src/ink/*.json',
+          dest: 'ink'
         }
       ]
     })

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import {Story} from 'inkjs/engine/Story';
-import {Compiler} from 'inkjs/compiler/Compiler';
 import styled from 'styled-components';
 import {Choice} from "inkjs/engine/Choice";
 import DialogueComponent from "./DialogueComponent.tsx";
@@ -25,11 +24,28 @@ const StoryComponent: React.FC = () => {
 
   useEffect(() => {
     const loadStory = async () => {
-      const response: Response = await fetch('/ink/game.ink');
+      const response: Response = await fetch('/ink/game.json');
       const storyContent: string = await response.text();
-      const storyCompiled: Story | null = new Compiler(storyContent).Compile();
-      setStory(storyCompiled);
-      advance(storyCompiled);
+      console.log(storyContent);
+      const inkStory = new Story(storyContent);
+
+      // TODO: Fix this to avoid having to always use a json
+      // const response: Response = await fetch('/ink/game.ink');
+      // const storyContent: string = await response.text();
+      // console.log(storyContent);
+      // // Define the compiler options, ensuring all necessary properties are included
+      //
+      // const jsonFileHandler: JsonFileHandler = new JsonFileHandler('/ink/');
+      // const posixFileHandler: PosixFileHandler = new PosixFileHandler(`./ink`);
+      //
+      // const compilerOptions: CompilerOptions = {
+      //   fileHandler: posixFileHandler
+      // };
+      // const inkStory: Story | null = new Compiler(storyContent, compilerOptions).Compile();
+
+
+      setStory(inkStory);
+      advance(inkStory);
     };
 
     loadStory();

@@ -1,23 +1,21 @@
-VAR name = "Hero"
-VAR health = 100
-Hello, {name}! Welcome to the adventure.
+INCLUDE globals.ink
+INCLUDE battle.ink
+Hello {name}! Welcome to the adventure.
+-> choose
+
+=== choose ===
+Please choose a class.
+    * [Wizard]
+        ~ class = "Wizard"
+        -> chosen("Wizard")
+    * [Hero]
+        ~ class = "Hero"
+        -> chosen("Hero")
+    * [Warrior]
+        ~ class = "Warrior"
+        -> chosen("Warrior")
+
+=== chosen(classType) ===
+~ class = classType
+You have chosen the {class}.
 -> loop
-
--> END
-
-=== loop ===
-{health > 0:
-    Your health is {health} What will you do?!
-    + [Take 50 damage]
-        ~ health = addHealth(-50)
-        -> loop
-    + [Heal 10 points]
-        ~ health = addHealth(10)
-        -> loop
-  - else:
-    You are dead
-    -> DONE
-}
-
-=== function addHealth(x) ===
-~ return health + x

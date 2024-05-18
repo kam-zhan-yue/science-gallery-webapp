@@ -20,6 +20,7 @@ const ChoiceOption = styled.button`
   cursor: pointer;
   width: 200px;
   box-sizing: border-box;
+  font-size: 30px;
 `
 
 interface ChoiceComponentProps {

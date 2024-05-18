@@ -25,6 +25,7 @@ const Separator = styled.div`
 `
 
 const DialogueText = styled.div`
+    font-size: 30px;
 `
 
 interface DialogueComponentProps {
