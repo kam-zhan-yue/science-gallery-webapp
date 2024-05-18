@@ -1,5 +1,6 @@
 VAR name = "Hero"
 Hello, {name}! Welcome to the adventure.
+This is a second line!
 * Choice 1
     -> choice_one
 * Choice 2
