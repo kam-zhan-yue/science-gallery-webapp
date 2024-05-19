@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import {Choice} from "inkjs/engine/Choice";
 import DialogueComponent from "./DialogueComponent.tsx";
 import ChoiceComponent from "./ChoiceComponent.tsx";
+import CharacterComponent from "./CharacterComponent.tsx";
+import {InkObject} from "inkjs/engine/Object";
 
 const Overlay = styled.div`
   position: fixed;
@@ -21,12 +23,13 @@ const StoryComponent: React.FC = () => {
   const [storyText, setStoryText] = useState('');
   const [showingChoices, setShowingChoices] = useState<boolean>(false);
   const [choices, setChoices] = useState<Choice[]>([]);
+  const [character, setCharacter] = useState<string>("");
 
   useEffect(() => {
     const loadStory = async () => {
       const response: Response = await fetch('/ink/game.json');
       const storyContent: string = await response.text();
-      console.log(storyContent);
+      // console.log(storyContent);
       const inkStory = new Story(storyContent);
 
       // TODO: Fix this to avoid having to always use a json
@@ -50,6 +53,17 @@ const StoryComponent: React.FC = () => {
 
     loadStory();
   }, []);
+
+  useEffect(() => {
+    if (story) {
+      story.variablesState.ObserveVariableChange((variableName: string, newValue: InkObject) => {
+        // Update the character state whenever 'class' variable changes
+        if (variableName === 'class') {
+          setCharacter(newValue.toString()); // Assuming newValue is InkObject representing a string
+        }
+      });
+    }
+  }, [story]);
 
   const advance = (story: Story | null) => {
     if (!story) return;
@@ -97,6 +111,7 @@ const StoryComponent: React.FC = () => {
 
   return (
       <>
+        <CharacterComponent className={character}></CharacterComponent>
         <DialogueComponent text={storyText}></DialogueComponent>
 
         <Overlay onClick={handleOverlayClick}>
