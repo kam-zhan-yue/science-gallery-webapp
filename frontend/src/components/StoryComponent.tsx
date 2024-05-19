@@ -6,6 +6,7 @@ import DialogueComponent from "./DialogueComponent.tsx";
 import ChoiceComponent from "./ChoiceComponent.tsx";
 import CharacterComponent from "./CharacterComponent.tsx";
 import {InkObject} from "inkjs/engine/Object";
+import Player from "../classes/Player.ts";
 
 const Overlay = styled.div`
   position: fixed;
@@ -23,7 +24,7 @@ const StoryComponent: React.FC = () => {
   const [storyText, setStoryText] = useState('');
   const [showingChoices, setShowingChoices] = useState<boolean>(false);
   const [choices, setChoices] = useState<Choice[]>([]);
-  const [character, setCharacter] = useState<string>("");
+  const [player, setPlayer] = useState<Player>(new Player());
 
   useEffect(() => {
     const loadStory = async () => {
@@ -59,7 +60,8 @@ const StoryComponent: React.FC = () => {
       story.variablesState.ObserveVariableChange((variableName: string, newValue: InkObject) => {
         // Update the character state whenever 'class' variable changes
         if (variableName === 'class') {
-          setCharacter(newValue.toString()); // Assuming newValue is InkObject representing a string
+          player.class = newValue.toString();
+          setPlayer(player);
         }
       });
     }
@@ -111,7 +113,7 @@ const StoryComponent: React.FC = () => {
 
   return (
       <>
-        <CharacterComponent className={character}></CharacterComponent>
+        <CharacterComponent player={player}></CharacterComponent>
         <DialogueComponent text={storyText}></DialogueComponent>
 
         <Overlay onClick={handleOverlayClick}>

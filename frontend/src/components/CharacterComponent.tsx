@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Player from "../classes/Player.ts";
 
 const Class = styled.div`
   position: fixed;
@@ -7,19 +8,19 @@ const Class = styled.div`
   left: 20px;
 `
 
-interface CharacterComponentProps {
-    className: string;
+interface PlayerComponentProps {
+    player: Player;
 }
 
-const CharacterComponent: React.FC<CharacterComponentProps> = ({className}) => {
+const PlayerComponent: React.FC<PlayerComponentProps> = ({player}) => {
     return (
         <>
             <Class>
-                Chosen Class: {className}
+                Chosen Class: {player.class}
             </Class>
         </>
     )
 }
 
-export default CharacterComponent
+export default PlayerComponent
 
