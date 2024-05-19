@@ -1,5 +1,3 @@
-import {s} from "vite/dist/node/types.d-aGj9QkWt";
-
 class Player {
     private _class: string = "";
     private _finesse: number = 0;
