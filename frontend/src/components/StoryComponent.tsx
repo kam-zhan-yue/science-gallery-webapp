@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import {Story} from 'inkjs/engine/Story';
-import styled from 'styled-components';
 import {Choice} from "inkjs/engine/Choice";
+import {InkObject} from "inkjs/engine/Object";
+import styled from 'styled-components';
 import DialogueComponent from "./DialogueComponent.tsx";
 import ChoiceComponent from "./ChoiceComponent.tsx";
 import CharacterComponent from "./CharacterComponent.tsx";
-import {InkObject} from "inkjs/engine/Object";
 import Player from "../classes/Player.ts";
 
 const Overlay = styled.div`
@@ -82,7 +82,6 @@ const StoryComponent: React.FC = () => {
 
   const advance = (story: Story | null) => {
     if (!story) return;
-
     // If the story can continue, it means there is new text!
     // If the story cannot continue, it means there might be choices.
     // If the choices are not showing, show the choices
