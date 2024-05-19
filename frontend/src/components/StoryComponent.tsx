@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import {Story} from 'inkjs/engine/Story';
-import {Choice} from "inkjs/engine/Choice";
-import {InkObject} from "inkjs/engine/Object";
+// @ts-ignore
+import {Story, Choice, InkObject} from "inkjs";
 import styled from 'styled-components';
 import DialogueComponent from "./DialogueComponent.tsx";
 import ChoiceComponent from "./ChoiceComponent.tsx";
