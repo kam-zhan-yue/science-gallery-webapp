@@ -57,12 +57,25 @@ const StoryComponent: React.FC = () => {
 
   useEffect(() => {
     if (story) {
-      story.variablesState.ObserveVariableChange((variableName: string, newValue: InkObject) => {
+      story.variablesState.ObserveVariableChange((variableName: string, value: InkObject) => {
         // Update the character state whenever 'class' variable changes
-        if (variableName === 'class') {
-          player.class = newValue.toString();
-          setPlayer(player);
+        switch(variableName) {
+          case 'class':
+            player.class = value.toString();
+            break;
+          case 'finesse':
+            player.finesse = Number(value.toString());
+            break;
+          case 'intuition':
+            player.intuition = Number(value.toString());
+            break;
+          case 'persuasion':
+            player.persuasion = Number(value.toString());
+            break;
+          case 'health':
+            player.health = Number(value.toString());
         }
+        setPlayer(player);
       });
     }
   }, [story]);
