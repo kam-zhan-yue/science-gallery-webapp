@@ -1,6 +1,2 @@
 VAR name = "Hero"
-VAR health = 100
-VAR class = ""
-
-=== function addHealth(x) ===
-~ return health + x
+LIST game_state = (character_selection), planet_selection, battling
