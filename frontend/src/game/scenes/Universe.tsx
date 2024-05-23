@@ -15,11 +15,16 @@ export class Universe extends Scene {
             repeat: -1
         });
 
-        this.cameras.main.zoom = 10;
+        this.cameras.main.zoom = 2;
         const centerX = this.cameras.main.centerX;
         const centerY = this.cameras.main.centerY;
 
-        this.solarSystem = new SolarSystem(this.physics, centerX, centerY);
+        const graphics = this.add.graphics();
+        this.solarSystem = new SolarSystem(this.physics, graphics, centerX, centerY);
         this.cameras.main.startFollow(this.solarSystem.centre());
+    }
+
+    update(time: number, delta: number) {
+        this.solarSystem?.simulate(time, delta);
     }
 }
