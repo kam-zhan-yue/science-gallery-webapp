@@ -7,17 +7,22 @@ export class Universe extends Scene {
         super({ key: 'Universe' });
     }
 
+    preload() {
+        this.load.glsl('starShader', 'src/game/shaders/starShader.glsl');
+    }
+
     create() {
+        this.cameras.main.zoom = 10;
+        const centerX = this.cameras.main.centerX;
+        const centerY = this.cameras.main.centerY;
+
+        this.add.shader('starShader', centerX, centerY, this.scale.width, this.scale.height);
         this.anims.create({
             key: 'earth_spin',
             frames: this.anims.generateFrameNumbers('earth', {frames:[0,1,2,3,4,5]}),
             frameRate: 12,
             repeat: -1
         });
-
-        this.cameras.main.zoom = 2;
-        const centerX = this.cameras.main.centerX;
-        const centerY = this.cameras.main.centerY;
 
         const graphics = this.add.graphics();
         this.solarSystem = new SolarSystem(this.physics, graphics, centerX, centerY);
