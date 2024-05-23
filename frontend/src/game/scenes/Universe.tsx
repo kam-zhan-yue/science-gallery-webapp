@@ -9,7 +9,7 @@ export class Universe extends Scene {
     }
 
     preload() {
-        this.load.glsl('starShader', 'src/game/shaders/starShader.glsl');
+        this.load.glsl('starShader', '/game/shaders/starShader.glsl');
     }
 
     create() {

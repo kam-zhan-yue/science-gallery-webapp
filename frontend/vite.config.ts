@@ -19,6 +19,10 @@ export default defineConfig({
         {
           src: 'src/ink/*.json',
           dest: 'ink'
+        },
+        {
+          src: 'src/game/shaders/*.glsl',
+          dest: 'game/shaders'
         }
       ]
     })
