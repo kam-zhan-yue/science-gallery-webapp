@@ -3,6 +3,7 @@ precision mediump float;
 
 uniform float time;
 uniform vec2 resolution;
+#define NUM_LAYERS 30.
 
 // 2D rotation matrix
 mat2 rot(float a) {
@@ -10,19 +11,27 @@ mat2 rot(float a) {
     return mat2(c, -s, s, c);
 }
 
-float star(vec2 uv, float flare) {
-    float d = length(uv);
-    float m = .015/d;
-
+float rays(vec2 uv, float flare) {
+    float rays = 0.;
     // create horizontal and vertical rays
-    float rays = max(0., 1.-abs(uv.x * uv.y * 5000.));
-    m += rays * flare;
+    float cross = max(0., 1.-abs(uv.x * uv.y * 1000.));
+    rays += cross * flare;
 
     // rotate the rays by 45 degrees
     uv*=rot(3.1415*0.25);
-    rays = max(0., 1.-abs(uv.x * uv.y * 5000.));
-    m += rays*.3 * flare;
+    float diagonal = max(0., 1.-abs(uv.x * uv.y * 1000.));
+    rays += diagonal*.1 * flare;
+    return rays;
+}
 
+float star(vec2 uv, float flare) {
+    float d = length(uv);
+    float m = .02/d;
+
+    m += rays(uv, flare);
+
+    // soften the glow
+    m *= smoothstep(1., .2, d);
     return m;
 }
 
@@ -33,19 +42,45 @@ float hash21(vec2 p) {
     return fract(p.x*p.y);
 }
 
-void main() {
-    vec2 uv = (gl_FragCoord.xy -.5*resolution.xy)/resolution.y;
-    uv *= 5.;
+vec3 starLayer(vec2 uv) {
     vec3 col = vec3(0);
 
     // create a grid uv and an id for each box
     vec2 gv = fract(uv)-.5;
     vec2 id = floor(uv);
-    float n = hash21(id); // random between 0 and 1
+    for(int y=-1; y<=1; y++)
+    {
+        for(int x=-1;x<=1;x++) {
+            vec2 offs = vec2(x, y);
 
-    col += star(gv-vec2(n, fract(n*34.))+.5, 1.);
+            // add contributions from neighbours
+            float n = hash21(id+offs);
+            float size = fract(n*345.42);
+            float star = star(gv-offs-vec2(n, fract(n*34.))+.5, smoothstep(.9, 1., size) * .1);
 
-    // debugging the grid
-    if(gv.x > .48 || gv.y > .48) col.r = 1.;
+            // add a random colour to the star
+            vec3 color = sin(vec3(.2, .3, .9)*fract(n*2345.2)*123.2)*.5+.5;
+            color = color * vec3(1, .5, 1.+size);
+            col += star * size * color;
+        }
+    }
+    return col;
+}
+
+void main() {
+    vec2 uv = (gl_FragCoord.xy -.5*resolution.xy)/resolution.y;
+    float t = time * .005;
+
+    // add a rotation to the uv
+    uv *= rot(t);
+
+    vec3 col = vec3(0);
+    for(float i=0.; i<1.; i+=1./NUM_LAYERS) {
+        // adjust the depth by the time
+        float depth = fract(i+t);
+        float scale = mix(20., .5, depth);
+        float fade = depth * smoothstep(1., .9, depth);
+        col += starLayer(uv * scale + i*453.2) * fade;
+    }
     gl_FragColor = vec4(col, 1.0);
 }
