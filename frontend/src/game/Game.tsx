@@ -1,20 +1,18 @@
 // src/Game.tsx
-import React, {useEffect, useLayoutEffect, useRef} from 'react';
+import React, {useEffect, useRef} from 'react';
 import Phaser from 'phaser';
 import {Boot} from "./scenes/Boot.tsx";
 import {Universe} from "./scenes/Universe.tsx";
 
 const Game: React.FC = () => {
   const gameRef = useRef<HTMLDivElement>(null);
-
-  useLayoutEffect(() => {
-
-  }, []);
+  const universeRef = useRef<Universe | null>(null);
 
   // Game Initiation
   useEffect(() => {
     const bootScene: Boot = new Boot();
     const universeScene: Universe = new Universe();
+    universeRef.current = universeScene;
     const config: Phaser.Types.Core.GameConfig = {
       type: Phaser.AUTO,
       width: 800,
@@ -49,6 +47,10 @@ const Game: React.FC = () => {
     // })
 
   }, []);
+
+  const planetChanged = (planet: string) => {
+
+  }
 
   return <div ref={gameRef} />;
 };

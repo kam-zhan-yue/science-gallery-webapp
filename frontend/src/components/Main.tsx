@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import styled from "styled-components";
 import StoryComponent from "./StoryComponent.tsx";
 import main from "../assets/audio/main.mp3";
+import Game from "../game/Game.tsx";
+import P = Phaser.Input.Keyboard.KeyCodes.P;
 
 const Overlay = styled.div`
   position: fixed;
@@ -18,6 +20,7 @@ const StartButton = styled.button`
 
 const Main: React.FC = () => {
     const [started, setStarted] = useState<boolean>(false);
+    const [currentPlanet, setCurrentPlanet] = useState<string>('');
 
     const onStartClicked = () => {
         const audio = new Audio(main);
@@ -26,8 +29,13 @@ const Main: React.FC = () => {
         setStarted(true)
     }
 
+    const goToPlanet = (planet:string) => {
+        console.log("going to planet");
+    }
+
     return (
         <>
+            <Game/>
             {!started &&
                 <>
                     <Overlay>
@@ -36,7 +44,10 @@ const Main: React.FC = () => {
                         </StartButton>
                     </Overlay>
                 </>}
-            {started && <StoryComponent/>}
+            {started &&
+                <StoryComponent
+                    goToPlanet={goToPlanet}
+            />}
         </>
     );
 };

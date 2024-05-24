@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect} from 'react';
 // @ts-ignore
 import {Story, Choice, InkObject} from "inkjs";
 import styled from 'styled-components';
@@ -19,15 +19,17 @@ const Overlay = styled.div`
   justify-content: center;
 `
 
-const StoryComponent: React.FC = () => {
+interface StoryComponentProps {
+  goToPlanet: (planet:string) => void;
+}
+
+const StoryComponent: React.FC<StoryComponentProps> = ({goToPlanet}) => {
   const [story, setStory] = useState<Story | null>(null);
   const [storyText, setStoryText] = useState<string>('');
   const [showingChoices, setShowingChoices] = useState<boolean>(false);
   const [choices, setChoices] = useState<Choice[]>([]);
   const [player, setPlayer] = useState<Player>(new Player());
   const [state, setState] = useState<string>('');
-
-  const phaserRef = useRef();
 
   useEffect(() => {
     const loadStory = async () => {
@@ -88,7 +90,7 @@ const StoryComponent: React.FC = () => {
             setState(value.toString());
             break;
           case 'planet':
-            planetChanged(value.toString());
+            selectPlanet(value.toString());
             break;
         }
       });
@@ -143,9 +145,10 @@ const StoryComponent: React.FC = () => {
     }
   }
 
-  const planetChanged = (planet: string) => {
+  const selectPlanet = (planet: string) => {
     console.log(`planet changed from ink ${planet}`);
     setState('travelling');
+    goToPlanet(planet);
   }
 
   const landed = () => {
