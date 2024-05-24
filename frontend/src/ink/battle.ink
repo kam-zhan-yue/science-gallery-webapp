@@ -4,6 +4,7 @@ VAR post_battle_success = -> generic
 VAR post_battle_failure = -> generic
 
 === battle(id) ===
+~ game_state = battling
 { id == "SNAKE":
     ~ enemy_name = "Great Serpent"
     ~ enemy_health = 50  // Set enemy health

@@ -6,6 +6,7 @@ import DialogueComponent from "./DialogueComponent.tsx";
 import ChoiceComponent from "./ChoiceComponent.tsx";
 import CharacterComponent from "./CharacterComponent.tsx";
 import Player from "../classes/Player.ts";
+import KeypadComponent from "./KeypadComponent.tsx";
 
 const Overlay = styled.div`
   position: fixed;
@@ -20,10 +21,11 @@ const Overlay = styled.div`
 
 const StoryComponent: React.FC = () => {
   const [story, setStory] = useState<Story | null>(null);
-  const [storyText, setStoryText] = useState('');
+  const [storyText, setStoryText] = useState<string>('');
   const [showingChoices, setShowingChoices] = useState<boolean>(false);
   const [choices, setChoices] = useState<Choice[]>([]);
   const [player, setPlayer] = useState<Player>(new Player());
+  const [state, setState] = useState<string>('');
 
   useEffect(() => {
     const loadStory = async () => {
@@ -58,6 +60,7 @@ const StoryComponent: React.FC = () => {
     if (story) {
       story.variablesState.ObserveVariableChange((variableName: string, value: InkObject) => {
         // Update the character state whenever 'class' variable changes
+        console.log(`VARIABLE ${variableName} changed to ${value}`)
         switch(variableName) {
           case 'class':
             player.class = value.toString();
@@ -73,11 +76,23 @@ const StoryComponent: React.FC = () => {
             break;
           case 'health':
             player.health = Number(value.toString());
+            break;
+          case 'game_state':
+            gameStateChanged(value.toString());
+            break;
         }
         setPlayer(player);
       });
     }
   }, [story]);
+
+  const gameStateChanged = (newState: string) => {
+    // if(newState === "planet_selection") {
+    //   advance(story);
+    // }
+    // if planet selection (and character selection, need to advance to populate the choices!
+    setState(newState);
+  }
 
   const advance = (story: Story | null) => {
     if (!story) return;
@@ -130,7 +145,14 @@ const StoryComponent: React.FC = () => {
         <Overlay onClick={handleOverlayClick}>
         </Overlay>
 
-        {showingChoices &&
+        {state == "planet_selection" &&
+        <>
+        <KeypadComponent
+            choices={choices}
+            handleCodeInput={handleChoiceClick}
+          />
+        </>}
+        {state != "planet_selection" && showingChoices &&
         <ChoiceComponent
             choices={choices}
             handleChoiceClick={handleChoiceClick}

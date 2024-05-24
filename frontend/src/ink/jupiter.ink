@@ -1,4 +1,5 @@
 === jupiter_story ===
+~ game_state = exploring
 Welcome to Jupiter.
 Suddently, you find yourself in the den of a large snake deity.
 ~ post_battle_success = -> snake_battle_success

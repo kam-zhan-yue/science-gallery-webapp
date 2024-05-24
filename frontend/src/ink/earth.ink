@@ -1,4 +1,5 @@
 === earth_story ===
+~ game_state = exploring
 Welcome to Earth. 
 -> encounter_1
 
