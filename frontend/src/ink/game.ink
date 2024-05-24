@@ -24,11 +24,13 @@ Please choose a class.
 === universe_story ===
 ~ game_state = planet_selection
 Where shall we go today?
-    * [Earth]
+    * [1111]
         ~ game_state = exploring
+        ~ planet = earth
         -> earth_story
-    * [Jupiter]
+    * [2222]
         ~ game_state = exploring
+        ~ planet = jupiter
         -> jupiter_story
     * [Pluto]
         ~ game_state = exploring

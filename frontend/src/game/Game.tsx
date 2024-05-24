@@ -1,5 +1,5 @@
 // src/Game.tsx
-import React, { useEffect, useRef } from 'react';
+import React, {useEffect, useLayoutEffect, useRef} from 'react';
 import Phaser from 'phaser';
 import {Boot} from "./scenes/Boot.tsx";
 import {Universe} from "./scenes/Universe.tsx";
@@ -7,6 +7,11 @@ import {Universe} from "./scenes/Universe.tsx";
 const Game: React.FC = () => {
   const gameRef = useRef<HTMLDivElement>(null);
 
+  useLayoutEffect(() => {
+
+  }, []);
+
+  // Game Initiation
   useEffect(() => {
     const bootScene: Boot = new Boot();
     const universeScene: Universe = new Universe();
@@ -35,6 +40,14 @@ const Game: React.FC = () => {
     return () => {
       game.destroy(true);
     };
+  }, []);
+
+  // Event Listeners
+  useEffect(() => {
+    // EventBus.on('planet_changed', (planet: string) => {
+    //   console.log(`game is going to ${planet}`);
+    // })
+
   }, []);
 
   return <div ref={gameRef} />;

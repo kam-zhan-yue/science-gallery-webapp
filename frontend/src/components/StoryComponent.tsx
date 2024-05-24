@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 // @ts-ignore
 import {Story, Choice, InkObject} from "inkjs";
 import styled from 'styled-components';
@@ -26,6 +26,8 @@ const StoryComponent: React.FC = () => {
   const [choices, setChoices] = useState<Choice[]>([]);
   const [player, setPlayer] = useState<Player>(new Player());
   const [state, setState] = useState<string>('');
+
+  const phaserRef = useRef();
 
   useEffect(() => {
     const loadStory = async () => {
@@ -60,39 +62,38 @@ const StoryComponent: React.FC = () => {
     if (story) {
       story.variablesState.ObserveVariableChange((variableName: string, value: InkObject) => {
         // Update the character state whenever 'class' variable changes
-        console.log(`VARIABLE ${variableName} changed to ${value}`)
+        // console.log(`VARIABLE ${variableName} changed to ${value}`)
         switch(variableName) {
           case 'class':
             player.class = value.toString();
+            setPlayer(player);
             break;
           case 'finesse':
             player.finesse = Number(value.toString());
+            setPlayer(player);
             break;
           case 'intuition':
             player.intuition = Number(value.toString());
+            setPlayer(player);
             break;
           case 'persuasion':
             player.persuasion = Number(value.toString());
+            setPlayer(player);
             break;
           case 'health':
             player.health = Number(value.toString());
+            setPlayer(player);
             break;
           case 'game_state':
-            gameStateChanged(value.toString());
+            setState(value.toString());
+            break;
+          case 'planet':
+            planetChanged(value.toString());
             break;
         }
-        setPlayer(player);
       });
     }
   }, [story]);
-
-  const gameStateChanged = (newState: string) => {
-    // if(newState === "planet_selection") {
-    //   advance(story);
-    // }
-    // if planet selection (and character selection), need to advance to populate the choices!
-    setState(newState);
-  }
 
   const advance = (story: Story | null) => {
     if (!story) return;
@@ -109,14 +110,14 @@ const StoryComponent: React.FC = () => {
       const choices: Choice[] = story.currentChoices;
       if (choices.length > 0) {
         // If there are choices, then show them!
-        console.log('has choices, display them!!');
+        // console.log('has choices, display them!!');
         setShowingChoices(true);
       } else {
         // If there are no choices, and we are not showing the choices, then the story has ended
-        console.log('story has ended!');
+        // console.log('story has ended!');
       }
     } else {
-      console.log('pick a damn choice!');
+      // console.log('pick a damn choice!');
     }
   }
 
@@ -126,12 +127,31 @@ const StoryComponent: React.FC = () => {
 
   const handleChoiceClick = (choiceIndex: number) => {
     if (story) {
-      console.log(`choosing ${choiceIndex}`);
+      // console.log(`choosing ${choiceIndex}`);
       story.ChooseChoiceIndex(choiceIndex);
       setShowingChoices(false);
       advance(story);
     }
   };
+
+  const handleCodeInput = (choiceIndex: number) => {
+    if(story) {
+      story.ChooseChoiceIndex(choiceIndex);
+      setShowingChoices(false);
+      // don't advance, wait for planet to change
+      advance(story);
+    }
+  }
+
+  const planetChanged = (planet: string) => {
+    console.log(`planet changed from ink ${planet}`);
+    setState('travelling');
+  }
+
+  const landed = () => {
+    console.log('spaceship has landed');
+    setState('landed');
+  }
 
   return (
       <>
@@ -145,10 +165,10 @@ const StoryComponent: React.FC = () => {
         <>
         <KeypadComponent
             choices={choices}
-            handleCodeInput={handleChoiceClick}
+            handleCodeInput={handleCodeInput}
           />
         </>}
-        {state != "planet_selection" && showingChoices &&
+        {state != "planet_selection" && state != 'travelling' && showingChoices &&
         <ChoiceComponent
             choices={choices}
             handleChoiceClick={handleChoiceClick}

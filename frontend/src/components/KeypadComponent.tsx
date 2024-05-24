@@ -24,17 +24,13 @@ const KeypadComponent: React.FC<KeypadComponentProps> = ({ choices, handleCodeIn
         const code: string = inputValue;
         let found: number = -1;
         for(let i: number=0; i<choices.length; ++i) {
-            console.log(choices[i].text);
             if(choices[i].text === code) {
                 found = i;
             }
         }
 
         if(found >= 0) {
-            console.log(`Found code ${code}`);
             handleCodeInput(found);
-        } else {
-            console.log(`Code ${code} is invalid`);
         }
     }
 
