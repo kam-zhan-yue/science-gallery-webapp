@@ -25,10 +25,13 @@ Please choose a class.
 ~ game_state = planet_selection
 Where shall we go today?
     * [Earth]
+        ~ game_state = exploring
         -> earth_story
     * [Jupiter]
+        ~ game_state = exploring
         -> jupiter_story
     * [Pluto]
+        ~ game_state = exploring
         Pluto isn't a planet, dummy!
         -> universe_story
     * [DONE]

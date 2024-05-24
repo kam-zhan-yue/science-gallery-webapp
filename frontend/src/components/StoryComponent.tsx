@@ -90,7 +90,7 @@ const StoryComponent: React.FC = () => {
     // if(newState === "planet_selection") {
     //   advance(story);
     // }
-    // if planet selection (and character selection, need to advance to populate the choices!
+    // if planet selection (and character selection), need to advance to populate the choices!
     setState(newState);
   }
 
@@ -103,13 +103,14 @@ const StoryComponent: React.FC = () => {
     if (story.canContinue) {
       const bodyText: string = story.Continue() ?? '';
       setStoryText(bodyText);
+      setChoices(story.currentChoices)
     } else if (!showingChoices) {
       // If the choices are not showing, check whether there are choices
       const choices: Choice[] = story.currentChoices;
       if (choices.length > 0) {
         // If there are choices, then show them!
         console.log('has choices, display them!!');
-        showChoices(choices);
+        setShowingChoices(true);
       } else {
         // If there are no choices, and we are not showing the choices, then the story has ended
         console.log('story has ended!');
@@ -117,11 +118,6 @@ const StoryComponent: React.FC = () => {
     } else {
       console.log('pick a damn choice!');
     }
-  }
-
-  const showChoices = (choices: Choice[]) => {
-    setChoices(choices);
-    setShowingChoices(true);
   }
 
   const handleOverlayClick = () => {
