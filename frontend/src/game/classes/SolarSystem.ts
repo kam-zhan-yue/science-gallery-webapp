@@ -24,11 +24,11 @@ export default class SolarSystem {
         return this.sun.body;
     }
 
-    public getPlanet(planet: string): SpriteWithDynamicBody {
+    public getPlanet(planet: string): Planet {
         if(this.planets[planet] === null) {
             throw new Error(`Planet with key ${planet} does not exist!`);
         }
-        return this.planets[planet].body;
+        return this.planets[planet];
     }
 
     public simulate(time: number, delta: number) {
