@@ -12,6 +12,10 @@ export class Universe extends Scene {
         this.load.glsl('starShader', '/game/shaders/starShader.glsl');
     }
 
+    test() {
+        console.log("TEST!");
+    }
+
     create() {
         this.cameras.main.zoom = 2;
         const centerX = this.cameras.main.centerX;

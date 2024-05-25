@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import styled from "styled-components";
 import StoryComponent from "./StoryComponent.tsx";
 import main from "../assets/audio/main.mp3";
 import Game from "../game/Game.tsx";
-import P = Phaser.Input.Keyboard.KeyCodes.P;
+import {Universe} from "../game/scenes/Universe.tsx";
 
 const Overlay = styled.div`
   position: fixed;
@@ -20,7 +20,14 @@ const StartButton = styled.button`
 
 const Main: React.FC = () => {
     const [started, setStarted] = useState<boolean>(false);
-    const [currentPlanet, setCurrentPlanet] = useState<string>('');
+    const universeRef = useRef<Universe>(null);
+
+    useEffect(() => {
+        if (universeRef.current) {
+            console.log(`Universe is set ${universeRef.current}`); // You can now use the universeRef here
+            universeRef.current?.test();
+        }
+    }, []);
 
     const onStartClicked = () => {
         const audio = new Audio(main);
@@ -29,13 +36,10 @@ const Main: React.FC = () => {
         setStarted(true)
     }
 
-    const goToPlanet = (planet:string) => {
-        console.log("going to planet");
-    }
 
     return (
         <>
-            <Game/>
+            <Game ref={universeRef}/>
             {!started &&
                 <>
                     <Overlay>
@@ -46,8 +50,8 @@ const Main: React.FC = () => {
                 </>}
             {started &&
                 <StoryComponent
-                    goToPlanet={goToPlanet}
-            />}
+                    universeRef={universeRef.current}
+                />}
         </>
     );
 };

@@ -7,6 +7,7 @@ import ChoiceComponent from "./ChoiceComponent.tsx";
 import CharacterComponent from "./CharacterComponent.tsx";
 import Player from "../classes/Player.ts";
 import KeypadComponent from "./KeypadComponent.tsx";
+import {Universe} from "../game/scenes/Universe.tsx";
 
 const Overlay = styled.div`
   position: fixed;
@@ -20,10 +21,10 @@ const Overlay = styled.div`
 `
 
 interface StoryComponentProps {
-  goToPlanet: (planet:string) => void;
+  universeRef: Universe | null;
 }
 
-const StoryComponent: React.FC<StoryComponentProps> = ({goToPlanet}) => {
+const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
   const [story, setStory] = useState<Story | null>(null);
   const [storyText, setStoryText] = useState<string>('');
   const [showingChoices, setShowingChoices] = useState<boolean>(false);
@@ -148,12 +149,9 @@ const StoryComponent: React.FC<StoryComponentProps> = ({goToPlanet}) => {
   const selectPlanet = (planet: string) => {
     console.log(`planet changed from ink ${planet}`);
     setState('travelling');
-    goToPlanet(planet);
-  }
-
-  const landed = () => {
-    console.log('spaceship has landed');
-    setState('landed');
+    if(universeRef) {
+      universeRef.test();
+    }
   }
 
   return (
