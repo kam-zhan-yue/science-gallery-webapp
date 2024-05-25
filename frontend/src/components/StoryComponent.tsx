@@ -31,6 +31,7 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
   const [showingChoices, setShowingChoices] = useState<boolean>(false);
   const [choices, setChoices] = useState<Choice[]>([]);
   const [player, setPlayer] = useState<Player>(new Player());
+  const [gameState, setGameState] = useState<string>('');
   const [state, setState] = useState<string>('');
 
   // Loading game.json for the story
@@ -50,7 +51,7 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
   useEffect(() => {
     if (story) {
       story.variablesState.ObserveVariableChange((variableName: string, value: InkObject) => {
-        // Update the character state whenever 'class' variable changes
+        // Update the character gameState whenever 'class' variable changes
         // console.log(`VARIABLE ${variableName} changed to ${value}`)
         switch(variableName) {
           case 'class':
@@ -74,7 +75,7 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
             setPlayer(player);
             break;
           case 'game_state':
-            setState(value.toString());
+            setGameState(value.toString());
             break;
           case 'planet':
             selectPlanet(value.toString());
@@ -86,35 +87,28 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
 
   // Game listeners
   useEffect(() => {
-    EventBus.on('test', (testString: string) => {
-      console.log(testString);
+    EventBus.on('landed', (planet: string) => {
+      setState('landed');
+      console.log(`Landed on ${planet}`);
     });
 
     return () => {
-      EventBus.removeListener('test');
+      EventBus.removeListener('landed');
     }
 
   }, [universeRef])
 
   const advance = (story: Story | null) => {
     if (!story) return;
-    // If the story can continue, it means there is new text!
-    // If the story cannot continue, it means there might be choices.
-    // If the choices are not showing, show the choices
-    // If the choices are showing, do nothing
     if (story.canContinue) {
       const bodyText: string = story.Continue() ?? '';
       setStoryText(bodyText);
       setChoices(story.currentChoices)
     } else if (!showingChoices) {
-      // If the choices are not showing, check whether there are choices
       const choices: Choice[] = story.currentChoices;
       if (choices.length > 0) {
-        // If there are choices, then show them!
-        // console.log('has choices, display them!!');
         setShowingChoices(true);
       } else {
-        // If there are no choices, and we are not showing the choices, then the story has ended
         // console.log('story has ended!');
       }
     } else {
@@ -154,20 +148,25 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
 
   return (
       <>
-        <CharacterComponent player={player}></CharacterComponent>
-        <DialogueComponent text={storyText}></DialogueComponent>
+        {state !== 'travelling' &&
+            <>
+              <CharacterComponent player={player}></CharacterComponent>
+              <DialogueComponent text={storyText}></DialogueComponent>
+            </>
+        }
+
 
         <Overlay onClick={handleOverlayClick}>
         </Overlay>
 
-        {state == "planet_selection" &&
+        {gameState == "planet_selection" &&
         <>
         <KeypadComponent
             choices={choices}
             handleCodeInput={handleCodeInput}
           />
         </>}
-        {state != "planet_selection" && state != 'travelling' && showingChoices &&
+        {gameState != "planet_selection" && gameState != 'travelling' && showingChoices &&
         <ChoiceComponent
             choices={choices}
             handleChoiceClick={handleChoiceClick}

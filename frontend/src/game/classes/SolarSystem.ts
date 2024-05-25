@@ -1,6 +1,5 @@
 import ArcadePhysics = Phaser.Physics.Arcade.ArcadePhysics;
 import Graphics = Phaser.GameObjects.Graphics;
-import SpriteWithDynamicBody = Phaser.Types.Physics.Arcade.SpriteWithDynamicBody;
 
 import Sun from "./Sun.ts";
 import Planet from "./Planet.ts";
@@ -20,8 +19,8 @@ export default class SolarSystem {
         this.planets['jupiter'] = new Planet(physics, graphics, 'earth', x, y, 150, 50);
     }
 
-    public centre(): SpriteWithDynamicBody {
-        return this.sun.body;
+    public centre(): Planet {
+        return this.sun;
     }
 
     public getPlanet(planet: string): Planet {
