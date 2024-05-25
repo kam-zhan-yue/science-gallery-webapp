@@ -1,15 +1,13 @@
 // src/Game.tsx
-import React, {useEffect, useLayoutEffect, useRef} from 'react';
+import {useEffect, useRef, forwardRef } from 'react';
 import Phaser from 'phaser';
-import {Boot} from "./scenes/Boot.tsx";
-import {Universe} from "./scenes/Universe.tsx";
+import { Boot } from './scenes/Boot.tsx';
+import { Universe } from './scenes/Universe.tsx';
 
-const Game: React.FC = () => {
-  const gameRef = useRef<HTMLDivElement>(null);
+type GameProps = {};
 
-  useLayoutEffect(() => {
-
-  }, []);
+const Game = forwardRef<Universe, GameProps>((_props, ref) => {
+  const phaserGameRef = useRef<Phaser.Game>();
 
   // Game Initiation
   useEffect(() => {
@@ -19,6 +17,7 @@ const Game: React.FC = () => {
       type: Phaser.AUTO,
       width: 800,
       height: 600,
+      parent: 'game-container',
       backgroundColor: '#1f1137',
       scale: {
         mode: Phaser.Scale.RESIZE,
@@ -35,22 +34,24 @@ const Game: React.FC = () => {
     };
 
     const game = new Phaser.Game(config);
-    gameRef.current!.appendChild(game.canvas);
+    phaserGameRef.current = game;
+    if(ref && universeScene) {
+      if(typeof ref === 'function') {
+        ref(universeScene);
+      } else {
+        ref.current = universeScene;
+      }
+    }
 
     return () => {
       game.destroy(true);
     };
-  }, []);
+  }, [ref]);
 
-  // Event Listeners
-  useEffect(() => {
-    // EventBus.on('planet_changed', (planet: string) => {
-    //   console.log(`game is going to ${planet}`);
-    // })
-
-  }, []);
-
-  return <div ref={gameRef} />;
-};
+  return (
+      <div id="game-container">
+      </div>
+  );
+});
 
 export default Game;

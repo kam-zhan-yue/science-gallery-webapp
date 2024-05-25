@@ -16,15 +16,25 @@ export default class SolarSystem {
         // Instantiate Planets
         graphics.lineStyle(1, 0xffffff, 0.4);
         this.planets['earth'] = new Planet(physics, graphics, 'earth', x, y, 50, 20);
-        this.planets['test'] = new Planet(physics, graphics, 'earth', x, y, 150, 50);
+        this.planets['jupiter'] = new Planet(physics, graphics, 'earth', x, y, 150, 50);
     }
 
-    public centre(): Phaser.Types.Physics.Arcade.SpriteWithDynamicBody {
-        return this.sun.body;
+    public centre(): Planet {
+        return this.sun;
+    }
+
+    public getPlanet(planet: string): Planet {
+        if(this.planets[planet] === null) {
+            throw new Error(`Planet with key ${planet} does not exist!`);
+        }
+        return this.planets[planet];
     }
 
     public simulate(time: number, delta: number) {
-        this.planets['earth'].simulate(time, delta);
-        this.planets['test'].simulate(time, delta);
+        for(const key in this.planets) {
+            if(this.planets.hasOwnProperty(key)) {
+                this.planets[key].simulate(time, delta);
+            }
+        }
     }
 }

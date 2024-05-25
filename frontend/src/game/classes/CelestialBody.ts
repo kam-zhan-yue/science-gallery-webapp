@@ -27,18 +27,29 @@ export default class CelestialBody {
         return (360.0 / this.orbitalPeriod) * deltaTime;
     }
 
-    public simulate(_time: number, delta: number) {
-        const deltaTime = delta / 1000;
-        this.angle += this.clockwise ? this.getAngleStep(deltaTime) : -this.getAngleStep(deltaTime);
-        this.angle = Phaser.Math.Wrap(this.angle, 0, 360); // Ensure the angle stays within 0-360 degrees
+    private getAngle(deltaTime: number): number {
+        return this.clockwise ? this.getAngleStep(deltaTime) : -this.getAngleStep(deltaTime);
+    }
 
+    public getPosition(timeInFuture: number): Vector2 {
+        const deltaTime = timeInFuture / 1000;
+        // Calculate the new angle
+        const newAngle = this.angle + this.getAngle(deltaTime)
         // Convert angle to radians
-        const radians = Phaser.Math.DegToRad(this.angle);
-
+        const radians = Phaser.Math.DegToRad(newAngle);
         // Calculate new position using Math.sin and Math.cos
         const newX = this.parentPosition.x + this.orbitalRadius * Math.cos(radians);
         const newY = this.parentPosition.y + this.orbitalRadius * Math.sin(radians);
+        return new Vector2(newX, newY);
+    }
 
-        this.body.setPosition(newX, newY);
+    public simulate(_time: number, delta: number) {
+        const position: Vector2 = this.getPosition(delta);
+        // Simulate the angle
+        const deltaTime: number = delta / 1000;
+        this.angle += this.getAngle(deltaTime);
+        this.angle = Phaser.Math.Wrap(this.angle, 0, 360); // Ensure the angle stays within 0-360 degrees
+
+        this.body.setPosition(position.x, position.y);
     }
 }

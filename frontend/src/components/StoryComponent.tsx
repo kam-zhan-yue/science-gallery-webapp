@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect} from 'react';
 // @ts-ignore
 import {Story, Choice, InkObject} from "inkjs";
 import styled from 'styled-components';
@@ -7,6 +7,8 @@ import ChoiceComponent from "./ChoiceComponent.tsx";
 import CharacterComponent from "./CharacterComponent.tsx";
 import Player from "../classes/Player.ts";
 import KeypadComponent from "./KeypadComponent.tsx";
+import {Universe} from "../game/scenes/Universe.tsx";
+import {EventBus} from "../EventBus.tsx";
 
 const Overlay = styled.div`
   position: fixed;
@@ -19,38 +21,25 @@ const Overlay = styled.div`
   justify-content: center;
 `
 
-const StoryComponent: React.FC = () => {
+interface StoryComponentProps {
+  universeRef: Universe | null;
+}
+
+const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
   const [story, setStory] = useState<Story | null>(null);
   const [storyText, setStoryText] = useState<string>('');
   const [showingChoices, setShowingChoices] = useState<boolean>(false);
   const [choices, setChoices] = useState<Choice[]>([]);
   const [player, setPlayer] = useState<Player>(new Player());
+  const [gameState, setGameState] = useState<string>('');
   const [state, setState] = useState<string>('');
 
-  const phaserRef = useRef();
-
+  // Loading game.json for the story
   useEffect(() => {
     const loadStory = async () => {
       const response: Response = await fetch('/ink/game.json');
       const storyContent: string = await response.text();
-      // console.log(storyContent);
       const inkStory = new Story(storyContent);
-
-      // TODO: Fix this to avoid having to always use a json
-      // const response: Response = await fetch('/ink/game.ink');
-      // const storyContent: string = await response.text();
-      // console.log(storyContent);
-      // // Define the compiler options, ensuring all necessary properties are included
-      //
-      // const jsonFileHandler: JsonFileHandler = new JsonFileHandler('/ink/');
-      // const posixFileHandler: PosixFileHandler = new PosixFileHandler(`./ink`);
-      //
-      // const compilerOptions: CompilerOptions = {
-      //   fileHandler: posixFileHandler
-      // };
-      // const inkStory: Story | null = new Compiler(storyContent, compilerOptions).Compile();
-
-
       setStory(inkStory);
       advance(inkStory);
     };
@@ -58,10 +47,11 @@ const StoryComponent: React.FC = () => {
     loadStory();
   }, []);
 
+  // Handles variable changes
   useEffect(() => {
     if (story) {
       story.variablesState.ObserveVariableChange((variableName: string, value: InkObject) => {
-        // Update the character state whenever 'class' variable changes
+        // Update the character gameState whenever 'class' variable changes
         // console.log(`VARIABLE ${variableName} changed to ${value}`)
         switch(variableName) {
           case 'class':
@@ -85,35 +75,40 @@ const StoryComponent: React.FC = () => {
             setPlayer(player);
             break;
           case 'game_state':
-            setState(value.toString());
+            setGameState(value.toString());
             break;
           case 'planet':
-            planetChanged(value.toString());
+            selectPlanet(value.toString());
             break;
         }
       });
     }
   }, [story]);
 
+  // Game listeners
+  useEffect(() => {
+    EventBus.on('landed', (planet: string) => {
+      setState('landed');
+      console.log(`Landed on ${planet}`);
+    });
+
+    return () => {
+      EventBus.removeListener('landed');
+    }
+
+  }, [universeRef])
+
   const advance = (story: Story | null) => {
     if (!story) return;
-    // If the story can continue, it means there is new text!
-    // If the story cannot continue, it means there might be choices.
-    // If the choices are not showing, show the choices
-    // If the choices are showing, do nothing
     if (story.canContinue) {
       const bodyText: string = story.Continue() ?? '';
       setStoryText(bodyText);
       setChoices(story.currentChoices)
     } else if (!showingChoices) {
-      // If the choices are not showing, check whether there are choices
       const choices: Choice[] = story.currentChoices;
       if (choices.length > 0) {
-        // If there are choices, then show them!
-        // console.log('has choices, display them!!');
         setShowingChoices(true);
       } else {
-        // If there are no choices, and we are not showing the choices, then the story has ended
         // console.log('story has ended!');
       }
     } else {
@@ -143,32 +138,35 @@ const StoryComponent: React.FC = () => {
     }
   }
 
-  const planetChanged = (planet: string) => {
+  const selectPlanet = (planet: string) => {
     console.log(`planet changed from ink ${planet}`);
     setState('travelling');
-  }
-
-  const landed = () => {
-    console.log('spaceship has landed');
-    setState('landed');
+    if(universeRef) {
+      universeRef.goToPlanet(planet);
+    }
   }
 
   return (
       <>
-        <CharacterComponent player={player}></CharacterComponent>
-        <DialogueComponent text={storyText}></DialogueComponent>
+        {state !== 'travelling' &&
+            <>
+              <CharacterComponent player={player}></CharacterComponent>
+              <DialogueComponent text={storyText}></DialogueComponent>
+            </>
+        }
+
 
         <Overlay onClick={handleOverlayClick}>
         </Overlay>
 
-        {state == "planet_selection" &&
+        {gameState == "planet_selection" &&
         <>
         <KeypadComponent
             choices={choices}
             handleCodeInput={handleCodeInput}
           />
         </>}
-        {state != "planet_selection" && state != 'travelling' && showingChoices &&
+        {gameState != "planet_selection" && gameState != 'travelling' && showingChoices &&
         <ChoiceComponent
             choices={choices}
             handleChoiceClick={handleChoiceClick}
