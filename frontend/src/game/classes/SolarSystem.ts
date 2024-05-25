@@ -1,5 +1,6 @@
 import ArcadePhysics = Phaser.Physics.Arcade.ArcadePhysics;
 import Graphics = Phaser.GameObjects.Graphics;
+import SpriteWithDynamicBody = Phaser.Types.Physics.Arcade.SpriteWithDynamicBody;
 
 import Sun from "./Sun.ts";
 import Planet from "./Planet.ts";
@@ -16,15 +17,25 @@ export default class SolarSystem {
         // Instantiate Planets
         graphics.lineStyle(1, 0xffffff, 0.4);
         this.planets['earth'] = new Planet(physics, graphics, 'earth', x, y, 50, 20);
-        this.planets['test'] = new Planet(physics, graphics, 'earth', x, y, 150, 50);
+        this.planets['jupiter'] = new Planet(physics, graphics, 'earth', x, y, 150, 50);
     }
 
-    public centre(): Phaser.Types.Physics.Arcade.SpriteWithDynamicBody {
+    public centre(): SpriteWithDynamicBody {
         return this.sun.body;
     }
 
+    public getPlanet(planet: string): SpriteWithDynamicBody {
+        if(this.planets[planet] === null) {
+            throw new Error(`Planet with key ${planet} does not exist!`);
+        }
+        return this.planets[planet].body;
+    }
+
     public simulate(time: number, delta: number) {
-        this.planets['earth'].simulate(time, delta);
-        this.planets['test'].simulate(time, delta);
+        for(const key in this.planets) {
+            if(this.planets.hasOwnProperty(key)) {
+                this.planets[key].simulate(time, delta);
+            }
+        }
     }
 }

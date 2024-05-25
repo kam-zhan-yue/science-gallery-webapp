@@ -1,5 +1,6 @@
 import {Scene} from 'phaser';
 import SolarSystem from "../classes/SolarSystem.ts";
+import {EventBus} from "../../EventBus.tsx";
 
 export class Universe extends Scene {
     private solarSystem?: SolarSystem;
@@ -14,6 +15,16 @@ export class Universe extends Scene {
 
     test() {
         console.log("TEST!");
+        EventBus.emit('test', 'yes')
+    }
+
+    goToPlanet(planet: string) {
+        console.log(`going to planet: ${planet}`);
+        const planetBody = this.solarSystem?.getPlanet(planet);
+        if(planetBody !== undefined) {
+            this.cameras.main.zoom = 5;
+            this.cameras.main.startFollow(planetBody);
+        }
     }
 
     create() {

@@ -8,6 +8,7 @@ import CharacterComponent from "./CharacterComponent.tsx";
 import Player from "../classes/Player.ts";
 import KeypadComponent from "./KeypadComponent.tsx";
 import {Universe} from "../game/scenes/Universe.tsx";
+import {EventBus} from "../EventBus.tsx";
 
 const Overlay = styled.div`
   position: fixed;
@@ -32,28 +33,12 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
   const [player, setPlayer] = useState<Player>(new Player());
   const [state, setState] = useState<string>('');
 
+  // Loading game.json for the story
   useEffect(() => {
     const loadStory = async () => {
       const response: Response = await fetch('/ink/game.json');
       const storyContent: string = await response.text();
-      // console.log(storyContent);
       const inkStory = new Story(storyContent);
-
-      // TODO: Fix this to avoid having to always use a json
-      // const response: Response = await fetch('/ink/game.ink');
-      // const storyContent: string = await response.text();
-      // console.log(storyContent);
-      // // Define the compiler options, ensuring all necessary properties are included
-      //
-      // const jsonFileHandler: JsonFileHandler = new JsonFileHandler('/ink/');
-      // const posixFileHandler: PosixFileHandler = new PosixFileHandler(`./ink`);
-      //
-      // const compilerOptions: CompilerOptions = {
-      //   fileHandler: posixFileHandler
-      // };
-      // const inkStory: Story | null = new Compiler(storyContent, compilerOptions).Compile();
-
-
       setStory(inkStory);
       advance(inkStory);
     };
@@ -61,6 +46,7 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
     loadStory();
   }, []);
 
+  // Handles variable changes
   useEffect(() => {
     if (story) {
       story.variablesState.ObserveVariableChange((variableName: string, value: InkObject) => {
@@ -97,6 +83,18 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
       });
     }
   }, [story]);
+
+  // Game listeners
+  useEffect(() => {
+    EventBus.on('test', (testString: string) => {
+      console.log(testString);
+    });
+
+    return () => {
+      EventBus.removeListener('test');
+    }
+
+  }, [universeRef])
 
   const advance = (story: Story | null) => {
     if (!story) return;
@@ -150,7 +148,7 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
     console.log(`planet changed from ink ${planet}`);
     setState('travelling');
     if(universeRef) {
-      universeRef.test();
+      universeRef.goToPlanet(planet);
     }
   }
 
