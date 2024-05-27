@@ -40,18 +40,18 @@ const Main: React.FC = () => {
 
     return (
         <>
+            <Game ref={universeRef}/>
             {!started &&
                 <>
+                    <MirrorComponent/>
                     <Overlay>
                         <StartButton onClick={onStartClicked}>
                             START
                         </StartButton>
                     </Overlay>
-                    <MirrorComponent/>
                 </>}
             {started &&
                 <>
-                    <Game ref={universeRef}/>
                     <StoryComponent
                         universeRef={universeRef.current}
                     />
