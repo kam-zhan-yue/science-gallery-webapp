@@ -4,6 +4,7 @@ import StoryComponent from "./StoryComponent.tsx";
 import main from "../assets/audio/main.mp3";
 import Game from "../game/Game.tsx";
 import {Universe} from "../game/scenes/Universe.tsx";
+import MirrorComponent from "./MirrorComponent.tsx";
 
 const Overlay = styled.div`
   position: fixed;
@@ -39,7 +40,6 @@ const Main: React.FC = () => {
 
     return (
         <>
-            <Game ref={universeRef}/>
             {!started &&
                 <>
                     <Overlay>
@@ -47,11 +47,16 @@ const Main: React.FC = () => {
                             START
                         </StartButton>
                     </Overlay>
+                    <MirrorComponent/>
                 </>}
             {started &&
-                <StoryComponent
-                    universeRef={universeRef.current}
-                />}
+                <>
+                    <Game ref={universeRef}/>
+                    <StoryComponent
+                        universeRef={universeRef.current}
+                    />
+                </>
+            }
         </>
     );
 };
