@@ -31,7 +31,8 @@ const Triangle: React.FC<TriangleProps> = ({down, right, bLeft, bRight, bBottom,
       border-right: ${bRight} solid transparent;
       border-bottom: ${bBottom} solid ${background};
       rotate: ${rotate};
-      // animation: ${animation} 5s ease-in-out infinite;
+      animation: ${animation} 5s ease-in-out infinite;
+      //filter: blur(4.5px)
     `;
     return (
         <TriangleDiv/>
