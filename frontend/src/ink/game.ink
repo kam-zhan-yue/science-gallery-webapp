@@ -15,6 +15,10 @@ Please choose a class.
         -> chosen(Mechanic)
     * [Agent]
         -> chosen(Agent)
+    * [Conspiracy Theorist]
+        -> chosen(ConspiracyTheorist)
+    * [Artist]
+        -> chosen(Artist)
 
 === chosen(class_type) ===
 ~ set_class(class_type)

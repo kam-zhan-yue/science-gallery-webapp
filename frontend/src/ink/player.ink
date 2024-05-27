@@ -1,5 +1,5 @@
 VAR health = 0
-LIST class = (Hero), Doctor, Mechanic, Agent
+LIST class = (Hero), Doctor, Mechanic, Agent, Artist, ConspiracyTheorist, Academic
 VAR finesse = 0
 VAR persuasion = 0
 VAR intuition = 0
@@ -29,6 +29,22 @@ VAR intuition = 0
     ~ finesse = 0
     ~ persuasion = 2
     ~ intuition = 1
+}
+
+{ class == Artist:
+    You have chosen the Artist.
+    ~ health = 100
+    ~ finesse = 2
+    ~ persuasion = 1
+    ~ intuition = 2
+}
+
+{ class == ConspiracyTheorist:
+    You have chosen the Conspiracy Theorist.
+    ~ health = 100
+    ~ finesse = 0
+    ~ persuasion = -1
+    ~ intuition = 2
 }
 
 === function add_health(x) ===
