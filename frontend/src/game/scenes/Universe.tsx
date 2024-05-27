@@ -10,7 +10,7 @@ export class Universe extends Scene {
     }
 
     preload() {
-        this.load.glsl('starShader', '/game/shaders/starShader.glsl');
+        this.load.glsl('stars', '/game/shaders/stars.glsl');
     }
 
     test() {
@@ -70,7 +70,7 @@ export class Universe extends Scene {
         const centerX = this.cameras.main.centerX;
         const centerY = this.cameras.main.centerY;
 
-        this.add.shader('starShader', centerX, centerY, 1000, 1000);
+        this.add.shader('stars', centerX, centerY, 1000, 1000);
         this.anims.create({
             key: 'earth_spin',
             frames: this.anims.generateFrameNumbers('earth', {frames:[0,1,2,3,4,5]}),
