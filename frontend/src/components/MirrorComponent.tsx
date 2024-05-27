@@ -3,7 +3,9 @@ import React from "react";
 const MirrorComponent: React.FC = () => {
     return (
         <>
-            Mirror!
+            <h1 className="text-3xl font-bold underline">
+                Mirror
+            </h1>
         </>
     )
 }
