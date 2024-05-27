@@ -3,6 +3,8 @@ INCLUDE battle.ink
 INCLUDE earth.ink
 INCLUDE jupiter.ink
 INCLUDE player.ink
+
+
 Hello {name}! Welcome to the adventure.
 -> choose
 
