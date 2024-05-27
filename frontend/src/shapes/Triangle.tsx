@@ -12,12 +12,14 @@ interface TriangleProps {
 }
 
 const Triangle: React.FC<TriangleProps> = ({down, right, bLeft, bRight, bBottom, rotate, background}) => {
+    const random = Math.floor(Math.random() * 5)+5; // Random number between -10 and 10 for x-axis translation
+
     const animation = keyframes`
       0%, 100% {
-        transform: translateY(10px);
+        transform: translateY(${random}px);
       }
       50% {
-        transform: translateY(-10px);
+        transform: translateY(-${random}px);
       }
     `;
 
@@ -32,7 +34,6 @@ const Triangle: React.FC<TriangleProps> = ({down, right, bLeft, bRight, bBottom,
       border-bottom: ${bBottom} solid ${background};
       rotate: ${rotate};
       animation: ${animation} 5s ease-in-out infinite;
-      //filter: blur(4.5px)
     `;
     return (
         <TriangleDiv/>

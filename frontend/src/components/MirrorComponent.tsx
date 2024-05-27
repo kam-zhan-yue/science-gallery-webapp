@@ -12,8 +12,8 @@ const Blocker = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #2A2138;
-  filter: blur(250px)
+  background: #2A213899;
+  //filter: blur(100px);
 `
 
 const Overlay = styled.div`
@@ -27,8 +27,8 @@ const Overlay = styled.div`
 `
 
 const colors = {
-    primary: '#E9E9EB',
-    secondary: '#BDBDC4'
+    primary: '#E9E9EB44',
+    secondary: '#BDBDC488'
 }
 
 const debug: boolean = false;

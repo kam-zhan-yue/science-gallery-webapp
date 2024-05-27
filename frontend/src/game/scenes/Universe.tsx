@@ -8,7 +8,6 @@ export class Universe extends Scene {
     constructor() {
         super({ key: 'Universe' });
     }
-
     preload() {
         this.load.glsl('stars', '/game/shaders/stars.glsl');
     }
@@ -16,6 +15,28 @@ export class Universe extends Scene {
     test() {
         console.log("TEST!");
         EventBus.emit('test', 'yes')
+    }
+
+    start() {
+        const centerX = this.cameras.main.centerX;
+        const centerY = this.cameras.main.centerY;
+        const graphics = this.add.graphics();
+        this.solarSystem = new SolarSystem(this.physics, graphics, centerX, centerY);
+        this.cameras.main.startFollow(this.solarSystem.centre().body);
+    }
+
+    create() {
+        this.cameras.main.zoom = 3;
+        const centerX = this.cameras.main.centerX;
+        const centerY = this.cameras.main.centerY;
+
+        this.add.shader('stars', centerX, centerY, 1000, 1000);
+        this.anims.create({
+            key: 'earth_spin',
+            frames: this.anims.generateFrameNumbers('earth', {frames:[0,1,2,3,4,5]}),
+            frameRate: 12,
+            repeat: -1
+        });
     }
 
     goToPlanet(planetName: string) {
@@ -63,24 +84,6 @@ export class Universe extends Scene {
             }
         ]);
         timeline.play();
-    }
-
-    create() {
-        this.cameras.main.zoom = 3;
-        const centerX = this.cameras.main.centerX;
-        const centerY = this.cameras.main.centerY;
-
-        this.add.shader('stars', centerX, centerY, 1000, 1000);
-        this.anims.create({
-            key: 'earth_spin',
-            frames: this.anims.generateFrameNumbers('earth', {frames:[0,1,2,3,4,5]}),
-            frameRate: 12,
-            repeat: -1
-        });
-
-        const graphics = this.add.graphics();
-        this.solarSystem = new SolarSystem(this.physics, graphics, centerX, centerY);
-        this.cameras.main.startFollow(this.solarSystem.centre().body);
     }
 
     update(time: number, delta: number) {

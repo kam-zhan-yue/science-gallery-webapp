@@ -18,16 +18,16 @@ const generateAnimation = (startX: number, startY: number, endX: number, endY: n
       transform: translate(${startX}px, ${startY}px) skew(${skew});
     }
     50% {
-      transform: translate(${-endX}px, ${-endY}px) skew(${skew});
+      transform: translate(${endX}px, ${endY}px) skew(${skew});
     }
   `;
 };
 
 const Parallelogram: React.FC<ParallelogramProps> = ({top, left, width, height, skew, rotate, background}) => {
-    const startX = Math.floor(Math.random() * 20) - 10; // Random number between -10 and 10 for x-axis translation
-    const startY = Math.floor(Math.random() * 20) - 10; // Random number between -10 and 10 for x-axis translation
-    const endX = Math.floor(Math.random() * 20) - 10; // Random number between -10 and 10 for x-axis translation
-    const endY = Math.floor(Math.random() * 20) - 10; // Random number between -10 and 10 for y-axis translation
+    const startX = Math.floor(Math.random() * 5) + 5;
+    const startY = Math.floor(Math.random() * 5) + 5;
+    const endX = Math.floor(Math.random() * 5) - 15;
+    const endY = Math.floor(Math.random() * 5) - 15;
     const delay = Math.random() * 5;
     const animation = generateAnimation(startX, startY, endX, endY, skew);
 

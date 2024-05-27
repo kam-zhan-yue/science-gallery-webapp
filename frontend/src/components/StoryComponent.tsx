@@ -87,6 +87,7 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
 
   // Game listeners
   useEffect(() => {
+    universeRef?.start();
     EventBus.on('landed', (planet: string) => {
       setState('landed');
       console.log(`Landed on ${planet}`);
