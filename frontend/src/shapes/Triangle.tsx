@@ -38,7 +38,9 @@ const Triangle: React.FC<TriangleProps> = ({down, right, bLeft, bRight, bBottom,
     `;
 
     return (
-        <TriangleDiv/>
+        <>
+            <TriangleDiv/>
+        </>
     );
 }
 

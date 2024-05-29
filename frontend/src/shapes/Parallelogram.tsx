@@ -28,7 +28,6 @@ const Parallelogram: React.FC<ParallelogramProps> = ({ top, left, width, height,
     const startY = Math.floor(Math.random() * 5) + 5;
     const endX = Math.floor(Math.random() * 5) - 15;
     const endY = Math.floor(Math.random() * 5) - 15;
-    const delay = Math.random() * 5;
     const animation = generateAnimation(startX, startY, endX, endY, skew);
 
     const ParallelogramDiv = styled.div`
@@ -41,8 +40,6 @@ const Parallelogram: React.FC<ParallelogramProps> = ({ top, left, width, height,
       rotate: ${rotate};
       background: ${background};
       animation: ${animation} 5s ease-in-out infinite;
-      //animation-delay: ${delay}s;
-      box-shadow: 0 0 40px 10px ${background}, 0 0 20px ${background}, 0 0 30px ${background}, 0 0 40px ${background};
     `;
 
     return (
