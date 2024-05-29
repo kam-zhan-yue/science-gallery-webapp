@@ -78,43 +78,43 @@ const MirrorComponent: React.FC = () => {
                             background={debug ? "blue" : colors.primary}/>
                         <Triangle
                             top={-210} left={-150}
-                            bLeft={50} bRight={50}
-                            bBottom={250} rotate={126}
+                            bleft={50} bright={50}
+                            bbottom={250} rotate={126}
                             background={debug ? "green" : colors.secondary}/>
                         <Triangle
                             top={-300} left={-180}
-                            bLeft={75} bRight={75}
-                            bBottom={150} rotate={155}
+                            bleft={75} bright={75}
+                            bbottom={150} rotate={155}
                             background={debug ? "yellow" : colors.primary}/>
                         <Triangle
                             top={0} left={-240}
-                            bLeft={100} bRight={100}
-                            bBottom={200} rotate={63}
+                            bleft={100} bright={100}
+                            bbottom={200} rotate={63}
                             background={debug ? "purple" : colors.secondary}/>
                         <Triangle
                             top={100} left={-175}
-                            bLeft={50} bRight={50}
-                            bBottom={300} rotate={24}
+                            bleft={50} bright={50}
+                            bbottom={300} rotate={24}
                             background={debug ? "pink" : colors.primary}/>
                         <Triangle
                             top={280} left={-130}
-                            bLeft={50} bRight={50}
-                            bBottom={150} rotate={-10}
+                            bleft={50} bright={50}
+                            bbottom={150} rotate={-10}
                             background={debug ? "orange" : colors.secondary}/>
                         <Triangle
                             top={200} left={20}
-                            bLeft={40} bRight={40}
-                            bBottom={200} rotate={155}
+                            bleft={40} bright={40}
+                            bbottom={200} rotate={155}
                             background={debug ? "cyan" : colors.secondary}/>
                         <Triangle
                             top={20} left={75}
-                            bLeft={60} bRight={60}
-                            bBottom={175} rotate={-140}
+                            bleft={60} bright={60}
+                            bbottom={175} rotate={-140}
                             background={debug ? "teal" : colors.secondary}/>
                         <Triangle
                             top={-400} left={10}
-                            bLeft={75} bRight={75}
-                            bBottom={250} rotate={-160}
+                            bleft={75} bright={75}
+                            bbottom={250} rotate={-160}
                             background={debug ? "fuchsia" : colors.primary}/>
                     </SubGlow>
                 </MainGlow>
