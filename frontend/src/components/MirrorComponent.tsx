@@ -47,7 +47,7 @@ const SubGlow = styled.div`
   filter: drop-shadow(0 0 20px hsl(162, 100%, 58%, 80%)) drop-shadow(0 0 30px hsl(270, 73%, 53%, 90%));
 `
 
-const debug: boolean = false
+const debug: boolean = false;
 
 const MirrorComponent: React.FC = () => {
     return (
@@ -57,64 +57,64 @@ const MirrorComponent: React.FC = () => {
                 <MainGlow>
                     <SubGlow>
                         <Parallelogram
-                            top={"-180px"} left={"-75px"}
-                            width={"125px"} height={"90px"}
-                            skew={"50deg"} rotate={"50deg"}
+                            top={-180} left={-75}
+                            width={125} height={90}
+                            skew={50} rotate={50}
                             background={debug ? "red" : colors.primary}/>
                         <Parallelogram
-                            top={"-110px"} left={"40px"}
-                            width={"150px"} height={"90px"}
-                            skew={"50deg"} rotate={"110deg"}
+                            top={-110} left={40}
+                            width={150} height={90}
+                            skew={50} rotate={110}
                             background={debug ? "gray" : colors.secondary}/>
                         <Parallelogram
-                            top={"80px"} left={"-60px"}
-                            width={"150px"} height={"100px"}
-                            skew={"50deg"} rotate={"110deg"}
+                            top={80} left={-60}
+                            width={150} height={100}
+                            skew={50} rotate={110}
                             background={debug ? "white" : colors.primary}/>
                         <Parallelogram
-                            top={"-50px"} left={"-260px"}
-                            width={"200px"} height={"80px"}
-                            skew={"60deg"} rotate={"0deg"}
+                            top={-50} left={-260}
+                            width={200} height={80}
+                            skew={60} rotate={0}
                             background={debug ? "blue" : colors.primary}/>
                         <Triangle
-                            down={"-210px"} right={"-150px"}
-                            bLeft={"50px"} bRight={"50px"}
-                            bBottom={"250px"} rotate={"126deg"}
+                            top={-210} left={-150}
+                            bLeft={50} bRight={50}
+                            bBottom={250} rotate={126}
                             background={debug ? "green" : colors.secondary}/>
                         <Triangle
-                            down={"-300px"} right={"-180px"}
-                            bLeft={"75px"} bRight={"75px"}
-                            bBottom={"150px"} rotate={"155deg"}
+                            top={-300} left={-180}
+                            bLeft={75} bRight={75}
+                            bBottom={150} rotate={155}
                             background={debug ? "yellow" : colors.primary}/>
                         <Triangle
-                            down={"0px"} right={"-240px"}
-                            bLeft={"100px"} bRight={"100px"}
-                            bBottom={"200px"} rotate={"63deg"}
+                            top={0} left={-240}
+                            bLeft={100} bRight={100}
+                            bBottom={200} rotate={63}
                             background={debug ? "purple" : colors.secondary}/>
                         <Triangle
-                            down={"100px"} right={"-175px"}
-                            bLeft={"50px"} bRight={"50px"}
-                            bBottom={"300px"} rotate={"24deg"}
+                            top={100} left={-175}
+                            bLeft={50} bRight={50}
+                            bBottom={300} rotate={24}
                             background={debug ? "pink" : colors.primary}/>
                         <Triangle
-                            down={"280px"} right={"-130px"}
-                            bLeft={"50px"} bRight={"50px"}
-                            bBottom={"150px"} rotate={"-10deg"}
+                            top={280} left={-130}
+                            bLeft={50} bRight={50}
+                            bBottom={150} rotate={-10}
                             background={debug ? "orange" : colors.secondary}/>
                         <Triangle
-                            down={"200px"} right={"20px"}
-                            bLeft={"40px"} bRight={"40px"}
-                            bBottom={"200px"} rotate={"155deg"}
+                            top={200} left={20}
+                            bLeft={40} bRight={40}
+                            bBottom={200} rotate={155}
                             background={debug ? "cyan" : colors.secondary}/>
                         <Triangle
-                            down={"20px"} right={"75px"}
-                            bLeft={"60px"} bRight={"60px"}
-                            bBottom={"175px"} rotate={"-140deg"}
+                            top={20} left={75}
+                            bLeft={60} bRight={60}
+                            bBottom={175} rotate={-140}
                             background={debug ? "teal" : colors.secondary}/>
                         <Triangle
-                            down={"-400px"} right={"10px"}
-                            bLeft={"75px"} bRight={"75px"}
-                            bBottom={"250px"} rotate={"-160deg"}
+                            top={-400} left={10}
+                            bLeft={75} bRight={75}
+                            bBottom={250} rotate={-160}
                             background={debug ? "fuchsia" : colors.primary}/>
                     </SubGlow>
                 </MainGlow>
