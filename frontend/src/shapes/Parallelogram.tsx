@@ -1,4 +1,4 @@
-import styled, {keyframes} from "styled-components";
+import styled, { keyframes } from "styled-components";
 import React from "react";
 
 interface ParallelogramProps {
@@ -14,23 +14,22 @@ interface ParallelogramProps {
 // Define keyframes outside the component to ensure each instance gets its own animation
 const generateAnimation = (startX: number, startY: number, endX: number, endY: number, skew: string) => {
     return keyframes`
-    0%, 100% {
-      transform: translate(${startX}px, ${startY}px) skew(${skew});
-    }
-    50% {
-      transform: translate(${endX}px, ${endY}px) skew(${skew});
-    }
-  `;
+      0%, 100% {
+        transform: translate(${startX}px, ${startY}px) skew(${skew});
+      }
+      50% {
+        transform: translate(${endX}px, ${endY}px) skew(${skew});
+      }
+    `;
 };
 
-const Parallelogram: React.FC<ParallelogramProps> = ({top, left, width, height, skew, rotate, background}) => {
+const Parallelogram: React.FC<ParallelogramProps> = ({ top, left, width, height, skew, rotate, background }) => {
     const startX = Math.floor(Math.random() * 5) + 5;
     const startY = Math.floor(Math.random() * 5) + 5;
     const endX = Math.floor(Math.random() * 5) - 15;
     const endY = Math.floor(Math.random() * 5) - 15;
     const delay = Math.random() * 5;
     const animation = generateAnimation(startX, startY, endX, endY, skew);
-
 
     const ParallelogramDiv = styled.div`
       position: absolute;
@@ -42,13 +41,15 @@ const Parallelogram: React.FC<ParallelogramProps> = ({top, left, width, height, 
       rotate: ${rotate};
       background: ${background};
       animation: ${animation} 5s ease-in-out infinite;
-      animation-delay: ${delay} s;
+      //animation-delay: ${delay}s;
+      box-shadow: 0 0 40px 10px ${background}, 0 0 20px ${background}, 0 0 30px ${background}, 0 0 40px ${background};
     `;
+
     return (
         <>
-            <ParallelogramDiv/>
+            <ParallelogramDiv />
         </>
-    )
-}
+    );
+};
 
 export default Parallelogram;
