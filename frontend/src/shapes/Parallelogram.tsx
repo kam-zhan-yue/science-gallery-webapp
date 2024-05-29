@@ -1,5 +1,5 @@
-import styled, { keyframes } from "styled-components";
-import React from "react";
+import styled, {css, keyframes} from "styled-components";
+import React, {useState} from "react";
 
 interface ParallelogramProps {
     top: string;
@@ -23,14 +23,25 @@ const generateAnimation = (startX: number, startY: number, endX: number, endY: n
     `;
 };
 
-const Parallelogram: React.FC<ParallelogramProps> = ({ top, left, width, height, skew, rotate, background }) => {
+const Parallelogram: React.FC<ParallelogramProps> = ({ top, left, width, height, skew, rotate, background}) => {
+    const [animate, setAnimate] = useState<boolean>(false);
+
     const startX = Math.floor(Math.random() * 5) + 5;
     const startY = Math.floor(Math.random() * 5) + 5;
     const endX = Math.floor(Math.random() * 5) - 15;
     const endY = Math.floor(Math.random() * 5) - 15;
     const animation = generateAnimation(startX, startY, endX, endY, skew);
 
-    const ParallelogramDiv = styled.div`
+    const moveRightAnimation = keyframes`
+      from {
+        left: ${left};
+      }
+      to {
+        left: 100vw;
+      }
+    `;
+
+    const ParallelogramDiv = styled.div<{ animate: boolean }>`
       position: absolute;
       top: ${top};
       left: ${left};
@@ -39,12 +50,17 @@ const Parallelogram: React.FC<ParallelogramProps> = ({ top, left, width, height,
       transform: skew(${skew});
       rotate: ${rotate};
       background: ${background};
-      animation: ${animation} 5s ease-in-out infinite;
+      animation: ${({ animate }) => animate ? css`${moveRightAnimation} 0.8s ease-in-out forwards` : css `${animation} 5s ease-in-out infinite`};
     `;
+
+    const handleStart = () => {
+        console.log('start');
+        setAnimate(true);
+    }
 
     return (
         <>
-            <ParallelogramDiv />
+            <ParallelogramDiv animate={animate} onClick={handleStart}/>
         </>
     );
 };
