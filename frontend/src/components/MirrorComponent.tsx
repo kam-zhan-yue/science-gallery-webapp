@@ -1,5 +1,5 @@
 import React from "react";
-import styled, {keyframes} from "styled-components";
+import styled from "styled-components";
 import Parallelogram from "../shapes/Parallelogram.tsx";
 import Triangle from "../shapes/Triangle.tsx";
 
@@ -31,39 +31,12 @@ const colors = {
     secondary: '#BDBDC488'
 }
 
-// Define the keyframes for the rotation animation
-const rotate = keyframes`
-  to {
-    --angle: 360deg;
-  }
-`;
-
-// Create the styled component for the g-triangle
-const GTriangle = styled.div`
-  position: absolute;
-  width: 260px;
-  height: 260px;
-  background: conic-gradient(from var(--angle), hsl(162, 100%, 58%), hsl(270, 73%, 53%), hsl(162, 100%, 58%));
-  animation: ${rotate} 3s infinite linear;
-  clip-path: polygon(0 100%, 100% 100%, 50% 0);
-`;
-
-// Create the styled component for the container
-const GContainer = styled.div`
+const Container = styled.div`
   position: absolute;
   margin: auto;
-  width: 260px;
-  height: 260px;
+  width: 0;
+  height: 0;
   filter: drop-shadow(0 0 5px hsl(162, 100%, 58%)) drop-shadow(0 0 10px hsl(270, 73%, 53%));
-
-  clip-path: polygon(0 100%, 100% 100%, 50% 0);
-  mask:
-          linear-gradient(117deg, #000 55%, transparent 55%, transparent),
-          linear-gradient(-117deg, #000 55%, transparent 55%, transparent),
-          linear-gradient(#000, #000);
-  mask-position: 0 0, 130px 0, 0 250px;
-  mask-size: 130px 250px, 130px 250px, 100% 10px;
-  mask-repeat: no-repeat;
 `;
 
 const debug: boolean = false;
@@ -73,9 +46,6 @@ const MirrorComponent: React.FC = () => {
         <>
             <Blocker/>
             <Overlay>
-                <GContainer>
-                    <GTriangle />
-                </GContainer>
                 <Parallelogram
                     top={"-180px"} left={"-75px"}
                     width={"125px"} height={"90px"}
@@ -96,11 +66,13 @@ const MirrorComponent: React.FC = () => {
                     width={"200px"} height={"80px"}
                     skew={"60deg"} rotate={"0deg"}
                     background={debug ? "blue" : colors.primary}/>
-                <Triangle
-                    down={"-210px"} right={"-150px"}
-                    bLeft={"50px"} bRight={"50px"}
-                    bBottom={"250px"} rotate={"126deg"}
-                    background={debug ? "green" : colors.secondary}/>
+                <Container>
+                    <Triangle
+                        down={"-210px"} right={"-150px"}
+                        bLeft={"50px"} bRight={"50px"}
+                        bBottom={"250px"} rotate={"126deg"}
+                        background={debug ? "green" : colors.secondary}/>
+                </Container>
                 <Triangle
                     down={"-300px"} right={"-180px"}
                     bLeft={"75px"} bRight={"75px"}
