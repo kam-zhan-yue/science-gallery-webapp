@@ -1,5 +1,6 @@
-import styled, {css, keyframes} from "styled-components";
+import styled, {css, keyframes, RuleSet} from "styled-components";
 import React, {useState} from "react";
+import {Keyframes} from "styled-components/dist/types";
 
 interface ParallelogramProps {
     top: number;
@@ -23,6 +24,21 @@ const generateAnimation = (startX: number, startY: number, endX: number, endY: n
     `;
 };
 
+const StyledParallelogram = styled.div<{ top: number, left: number, width: number, height: number, rotate: number, skew: number, background: string, animate: boolean, move: string, idle: string}>`
+      position: absolute;
+      top: ${({ top = 0 }) => top}px;
+      left: ${({ left = 0 }) => left}px;
+      width: ${({ width = 0 }) => width}px;
+      height: ${({ height = 0 }) => height}px;
+      transform: skew(${({ skew = 0 }) => skew}deg);
+      rotate: ${({ rotate = 0 }) => rotate}deg;
+      background: ${({ background = '' }) => background};
+      animation: ${({ animate = false, move, idle }) =>
+              animate
+                      ? css`${move} 0.8s ease-in-out forwards`
+                      : css`${idle} 5s ease-in-out infinite`};
+`;
+
 const Parallelogram: React.FC<ParallelogramProps> = ({ top, left, width, height, skew, rotate, background}) => {
     const [animate, setAnimate] = useState<boolean>(false);
 
@@ -32,7 +48,7 @@ const Parallelogram: React.FC<ParallelogramProps> = ({ top, left, width, height,
     const endY = Math.floor(Math.random() * 5) - 15;
     const animation = generateAnimation(startX, startY, endX, endY, skew);
 
-    const moveRightAnimation = keyframes`
+    const moveKeyframes = keyframes`
       from {
         left: ${left};
       }
@@ -40,27 +56,18 @@ const Parallelogram: React.FC<ParallelogramProps> = ({ top, left, width, height,
         left: 100vw;
       }
     `;
-
-    const ParallelogramDiv = styled.div<{ animate: boolean }>`
-      position: absolute;
-      top: ${top}px;
-      left: ${left}px;
-      width: ${width}px;
-      height: ${height}px;
-      transform: skew(${skew}deg);
-      rotate: ${rotate}deg;
-      background: ${background};
-      animation: ${({ animate }) => animate ? css`${moveRightAnimation} 0.8s ease-in-out forwards` : css `${animation} 5s ease-in-out infinite`};
-    `;
-
-    const handleStart = () => {
-        console.log('start');
-        setAnimate(true);
-    }
+    const idleString = () => css`${animation}`;
+    const moveString = () => css`${moveKeyframes}`;
 
     return (
         <>
-            <ParallelogramDiv animate={animate} onClick={handleStart}/>
+            {/*<ParallelogramDiv animate={animate} onClick={handleStart}/>*/}
+            <StyledParallelogram
+                top={top} left={left}
+                width={width} height={height}
+                skew={skew} rotate={rotate}
+                background={background} animate={animate}
+                move={moveString.toString()} idle={idleString.toString()}/>
         </>
     );
 };
