@@ -1,4 +1,4 @@
-import styled, {keyframes} from 'styled-components';
+import styled, {css, keyframes} from 'styled-components';
 
 interface Props {
     top: number;
@@ -8,9 +8,10 @@ interface Props {
     bbottom: number;
     rotate: number;
     background: string;
+    move: boolean;
 }
 
-const generateAnimation = () => {
+const idle = () => {
     const random = Math.floor(Math.random() * 5) + 5; // Random number between 5 and 10 for x-axis translation
     return keyframes`
     0%, 100% {
@@ -22,8 +23,36 @@ const generateAnimation = () => {
   `;
 };
 
+const move = (top: number, left: number) => {
+    // Calculate direction vectors
+    const directionX = left;
+    const directionY = top;
+
+    // Normalize the direction vectors
+    const magnitude = Math.sqrt(directionX * directionX + directionY * directionY);
+    const unitX = directionX / magnitude;
+    const unitY = directionY / magnitude;
+
+    // Set the distance to move, adjust based on your needs
+    const distance = 1000;
+
+    // Calculate the final positions
+    const finalLeft = left + unitX * distance;
+    const finalTop = top + unitY * distance;
+
+    return keyframes`
+      from {
+        left: ${left}px;
+        top: ${top}px;
+      }
+      to {
+        left: ${finalLeft}px;
+        top: ${finalTop}px;
+      }
+    `;
+}
+
 export const StyledTriangle = styled.div<Props>`
-    padding: 5%;
     position: absolute;
     width: 0;
     height: 0;
@@ -33,5 +62,8 @@ export const StyledTriangle = styled.div<Props>`
     border-right: ${(props) => props.bright}px solid transparent;
     border-bottom: ${(props) => props.bbottom}px solid ${(props) => props.background};
     rotate: ${(props) => props.rotate}deg;
-    animation: ${generateAnimation()} 5s ease-in-out infinite;
+    animation: ${(props) =>
+          props.move
+                  ? css`${move(props.top, props.left)} 0.7s linear forwards`
+                  : css`${idle()} 5s ease-in-out infinite`};
 `;

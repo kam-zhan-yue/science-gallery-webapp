@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {StyledTriangle} from "./StyledTriangle.tsx";
 
 interface TriangleProps {
@@ -12,9 +12,15 @@ interface TriangleProps {
 }
 
 const Triangle: React.FC<TriangleProps> = ({top, left, bleft, bright, bbottom, rotate, background}) => {
+    const [move, setMove] = useState<boolean>(false);
+
+    const onClick = () => {
+        setMove(true);
+    }
+
     return (
         <>
-            <StyledTriangle bleft={bleft} left={left} bbottom={bbottom} bright={bright} top={top} rotate={rotate} background={background}/>
+            <StyledTriangle bleft={bleft} left={left} bbottom={bbottom} bright={bright} top={top} rotate={rotate} background={background} move={move} onClick={onClick}/>
         </>
     );
 }

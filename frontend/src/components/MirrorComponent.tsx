@@ -47,7 +47,7 @@ const SubGlow = styled.div`
   filter: drop-shadow(0 0 20px hsl(162, 100%, 58%, 80%)) drop-shadow(0 0 30px hsl(270, 73%, 53%, 90%));
 `
 
-const debug: boolean = false;
+const debug: boolean = true;
 
 const MirrorComponent: React.FC = () => {
     return (
