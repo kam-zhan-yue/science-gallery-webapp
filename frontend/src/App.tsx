@@ -1,10 +1,14 @@
 import Main from "./components/Main.tsx";
+import {GameProvider} from "./contexts/GameContext.tsx";
 
 function App() {
   return (
     <>
     <div id='app'>
-      <Main />
+
+      <GameProvider>
+        <Main />
+      </GameProvider>
     </div>
     </>
   )

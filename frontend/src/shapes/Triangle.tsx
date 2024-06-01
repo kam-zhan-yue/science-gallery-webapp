@@ -1,5 +1,6 @@
-import React, {useState} from "react";
+import React, {useContext} from "react";
 import {StyledTriangle} from "./StyledTriangle.tsx";
+import {GameContext, GameContextType} from "../contexts/GameContext.tsx";
 
 interface TriangleProps {
     top: number;
@@ -12,15 +13,11 @@ interface TriangleProps {
 }
 
 const Triangle: React.FC<TriangleProps> = ({top, left, bleft, bright, bbottom, rotate, background}) => {
-    const [move, setMove] = useState<boolean>(false);
-
-    const onClick = () => {
-        setMove(true);
-    }
+    const { started } = useContext(GameContext) as GameContextType;
 
     return (
         <>
-            <StyledTriangle bleft={bleft} left={left} bbottom={bbottom} bright={bright} top={top} rotate={rotate} background={background} move={move} onClick={onClick}/>
+            <StyledTriangle bleft={bleft} left={left} bbottom={bbottom} bright={bright} top={top} rotate={rotate} background={background} move={started}/>
         </>
     );
 }

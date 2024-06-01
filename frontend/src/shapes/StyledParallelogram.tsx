@@ -67,6 +67,6 @@ export const StyledParallelogram = styled.div<Props>`
   background: ${(props) => props.background};
   animation: ${(props) =>
     props.move
-        ? css`${move(props.top, props.left)} 0.7s linear forwards`
+        ? css`${move(props.top, props.left)} 0.7s ease-in-out forwards`
         : css`${idle(props.skew)} 5s ease-in-out infinite`};
 `;

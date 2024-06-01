@@ -64,6 +64,6 @@ export const StyledTriangle = styled.div<Props>`
     rotate: ${(props) => props.rotate}deg;
     animation: ${(props) =>
           props.move
-                  ? css`${move(props.top, props.left)} 0.7s linear forwards`
+                  ? css`${move(props.top, props.left)} 0.7s ease-in-out forwards`
                   : css`${idle()} 5s ease-in-out infinite`};
 `;

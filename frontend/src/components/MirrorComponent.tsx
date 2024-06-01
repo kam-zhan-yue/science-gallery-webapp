@@ -13,7 +13,6 @@ const Blocker = styled.div`
   align-items: center;
   justify-content: center;
   background: #2A213899;
-  //filter: blur(100px);
 `
 
 const Overlay = styled.div`
@@ -47,7 +46,7 @@ const SubGlow = styled.div`
   filter: drop-shadow(0 0 20px hsl(162, 100%, 58%, 80%)) drop-shadow(0 0 30px hsl(270, 73%, 53%, 90%));
 `
 
-const debug: boolean = true;
+const debug: boolean = false;
 
 const MirrorComponent: React.FC = () => {
     return (
