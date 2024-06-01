@@ -18,11 +18,7 @@ export class Universe extends Scene {
     }
 
     start() {
-        const centerX = this.cameras.main.centerX;
-        const centerY = this.cameras.main.centerY;
-        const graphics = this.add.graphics();
-        this.solarSystem = new SolarSystem(this.physics, graphics, centerX, centerY);
-        this.cameras.main.startFollow(this.solarSystem.centre().body);
+        this.solarSystem?.fadeIn(500);
     }
 
     create() {
@@ -37,6 +33,10 @@ export class Universe extends Scene {
             frameRate: 12,
             repeat: -1
         });
+        const graphics = this.add.graphics();
+        this.solarSystem = new SolarSystem(this.physics, graphics, centerX, centerY);
+        this.cameras.main.startFollow(this.solarSystem.centre().body);
+        this.solarSystem.hide();
     }
 
     goToPlanet(planetName: string) {

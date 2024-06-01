@@ -11,6 +11,7 @@ export default class CelestialBody {
     private orbitalRadius: number = 0;
     private clockwise: boolean = false;
     private parentPosition: Vector2 = new Vector2(0, 0);
+    private orbitalRing: Phaser.GameObjects.Graphics;
 
     constructor(physics: ArcadePhysics, graphics: Graphics, key: string, x: number, y: number, orbitalRadius: number = 0, orbitalPeriod: number = 0, clockwise: boolean = false) {
         this.parentPosition = new Vector2(x, y);
@@ -20,7 +21,29 @@ export default class CelestialBody {
         this.orbitalPeriod = orbitalPeriod;
         this.clockwise = clockwise;
         this.angle = Random() * 360;
-        graphics.strokeCircle(x, y, orbitalRadius);
+        this.orbitalRing = graphics.strokeCircle(x, y, orbitalRadius);
+        this.orbitalRing.alpha = 0;
+    }
+
+    public fadeOut(duration: number) {
+        this.body.alpha = 1;
+        this.orbitalRing.alpha = 1;
+        const fadeTween = this.body.scene.tweens.add({
+            targets: [this.body],
+            alpha: 0,
+            duration: duration
+        })
+        fadeTween.play();
+    }
+    public fadeIn(duration: number) {
+        this.body.alpha = 0;
+        this.orbitalRing.alpha = 0;
+        const fadeTween = this.body.scene.tweens.add({
+            targets: [this.body],
+            alpha: 1,
+            duration: duration
+        })
+        fadeTween.play();
     }
 
     private getAngleStep(deltaTime: number) {
