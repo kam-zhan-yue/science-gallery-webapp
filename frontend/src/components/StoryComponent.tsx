@@ -9,6 +9,7 @@ import Player from "../classes/Player.ts";
 import KeypadComponent from "./KeypadComponent.tsx";
 import {Universe} from "../game/scenes/Universe.tsx";
 import {EventBus} from "../EventBus.tsx";
+import main from "../assets/audio/main.mp3";
 
 const Overlay = styled.div`
   position: fixed;
@@ -33,6 +34,12 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
   const [player, setPlayer] = useState<Player>(new Player());
   const [gameState, setGameState] = useState<string>('');
   const [state, setState] = useState<string>('');
+
+  // Playing audio
+  useEffect(() =>{
+    const audio = new Audio(main);
+    audio.play();
+  }, []);
 
   // Loading game.json for the story
   useEffect(() => {

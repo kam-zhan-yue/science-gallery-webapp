@@ -1,10 +1,10 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useEffect, useRef, useContext} from 'react';
 import styled from "styled-components";
 import StoryComponent from "./StoryComponent.tsx";
-import main from "../assets/audio/main.mp3";
 import Game from "../game/Game.tsx";
 import {Universe} from "../game/scenes/Universe.tsx";
 import MirrorComponent from "./MirrorComponent.tsx";
+import {GameContext, GameContextType, GameState} from "../contexts/GameContext.tsx";
 
 const Overlay = styled.div`
   position: fixed;
@@ -20,8 +20,11 @@ const StartButton = styled.button`
 `
 
 const Main: React.FC = () => {
-    const [started, setStarted] = useState<boolean>(false);
     const universeRef = useRef<Universe>(null);
+    const { started, state, setState, start } = useContext(GameContext) as GameContextType;
+
+    // Add a console.log statement to check the value of state
+    console.log("State:", state);
 
     useEffect(() => {
         if (universeRef.current) {
@@ -30,27 +33,31 @@ const Main: React.FC = () => {
         }
     }, []);
 
-    const onStartClicked = () => {
-        const audio = new Audio(main);
-        audio.play();
+    useEffect(() => {
+        document.body.addEventListener('click', startGame, true);
+        return () => {
+            document.body.removeEventListener('click', startGame, true);
+        };
+    }, [started]); // Empty dependency array ensures this effect runs only once on mount
 
-        setStarted(true)
-    }
-
+    const startGame = () => {
+        console.log(`2 started is ${started}`);
+        if(!started) {
+            start();
+            setState(GameState.Mirror);
+            setTimeout(() => {
+                setState(GameState.Game);
+            }, 700); // Delay execution by one second (1000 milliseconds)
+        }
+    };
 
     return (
         <>
+            {(state == GameState.Menu || state == GameState.Mirror) &&
+                <MirrorComponent/>
+            }
             <Game ref={universeRef}/>
-            {!started &&
-                <>
-                    <MirrorComponent/>
-                    <Overlay>
-                        <StartButton onClick={onStartClicked}>
-                            START
-                        </StartButton>
-                    </Overlay>
-                </>}
-            {started &&
+            {state == GameState.Game &&
                 <>
                     <StoryComponent
                         universeRef={universeRef.current}
