@@ -18,6 +18,7 @@ export class Universe extends Scene {
     }
 
     start() {
+        this.solarSystem?.setVisible(true);
         this.solarSystem?.fadeIn(500);
     }
 
@@ -36,7 +37,7 @@ export class Universe extends Scene {
         const graphics = this.add.graphics();
         this.solarSystem = new SolarSystem(this.physics, graphics, centerX, centerY);
         this.cameras.main.startFollow(this.solarSystem.centre().body);
-        this.solarSystem.fadeOut(0);
+        this.solarSystem.setVisible(false);
     }
 
     goToPlanet(planetName: string) {

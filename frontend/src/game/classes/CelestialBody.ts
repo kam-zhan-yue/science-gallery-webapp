@@ -22,22 +22,26 @@ export default class CelestialBody {
         this.clockwise = clockwise;
         this.angle = Random() * 360;
         this.orbitalRing = graphics.strokeCircle(x, y, orbitalRadius);
-        this.orbitalRing.alpha = 0;
+    }
+
+    public setVisible(visible: boolean) {
+        this.body.setVisible(visible);
+        this.orbitalRing.setVisible(visible);
     }
 
     public fadeOut(duration: number) {
-        this.body.alpha = 1;
-        this.orbitalRing.alpha = 1;
         const fadeTween = this.body.scene.tweens.add({
             targets: [this.body, this.orbitalRing],
             alpha: 0,
-            duration: duration
+            duration: duration,
+            onComplete: () => {
+                this.setVisible(false);
+            }
         })
         fadeTween.play();
     }
     public fadeIn(duration: number) {
-        this.body.alpha = 0;
-        this.orbitalRing.alpha = 0;
+        this.setVisible(true);
         const fadeTween = this.body.scene.tweens.add({
             targets: [this.body, this.orbitalRing],
             alpha: 1,

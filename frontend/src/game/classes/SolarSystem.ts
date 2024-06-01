@@ -38,6 +38,15 @@ export default class SolarSystem {
         }
     }
 
+    public setVisible(visible: boolean) {
+        this.sun.setVisible(visible);
+        for(const key in this.planets) {
+            if(this.planets.hasOwnProperty(key)) {
+                this.planets[key].setVisible(visible);
+            }
+        }
+    }
+
     public fadeIn(duration: number) {
         this.sun.fadeIn(duration);
         for(const key in this.planets) {
@@ -55,7 +64,4 @@ export default class SolarSystem {
             }
         }
     }
-
-
-
 }
