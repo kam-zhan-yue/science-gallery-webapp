@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 // @ts-ignore
 import {Story, Choice, InkObject} from "inkjs";
-import styled from 'styled-components';
 import DialogueComponent from "./DialogueComponent.tsx";
 import ChoiceComponent from "./ChoiceComponent.tsx";
 import CharacterComponent from "./CharacterComponent.tsx";
@@ -10,17 +9,6 @@ import KeypadComponent from "./KeypadComponent.tsx";
 import {Universe} from "../game/scenes/Universe.tsx";
 import {EventBus} from "../EventBus.tsx";
 import main from "../assets/audio/main.mp3";
-
-const Overlay = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`
 
 interface StoryComponentProps {
   universeRef: Universe | null;
