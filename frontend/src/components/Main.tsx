@@ -1,10 +1,11 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useEffect, useRef, useContext} from 'react';
 import styled from "styled-components";
 import StoryComponent from "./StoryComponent.tsx";
 import main from "../assets/audio/main.mp3";
 import Game from "../game/Game.tsx";
 import {Universe} from "../game/scenes/Universe.tsx";
 import MirrorComponent from "./MirrorComponent.tsx";
+import {GameContext, GameProvider} from "../contexts/GameContext.tsx";
 
 const Overlay = styled.div`
   position: fixed;
@@ -20,8 +21,8 @@ const StartButton = styled.button`
 `
 
 const Main: React.FC = () => {
-    const [started, setStarted] = useState<boolean>(false);
     const universeRef = useRef<Universe>(null);
+    const { started, start } = useContext(GameContext);
 
     useEffect(() => {
         if (universeRef.current) {
@@ -33,30 +34,31 @@ const Main: React.FC = () => {
     const onStartClicked = () => {
         const audio = new Audio(main);
         audio.play();
-
-        setStarted(true)
+        start();
     }
 
 
     return (
         <>
-            <Game ref={universeRef}/>
-            {!started &&
-                <>
-                    <MirrorComponent/>
-                    <Overlay>
-                        <StartButton onClick={onStartClicked}>
-                            START
-                        </StartButton>
-                    </Overlay>
-                </>}
-            {started &&
-                <>
-                    <StoryComponent
-                        universeRef={universeRef.current}
-                    />
-                </>
-            }
+            <GameProvider>
+                <Game ref={universeRef}/>
+                {!started &&
+                    <>
+                        <MirrorComponent/>
+                        <Overlay>
+                            <StartButton onClick={onStartClicked}>
+                                START
+                            </StartButton>
+                        </Overlay>
+                    </>}
+                {started &&
+                    <>
+                        <StoryComponent
+                            universeRef={universeRef.current}
+                        />
+                    </>
+                }
+            </GameProvider>
         </>
     );
 };
