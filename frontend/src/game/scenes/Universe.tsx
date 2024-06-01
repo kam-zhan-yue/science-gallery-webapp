@@ -36,7 +36,7 @@ export class Universe extends Scene {
         const graphics = this.add.graphics();
         this.solarSystem = new SolarSystem(this.physics, graphics, centerX, centerY);
         this.cameras.main.startFollow(this.solarSystem.centre().body);
-        this.solarSystem.hide();
+        this.solarSystem.fadeOut(0);
     }
 
     goToPlanet(planetName: string) {

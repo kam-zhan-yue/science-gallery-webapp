@@ -29,7 +29,7 @@ export default class CelestialBody {
         this.body.alpha = 1;
         this.orbitalRing.alpha = 1;
         const fadeTween = this.body.scene.tweens.add({
-            targets: [this.body],
+            targets: [this.body, this.orbitalRing],
             alpha: 0,
             duration: duration
         })
@@ -39,7 +39,7 @@ export default class CelestialBody {
         this.body.alpha = 0;
         this.orbitalRing.alpha = 0;
         const fadeTween = this.body.scene.tweens.add({
-            targets: [this.body],
+            targets: [this.body, this.orbitalRing],
             alpha: 1,
             duration: duration
         })

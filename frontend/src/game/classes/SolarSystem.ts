@@ -38,45 +38,24 @@ export default class SolarSystem {
         }
     }
 
-    public hide() {
-        this.sun.body.setVisible(false);
-
-        for(const key in this.planets) {
-            if (this.planets.hasOwnProperty(key)) {
-                this.planets[key].body.setVisible(false);
-            }
-        }
-    }
-
     public fadeIn(duration: number) {
         this.sun.fadeIn(duration);
-
-        this.sun.body.setVisible(true);
-        this.sun.body.alpha = 0;
-        const sunTween = this.sun.body.scene.tweens.add({
-            targets: [this.sun.body],
-            alpha: 1,
-            duration: duration,
-            onComplete: () => {
-                this.sun.body.setAlpha(1); // Reset alpha to 1 for the next time it appears
-            }
-        });
-        sunTween.play();
-
         for(const key in this.planets) {
             if(this.planets.hasOwnProperty(key)) {
-                this.planets[key].body.setVisible(true);
-                this.planets[key].body.alpha = 0;
-                const planetTween = this.planets[key].body.scene.tweens.add({
-                    targets: [this.planets[key].body],
-                    alpha: 1,
-                    duration: duration,
-                    onComplete: () => {
-                        this.planets[key].body.setAlpha(1); // Reset alpha to 1 for the next time it appears
-                    }
-                });
-                planetTween.play();
+                this.planets[key].fadeIn(duration);
             }
         }
     }
+
+    public fadeOut(duration: number) {
+        this.sun.fadeOut(duration);
+        for(const key in this.planets) {
+            if(this.planets.hasOwnProperty(key)) {
+                this.planets[key].fadeOut(duration);
+            }
+        }
+    }
+
+
+
 }
