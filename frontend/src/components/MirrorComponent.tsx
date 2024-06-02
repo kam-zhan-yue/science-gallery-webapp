@@ -35,8 +35,8 @@ const MainGlow = styled.div`
   margin: auto;
   width: 0;
   height: 0;
-  filter: drop-shadow(0 0 20px hsl(270, 100%, 58%, 60%)) drop-shadow(0 0 30px hsl(280, 73%, 53%, 60%));
   -webkit-filter: drop-shadow(0 0 20px hsl(270, 100%, 58%, 60%)) drop-shadow(0 0 30px hsl(280, 73%, 53%, 60%));
+  filter: drop-shadow(0 0 20px hsl(270, 100%, 58%, 60%)) drop-shadow(0 0 30px hsl(280, 73%, 53%, 60%));
 `;
 
 const SubGlow = styled.div`
@@ -44,8 +44,8 @@ const SubGlow = styled.div`
   margin: auto;
   width: 0;
   height: 0;
-  filter: drop-shadow(0 0 20px hsl(162, 100%, 58%, 80%)) drop-shadow(0 0 30px hsl(270, 73%, 53%, 90%));
   -webkit-filter: drop-shadow(0 0 20px hsl(162, 100%, 58%, 80%)) drop-shadow(0 0 30px hsl(270, 73%, 53%, 90%));
+  filter: drop-shadow(0 0 20px hsl(162, 100%, 58%, 80%)) drop-shadow(0 0 30px hsl(270, 73%, 53%, 90%));
 `
 
 const debug: boolean = false;

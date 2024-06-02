@@ -65,12 +65,12 @@ export const StyledParallelogram = styled.div<Props>`
   transform: skew(${(props) => props.skew}deg);
   rotate: ${(props) => props.rotate}deg;
   background: ${(props) => props.background};
-  animation: ${(props) =>
-    props.move
-        ? css`${move(props.top, props.left)} 0.7s ease-in-out forwards`
-        : css`${idle(props.skew)} 5s ease-in-out infinite`};
   -webkit-animation: ${(props) =>
           props.move
                   ? css`${move(props.top, props.left)} 0.7s ease-in-out forwards`
                   : css`${idle(props.skew)} 5s ease-in-out infinite`};
+  animation: ${(props) =>
+    props.move
+        ? css`${move(props.top, props.left)} 0.7s ease-in-out forwards`
+        : css`${idle(props.skew)} 5s ease-in-out infinite`};
 `;
