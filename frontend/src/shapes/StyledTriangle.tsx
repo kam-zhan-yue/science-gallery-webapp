@@ -66,4 +66,8 @@ export const StyledTriangle = styled.div<Props>`
           props.move
                   ? css`${move(props.top, props.left)} 0.7s ease-in-out forwards`
                   : css`${idle()} 5s ease-in-out infinite`};
+    -webkit-animation: ${(props) =>
+            props.move
+                    ? css`${move(props.top, props.left)} 0.7s ease-in-out forwards`
+                    : css`${idle()} 5s ease-in-out infinite`};
 `;

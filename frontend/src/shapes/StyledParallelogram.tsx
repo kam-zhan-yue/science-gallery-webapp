@@ -69,4 +69,8 @@ export const StyledParallelogram = styled.div<Props>`
     props.move
         ? css`${move(props.top, props.left)} 0.7s ease-in-out forwards`
         : css`${idle(props.skew)} 5s ease-in-out infinite`};
+  -webkit-animation: ${(props) =>
+          props.move
+                  ? css`${move(props.top, props.left)} 0.7s ease-in-out forwards`
+                  : css`${idle(props.skew)} 5s ease-in-out infinite`};
 `;
