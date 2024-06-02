@@ -26,9 +26,9 @@ const idle = (skew: number) => {
       }
     `;
 };
-const move = (top: number, left: number, skew: number) => {
+const move = (top: number, left: number, skew: number, rotate: number) => {
     // Calculate direction vectors
-    const directionX = left;
+    const directionX = left+100;
     const directionY = top;
 
     // Normalize the direction vectors
@@ -37,19 +37,33 @@ const move = (top: number, left: number, skew: number) => {
     const unitY = directionY / magnitude;
 
     // Set the distance to move, adjust based on your needs
-    const distance = 1000;
+    const distance: number = 1000;
 
     // Calculate the final positions
-    const finalLeft = left + unitX * distance;
-    const finalTop = top + unitY * distance;
+    const finalLeft: number = left + unitX * distance;
+    const finalTop: number = top + unitY * distance;
+
+    // Take out the rotation from the equation, hence the -1
+    const rotateRadians: number = (rotate * Math.PI) / 180 * -1;
+
+    // Define the movement vector in the unrotated coordinate system
+    const x: number = finalLeft;
+    const y: number = finalTop;
+
+    // Adjust the movement vector for rotation
+    const adjustedX: number = x * Math.cos(rotateRadians) - y * Math.sin(rotateRadians);
+    const adjustedY: number = x * Math.sin(rotateRadians) + y * Math.cos(rotateRadians);
+    // Adjust the movement vector for rotation
+    const adjustedInX: number = adjustedX * -0.01;
+    const adjustedInY: number = adjustedY * -0.01;
 
     // Return keyframes for transform translation
     return keyframes`
-      10% {
-        transform: translate(50px, 50px) skew(${skew}deg);
+      50% {
+        transform: translate(${adjustedInX}px, ${adjustedInY}px) skew(${skew}deg);
       }
       100% {
-        transform: translate(${finalLeft}px, ${finalTop}px) skew(${skew}deg);
+        transform: translate(${adjustedX}px, ${adjustedY}px) skew(${skew}deg);
       }
   `;
 };
@@ -66,6 +80,6 @@ export const StyledParallelogram = styled.div<Props>`
   background: ${(props) => props.background};
   animation: ${(props) =>
     props.move
-        ? css`${move(props.top, props.left, props.skew)} 0.7s ease-in-out forwards`
+        ? css`${move(props.top, props.left, props.skew, props.rotate)} 0.7s ease-in-out forwards`
         : css`${idle(props.skew)} 5s ease-in-out infinite`};
 `;
