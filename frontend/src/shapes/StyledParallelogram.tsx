@@ -81,7 +81,7 @@ export const StyledParallelogram = styled.div<Props>`
   transform: skew(${(props) => props.skew}deg) translateZ(0);;
   rotate: ${(props) => props.rotate}deg;
   background: ${(props) => props.background};
-  -webkit-filter: drop-shadow(0 0 10px hsl(162, 100%, 58%, 80%)) drop-shadow(0 0 20px hsl(270, 100%, 58%, 60%)) drop-shadow(0 0 30px hsl(280, 73%, 53%, 60%));
+  -webkit-filter: drop-shadow(0 0 10px hsl(162, 100%, 58%, 80%));
   filter: drop-shadow(0 0 10px hsl(162, 100%, 58%, 80%)) drop-shadow(0 0 20px hsl(270, 100%, 58%, 60%)) drop-shadow(0 0 30px hsl(280, 73%, 53%, 60%));
   animation: ${(props) =>
     props.move

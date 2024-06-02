@@ -76,7 +76,7 @@ export const StyledTriangle = styled.div<Props>`
     border-right: ${(props) => props.bright}px solid transparent;
     border-bottom: ${(props) => props.bbottom}px solid ${(props) => props.background};
     rotate: ${(props) => props.rotate}deg;
-    -webkit-filter: drop-shadow(0 0 10px hsl(162, 100%, 58%, 80%)) drop-shadow(0 0 20px hsl(270, 100%, 58%, 60%)) drop-shadow(0 0 30px hsl(280, 73%, 53%, 60%));
+    -webkit-filter: drop-shadow(0 0 10px hsl(162, 100%, 58%, 80%));
     filter:  drop-shadow(0 0 10px hsl(162, 100%, 58%, 80%))drop-shadow(0 0 20px hsl(270, 100%, 58%, 60%)) drop-shadow(0 0 30px hsl(280, 73%, 53%, 60%));
     animation: ${(props) =>
           props.move
