@@ -59,6 +59,9 @@ const move = (top: number, left: number, skew: number, rotate: number) => {
 
     // Return keyframes for transform translation
     return keyframes`
+      0% {
+        transform: translate(0, 0) skew(${skew}deg);
+      }
       50% {
         transform: translate(${adjustedInX}px, ${adjustedInY}px) skew(${skew}deg);
       }
