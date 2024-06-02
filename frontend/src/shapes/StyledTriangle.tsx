@@ -15,10 +15,10 @@ const idle = () => {
     const random = Math.floor(Math.random() * 5) + 5; // Random number between 5 and 10 for x-axis translation
     return keyframes`
     0%, 100% {
-      transform: translateY(${random}px);
+      transform: translateY(${random}px) translateZ(0);
     }
     50% {
-      transform: translateY(-${random}px);
+      transform: translateY(-${random}px) translateZ(0);
     }
   `;
 };
@@ -57,10 +57,10 @@ const move = (top: number, left: number, rotate: number) => {
     // Return keyframes for transform translation
     return keyframes`
       50% {
-        transform: translate(${adjustedInX}px, ${adjustedInY}px);
+        transform: translate3d(${adjustedInX}px, ${adjustedInY}px, 0);
       }
       100% {
-        transform: translate(${adjustedX}px, ${adjustedY}px);
+        transform: translate3d(${adjustedX}px, ${adjustedY}px, 0);
       }
     `;
 }
@@ -71,12 +71,13 @@ export const StyledTriangle = styled.div<Props>`
     height: 0;
     top: ${(props) => props.top}px;
     left: ${(props) => props.left}px;
+    transform: translateZ(0);
     border-left: ${(props) => props.bleft}px solid transparent;
     border-right: ${(props) => props.bright}px solid transparent;
     border-bottom: ${(props) => props.bbottom}px solid ${(props) => props.background};
     rotate: ${(props) => props.rotate}deg;
-  -webkit-filter: drop-shadow(0 0 10px hsl(162, 100%, 58%, 80%)) drop-shadow(0 0 20px hsl(270, 100%, 58%, 60%)) drop-shadow(0 0 30px hsl(280, 73%, 53%, 60%));
-  filter:  drop-shadow(0 0 10px hsl(162, 100%, 58%, 80%))drop-shadow(0 0 20px hsl(270, 100%, 58%, 60%)) drop-shadow(0 0 30px hsl(280, 73%, 53%, 60%));
+    -webkit-filter: drop-shadow(0 0 10px hsl(162, 100%, 58%, 80%)) drop-shadow(0 0 20px hsl(270, 100%, 58%, 60%)) drop-shadow(0 0 30px hsl(280, 73%, 53%, 60%));
+    filter:  drop-shadow(0 0 10px hsl(162, 100%, 58%, 80%))drop-shadow(0 0 20px hsl(270, 100%, 58%, 60%)) drop-shadow(0 0 30px hsl(280, 73%, 53%, 60%));
     animation: ${(props) =>
           props.move
                   ? css`${move(props.top, props.left, props.rotate)} 0.7s ease-in-out forwards`
