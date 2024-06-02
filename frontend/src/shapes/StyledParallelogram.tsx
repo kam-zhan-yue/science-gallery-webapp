@@ -81,6 +81,8 @@ export const StyledParallelogram = styled.div<Props>`
   transform: skew(${(props) => props.skew}deg);
   rotate: ${(props) => props.rotate}deg;
   background: ${(props) => props.background};
+  filter:  drop-shadow(0 0 10px hsl(162, 100%, 58%, 80%)) drop-shadow(0 0 20px hsl(270, 100%, 58%, 60%)) drop-shadow(0 0 30px hsl(280, 73%, 53%, 60%));
+
   animation: ${(props) =>
     props.move
         ? css`${move(props.top, props.left, props.skew, props.rotate)} 0.7s ease-in-out forwards`
