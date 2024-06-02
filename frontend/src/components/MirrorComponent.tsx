@@ -61,8 +61,7 @@ const MirrorComponent: React.FC = () => {
                             top={-180} left={-75}
                             width={125} height={90}
                             skew={50} rotate={50}
-                            background={debug ? "red" : colors.primary}
-                        />
+                            background={debug ? "red" : colors.primary}/>
                         <Parallelogram
                             top={-110} left={40}
                             width={150} height={90}
