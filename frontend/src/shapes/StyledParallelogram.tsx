@@ -26,10 +26,9 @@ const idle = (skew: number) => {
       }
     `;
 };
-
-const move = (top: number, left: number) => {
+const move = (top: number, left: number, skew: number) => {
     // Calculate direction vectors
-    const directionX = left+60;
+    const directionX = left;
     const directionY = top;
 
     // Normalize the direction vectors
@@ -44,17 +43,17 @@ const move = (top: number, left: number) => {
     const finalLeft = left + unitX * distance;
     const finalTop = top + unitY * distance;
 
+    // Return keyframes for transform translation
     return keyframes`
-    from {
-      left: ${left}px;
-      top: ${top}px;
-    }
-    to {
-      left: ${finalLeft}px;
-      top: ${finalTop}px;
-    }
+      10% {
+        transform: translate(50px, 50px) skew(${skew}deg);
+      }
+      100% {
+        transform: translate(${finalLeft}px, ${finalTop}px) skew(${skew}deg);
+      }
   `;
 };
+
 
 export const StyledParallelogram = styled.div<Props>`
   position: absolute;
@@ -65,12 +64,8 @@ export const StyledParallelogram = styled.div<Props>`
   transform: skew(${(props) => props.skew}deg);
   rotate: ${(props) => props.rotate}deg;
   background: ${(props) => props.background};
-  -webkit-animation: ${(props) =>
-          props.move
-                  ? css`${move(props.top, props.left)} 0.7s ease-in-out forwards`
-                  : css`${idle(props.skew)} 5s ease-in-out infinite`};
   animation: ${(props) =>
     props.move
-        ? css`${move(props.top, props.left)} 0.7s ease-in-out forwards`
+        ? css`${move(props.top, props.left, props.skew)} 0.7s ease-in-out forwards`
         : css`${idle(props.skew)} 5s ease-in-out infinite`};
 `;

@@ -1,0 +1,59 @@
+:root {
+    --blue: #1e90ff;
+    --white: #ffffff;
+    --startX: 0;
+    --startY: 0;
+    --skew: 0;
+    --endX: 0;
+    --endY: 0;
+    --initialLeft: 0;
+    --initialTop: 0;
+    --finalLeft: 0;
+    --finalTop: 0;
+    --width: 0;
+    --height: 0;
+    --rotate: 0;
+    --background: 0;
+}
+
+/* Define the keyframes for idle animation */
+@keyframes idle {
+    0%, 100% {
+        transform: translate(var(--startX), var(--startY)) skew(var(--skew));
+    }
+    50% {
+        transform: translate(var(--endX), var(--endY)) skew(var(--skew));
+    }
+}
+
+/* Define the keyframes for move animation using transform */
+@keyframes move {
+    from {
+        transform: translate(var(--startX), var(--startY)) skew(var(--skew));
+    }
+    to {
+        transform: translate(calc(var(--endX) * 100), calc(var(--endY) * 100)) skew(var(--skew));
+    }
+}
+
+/* General style for the parallelogram */
+.parallelogram {
+    position: absolute;
+    top: var(--initialTop);
+    left: var(--initialLeft);
+    width: var(--width);
+    height: var(--height);
+    transform: skew(var(--skew));
+    background: var(--background);
+    rotate: var(--rotate);
+}
+
+/* Apply idle animation */
+.parallelogram.idle {
+    animation: idle 5s ease-in-out infinite;
+}
+
+/* Apply move animation */
+.parallelogram.move {
+    animation: move 0.7s ease-in-out forwards;
+}
