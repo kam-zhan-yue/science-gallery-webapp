@@ -33,7 +33,7 @@ const Main: React.FC = () => {
             setState(GameState.Mirror);
             setTimeout(() => {
                 setState(GameState.Game);
-            }, 700); // Delay execution by one second (1000 milliseconds)
+            }, 2000); // Delay execution by one second (1000 milliseconds)
         }
     };
 

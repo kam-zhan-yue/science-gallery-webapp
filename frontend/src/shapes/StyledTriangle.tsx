@@ -78,9 +78,8 @@ export const StyledTriangle = styled.div<Props>`
     rotate: ${(props) => props.rotate}deg;
     //-webkit-filter: drop-shadow(0 0 10px hsl(162, 100%, 58%, 80%))drop-shadow(0 0 20px hsl(270, 100%, 58%, 60%)) drop-shadow(0 0 30px hsl(280, 73%, 53%, 60%));
     filter: drop-shadow(0 0 10px hsl(162, 100%, 58%, 80%))drop-shadow(0 0 20px hsl(270, 100%, 58%, 60%)) drop-shadow(0 0 30px hsl(280, 73%, 53%, 60%));
-    -webkit-animation: ${(props) =>
+    animation: ${(props) =>
           props.move
                   ? css`${move(props.top, props.left, props.rotate)} 0.7s ease-in-out forwards`
-                  : css`${idle()} 5s ease-in-out infinite`};  
-    animation: ${(props) => css`${move(props.top, props.left, props.rotate)} 0.7s ease-in-out infinite`};
+                  : css`${idle()} 5s ease-in-out infinite`};
 `;
