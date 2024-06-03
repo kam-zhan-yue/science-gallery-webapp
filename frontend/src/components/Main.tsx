@@ -27,13 +27,12 @@ const Main: React.FC = () => {
     }, [started]); // Empty dependency array ensures this effect runs only once on mount
 
     const startGame = () => {
-        console.log(`2 started is ${started}`);
         if(!started) {
             start();
             setState(GameState.Mirror);
             setTimeout(() => {
                 setState(GameState.Game);
-            }, 2000); // Delay execution by one second (1000 milliseconds)
+            }, 1000); // Delay execution by one second (1000 milliseconds)
         }
     };
 
