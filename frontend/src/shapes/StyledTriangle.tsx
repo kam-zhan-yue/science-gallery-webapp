@@ -82,8 +82,5 @@ export const StyledTriangle = styled.div<Props>`
           props.move
                   ? css`${move(props.top, props.left, props.rotate)} 0.7s ease-in-out forwards`
                   : css`${idle()} 5s ease-in-out infinite`};  
-    animation: ${(props) =>
-          props.move
-                  ? css`${move(props.top, props.left, props.rotate)} 0.7s ease-in-out forwards`
-                  : css`${idle()} 5s ease-in-out infinite`};
+    animation: ${(props) => css`${move(props.top, props.left, props.rotate)} 0.7s ease-in-out infinite`};
 `;

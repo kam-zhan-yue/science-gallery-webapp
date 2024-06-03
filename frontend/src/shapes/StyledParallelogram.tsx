@@ -87,8 +87,5 @@ export const StyledParallelogram = styled.div<Props>`
           props.move
                   ? css`${move(props.top, props.left, props.skew, props.rotate)} 0.7s ease-in-out forwards`
                   : css`${idle(props.skew)} 5s ease-in-out infinite`};
-  animation: ${(props) =>
-    props.move
-        ? css`${move(props.top, props.left, props.skew, props.rotate)} 0.7s ease-in-out forwards`
-        : css`${idle(props.skew)} 5s ease-in-out infinite`};
+  animation: ${(props) => css`${move(props.top, props.left, props.skew, props.rotate)} 0.7s ease-in-out infinite`};
 `;
