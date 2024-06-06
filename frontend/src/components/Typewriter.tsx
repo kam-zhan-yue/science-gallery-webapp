@@ -18,7 +18,12 @@ const fadeIn = keyframes`
 `;
 
 const DialogueText = styled.div`
-  font-size: 30px;
+  font-size: 25px;
+  font-family: "VT323", monospace;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1em;
+  overflow-wrap: break-word;
 `;
 
 const CharacterSpan = styled.span`

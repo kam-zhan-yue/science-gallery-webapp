@@ -6,6 +6,11 @@ const Class = styled.div`
   position: fixed;
   top: 20px;
   left: 20px;
+  font-size: 20px;
+  font-family: "VT323", monospace;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1em;
 `
 
 const StatHolder = styled.div`
@@ -17,6 +22,11 @@ const StatHolder = styled.div`
 `
 
 const Stat = styled.div`
+  font-size: 20px;
+  font-family: "VT323", monospace;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1em;
 `
 
 interface PlayerComponentProps {
