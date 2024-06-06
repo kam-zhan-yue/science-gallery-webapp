@@ -30,30 +30,36 @@ const CharacterSpan = styled.span`
   animation: ${fadeIn} 0.5s ease-in-out;
 `;
 
+enum TypewriterState {
+    Idle,
+    Typing,
+    Finished,
+}
+
 const Typewriter: React.FC<TypewriterProps> = ({ text, delay, next }) => {
     const [currentText, setCurrentText] = useState<string[]>([]);
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [scrolling, setScrolling] = useState<boolean>(true);
+
+    const [state, setState] = useState<TypewriterState>(TypewriterState.Idle);
 
     // Use Effect for setting text
     useEffect(() => {
+        console.log(`Text set to ${text}`);
+        setState(TypewriterState.Typing);
         setCurrentText([]);
         setCurrentIndex(0);
-        setScrolling(true);
     }, [text]);
 
     // Use Effect for typewriter effect
     useEffect(() => {
-        if (scrolling) {
-            if (currentIndex < text.length) {
-                const timeout = setTimeout(() => {
-                    setCurrentText((prevText) => [...prevText, text[currentIndex]]);
-                    setCurrentIndex((prevIndex) => prevIndex + 1);
-                }, delay);
-                return () => clearTimeout(timeout);
-            }
+        if (currentIndex < text.length) {
+            const timeout = setTimeout(() => {
+                setCurrentText((prevText) => [...prevText, text[currentIndex]]);
+                setCurrentIndex((prevIndex) => prevIndex + 1);
+            }, delay);
+            return () => clearTimeout(timeout);
         }
-    }, [currentIndex, text, delay, scrolling]);
+    }, [currentIndex, text, delay]);
 
     // Use Effect for Click
     useEffect(() => {
@@ -61,9 +67,9 @@ const Typewriter: React.FC<TypewriterProps> = ({ text, delay, next }) => {
             if (currentText.length !== text.length) {
                 setCurrentIndex(text.length);
                 setCurrentText(text.split(''));
-                setScrolling(false);
             } else if (next) {
                 next();
+                setState(TypewriterState.Finished);
             }
         }
         // Bind the event listener
@@ -72,17 +78,22 @@ const Typewriter: React.FC<TypewriterProps> = ({ text, delay, next }) => {
             // Unbind the event listener on clean up
             document.removeEventListener("click", handleClick);
         };
-    }, [text, scrolling, currentIndex]);
+    }, [text, currentIndex, state]);
 
     // Wrap each character in a span with the fade-in animation
-    const animatedText = currentText.map((char, index) => (
-        <CharacterSpan key={index}>{char}</CharacterSpan>
-    ));
+    const animatedText = () => {
+        if(state === TypewriterState.Finished) {
+            return text;
+        } else {
+            return currentText.map((char, index) => (
+                <CharacterSpan key={index}>{char}</CharacterSpan>
+            ));
+        }
+    }
 
     return (
         <>
-            {scrolling && <DialogueText>{animatedText}</DialogueText>}
-            {!scrolling && <DialogueText>{text}</DialogueText>}
+            {<DialogueText>{animatedText()}</DialogueText>}
         </>
         );
 };

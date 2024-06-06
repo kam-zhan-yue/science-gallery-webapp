@@ -13,7 +13,6 @@ export class Universe extends Scene {
     }
 
     start() {
-        console.log('start');
         this.solarSystem?.setVisible(true);
         this.solarSystem?.fadeIn(500);
     }
