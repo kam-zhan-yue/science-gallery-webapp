@@ -12,12 +12,8 @@ export class Universe extends Scene {
         this.load.glsl('stars', '/game/shaders/stars.glsl');
     }
 
-    test() {
-        console.log("TEST!");
-        EventBus.emit('test', 'yes')
-    }
-
     start() {
+        console.log('start');
         this.solarSystem?.setVisible(true);
         this.solarSystem?.fadeIn(500);
     }

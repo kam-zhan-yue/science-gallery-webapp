@@ -5,8 +5,7 @@ INCLUDE jupiter.ink
 INCLUDE player.ink
 
 
-Hello {name}! Welcome to the adventure.
-Choose a <b><color=\#FF1E35>Pokémon</b>!
+Hello {name}! Welcome to the adventure. This is a reaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaly long text.
 
 -> choose
 

@@ -26,9 +26,10 @@ const Separator = styled.div`
 
 interface DialogueComponentProps {
     text: string;
+    next?: () => void;
 }
 
-const DialogueComponent: React.FC<DialogueComponentProps> = ({ text }) => {
+const DialogueComponent: React.FC<DialogueComponentProps> = ({ text, next }) => {
     // Splitting the text into character name and dialogue body if a colon exists
     const colonIndex = text.indexOf(':');
     const characterName = colonIndex !== -1 ? text.substring(0, colonIndex).trim() : '';
@@ -44,7 +45,7 @@ const DialogueComponent: React.FC<DialogueComponentProps> = ({ text }) => {
                         <Separator />
                     </>
                 }
-                <Typewriter text={dialogueBody} delay={50}/>
+                <Typewriter text={dialogueBody} delay={20} next={next}/>
             </Overlay>
         </>
     );

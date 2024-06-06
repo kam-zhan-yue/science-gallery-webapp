@@ -117,15 +117,7 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
   }
 
   // Handle clicking
-
-  useEffect(() => {
-    document.body.addEventListener('click', handleOverlayClick, true);
-    return () => {
-      document.body.removeEventListener('click', handleOverlayClick, true);
-    };
-  }, [story]); // Empty dependency array ensures this effect runs only once on mount
-
-  const handleOverlayClick = () => {
+  const next = () => {
     advance(story);
   };
 
@@ -160,7 +152,7 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
         {state !== 'travelling' &&
             <>
               <CharacterComponent player={player}></CharacterComponent>
-              <DialogueComponent text={storyText}></DialogueComponent>
+              <DialogueComponent text={storyText} next={next}></DialogueComponent>
             </>
         }
 

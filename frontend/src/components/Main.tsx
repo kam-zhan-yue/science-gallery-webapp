@@ -9,19 +9,19 @@ const Main: React.FC = () => {
     const universeRef = useRef<Universe>(null);
     const { started, state, setState, start, debug, setDebug} = useContext(GameContext) as GameContextType;
 
-    setDebug(true);
-    if(debug) {
-        start();
-        setState(GameState.Game);
-    }
-
-    // Add a console.log statement to check the value of state
-    console.log("State:", state);
+    useEffect(()=> {
+        setDebug(true);
+        if(debug) {
+            start();
+            setTimeout(() => {
+                setState(GameState.Game);
+            }, 100); // Delay execution by one second (1000 milliseconds)
+        }
+    });
 
     useEffect(() => {
         if (universeRef.current) {
             console.log(`Universe is set ${universeRef.current}`); // You can now use the universeRef here
-            universeRef.current?.test();
         }
     }, []);
 
