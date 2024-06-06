@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react'
 import { viteStaticCopy } from 'vite-plugin-static-copy';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
+import tailwindcss from 'tailwindcss';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -27,6 +28,11 @@ export default defineConfig({
       ]
     })
   ],
+  css: {
+    postcss: {
+      plugins: [tailwindcss()],
+    },
+  },
   optimizeDeps: {
     include: ['inkjs']
   },

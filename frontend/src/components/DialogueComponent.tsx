@@ -45,6 +45,9 @@ const DialogueComponent: React.FC<DialogueComponentProps> = ({ text, next }) => 
                         <Separator />
                     </>
                 }
+                <h1 className="text-3xl font-bold underline">
+                    Hello world!
+                </h1>
                 <Typewriter text={dialogueBody} delay={20} next={next}/>
             </Overlay>
         </>
