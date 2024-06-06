@@ -10,12 +10,12 @@ const Main: React.FC = () => {
     const { started, state, setState, start, debug, setDebug} = useContext(GameContext) as GameContextType;
 
     useEffect(()=> {
-        setDebug(true);
+        setDebug(false);
         if(debug) {
             start();
             setTimeout(() => {
                 setState(GameState.Game);
-            }, 100); // Delay execution by one second (1000 milliseconds)
+            }, 10); // Delay execution by one second (1000 milliseconds)
         }
     });
 

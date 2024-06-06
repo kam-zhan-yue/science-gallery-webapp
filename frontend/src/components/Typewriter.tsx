@@ -56,9 +56,11 @@ const Typewriter: React.FC<TypewriterProps> = ({ text, delay, next }) => {
     }, [currentIndex, text, delay, scrolling]);
 
     useEffect(() => {
-        document.body.addEventListener('click', handleClick, true);
+        // Bind the event listener
+        document.addEventListener("mousedown", handleClick);
         return () => {
-            document.body.removeEventListener('click', handleClick, true);
+            // Unbind the event listener on clean up
+            document.removeEventListener("mousedown", handleClick);
         };
     }, [scrolling, text]);
 
