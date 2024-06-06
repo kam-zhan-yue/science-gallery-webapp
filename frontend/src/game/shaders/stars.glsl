@@ -4,7 +4,7 @@ precision mediump float;
 
 uniform float time;
 uniform vec2 resolution;
-#define NUM_LAYERS 30.
+#define NUM_LAYERS 20.
 
 // 2D rotation matrix
 mat2 rot(float a) {
@@ -27,7 +27,7 @@ float rays(vec2 uv, float flare) {
 
 float star(vec2 uv, float flare) {
     float d = length(uv);
-    float m = .02/d;
+    float m = .008/d;
 
     m += rays(uv, flare);
 
@@ -61,10 +61,10 @@ vec3 starLayer(vec2 uv) {
 
             // add a random colour to the star
             vec3 color = sin(vec3(.2, .3, .9)*fract(n*2345.2)*123.2)*.5+.5;
-            color = color*vec3(1,.25,1.+size)+vec3(.2, .2, .1)*2.; // adjust the colours for the star
+            color = color*vec3(.2,.25,1.+size)+vec3(.1, .1, .2)*2.; // adjust the colours for the star
 
             // add a sparkle to the star
-            star *= sin(time * 3. + n*123.2) * .5 + 1.;
+            star *= sin(time * 3. + n*123.2) * .2 + 1.;
 
             col += star * size * color;
         }
@@ -74,7 +74,7 @@ vec3 starLayer(vec2 uv) {
 
 void main() {
     vec2 uv = (gl_FragCoord.xy -.5*resolution.xy)/resolution.y;
-    float t = time * .005;
+    float t = time * .001;
 
     // add a rotation to the uv
     uv *= rot(t);
