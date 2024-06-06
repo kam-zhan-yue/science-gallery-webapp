@@ -7,7 +7,13 @@ import {GameContext, GameContextType, GameState} from "../contexts/GameContext.t
 
 const Main: React.FC = () => {
     const universeRef = useRef<Universe>(null);
-    const { started, state, setState, start } = useContext(GameContext) as GameContextType;
+    const { started, state, setState, start, debug, setDebug} = useContext(GameContext) as GameContextType;
+
+    setDebug(true);
+    if(debug) {
+        start();
+        setState(GameState.Game);
+    }
 
     // Add a console.log statement to check the value of state
     console.log("State:", state);

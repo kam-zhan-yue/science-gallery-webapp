@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import ReactHtmlParser from 'html-react-parser';
+import Typewriter from "./Typewriter.tsx";
 
 const Overlay = styled.div`
   position: fixed;
@@ -24,10 +24,6 @@ const Separator = styled.div`
   margin: 8px 0; /* Adjust margin */
 `
 
-const DialogueText = styled.div`
-    font-size: 30px;
-`
-
 interface DialogueComponentProps {
     text: string;
 }
@@ -48,7 +44,7 @@ const DialogueComponent: React.FC<DialogueComponentProps> = ({ text }) => {
                         <Separator />
                     </>
                 }
-                <DialogueText>{ReactHtmlParser(dialogueBody)}</DialogueText>
+                <Typewriter text={dialogueBody} delay={50}/>
             </Overlay>
         </>
     );

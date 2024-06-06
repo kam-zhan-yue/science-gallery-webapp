@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 // @ts-ignore
 import {Story, Choice, InkObject} from "inkjs";
 import DialogueComponent from "./DialogueComponent.tsx";
@@ -9,6 +9,7 @@ import KeypadComponent from "./KeypadComponent.tsx";
 import {Universe} from "../game/scenes/Universe.tsx";
 import {EventBus} from "../EventBus.tsx";
 import main from "../assets/audio/main.mp3";
+import {GameContext, GameContextType} from "../contexts/GameContext.tsx";
 
 interface StoryComponentProps {
   universeRef: Universe | null;
@@ -22,11 +23,14 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
   const [player, setPlayer] = useState<Player>(new Player());
   const [gameState, setGameState] = useState<string>('');
   const [state, setState] = useState<string>('');
+  const {debug} = useContext(GameContext) as GameContextType;
 
   // Playing audio
   useEffect(() =>{
-    const audio = new Audio(main);
-    audio.play();
+    if(!debug) {
+      const audio = new Audio(main);
+      audio.play();
+    }
   }, []);
 
   // Loading game.json for the story
