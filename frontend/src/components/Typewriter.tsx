@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled, {keyframes} from 'styled-components';
 
 interface TypewriterProps {
     text: string;
@@ -35,12 +35,14 @@ const Typewriter: React.FC<TypewriterProps> = ({ text, delay, next }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [scrolling, setScrolling] = useState<boolean>(true);
 
+    // Use Effect for setting text
     useEffect(() => {
-        setScrolling(true);
-        setCurrentIndex(0);
         setCurrentText([]);
+        setCurrentIndex(0);
+        setScrolling(true);
     }, [text]);
 
+    // Use Effect for typewriter effect
     useEffect(() => {
         if (scrolling) {
             if (currentIndex < text.length) {
@@ -48,35 +50,29 @@ const Typewriter: React.FC<TypewriterProps> = ({ text, delay, next }) => {
                     setCurrentText((prevText) => [...prevText, text[currentIndex]]);
                     setCurrentIndex((prevIndex) => prevIndex + 1);
                 }, delay);
-
-                return () => clearTimeout(timeout);
-            } else {
-                const timeout = setTimeout(() => {
-                    setScrolling(false)
-                }, delay*3);
-
                 return () => clearTimeout(timeout);
             }
         }
     }, [currentIndex, text, delay, scrolling]);
 
+    // Use Effect for Click
     useEffect(() => {
+        const handleClick = () => {
+            if (currentText.length !== text.length) {
+                setCurrentIndex(text.length);
+                setCurrentText(text.split(''));
+                setScrolling(false);
+            } else if (next) {
+                next();
+            }
+        }
         // Bind the event listener
-        document.addEventListener("mousedown", handleClick);
+        document.addEventListener("click", handleClick);
         return () => {
             // Unbind the event listener on clean up
-            document.removeEventListener("mousedown", handleClick);
+            document.removeEventListener("click", handleClick);
         };
-    }, [scrolling, text]);
-
-    const handleClick = () => {
-        if (scrolling) {
-            setCurrentText(text.split('')); // Populate entire text
-            setScrolling(false);
-        } else if (next) {
-            next(); // Call next function
-        }
-    }
+    }, [text, scrolling, currentIndex]);
 
     // Wrap each character in a span with the fade-in animation
     const animatedText = currentText.map((char, index) => (
