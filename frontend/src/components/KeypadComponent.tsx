@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
 import {Choice} from "inkjs/engine/Choice";
+import KeypadButtonComponent, {KeypadType} from "./KeypadButtonComponent.tsx";
 
 const KeypadOverlay = styled.div`
   position: fixed;
@@ -10,6 +11,26 @@ const KeypadOverlay = styled.div`
   display: flex;
   flex-direction: column; /* Display choices vertically */
   align-items: center; /* Center horizontally */
+`
+
+const CodeBackground = styled.div`
+  width: 200px;
+  height: 80px;
+  background: #ffffff22;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+`
+
+const CodeText = styled.div`
+  font-size: 50px;
+  font-family: "VT323", monospace;
+  font-weight: 800;
+  font-style: normal;
+  line-height: 1em;
+  color: white;
 `
 
 interface KeypadComponentProps {
@@ -34,13 +55,44 @@ const KeypadComponent: React.FC<KeypadComponentProps> = ({ choices, handleCodeIn
         }
     }
 
+    const handleKeypadClick = (type: KeypadType, code: string) => {
+        if(type === KeypadType.Submit) {
+            handleSubmit();
+        } else if(type === KeypadType.Delete) {
+            if(inputValue.length > 0)
+                setInputValue(inputValue.substring(0, inputValue.length - 1));
+        } else {
+            if(inputValue.length < 4)
+                setInputValue(inputValue + code);
+        }
+    }
+
     return (
-        <KeypadOverlay>
-            <input
-                value={inputValue}
-                onChange={(e)=>setInputValue(e.target.value)}/>
-            <button onClick={handleSubmit}>Submit</button>
-        </KeypadOverlay>
+        <>
+            <KeypadOverlay>
+                <CodeBackground>
+                    <CodeText>{inputValue}</CodeText>
+                </CodeBackground>
+                <div className="grid grid-cols-3 gap-3">
+                    <KeypadButtonComponent code={"1"} type={KeypadType.Code} onClick={handleKeypadClick}/>
+                    <KeypadButtonComponent code={"2"} type={KeypadType.Code} onClick={handleKeypadClick}/>
+                    <KeypadButtonComponent code={"3"} type={KeypadType.Code} onClick={handleKeypadClick}/>
+                    <KeypadButtonComponent code={"4"} type={KeypadType.Code} onClick={handleKeypadClick}/>
+                    <KeypadButtonComponent code={"5"} type={KeypadType.Code} onClick={handleKeypadClick}/>
+                    <KeypadButtonComponent code={"6"} type={KeypadType.Code} onClick={handleKeypadClick}/>
+                    <KeypadButtonComponent code={"7"} type={KeypadType.Code} onClick={handleKeypadClick}/>
+                    <KeypadButtonComponent code={"8"} type={KeypadType.Code} onClick={handleKeypadClick}/>
+                    <KeypadButtonComponent code={"9"} type={KeypadType.Code} onClick={handleKeypadClick}/>
+                    <KeypadButtonComponent type={KeypadType.Delete} onClick={handleKeypadClick}/>
+                    <KeypadButtonComponent code={"0"} type={KeypadType.Code} onClick={handleKeypadClick}/>
+                    <KeypadButtonComponent type={KeypadType.Submit} onClick={handleKeypadClick}/>
+                </div>
+                {/*<input*/}
+                {/*    value={inputValue}*/}
+                {/*    onChange={(e)=>setInputValue(e.target.value)}/>*/}
+                {/*<button onClick={handleSubmit}>Submit</button>*/}
+            </KeypadOverlay>
+        </>
     );
 };
 
