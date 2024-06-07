@@ -24,6 +24,10 @@ export default defineConfig({
         {
           src: 'src/game/shaders/*.glsl',
           dest: 'game/shaders'
+        },
+        {
+          src: 'src/assets/ui/*.png',
+          dest: 'assets/ui'
         }
       ]
     })

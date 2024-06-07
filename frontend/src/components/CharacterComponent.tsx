@@ -91,7 +91,7 @@ const PlayerComponent: React.FC<PlayerComponentProps> = ({player}) => {
                 <CharacterHolder
                     key={'character-holder'}
                     id={'character-holder'}
-                    src={'./ui/character-holder.png'}
+                    src={'../assets/ui/character-holder.png'}
                     alt={'character-holder'}
                     onClick={handlePlayerClicked}
                 />
@@ -105,8 +105,8 @@ const PlayerComponent: React.FC<PlayerComponentProps> = ({player}) => {
                                 id={tabId}
                                 src={
                                     tab === tabId
-                                        ? `./ui/${tabId}-inactive.png`
-                                        : `./ui/${tabId}-active.png`
+                                        ? `../assets/ui/${tabId}-inactive.png`
+                                        : `../assets/ui/${tabId}-active.png`
                                 }
                                 alt={tabId}
                                 onClick={() => handleTabClicked(tabId)}
