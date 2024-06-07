@@ -151,8 +151,8 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
       <>
         {state !== 'travelling' &&
             <>
-              <CharacterComponent player={player}></CharacterComponent>
               <DialogueComponent text={storyText} next={next}></DialogueComponent>
+              <CharacterComponent player={player}></CharacterComponent>
             </>
         }
 
