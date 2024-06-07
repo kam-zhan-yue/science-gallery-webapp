@@ -15,19 +15,19 @@ mat2 rot(float a) {
 float rays(vec2 uv, float flare) {
     float rays = 0.;
     // create horizontal and vertical rays
-    float cross = max(0., 1.-abs(uv.x * uv.y * 1000.));
+    float cross = max(0., 1.-abs(uv.x * uv.y * 500.));
     rays += cross * flare;
 
     // rotate the rays by 45 degrees
     uv*=rot(3.1415*0.25);
-    float diagonal = max(0., 1.-abs(uv.x * uv.y * 1000.));
+    float diagonal = max(0., 1.-abs(uv.x * uv.y * 500.));
     rays += diagonal*.1 * flare;
     return rays;
 }
 
 float star(vec2 uv, float flare) {
     float d = length(uv);
-    float m = .008/d;
+    float m = .014/d;
 
     m += rays(uv, flare);
 
@@ -73,7 +73,7 @@ vec3 starLayer(vec2 uv) {
 }
 
 void main() {
-    vec2 uv = (gl_FragCoord.xy -.5*resolution.xy)/resolution.y;
+    vec2 uv = (gl_FragCoord.xy - resolution.xy)/resolution.y;
     float t = time * .001;
 
     // add a rotation to the uv

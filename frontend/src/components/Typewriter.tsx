@@ -27,7 +27,7 @@ const DialogueText = styled.div`
 `;
 
 const CharacterSpan = styled.span`
-  animation: ${fadeIn} 0.5s ease-in-out;
+  animation: ${fadeIn} 0.5s ease-in-out forwards;
 `;
 
 enum TypewriterState {
@@ -36,15 +36,24 @@ enum TypewriterState {
     Finished,
 }
 
+const InteractionOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  touch-action: none; /* Disable touch events */
+`
+
 const Typewriter: React.FC<TypewriterProps> = ({ text, delay, next }) => {
     const [currentText, setCurrentText] = useState<string[]>([]);
     const [currentIndex, setCurrentIndex] = useState(0);
 
     const [state, setState] = useState<TypewriterState>(TypewriterState.Idle);
+    const fade: boolean = false;
 
     // Use Effect for setting text
     useEffect(() => {
-        console.log(`Text set to ${text}`);
         setState(TypewriterState.Typing);
         setCurrentText([]);
         setCurrentIndex(0);
@@ -61,24 +70,15 @@ const Typewriter: React.FC<TypewriterProps> = ({ text, delay, next }) => {
         }
     }, [currentIndex, text, delay]);
 
-    // Use Effect for Click
-    useEffect(() => {
-        const handleClick = () => {
-            if (currentText.length !== text.length) {
-                setCurrentIndex(text.length);
-                setCurrentText(text.split(''));
-            } else if (next) {
-                next();
-                setState(TypewriterState.Finished);
-            }
+    const handleClick = () => {
+        if (currentText.length !== text.length) {
+            setCurrentIndex(text.length);
+            setCurrentText(text.split(''));
+        } else if (next) {
+            next();
+            setState(TypewriterState.Finished);
         }
-        // Bind the event listener
-        document.addEventListener("click", handleClick);
-        return () => {
-            // Unbind the event listener on clean up
-            document.removeEventListener("click", handleClick);
-        };
-    }, [text, currentIndex, state]);
+    }
 
     // Wrap each character in a span with the fade-in animation
     const animatedText = () => {
@@ -93,7 +93,8 @@ const Typewriter: React.FC<TypewriterProps> = ({ text, delay, next }) => {
 
     return (
         <>
-            {<DialogueText>{animatedText()}</DialogueText>}
+            {<DialogueText>{fade ? animatedText() : currentText}</DialogueText>}
+            <InteractionOverlay onClick={handleClick}/>
         </>
         );
 };
