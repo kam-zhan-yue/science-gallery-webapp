@@ -32,6 +32,10 @@ export default class CelestialBody {
         this.nameText = this.body.scene.add.bitmapText(0, 0, 'pixelFont', this.name, 16);
     }
 
+    public setNameVisible(visible: boolean) {
+        this.nameText.setVisible(visible);
+    }
+
     public setInteractive(interactive: boolean) {
         if (interactive) {
             // Make the body interactive

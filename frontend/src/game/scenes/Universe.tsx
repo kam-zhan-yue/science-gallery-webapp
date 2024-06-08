@@ -52,6 +52,7 @@ export class Universe extends Scene {
     }
 
     inspect(planetName: string) {
+        this.solarSystem?.setDrawNames(false);
         this.solarSystem?.setInteractive(false);
         const planet = this.solarSystem?.getPlanet(planetName)
         if(planet === undefined) return;
@@ -83,6 +84,7 @@ export class Universe extends Scene {
     }
 
     reset() {
+        this.solarSystem?.setDrawNames(true);
         if(this.cameras.main.zoom === 2.5) {
             if(this.solarSystem?.centre())
                 this.cameras.main.startFollow(this.solarSystem?.centre().body);

@@ -9,10 +9,11 @@ type Dictionary<Key extends keyof any, Value> = {
 
 export default class SolarSystem {
     private sun: Sun;
+    private drawNames: boolean;
     private planets: Dictionary<string, Planet> = {};
     constructor(physics: ArcadePhysics, graphics: Graphics,  x: number, y: number) {
         this.sun = new Sun("Sun", physics, graphics,'sun', x, y);
-
+        this.drawNames = true;
         // Instantiate Planets
         graphics.lineStyle(1, 0xffffff, 0.4);
         this.planets['earth'] = new Planet("Earth", physics, graphics, 'earth', x, y, 50, 20);
@@ -30,6 +31,16 @@ export default class SolarSystem {
         return this.planets[planet];
     }
 
+    setDrawNames(draw: boolean) {
+        this.drawNames = draw;
+        this.sun.setNameVisible(draw);
+        for(const key in this.planets) {
+            if(this.planets.hasOwnProperty(key)) {
+                this.planets[key].setNameVisible(draw);
+            }
+        }
+    }
+
     setInteractive(interactive: boolean) {
         for(const key in this.planets) {
             if(this.planets.hasOwnProperty(key)) {
@@ -44,9 +55,12 @@ export default class SolarSystem {
                 this.planets[key].simulate(time, delta);
             }
         }
-        for(const key in this.planets) {
-            if(this.planets.hasOwnProperty(key)) {
-                this.planets[key].drawName();
+        if(this.drawNames) {
+            this.sun.drawName();
+            for(const key in this.planets) {
+                if(this.planets.hasOwnProperty(key)) {
+                    this.planets[key].drawName();
+                }
             }
         }
     }
