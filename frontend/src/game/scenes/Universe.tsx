@@ -57,29 +57,14 @@ export class Universe extends Scene {
         if(planet === undefined) return;
 
         console.log(`going to planet: ${planetName}`);
-        const zoomOutTime: number = 500;
         const zoomInTime: number = 1000;
-        const pauseTime: number = 200;
-        const tweenTime = zoomOutTime + zoomInTime + pauseTime;
+        const tweenTime = zoomInTime;
         // Get the position at the future time
         const position = planet.getPosition(tweenTime);
         const timeline = this.add.timeline([
             {
-                // Zoom out and start panning
-                at: 0,
-                run: () => {
-                    console.log('zoom out')
-                    this.cameras.main.stopFollow();
-                    this.cameras.main.zoomTo(2, zoomOutTime);
-                    if(this.solarSystem !== undefined) {
-                        const centre = this.solarSystem.centre();
-                        this.cameras.main.pan(centre.body.x, centre.body.y, zoomOutTime, 'Linear');
-                    }
-                },
-            },
-            {
                 // Zoom back in at half of the tween and pan the camera
-                at: zoomOutTime+pauseTime,
+                at: 0,
                 run: () => {
                     this.cameras.main.zoomTo(10, zoomInTime);
                     this.cameras.main.pan(position.x, position.y, zoomInTime, 'Power2');
