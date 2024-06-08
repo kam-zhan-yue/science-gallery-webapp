@@ -42,6 +42,10 @@ export default class SolarSystem {
         for(const key in this.planets) {
             if(this.planets.hasOwnProperty(key)) {
                 this.planets[key].simulate(time, delta);
+            }
+        }
+        for(const key in this.planets) {
+            if(this.planets.hasOwnProperty(key)) {
                 this.planets[key].drawName();
             }
         }

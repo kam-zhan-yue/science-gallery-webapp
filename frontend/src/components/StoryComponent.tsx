@@ -87,7 +87,7 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
             if(value.toString() === 'planet_selection') {
               console.log('set universe interactive')
               setStoryState(StoryState.Choosing);
-              universeRef?.setInteractive(true);
+              universeRef?.reset();
             }
             break;
           case 'planet':
@@ -115,7 +115,7 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
       console.log(`Landed on ${planet}`);
     });
 
-    // Once landed, should show UI options
+    // Once reset, should go  back to choosing a planet
     EventBus.on('reset', () => {
       setStoryState(StoryState.Choosing);
       console.log(`Choosing a planet`);

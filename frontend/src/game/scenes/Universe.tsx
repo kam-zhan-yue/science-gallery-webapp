@@ -98,31 +98,38 @@ export class Universe extends Scene {
     }
 
     reset() {
-        const zoomOutTime: number = 1000;
-        const timeline = this.add.timeline([
-            {
-                at: 0,
-                run: () => {
-                    console.log('zoom out')
-                    this.cameras.main.stopFollow();
-                    this.cameras.main.zoomTo(2.5, zoomOutTime);
-                    if(this.solarSystem !== undefined) {
-                        const centre = this.solarSystem.centre();
-                        this.cameras.main.pan(centre.body.x, centre.body.y, zoomOutTime, 'Linear');
-                    }
+        if(this.cameras.main.zoom === 2.5) {
+            if(this.solarSystem?.centre())
+                this.cameras.main.startFollow(this.solarSystem?.centre().body);
+            this.solarSystem?.setInteractive(true);
+            EventBus.emit('reset');
+        } else {
+            const zoomOutTime: number = 1000;
+            const timeline = this.add.timeline([
+                {
+                    at: 0,
+                    run: () => {
+                        console.log('zoom out')
+                        this.cameras.main.stopFollow();
+                        this.cameras.main.zoomTo(2.5, zoomOutTime);
+                        if(this.solarSystem !== undefined) {
+                            const centre = this.solarSystem.centre();
+                            this.cameras.main.pan(centre.body.x, centre.body.y, zoomOutTime, 'Linear');
+                        }
+                    },
                 },
-            },
-            {
-                at: zoomOutTime,
-                run: () => {
-                    this.solarSystem?.setInteractive(true);
-                    if(this.solarSystem?.centre())
-                        this.cameras.main.startFollow(this.solarSystem?.centre().body);
-                    EventBus.emit('reset')
+                {
+                    at: zoomOutTime,
+                    run: () => {
+                        this.solarSystem?.setInteractive(true);
+                        if(this.solarSystem?.centre())
+                            this.cameras.main.startFollow(this.solarSystem?.centre().body);
+                        EventBus.emit('reset');
+                    }
                 }
-            }
-        ]);
-        timeline.play();
+            ]);
+            timeline.play();
+        }
     }
 
     update(time: number, delta: number) {

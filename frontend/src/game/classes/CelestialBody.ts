@@ -51,18 +51,18 @@ export default class CelestialBody {
     }
 
     private onPointerOver() {
-        this.body.setTint(0x44ff44); // Change tint on hover
+        // this.body.setTint(0x44ff44); // Change tint on hover
         this.body.scene.input.setDefaultCursor('pointer'); // Change cursor to pointer
     }
 
     private onPointerOut() {
-        this.body.clearTint(); // Clear tint when not hovering
+        // this.body.clearTint(); // Clear tint when not hovering
         this.body.scene.input.setDefaultCursor('default'); // Change cursor back to default
     }
 
     private onClick() {
         EventBus.emit('inspect', this.key);
-        this.body.clearTint(); // Clear tint when not hovering
+        // this.body.clearTint(); // Clear tint when not hovering
         this.body.scene.input.setDefaultCursor('default'); // Change cursor back to default
     }
 
