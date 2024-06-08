@@ -12,8 +12,11 @@ export default class CelestialBody {
     private clockwise: boolean = false;
     private parentPosition: Vector2 = new Vector2(0, 0);
     private orbitalRing: Phaser.GameObjects.Graphics;
+    private name: string;
+    private nameText: Phaser.GameObjects.BitmapText;
 
-    constructor(physics: ArcadePhysics, graphics: Graphics, key: string, x: number, y: number, orbitalRadius: number = 0, orbitalPeriod: number = 0, clockwise: boolean = false) {
+    constructor(name: string, physics: ArcadePhysics, graphics: Graphics, key: string, x: number, y: number, orbitalRadius: number = 0, orbitalPeriod: number = 0, clockwise: boolean = false) {
+        this.name = name;
         this.parentPosition = new Vector2(x, y);
         this.body = physics.add.sprite(x, y, key);
         this.body.play(`${key}_spin`, true);
@@ -22,11 +25,14 @@ export default class CelestialBody {
         this.clockwise = clockwise;
         this.angle = Random() * 360;
         this.orbitalRing = graphics.strokeCircle(x, y, orbitalRadius);
+        // Initialize the name text
+        this.nameText = this.body.scene.add.bitmapText(0, 0, 'pixelFont', this.name, 16);
     }
 
     public setVisible(visible: boolean) {
         this.body.setVisible(visible);
         this.orbitalRing.setVisible(visible);
+        this.nameText.setVisible(visible);
     }
 
     public fadeOut(duration: number) {
@@ -78,5 +84,12 @@ export default class CelestialBody {
         this.angle = Phaser.Math.Wrap(this.angle, 0, 360); // Ensure the angle stays within 0-360 degrees
 
         this.body.setPosition(position.x, position.y);
+    }
+
+    public drawName() {
+        const position = this.body.getBottomRight();
+        const x = position.x-3;
+        const y = position.y-3;
+        this.nameText.setPosition(x, y);
     }
 }

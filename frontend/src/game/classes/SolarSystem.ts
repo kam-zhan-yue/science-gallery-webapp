@@ -11,16 +11,16 @@ export default class SolarSystem {
     private sun: Sun;
     private planets: Dictionary<string, Planet> = {};
     constructor(physics: ArcadePhysics, graphics: Graphics,  x: number, y: number) {
-        this.sun = new Sun(physics, graphics,'earth', x, y);
+        this.sun = new Sun("Sun", physics, graphics,'earth', x, y);
 
         // Instantiate Planets
         graphics.lineStyle(1, 0xffffff, 0.4);
-        this.planets['earth'] = new Planet(physics, graphics, 'earth', x, y, 50, 20);
-        this.planets['jupiter'] = new Planet(physics, graphics, 'earth', x, y, 150, 50);
+        this.planets['earth'] = new Planet("Earth", physics, graphics, 'earth', x, y, 50, 20);
+        this.planets['jupiter'] = new Planet("Jupiter", physics, graphics, 'earth', x, y, 100, 30);
     }
 
     public centre(): Planet {
-        return this.sun;
+        return <Planet>this.sun;
     }
 
     public getPlanet(planet: string): Planet {
@@ -34,6 +34,7 @@ export default class SolarSystem {
         for(const key in this.planets) {
             if(this.planets.hasOwnProperty(key)) {
                 this.planets[key].simulate(time, delta);
+                this.planets[key].drawName();
             }
         }
     }

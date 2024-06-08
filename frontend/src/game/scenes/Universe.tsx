@@ -4,7 +4,6 @@ import {EventBus} from "../../EventBus.tsx";
 
 export class Universe extends Scene {
     private solarSystem?: SolarSystem;
-
     constructor() {
         super({ key: 'Universe' });
     }
@@ -18,7 +17,7 @@ export class Universe extends Scene {
     }
 
     create() {
-        this.cameras.main.zoom = 3;
+        this.cameras.main.zoom = 2.5;
         const centerX = this.cameras.main.centerX;
         const centerY = this.cameras.main.centerY;
 
@@ -53,7 +52,7 @@ export class Universe extends Scene {
                 run: () => {
                     console.log('zoom out')
                     this.cameras.main.stopFollow();
-                    this.cameras.main.zoomTo(2, zoomOutTime);
+                    this.cameras.main.zoomTo(1.5, zoomOutTime);
                     if(this.solarSystem !== undefined) {
                         const centre = this.solarSystem.centre();
                         this.cameras.main.pan(centre.body.x, centre.body.y, zoomOutTime, 'Linear');

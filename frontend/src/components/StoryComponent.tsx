@@ -21,8 +21,8 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
   const [showingChoices, setShowingChoices] = useState<boolean>(false);
   const [choices, setChoices] = useState<Choice[]>([]);
   const [player, setPlayer] = useState<Player>(new Player());
+  const [inkState, setInkState] = useState<string>('');
   const [gameState, setGameState] = useState<string>('');
-  const [state, setState] = useState<string>('');
   const {debug} = useContext(GameContext) as GameContextType;
 
   // Playing audio
@@ -50,7 +50,7 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
   useEffect(() => {
     if (story) {
       story.variablesState.ObserveVariableChange((variableName: string, value: InkObject) => {
-        // Update the character gameState whenever 'class' variable changes
+        // Update the character inkState whenever 'class' variable changes
         // console.log(`VARIABLE ${variableName} changed to ${value}`)
         switch(variableName) {
           case 'class':
@@ -74,7 +74,7 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
             setPlayer(player);
             break;
           case 'game_state':
-            setGameState(value.toString());
+            setInkState(value.toString());
             break;
           case 'planet':
             selectPlanet(value.toString());
@@ -88,7 +88,7 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
   useEffect(() => {
     universeRef?.start();
     EventBus.on('landed', (planet: string) => {
-      setState('landed');
+      setGameState('landed');
       console.log(`Landed on ${planet}`);
     });
 
@@ -141,7 +141,7 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
 
   const selectPlanet = (planet: string) => {
     console.log(`planet changed from ink ${planet}`);
-    setState('travelling');
+    setGameState('travelling');
     if(universeRef) {
       universeRef.goToPlanet(planet);
     }
@@ -149,21 +149,21 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
 
   return (
       <>
-        {state !== 'travelling' &&
+        {(gameState !== 'travelling' || inkState !== "planet_selection") &&
             <>
               <DialogueComponent text={storyText} next={next}></DialogueComponent>
               <CharacterComponent player={player}></CharacterComponent>
             </>
         }
 
-        {gameState == "planet_selection" &&
+        {inkState == "planet_selection" &&
         <>
         <KeypadComponent
             choices={choices}
             handleCodeInput={handleCodeInput}
           />
         </>}
-        {gameState != "planet_selection" && gameState != 'travelling' && showingChoices &&
+        {inkState != "planet_selection" && inkState != 'travelling' && showingChoices &&
         <ChoiceComponent
             choices={choices}
             handleChoiceClick={handleChoiceClick}

@@ -2,29 +2,23 @@ import React, {useState} from "react";
 import styled, {css, keyframes} from "styled-components";
 import Player from "../classes/Player.ts";
 
-const Class = styled.div`
+
+const StatHolder = styled.div`
   position: fixed;
   top: 20px;
   left: 20px;
-  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+
   font-family: "VT323", monospace;
   font-weight: 400;
   font-style: normal;
   line-height: 1em;
 `
 
-const StatHolder = styled.div`
-  margin-top: 50px;
-  position: fixed;
-  top: 40px;
-  left: 20px;
-  display: flex;
-  flex-direction: column;
-`
-
 const CharacterHolder = styled.img`
-  width: 266px;
-  height: 64px;
+  width: 333px;
+  height: 80px;
   image-rendering: pixelated;
   image-rendering: -moz-crisp-edges;
   image-rendering: crisp-edges;
@@ -46,9 +40,9 @@ const fadeIn = keyframes`
 
 // Apply the fade-in animation with a staggered delay
 const Tab = styled.img<{ delay: number }>`
-  width: 64px;
-  height: 64px;
-  margin-bottom: 6px;
+  width: 80px;
+  height: 80px;
+  margin-top: 6px;
   image-rendering: pixelated;
   image-rendering: -moz-crisp-edges;
   image-rendering: crisp-edges;
@@ -87,7 +81,7 @@ const PlayerComponent: React.FC<PlayerComponentProps> = ({player}) => {
 
     return (
         <>
-            <Class>
+            <StatHolder>
                 <CharacterHolder
                     key={'character-holder'}
                     id={'character-holder'}
@@ -95,10 +89,8 @@ const PlayerComponent: React.FC<PlayerComponentProps> = ({player}) => {
                     alt={'character-holder'}
                     onClick={handlePlayerClicked}
                 />
-            </Class>
             {show &&
                 <>
-                    <StatHolder>
                         {["inventory", "skill", "ability"].map((tabId, index) => (
                             <Tab
                                 key={tabId}
@@ -113,9 +105,9 @@ const PlayerComponent: React.FC<PlayerComponentProps> = ({player}) => {
                                 delay={index * 0.1} // Staggered delay
                             />
                         ))}
-                    </StatHolder>
                 </>
             }
+            </StatHolder>
         </>
     )
 }
