@@ -29,8 +29,8 @@ Please choose a class.
 
 
 === universe_story ===
-~ game_state = planet_selection
 Where shall we go today?
+~ game_state = planet_selection
     * [1111]
         ~ game_state = exploring
         ~ planet = earth

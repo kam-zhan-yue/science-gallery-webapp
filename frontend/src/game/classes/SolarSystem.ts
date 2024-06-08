@@ -30,6 +30,14 @@ export default class SolarSystem {
         return this.planets[planet];
     }
 
+    setInteractive(interactive: boolean) {
+        for(const key in this.planets) {
+            if(this.planets.hasOwnProperty(key)) {
+                this.planets[key].setInteractive(interactive);
+            }
+        }
+    }
+
     public simulate(time: number, delta: number) {
         for(const key in this.planets) {
             if(this.planets.hasOwnProperty(key)) {

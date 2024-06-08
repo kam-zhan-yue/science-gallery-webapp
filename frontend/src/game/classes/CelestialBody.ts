@@ -2,20 +2,23 @@ import ArcadePhysics = Phaser.Physics.Arcade.ArcadePhysics;
 import Graphics = Phaser.GameObjects.Graphics;
 import Vector2 = Phaser.Math.Vector2;
 import Random = Phaser.Math.Angle.Random;
+import {EventBus} from "../../EventBus.tsx";
 
 
 export default class CelestialBody {
     public body: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody;
+    private key: string;
+    private name: string;
     private angle: number = 0.0;
     private orbitalPeriod: number = 2.0;
     private orbitalRadius: number = 0;
     private clockwise: boolean = false;
     private parentPosition: Vector2 = new Vector2(0, 0);
     private orbitalRing: Phaser.GameObjects.Graphics;
-    private name: string;
     private nameText: Phaser.GameObjects.BitmapText;
 
     constructor(name: string, physics: ArcadePhysics, graphics: Graphics, key: string, x: number, y: number, orbitalRadius: number = 0, orbitalPeriod: number = 0, clockwise: boolean = false) {
+        this.key = key;
         this.name = name;
         this.parentPosition = new Vector2(x, y);
         this.body = physics.add.sprite(x, y, key);
@@ -27,6 +30,39 @@ export default class CelestialBody {
         this.orbitalRing = graphics.strokeCircle(x, y, orbitalRadius);
         // Initialize the name text
         this.nameText = this.body.scene.add.bitmapText(0, 0, 'pixelFont', this.name, 16);
+    }
+
+    public setInteractive(interactive: boolean) {
+        if (interactive) {
+            // Make the body interactive
+            this.body.setInteractive({ useHandCursor: true });
+
+            // Add pointer events
+            this.body.on('pointerover', this.onPointerOver, this);
+            this.body.on('pointerout', this.onPointerOut, this);
+            this.body.on('pointerdown', this.onClick, this);
+        } else {
+            // Remove interactive properties and pointer events
+            this.body.disableInteractive();
+            this.body.off('pointerover', this.onPointerOver, this);
+            this.body.off('pointerout', this.onPointerOut, this);
+            this.body.off('pointerdown', this.onClick, this);
+        }
+    }
+
+    private onPointerOver() {
+        this.body.setTint(0x44ff44); // Change tint on hover
+        this.body.scene.input.setDefaultCursor('pointer'); // Change cursor to pointer
+    }
+
+    private onPointerOut() {
+        this.body.clearTint(); // Clear tint when not hovering
+        this.body.scene.input.setDefaultCursor('default'); // Change cursor back to default
+    }
+
+    private onClick() {
+        console.log(`${this.name} clicked!`);
+        EventBus.emit('inspect', this.key);
     }
 
     public setVisible(visible: boolean) {

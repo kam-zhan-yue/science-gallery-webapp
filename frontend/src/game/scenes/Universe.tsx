@@ -16,6 +16,11 @@ export class Universe extends Scene {
         this.solarSystem?.fadeIn(500);
     }
 
+    setInteractive(interactive: boolean) {
+        console.log('set solarsystem interactive')
+        this.solarSystem?.setInteractive(interactive);
+    }
+
     create() {
         this.cameras.main.zoom = 2.5;
         const centerX = this.cameras.main.centerX;
@@ -34,7 +39,7 @@ export class Universe extends Scene {
         this.solarSystem.setVisible(false);
     }
 
-    goToPlanet(planetName: string) {
+    inspect(planetName: string) {
         const planet = this.solarSystem?.getPlanet(planetName)
         if(planet === undefined) return;
 
@@ -52,7 +57,7 @@ export class Universe extends Scene {
                 run: () => {
                     console.log('zoom out')
                     this.cameras.main.stopFollow();
-                    this.cameras.main.zoomTo(1.5, zoomOutTime);
+                    this.cameras.main.zoomTo(2, zoomOutTime);
                     if(this.solarSystem !== undefined) {
                         const centre = this.solarSystem.centre();
                         this.cameras.main.pan(centre.body.x, centre.body.y, zoomOutTime, 'Linear');
@@ -63,7 +68,6 @@ export class Universe extends Scene {
                 // Zoom back in at half of the tween and pan the camera
                 at: zoomOutTime+pauseTime,
                 run: () => {
-                    console.log('zoom in')
                     this.cameras.main.zoomTo(10, zoomInTime);
                     this.cameras.main.pan(position.x, position.y, zoomInTime, 'Power2');
                 }
@@ -72,9 +76,37 @@ export class Universe extends Scene {
                 // Start following the planet's body at the end of the tween
                 at: tweenTime,
                 run: () => {
-                    console.log('landed')
                     this.cameras.main.startFollow(planet.body);
-                    EventBus.emit('landed', planetName);
+                    EventBus.emit('landed')
+                }
+            }
+        ]);
+        timeline.play();
+    }
+
+    reset() {
+        const zoomOutTime: number = 1000;
+        const timeline = this.add.timeline([
+            {
+                // Zoom out and start panning
+                at: 0,
+                run: () => {
+                    console.log('zoom out')
+                    this.cameras.main.stopFollow();
+                    this.cameras.main.zoomTo(2.5, zoomOutTime);
+                    if(this.solarSystem !== undefined) {
+                        const centre = this.solarSystem.centre();
+                        this.cameras.main.pan(centre.body.x, centre.body.y, zoomOutTime, 'Linear');
+                    }
+                },
+            },
+            {
+                // Start following the planet's body at the end of the tween
+                at: zoomOutTime,
+                run: () => {
+                    if(this.solarSystem?.centre())
+                        this.cameras.main.startFollow(this.solarSystem?.centre().body);
+                    EventBus.emit('reset')
                 }
             }
         ]);
