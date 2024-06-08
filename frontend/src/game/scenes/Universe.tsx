@@ -33,6 +33,18 @@ export class Universe extends Scene {
             frameRate: 12,
             repeat: -1
         });
+        this.anims.create({
+            key: 'jupiter_spin',
+            frames: this.anims.generateFrameNumbers('jupiter', {frames:[0,1,2,3,4,5]}),
+            frameRate: 12,
+            repeat: -1
+        });
+        this.anims.create({
+            key: 'sun_spin',
+            frames: this.anims.generateFrameNumbers('sun', {frames:[0,1,2,3,4,5]}),
+            frameRate: 12,
+            repeat: -1
+        });
         const graphics = this.add.graphics();
         this.solarSystem = new SolarSystem(this.physics, graphics, centerX, centerY);
         this.cameras.main.startFollow(this.solarSystem.centre().body);
@@ -40,6 +52,7 @@ export class Universe extends Scene {
     }
 
     inspect(planetName: string) {
+        this.solarSystem?.setInteractive(false);
         const planet = this.solarSystem?.getPlanet(planetName)
         if(planet === undefined) return;
 
@@ -88,7 +101,6 @@ export class Universe extends Scene {
         const zoomOutTime: number = 1000;
         const timeline = this.add.timeline([
             {
-                // Zoom out and start panning
                 at: 0,
                 run: () => {
                     console.log('zoom out')
@@ -101,9 +113,9 @@ export class Universe extends Scene {
                 },
             },
             {
-                // Start following the planet's body at the end of the tween
                 at: zoomOutTime,
                 run: () => {
+                    this.solarSystem?.setInteractive(true);
                     if(this.solarSystem?.centre())
                         this.cameras.main.startFollow(this.solarSystem?.centre().body);
                     EventBus.emit('reset')

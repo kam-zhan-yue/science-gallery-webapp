@@ -11,12 +11,12 @@ export default class SolarSystem {
     private sun: Sun;
     private planets: Dictionary<string, Planet> = {};
     constructor(physics: ArcadePhysics, graphics: Graphics,  x: number, y: number) {
-        this.sun = new Sun("Sun", physics, graphics,'earth', x, y);
+        this.sun = new Sun("Sun", physics, graphics,'sun', x, y);
 
         // Instantiate Planets
         graphics.lineStyle(1, 0xffffff, 0.4);
         this.planets['earth'] = new Planet("Earth", physics, graphics, 'earth', x, y, 50, 20);
-        this.planets['jupiter'] = new Planet("Jupiter", physics, graphics, 'earth', x, y, 100, 30);
+        this.planets['jupiter'] = new Planet("Jupiter", physics, graphics, 'jupiter', x, y, 100, 30);
     }
 
     public centre(): Planet {

@@ -61,8 +61,9 @@ export default class CelestialBody {
     }
 
     private onClick() {
-        console.log(`${this.name} clicked!`);
         EventBus.emit('inspect', this.key);
+        this.body.clearTint(); // Clear tint when not hovering
+        this.body.scene.input.setDefaultCursor('default'); // Change cursor back to default
     }
 
     public setVisible(visible: boolean) {

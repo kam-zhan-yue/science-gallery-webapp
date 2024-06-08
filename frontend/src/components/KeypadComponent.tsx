@@ -36,9 +36,30 @@ const CodeText = styled.div`
 interface KeypadComponentProps {
     choices: Choice[];
     handleCodeInput: (code: number) => void;
+    handleBackClicked: () => void;
 }
 
-const KeypadComponent: React.FC<KeypadComponentProps> = ({ choices, handleCodeInput }) => {
+const BackButton = styled.div`
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
+  background: #afaebeaa;
+  border: solid 5px #42ffee;
+  border-radius: 5px;
+  
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+  
+  &:hover {
+    cursor: pointer;
+    background: #afaebeff;
+  }
+`
+
+const KeypadComponent: React.FC<KeypadComponentProps> = ({ choices, handleCodeInput, handleBackClicked}) => {
     const [inputValue, setInputValue] = useState<string>('');
 
     const handleSubmit = () => {
@@ -86,6 +107,10 @@ const KeypadComponent: React.FC<KeypadComponentProps> = ({ choices, handleCodeIn
                     <KeypadButtonComponent type={KeypadType.Delete} onClick={handleKeypadClick}/>
                     <KeypadButtonComponent code={"0"} type={KeypadType.Code} onClick={handleKeypadClick}/>
                     <KeypadButtonComponent type={KeypadType.Submit} onClick={handleKeypadClick}/>
+                    <div/>
+                    <BackButton onClick={handleBackClicked}/>
+                    <div/>
+
                 </div>
                 {/*<input*/}
                 {/*    value={inputValue}*/}

@@ -163,6 +163,7 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
 
   const handleCodeInput = (choiceIndex: number) => {
     if(story) {
+      setStoryState(StoryState.Dialogue);
       story.ChooseChoiceIndex(choiceIndex);
       setShowingChoices(false);
       // don't advance, wait for planet to change
@@ -176,13 +177,16 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
   }
 
   const inspectYes = () => {
-    console.log('yes')
+    setStoryState(StoryState.Keypad);
   }
 
   const inspectNo = () => {
-    console.log('no')
     setStoryState(StoryState.Travelling);
     universeRef?.reset();
+  }
+
+  const keypadBack = () => {
+    setStoryState(StoryState.Inspecting);
   }
 
   return (
@@ -213,6 +217,7 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
         <KeypadComponent
             choices={choices}
             handleCodeInput={handleCodeInput}
+            handleBackClicked={keypadBack}
           />
         </>}
         {inkState != "planet_selection" && inkState != 'travelling' && showingChoices &&
