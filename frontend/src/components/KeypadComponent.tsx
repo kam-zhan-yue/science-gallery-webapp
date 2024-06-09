@@ -5,11 +5,11 @@ import KeypadButtonComponent, { KeypadType } from './KeypadButtonComponent';
 import Planet from '../classes/Planet';
 
 const shakeAnim = keyframes`
-  0% { transform: translate(-50%, -50%) translateX(0); }
-  25% { transform: translate(-50%, -50%) translateX(-10px); }
-  50% { transform: translate(-50%, -50%) translateX(10px); }
-  75% { transform: translate(-50%, -50%) translateX(-10px); }
-  100% { transform: translate(-50%, -50%) translateX(0); }
+  0% { transform: translate(-50%, -50%) translateX(0) translateY(0); }
+  25% { transform: translate(-50%, -50%) translateX(-10px) translateY(0); }
+  50% { transform: translate(-50%, -50%) translateX(10px) translateY(0); }
+  75% { transform: translate(-50%, -50%) translateX(-10px) translateY(0); }
+  100% { transform: translate(-50%, -50%) translateX(0) translateY(0); }
 `;
 
 const KeypadOverlay = styled.div<{ shake: boolean }>`
