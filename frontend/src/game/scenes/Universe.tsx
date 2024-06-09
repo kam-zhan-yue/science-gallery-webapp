@@ -16,11 +16,6 @@ export class Universe extends Scene {
         this.solarSystem?.fadeIn(500);
     }
 
-    setInteractive(interactive: boolean) {
-        console.log('set solarsystem interactive')
-        this.solarSystem?.setInteractive(interactive);
-    }
-
     create() {
         this.cameras.main.zoom = 2.5;
         const centerX = this.cameras.main.centerX;
@@ -53,11 +48,10 @@ export class Universe extends Scene {
 
     inspect(planetName: string) {
         this.solarSystem?.setDrawNames(false);
-        this.solarSystem?.setInteractive(false);
+        this.solarSystem?.setInteractive([]);
         const planet = this.solarSystem?.getPlanet(planetName)
         if(planet === undefined) return;
 
-        console.log(`going to planet: ${planetName}`);
         const zoomInTime: number = 1000;
         const tweenTime = zoomInTime;
         // Get the position at the future time
@@ -83,12 +77,12 @@ export class Universe extends Scene {
         timeline.play();
     }
 
-    reset() {
+    reset(planets: string[]) {
         this.solarSystem?.setDrawNames(true);
         if(this.cameras.main.zoom === 2.5) {
             if(this.solarSystem?.centre())
                 this.cameras.main.startFollow(this.solarSystem?.centre().body);
-            this.solarSystem?.setInteractive(true);
+            this.solarSystem?.setInteractive(planets);
             EventBus.emit('reset');
         } else {
             const zoomOutTime: number = 1000;
@@ -96,7 +90,6 @@ export class Universe extends Scene {
                 {
                     at: 0,
                     run: () => {
-                        console.log('zoom out')
                         this.cameras.main.stopFollow();
                         this.cameras.main.zoomTo(2.5, zoomOutTime);
                         if(this.solarSystem !== undefined) {
@@ -108,7 +101,7 @@ export class Universe extends Scene {
                 {
                     at: zoomOutTime,
                     run: () => {
-                        this.solarSystem?.setInteractive(true);
+                        this.solarSystem?.setInteractive(planets);
                         if(this.solarSystem?.centre())
                             this.cameras.main.startFollow(this.solarSystem?.centre().body);
                         EventBus.emit('reset');

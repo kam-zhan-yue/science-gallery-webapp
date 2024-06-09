@@ -12,6 +12,7 @@ import {EventBus} from "../EventBus.tsx";
 import main from "../assets/audio/main.mp3";
 import {GameContext, GameContextType} from "../contexts/GameContext.tsx";
 import PlanetComponent from "./PlanetComponent.tsx";
+import GuideComponent from "./GuideComponent.tsx";
 
 interface StoryComponentProps {
   universeRef: Universe | null;
@@ -87,9 +88,7 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
           case 'game_state':
             setInkState(value.toString());
             if(value.toString() === 'planet_selection') {
-              console.log('set universe interactive')
-              setStoryState(StoryState.Choosing);
-              universeRef?.reset();
+              choosePlanets(story)
             }
             break;
           case 'planet':
@@ -99,6 +98,23 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
       });
     }
   }, [story]);
+
+  const choosePlanets = (story: Story | null) => {
+    // Reset the universe and state
+    setStoryState(StoryState.Choosing);
+    // Set the current planet from the current choices
+    let interactivePlanets: string[] = [];
+    for (let i= 0; i<story.currentChoices.length; ++i) {
+      const choice: string = story.currentChoices[i].text;
+      const values: string[] = choice.split(':');
+      if(values.length > 0) {
+        console.log(`Interactive: ${values[0]}`)
+        interactivePlanets.push(values[0]);
+      }
+    }
+    universeRef?.reset(interactivePlanets);
+
+  }
 
   useEffect(() => {
     // Inspecting a planet will trigger the travelling state due to animations
@@ -110,7 +126,6 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
       for (let i= 0; i<story.currentChoices.length; ++i) {
         const choice: string = story.currentChoices[i].text;
         const values: string[] = choice.split(':');
-        console.log(`Planet ${planet}, Choice ${values[0]}`);
         if(values.length >= 2 && planet === values[0]) {
           const planetChoice = new Planet();
           planetChoice.name = values[0];
@@ -130,15 +145,13 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
   useEffect(() => {
     universeRef?.start();
     // Once landed, should show UI options
-    EventBus.on('landed', (planet: string) => {
+    EventBus.on('landed', (_planet: string) => {
       setStoryState(StoryState.Inspecting);
-      console.log(`Landed on ${planet}`);
     });
 
     // Once reset, should go  back to choosing a planet
     EventBus.on('reset', () => {
       setStoryState(StoryState.Choosing);
-      console.log(`Choosing a planet`);
     });
 
     return () => {
@@ -190,19 +203,17 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
     }
   }
 
-  const selectPlanet = (planet: string) => {
-    console.log(`planet changed from ink ${planet}`);
+  const selectPlanet = (_planet: string) => {
     setStoryState(StoryState.Dialogue);
   }
 
   const inspectYes = () => {
     setStoryState(StoryState.Keypad);
-    //
   }
 
   const inspectNo = () => {
     setStoryState(StoryState.Travelling);
-    universeRef?.reset();
+    choosePlanets(story);
   }
 
   const keypadBack = () => {
@@ -220,6 +231,12 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
         {storyState !== StoryState.Travelling &&
             <>
               <CharacterComponent player={player}></CharacterComponent>
+            </>
+        }
+
+        {storyState === StoryState.Choosing &&
+            <>
+              <GuideComponent/>
             </>
         }
 

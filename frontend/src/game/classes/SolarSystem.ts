@@ -41,10 +41,17 @@ export default class SolarSystem {
         }
     }
 
-    setInteractive(interactive: boolean) {
+    setInteractive(planets: string[]) {
         for(const key in this.planets) {
             if(this.planets.hasOwnProperty(key)) {
-                this.planets[key].setInteractive(interactive);
+                this.planets[key].setInteractive(false);
+            }
+        }
+        for(const planet of planets) {
+            console.log(`Planet: ${planet}`);
+            if(this.planets.hasOwnProperty(planet)) {
+                console.log(`Setting ${planet} as interactive`)
+                this.planets[planet].setInteractive(true);
             }
         }
     }

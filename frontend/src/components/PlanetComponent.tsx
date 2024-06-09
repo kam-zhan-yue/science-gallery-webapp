@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Planet from "../classes/Planet.ts";
+import DialogueBox from "./DialogueBox.tsx";
 
 interface PlanetComponentProps {
     planet: Planet;
@@ -8,24 +9,12 @@ interface PlanetComponentProps {
     onNoClicked?: () => void;
 }
 
-const Overlay = styled.div`
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  right: 20px;
-  min-height: 150px;
-  max-height: 300px; /* Max height of the dialogue box */
-  overflow-y: auto; /* Enable vertical scrolling if content overflows */
-
-  image-rendering: pixelated;
-  image-rendering: -moz-crisp-edges;
-  image-rendering: crisp-edges;
-  border: 30px solid;
-  border-image: url("../assets/ui/dialogue-box.png") 15 15 15 15 fill repeat;
-
-  @media (max-width: 600px) {
-    padding-right: 30px;
-  }
+const Text = styled.div`
+  font-size: 25px;
+  font-family: "VT323", monospace;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1em;
 `
 
 const PlanetComponent: React.FC<PlanetComponentProps> = ({planet, onYesClicked, onNoClicked}) => {
@@ -41,11 +30,11 @@ const PlanetComponent: React.FC<PlanetComponentProps> = ({planet, onYesClicked, 
 
     return (
         <>
-            <Overlay>
-                <div>Go to {planet.name}?</div>
-                <div onClick={yesClicked}>Yes</div>
-                <div onClick={noClicked}>No</div>
-            </Overlay>
+            <DialogueBox>
+                <Text>Go to {planet.name}?</Text>
+                <Text onClick={yesClicked}>Yes</Text>
+                <Text onClick={noClicked}>No</Text>
+            </DialogueBox>
         </>
     );
 }
