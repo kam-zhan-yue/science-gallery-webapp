@@ -48,9 +48,7 @@ export default class SolarSystem {
             }
         }
         for(const planet of planets) {
-            console.log(`Planet: ${planet}`);
             if(this.planets.hasOwnProperty(planet)) {
-                console.log(`Setting ${planet} as interactive`)
                 this.planets[planet].setInteractive(true);
             }
         }

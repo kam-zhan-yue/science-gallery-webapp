@@ -108,7 +108,6 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
       const choice: string = story.currentChoices[i].text;
       const values: string[] = choice.split(':');
       if(values.length > 0) {
-        console.log(`Interactive: ${values[0]}`)
         interactivePlanets.push(values[0]);
       }
     }
