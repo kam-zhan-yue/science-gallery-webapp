@@ -5,8 +5,7 @@ INCLUDE jupiter.ink
 INCLUDE player.ink
 
 
-Hello {name}! Welcome to the adventure. This is a reaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaly long text.
-
+Hello {name}! Welcome to the adventure.
 -> choose
 
 === choose ===
@@ -31,18 +30,14 @@ Please choose a class.
 === universe_story ===
 Where shall we go today?
 ~ game_state = planet_selection
-    * [1111]
+    * [Earth:1111]
         ~ game_state = exploring
         ~ planet = earth
         -> earth_story
-    * [2222]
+    * [Jupiter:2222]
         ~ game_state = exploring
         ~ planet = jupiter
         -> jupiter_story
-    * [Pluto]
-        ~ game_state = exploring
-        Pluto isn't a planet, dummy!
-        -> universe_story
     * [DONE]
         Okay, let's call it a day!
         -> END

@@ -16,8 +16,8 @@ export default class SolarSystem {
         this.drawNames = true;
         // Instantiate Planets
         graphics.lineStyle(1, 0xffffff, 0.4);
-        this.planets['earth'] = new Planet("Earth", physics, graphics, 'earth', x, y, 50, 20);
-        this.planets['jupiter'] = new Planet("Jupiter", physics, graphics, 'jupiter', x, y, 100, 30);
+        this.planets['Earth'] = new Planet("Earth", physics, graphics, 'earth', x, y, 50, 20);
+        this.planets['Jupiter'] = new Planet("Jupiter", physics, graphics, 'jupiter', x, y, 100, 30);
     }
 
     public centre(): Planet {

@@ -7,7 +7,6 @@ import {EventBus} from "../../EventBus.tsx";
 
 export default class CelestialBody {
     public body: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody;
-    private key: string;
     private name: string;
     private angle: number = 0.0;
     private orbitalPeriod: number = 2.0;
@@ -18,7 +17,6 @@ export default class CelestialBody {
     private nameText: Phaser.GameObjects.BitmapText;
 
     constructor(name: string, physics: ArcadePhysics, graphics: Graphics, key: string, x: number, y: number, orbitalRadius: number = 0, orbitalPeriod: number = 0, clockwise: boolean = false) {
-        this.key = key;
         this.name = name;
         this.parentPosition = new Vector2(x, y);
         this.body = physics.add.sprite(x, y, key);
@@ -65,7 +63,7 @@ export default class CelestialBody {
     }
 
     private onClick() {
-        EventBus.emit('inspect', this.key);
+        EventBus.emit('inspect', this.name);
         // this.body.clearTint(); // Clear tint when not hovering
         this.body.scene.input.setDefaultCursor('default'); // Change cursor back to default
     }

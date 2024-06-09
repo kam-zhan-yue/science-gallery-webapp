@@ -1,10 +1,11 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 // @ts-ignore
-import {Story, Choice, InkObject} from "inkjs";
+import {Choice, InkObject, Story} from "inkjs";
 import DialogueComponent from "./DialogueComponent.tsx";
 import ChoiceComponent from "./ChoiceComponent.tsx";
 import CharacterComponent from "./CharacterComponent.tsx";
 import Player from "../classes/Player.ts";
+import Planet from "../classes/Planet.ts";
 import KeypadComponent from "./KeypadComponent.tsx";
 import {Universe} from "../game/scenes/Universe.tsx";
 import {EventBus} from "../EventBus.tsx";
@@ -29,6 +30,7 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
   const [storyText, setStoryText] = useState<string>('');
   const [showingChoices, setShowingChoices] = useState<boolean>(false);
   const [choices, setChoices] = useState<Choice[]>([]);
+  const [planet, setPlanet] = useState<Planet>(new Planet());
   const [player, setPlayer] = useState<Player>(new Player());
   const [inkState, setInkState] = useState<string>('');
   const [storyState, setStoryState] = useState<StoryState>(StoryState.Dialogue);
@@ -98,17 +100,35 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
     }
   }, [story]);
 
-  // Game listeners
   useEffect(() => {
-    universeRef?.start();
-
     // Inspecting a planet will trigger the travelling state due to animations
     EventBus.on('inspect', (planet: string) => {
       setStoryState(StoryState.Travelling);
-      console.log(`inspect ${planet}`);
       universeRef?.inspect(planet);
+
+      // Set the current planet from the current choices
+      for (let i= 0; i<story.currentChoices.length; ++i) {
+        const choice: string = story.currentChoices[i].text;
+        const values: string[] = choice.split(':');
+        console.log(`Planet ${planet}, Choice ${values[0]}`);
+        if(values.length >= 2 && planet === values[0]) {
+          const planetChoice = new Planet();
+          planetChoice.name = values[0];
+          planetChoice.code = values[1];
+          planetChoice.choice = i;
+          setPlanet(planetChoice);
+        }
+      }
     });
 
+    return () => {
+      EventBus.removeListener('inspect');
+    }
+  }, [universeRef, story])
+
+  // Game listeners
+  useEffect(() => {
+    universeRef?.start();
     // Once landed, should show UI options
     EventBus.on('landed', (planet: string) => {
       setStoryState(StoryState.Inspecting);
@@ -122,7 +142,6 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
     });
 
     return () => {
-      EventBus.removeListener('inspect');
       EventBus.removeListener('landed');
       EventBus.removeListener('reset');
     }
@@ -178,6 +197,7 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
 
   const inspectYes = () => {
     setStoryState(StoryState.Keypad);
+    //
   }
 
   const inspectNo = () => {
@@ -206,6 +226,7 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
         {storyState === StoryState.Inspecting &&
             <>
               <PlanetComponent
+                  planet={planet}
                   onYesClicked={inspectYes}
                   onNoClicked={inspectNo}
               />
@@ -213,18 +234,22 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
         }
 
         {storyState === StoryState.Keypad &&
-        <>
-        <KeypadComponent
-            choices={choices}
-            handleCodeInput={handleCodeInput}
-            handleBackClicked={keypadBack}
-          />
-        </>}
-        {inkState != "planet_selection" && inkState != 'travelling' && showingChoices &&
-        <ChoiceComponent
-            choices={choices}
-            handleChoiceClick={handleChoiceClick}
+          <>
+            <KeypadComponent
+                choices={choices}
+                handleCodeInput={handleCodeInput}
+                handleBackClicked={keypadBack}
+                planet={planet}
             />
+          </>
+        }
+        {inkState != "planet_selection" && storyState !== StoryState.Travelling && showingChoices &&
+            <>
+              <ChoiceComponent
+                  choices={choices}
+                  handleChoiceClick={handleChoiceClick}
+              />
+            </>
         }
       </>
   );

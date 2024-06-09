@@ -1,7 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+import Planet from "../classes/Planet.ts";
 
 interface PlanetComponentProps {
+    planet: Planet;
     onYesClicked?: () => void;
     onNoClicked?: () => void;
 }
@@ -26,7 +28,7 @@ const Overlay = styled.div`
   }
 `
 
-const PlanetComponent: React.FC<PlanetComponentProps> = ({onYesClicked, onNoClicked}) => {
+const PlanetComponent: React.FC<PlanetComponentProps> = ({planet, onYesClicked, onNoClicked}) => {
     const yesClicked = () => {
         if(onYesClicked)
             onYesClicked();
@@ -40,6 +42,7 @@ const PlanetComponent: React.FC<PlanetComponentProps> = ({onYesClicked, onNoClic
     return (
         <>
             <Overlay>
+                <div>Go to {planet.name}?</div>
                 <div onClick={yesClicked}>Yes</div>
                 <div onClick={noClicked}>No</div>
             </Overlay>

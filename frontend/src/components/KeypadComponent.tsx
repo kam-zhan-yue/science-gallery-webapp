@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 import {Choice} from "inkjs/engine/Choice";
 import KeypadButtonComponent, {KeypadType} from "./KeypadButtonComponent.tsx";
+import Planet from "../classes/Planet.ts";
 
 const KeypadOverlay = styled.div`
   position: fixed;
@@ -37,6 +38,7 @@ interface KeypadComponentProps {
     choices: Choice[];
     handleCodeInput: (code: number) => void;
     handleBackClicked: () => void;
+    planet: Planet;
 }
 
 const BackButton = styled.div`
@@ -59,20 +61,12 @@ const BackButton = styled.div`
   }
 `
 
-const KeypadComponent: React.FC<KeypadComponentProps> = ({ choices, handleCodeInput, handleBackClicked}) => {
+const KeypadComponent: React.FC<KeypadComponentProps> = ({ planet, handleCodeInput, handleBackClicked}) => {
     const [inputValue, setInputValue] = useState<string>('');
 
     const handleSubmit = () => {
-        const code: string = inputValue;
-        let found: number = -1;
-        for(let i: number=0; i<choices.length; ++i) {
-            if(choices[i].text === code) {
-                found = i;
-            }
-        }
-
-        if(found >= 0) {
-            handleCodeInput(found);
+        if(inputValue === planet.code) {
+            handleCodeInput(planet.choice);
         }
     }
 
