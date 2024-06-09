@@ -101,7 +101,7 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
 
   const choosePlanets = (story: Story | null) => {
     // Reset the universe and state
-    setStoryState(StoryState.Choosing);
+    setStoryState(StoryState.Travelling)
     // Set the current planet from the current choices
     let interactivePlanets: string[] = [];
     for (let i= 0; i<story.currentChoices.length; ++i) {

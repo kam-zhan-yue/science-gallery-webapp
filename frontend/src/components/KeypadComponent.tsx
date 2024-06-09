@@ -4,15 +4,6 @@ import { Choice } from 'inkjs/engine/Choice';
 import KeypadButtonComponent, { KeypadType } from './KeypadButtonComponent';
 import Planet from '../classes/Planet';
 
-const slideIn = keyframes`
-  from {
-    transform: translate(-50%, 50%);
-  }
-  to {
-    transform: translate(-50%, -50%);
-  }
-`;
-
 const shakeAnim = keyframes`
   0% { transform: translate(-50%, -50%) translateX(0); }
   25% { transform: translate(-50%, -50%) translateX(-10px); }
