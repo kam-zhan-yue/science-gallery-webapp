@@ -1,16 +1,8 @@
 import React, { useState } from 'react';
-import styled, {keyframes} from 'styled-components';
+import styled from 'styled-components';
 import { Choice } from 'inkjs/engine/Choice';
 import KeypadButtonComponent, { KeypadType } from './KeypadButtonComponent';
 import Planet from '../classes/Planet';
-
-const shakeAnim = keyframes`
-  0% { transform: translate(-50%, -50%) translateX(0); }
-  25% { transform: translate(-50%, -50%) translateX(-10px); }
-  50% { transform: translate(-50%, -50%) translateX(10px); }
-  75% { transform: translate(-50%, -50%) translateX(-10px); }
-  100% { transform: translate(-50%, -50%) translateX(0); }
-`;
 
 const KeypadOverlay = styled.div<{ shake: boolean }>`
   position: fixed;
@@ -20,7 +12,6 @@ const KeypadOverlay = styled.div<{ shake: boolean }>`
   display: flex;
   flex-direction: column; /* Display choices vertically */
   align-items: center; /* Center horizontally */
-  animation: ${shakeAnim} 0.3s ease-in-out infinite;
 `;
 
 const CodeBackground = styled.div`
