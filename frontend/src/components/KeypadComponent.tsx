@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styled, {css, keyframes} from 'styled-components';
+import styled, {keyframes} from 'styled-components';
 import { Choice } from 'inkjs/engine/Choice';
 import KeypadButtonComponent, { KeypadType } from './KeypadButtonComponent';
 import Planet from '../classes/Planet';
