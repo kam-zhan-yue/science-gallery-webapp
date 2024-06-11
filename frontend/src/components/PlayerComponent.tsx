@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import styled, {css, keyframes} from "styled-components";
 import Player from "../classes/Player.ts";
-
+import SubPopupComponent from "./SubPopupComponent.tsx";
 
 const StatHolder = styled.div`
   position: fixed;
@@ -91,20 +91,25 @@ const PlayerComponent: React.FC<PlayerComponentProps> = ({player}) => {
                 />
             {show &&
                 <>
-                        {["inventory", "skill", "ability"].map((tabId, index) => (
-                            <Tab
-                                key={tabId}
-                                id={tabId}
-                                src={
-                                    tab === tabId
-                                        ? `../assets/ui/${tabId}-inactive.png`
-                                        : `../assets/ui/${tabId}-active.png`
-                                }
-                                alt={tabId}
-                                onClick={() => handleTabClicked(tabId)}
-                                delay={index * 0.1} // Staggered delay
-                            />
-                        ))}
+                    {["inventory", "stats", "skill"].map((tabId, index) => (
+                        <Tab
+                            key={tabId}
+                            id={tabId}
+                            src={
+                                tab === tabId
+                                    ? `../assets/ui/${tabId}-inactive.png`
+                                    : `../assets/ui/${tabId}-active.png`
+                            }
+                            alt={tabId}
+                            onClick={() => handleTabClicked(tabId)}
+                            delay={index * 0.1} // Staggered delay
+                        />
+                    ))}
+                    {tab !== '' &&
+                        <>
+                            <SubPopupComponent tab={tab} player={player}/>
+                        </>
+                    }
                 </>
             }
             </StatHolder>

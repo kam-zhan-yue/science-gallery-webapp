@@ -3,7 +3,7 @@ import React, {useContext, useEffect, useState} from 'react';
 import {Choice, InkObject, Story} from "inkjs";
 import DialogueComponent from "./DialogueComponent.tsx";
 import ChoiceComponent from "./ChoiceComponent.tsx";
-import CharacterComponent from "./CharacterComponent.tsx";
+import CharacterComponent from "./PlayerComponent.tsx";
 import Player from "../classes/Player.ts";
 import Planet from "../classes/Planet.ts";
 import KeypadComponent from "./KeypadComponent.tsx";
