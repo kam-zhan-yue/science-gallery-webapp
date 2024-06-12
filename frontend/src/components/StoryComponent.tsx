@@ -33,9 +33,8 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
   const [choices, setChoices] = useState<Choice[]>([]);
   const [planet, setPlanet] = useState<Planet>(new Planet());
   const [player, setPlayer] = useState<Player>(new Player());
-  const [inkState, setInkState] = useState<string>('');
   const [storyState, setStoryState] = useState<StoryState>(StoryState.Dialogue);
-  const {debug} = useContext(GameContext) as GameContextType;
+  const {debug, inkState, setInkState} = useContext(GameContext) as GameContextType;
 
   // Playing audio
   useEffect(() =>{
@@ -83,6 +82,10 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
             break;
           case 'health':
             player.health = Number(value.toString());
+            setPlayer(player);
+            break;
+          case 'inventory':
+            player.inventory = value.toString();
             setPlayer(player);
             break;
           case 'game_state':
@@ -170,11 +173,7 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
       const choices: Choice[] = story.currentChoices;
       if (choices.length > 0) {
         setShowingChoices(true);
-      } else {
-        // console.log('story has ended!');
       }
-    } else {
-      // console.log('pick a damn choice!');
     }
   }
 
@@ -259,7 +258,7 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
             />
           </>
         }
-        {inkState != "planet_selection" && storyState !== StoryState.Travelling && showingChoices &&
+        {inkState != "planet_selection" && inkState != "take_item" && storyState !== StoryState.Travelling && showingChoices &&
             <>
               <ChoiceComponent
                   choices={choices}

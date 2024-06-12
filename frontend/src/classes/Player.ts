@@ -1,9 +1,12 @@
+import Item from './Item.ts'
+
 class Player {
     private _class: string = "";
     private _finesse: number = 0;
     private _intuition: number = 0;
     private _persuasion: number = 0;
     private _health: number = 0;
+    private _inventory: Item[] = [];
 
     get class(): string {
         return this._class;
@@ -25,6 +28,10 @@ class Player {
         return this._health;
     }
 
+    get inventory(): Item[] {
+        return this._inventory;
+    }
+
     set class(className: string) {
         this._class = className;
     }
@@ -43,6 +50,17 @@ class Player {
 
     set health(stat: number) {
         this._health = stat;
+    }
+
+    set inventory(value: string) {
+        const arr: string[] = value.split(", ");
+
+        this._inventory = [];
+        for (const item of arr) {
+            let inventoryItem: Item = new Item();
+            inventoryItem.name = item;
+            this._inventory.push(inventoryItem);
+        }
     }
 }
 export default Player;

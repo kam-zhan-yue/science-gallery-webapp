@@ -13,21 +13,26 @@ export interface GameContextType {
     setState: (state: GameState) => void;
     debug: boolean;
     setDebug: (value: boolean) => void;
+    inkState: string;
+    setInkState: (value: string) => void;
 }
 
 export const GameContext = React.createContext<GameContextType>({
     started: false,
     state: GameState.Menu,
     start: () => {console.log('this should not be printed')},
-    setState: (state: GameState) => {console.log(`setting to state: ${state}`)},
+    setState: (_state: GameState) => {},
     debug: false,
-    setDebug: (value: boolean) => {console.log(`setting debug to ${value}`)},
+    setDebug: (_value: boolean) => {},
+    inkState: '',
+    setInkState: (_value: string) => {},
 });
 
 export const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const [started, setStarted] = useState<boolean>(false);
     const [state, setState] = useState<GameState>(GameState.Menu);
     const [debug, setDebug] = useState<boolean>(false);
+    const [inkState, setInkState] = useState<string>('');
 
     const start = () => {
         setStarted(true);
@@ -35,7 +40,18 @@ export const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
     return (
         <>
-            <GameContext.Provider value={{started: started, state: state, start: start, setState: setState, debug: debug, setDebug: setDebug}}>
+            <GameContext.Provider value={
+                {
+                    started: started,
+                    state: state,
+                    start: start,
+                    setState: setState,
+                    debug: debug,
+                    setDebug: setDebug,
+                    inkState: inkState,
+                    setInkState: setInkState,
+                }
+            }>
                 {children}
             </GameContext.Provider>
         </>
