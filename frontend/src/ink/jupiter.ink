@@ -4,6 +4,7 @@ Suddently, you find yourself in the den of a large snake deity.
 ~ post_battle_success = -> snake_battle_success
 ~ post_battle_failure = -> snake_battle_failure
 -> battle("SNAKE")
+-> snake_battle_success
 
 
 === snake_battle_success ===

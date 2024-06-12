@@ -1,7 +1,8 @@
 === earth_story ===
 Welcome to Earth. 
--> encounter_1
-
+-> shop_test ->
+-> use_test ->
+-> universe_story
 
 === encounter_1 ===
 A strange merchant approaches you, his eyes glinting with a mixture of curiosity and greed. He spreads his arms wide, displaying an array of glittering, mysterious items.

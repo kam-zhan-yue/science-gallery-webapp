@@ -12,7 +12,7 @@ const Background = styled.div`
   image-rendering: pixelated;
   image-rendering: -moz-crisp-edges;
   image-rendering: crisp-edges;
-  border: 30px solid;
+  border: 40px solid;
   border-image: url("../assets/ui/dialogue-box.png") 15 15 15 15 fill repeat;
 
   @media (max-width: 600px) {
