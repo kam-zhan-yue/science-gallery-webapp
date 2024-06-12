@@ -1,20 +1,17 @@
 import Player from "../classes/Player.ts";
-import React, {useContext} from "react";
+import React from "react";
 import SubPopup from "./SubPopup.tsx";
-import {GameContext, GameContextType} from "../contexts/GameContext.tsx";
 import Item from "../classes/Item.ts";
 
 interface InventoryComponentProps {
     player: Player,
+    onUseItem: (item: Item) => void;
 }
 
-const InventoryComponent: React.FC<InventoryComponentProps> = ({player, }) => {
-    const {inkState} = useContext(GameContext) as GameContextType;
+const InventoryComponent: React.FC<InventoryComponentProps> = ({player, onUseItem }) => {
 
     const useItem = (item: Item) => {
-        if(inkState === "take_item") {
-            console.log(`try to use ${item.name}`);
-        }
+        onUseItem(item);
     }
 
     return (

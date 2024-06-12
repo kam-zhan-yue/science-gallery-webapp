@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react';
 // @ts-ignore
-import {Choice, InkObject, Story} from "inkjs";
+import {Choice, InkObject, Story, EvaluateFunction} from "inkjs";
 import DialogueComponent from "./DialogueComponent.tsx";
 import ChoiceComponent from "./ChoiceComponent.tsx";
 import CharacterComponent from "./PlayerComponent.tsx";
@@ -13,6 +13,7 @@ import main from "../assets/audio/main.mp3";
 import {GameContext, GameContextType} from "../contexts/GameContext.tsx";
 import PlanetComponent from "./PlanetComponent.tsx";
 import GuideComponent from "./GuideComponent.tsx";
+import Item from "../classes/Item.ts";
 
 interface StoryComponentProps {
   universeRef: Universe | null;
@@ -218,6 +219,33 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
     setStoryState(StoryState.Inspecting);
   }
 
+  const onUseItem = (item: Item) => {
+    if(inkState === "take_item" && story) {
+      story.EvaluateFunction('take', [item.name], true);
+      console.log(`try use ${item.name} from story component`)
+
+      for (let i= 0; i<story.currentChoices.length; ++i) {
+        const choice: string = story.currentChoices[i].text;
+        // check whether is direct equivalent, other, or in list
+        if(choice === item.name) {
+          handleChoiceClick(i)
+          break;
+        } else if(choice === 'other') {
+          handleChoiceClick(i)
+          break;
+        } else {
+          const values: string[] = choice.split(',');
+          for(let j=0; j<values.length; ++j) {
+            if(values[j] === item.name) {
+              handleChoiceClick(i)
+              break;
+            }
+          }
+        }
+      }
+    }
+  }
+
   return (
       <>
         {storyState === StoryState.Dialogue &&
@@ -228,7 +256,7 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
 
         {storyState !== StoryState.Travelling &&
             <>
-              <CharacterComponent player={player}></CharacterComponent>
+              <CharacterComponent player={player} onUseItem={onUseItem}></CharacterComponent>
             </>
         }
 
