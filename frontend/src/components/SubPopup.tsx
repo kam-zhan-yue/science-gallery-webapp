@@ -11,8 +11,8 @@ const Blocker = styled.div`
   background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
   display: none; /* Initially hidden */
 
-  @media (max-width: 600px) {
-    display: block; /* Display when media is max-width 600px */
+  @media (max-width: 768px) {
+    display: block;
   }
 `;
 
@@ -24,16 +24,15 @@ const Background = styled.div`
   height: 50vh;
   max-width: 500px;
   max-height: 500px;
-  overflow-y: auto; /* Enable vertical scrolling if content overflows */
+  overflow: auto;
 
   image-rendering: pixelated;
   image-rendering: -moz-crisp-edges;
   image-rendering: crisp-edges;
   border: 40px solid;
   border-image: url("../assets/ui/dialogue-box.png") 15 15 15 15 fill repeat;
-
-  @media (max-width: 600px) {
-    padding-right: 30px;
+  
+  @media (max-width: 768px) {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -44,7 +43,7 @@ const HeaderContainer = styled.div`
   position: fixed;
   top: 118px;
   left: 120px;
-  @media (max-width: 600px) {
+  @media (max-width: 768px) {
     top: 25vh;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -64,8 +63,6 @@ const Title = styled.div`
   left: -5px;
   text-align: center;
   font-size: 32px;
-  @media (max-width: 600px) {
-  }
 `
 
 const CloseButton = styled.div`
@@ -80,7 +77,7 @@ const CloseButton = styled.div`
   font-size: 32px;
   align-items: center;
   text-align: center;
-  @media (max-width: 600px) {
+  @media (max-width: 768px) {
     display: none;
     top: 25vh;
     left: 89%;
