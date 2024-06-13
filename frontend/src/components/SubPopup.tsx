@@ -1,6 +1,21 @@
 import React from "react";
 import styled from "styled-components";
 
+// Styled component for the Overlay
+const Blocker = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+  display: none; /* Initially hidden */
+
+  @media (max-width: 600px) {
+    display: block; /* Display when media is max-width 600px */
+  }
+`;
+
 const Background = styled.div`
   position: fixed;
   top: 150px;
@@ -53,14 +68,36 @@ const Title = styled.div`
   }
 `
 
+const CloseButton = styled.div`
+  display: none;
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  background: rgb(200,50,50,0.9);
+  
+  border-radius: 10px;
+  justify-content: center;
+  font-size: 32px;
+  align-items: center;
+  text-align: center;
+  @media (max-width: 600px) {
+    display: none;
+    top: 25vh;
+    left: 89%;
+    transform: translate(-50%, -50%);
+  }
+`
+
 interface OverlayProps {
     title: string;
     children: React.ReactNode;
+    onCloseButton: () => void;
 }
 
-const SubPopup: React.FC<OverlayProps> = ({ title, children }) => {
+const SubPopup: React.FC<OverlayProps> = ({ title, children,  onCloseButton}) => {
     return (
         <>
+            <Blocker onClick={onCloseButton}/>
             <Background>
                 <div className='flex justify-center max-w-2xl flex-col mx-auto'>
                     {children}
@@ -76,6 +113,7 @@ const SubPopup: React.FC<OverlayProps> = ({ title, children }) => {
                 />
                 <Title>{title}</Title>
             </HeaderContainer>
+            <CloseButton onClick={onCloseButton}>X</CloseButton>
         </>
     );
 };

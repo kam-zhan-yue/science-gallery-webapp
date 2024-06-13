@@ -81,6 +81,10 @@ const PlayerComponent: React.FC<PlayerComponentProps> = ({player, onUseItem}) =>
         }
     }
 
+    const closeTab = () => {
+        setTab('');
+    }
+
     return (
         <>
             <StatHolder>
@@ -109,7 +113,7 @@ const PlayerComponent: React.FC<PlayerComponentProps> = ({player, onUseItem}) =>
                     ))}
                     {tab !== '' &&
                         <>
-                            <SubPopupComponent tab={tab} player={player} onUseItem={onUseItem}/>
+                            <SubPopupComponent tab={tab} player={player} onUseItem={onUseItem} onCloseButton={closeTab}/>
                         </>
                     }
                 </>

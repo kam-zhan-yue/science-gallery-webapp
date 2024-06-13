@@ -8,19 +8,24 @@ interface SubPopupProps {
     tab: string,
     player: Player,
     onUseItem: (item: Item) => void;
+    onCloseButton: () => void;
 }
 
-const SubPopupComponent: React.FC<SubPopupProps> = ({tab, player,  onUseItem}) => {
+const SubPopupComponent: React.FC<SubPopupProps> = ({tab, player,  onUseItem, onCloseButton}) => {
+    const close = () => {
+        onCloseButton();
+    }
+
     return (
         <>
             {tab === "inventory" &&
                 <>
-                    <InventoryComponent player={player} onUseItem={onUseItem}/>
+                    <InventoryComponent player={player} onUseItem={onUseItem} onCloseButton={close}/>
                 </>
             }
             {tab === "stats" &&
                 <>
-                    <StatsComponent player={player}/>
+                    <StatsComponent player={player} onCloseButton={close}/>
                 </>
             }
         </>

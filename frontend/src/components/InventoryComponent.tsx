@@ -6,17 +6,20 @@ import Item from "../classes/Item.ts";
 interface InventoryComponentProps {
     player: Player,
     onUseItem: (item: Item) => void;
+    onCloseButton: () => void;
 }
 
-const InventoryComponent: React.FC<InventoryComponentProps> = ({player, onUseItem }) => {
-
+const InventoryComponent: React.FC<InventoryComponentProps> = ({player, onUseItem, onCloseButton}) => {
     const useItem = (item: Item) => {
         onUseItem(item);
+    }
+    const close = () => {
+        onCloseButton();
     }
 
     return (
         <>
-            <SubPopup title={"Inventory"}>
+            <SubPopup title={"Inventory"} onCloseButton={close}>
                 {player.inventory.map((item, index) => (
                     <>
                         <div key={index} onClick={()=>useItem(item)}>
