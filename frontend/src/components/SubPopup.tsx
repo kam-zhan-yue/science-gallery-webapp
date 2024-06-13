@@ -5,8 +5,10 @@ const Background = styled.div`
   position: fixed;
   top: 150px;
   left: 150px;
-  height: 500px;
-  width: 500px;
+  width: 80vw;
+  height: 50vh;
+  max-width: 500px;
+  max-height: 500px;
   overflow-y: auto; /* Enable vertical scrolling if content overflows */
 
   image-rendering: pixelated;
@@ -17,6 +19,9 @@ const Background = styled.div`
 
   @media (max-width: 600px) {
     padding-right: 30px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 `;
 
@@ -24,6 +29,11 @@ const HeaderContainer = styled.div`
   position: fixed;
   top: 118px;
   left: 120px;
+  @media (max-width: 600px) {
+    top: 25vh;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 `
 
 const Header = styled.img`
@@ -34,10 +44,13 @@ const Header = styled.img`
   height: 60px;
 `
 const Title = styled.div`
-  position: fixed;
-  top: 142px;
-  left: 135px;
+  position: relative;
+  top: -35px;
+  left: -5px;
+  text-align: center;
   font-size: 32px;
+  @media (max-width: 600px) {
+  }
 `
 
 interface OverlayProps {
