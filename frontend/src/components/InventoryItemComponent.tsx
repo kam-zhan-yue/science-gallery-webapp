@@ -1,11 +1,11 @@
-import React from "react";
-import {Item, getImage} from "../classes/Item.ts";
+import React, {useEffect, useState} from "react";
+import {Item, getImage, items} from "../classes/Item.ts";
 import styled from "styled-components";
 
 interface InventoryItemProps {
-    item: Item | null;
+    itemKey: string;
     selected: boolean; // Add the active boolean
-    onClick?: (item: Item) => void;
+    onClick?: (key: string) => void;
 }
 
 const ItemBackground = styled.div<{ hasItem: boolean, selected: boolean }>`
@@ -37,14 +37,21 @@ const ItemImage = styled.img`
   width: 100%;
 `
 
-const InventoryItemComponent: React.FC<InventoryItemProps> = ({item, selected, onClick}) => {
+const InventoryItemComponent: React.FC<InventoryItemProps> = ({itemKey, selected, onClick}) => {
+    const [item, setItem] = useState<Item | null>(null);
+
+    useEffect(() => {
+        if(itemKey in items) {
+            setItem(items[itemKey]);
+        }
+    }, [itemKey]);
     const onClicked = () => {
-        if(onClick && item)
-            onClick(item)
+        if(onClick && itemKey)
+            onClick(itemKey)
     }
 
     const hasItem = (): boolean => {
-        return item !== null;
+        return itemKey !== '';
     }
 
     return(

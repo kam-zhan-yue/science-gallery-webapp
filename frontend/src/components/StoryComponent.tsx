@@ -13,7 +13,6 @@ import main from "../assets/audio/main.mp3";
 import {GameContext, GameContextType} from "../contexts/GameContext.tsx";
 import PlanetComponent from "./PlanetComponent.tsx";
 import GuideComponent from "./GuideComponent.tsx";
-import {Item} from "../classes/Item.ts";
 
 interface StoryComponentProps {
   universeRef: Universe | null;
@@ -219,15 +218,15 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
     setStoryState(StoryState.Inspecting);
   }
 
-  const onUseItem = (item: Item) => {
+  const onUseItem = (itemKey: string) => {
     if(inkState === "take_item" && story) {
-      story.EvaluateFunction('take', [item.name], true);
-      console.log(`try use ${item.name} from story component`)
+      story.EvaluateFunction('take', [itemKey], true);
+      console.log(`try use ${itemKey} from story component`)
 
       for (let i= 0; i<story.currentChoices.length; ++i) {
         const choice: string = story.currentChoices[i].text;
         // check whether is direct equivalent, other, or in list
-        if(choice === item.name) {
+        if(choice === itemKey) {
           handleChoiceClick(i)
           break;
         } else if(choice === 'other') {
@@ -236,7 +235,7 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
         } else {
           const values: string[] = choice.split(',');
           for(let j=0; j<values.length; ++j) {
-            if(values[j] === item.name) {
+            if(values[j] === itemKey) {
               handleChoiceClick(i)
               break;
             }

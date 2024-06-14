@@ -1,4 +1,4 @@
-import {Item, items} from './Item.ts'
+import {items} from './Item.ts'
 
 class Player {
     private _class: string = "";
@@ -6,7 +6,7 @@ class Player {
     private _intuition: number = 0;
     private _persuasion: number = 0;
     private _health: number = 0;
-    private _inventory: Item[] = [];
+    private _inventory: string[] = [];
 
     get class(): string {
         return this._class;
@@ -28,7 +28,7 @@ class Player {
         return this._health;
     }
 
-    get inventory(): Item[] {
+    get inventory(): string[] {
         return this._inventory;
     }
 
@@ -57,8 +57,8 @@ class Player {
 
         this._inventory = [];
         for (const item of arr) {
-            if(item in items) {
-                this._inventory.push(items[item]);
+            if (item in items) {
+                this._inventory.push(item);
             }
         }
     }

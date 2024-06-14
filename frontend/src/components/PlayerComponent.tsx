@@ -58,7 +58,7 @@ const Tab = styled.img<{ delay: number }>`
 
 interface PlayerComponentProps {
     player: Player;
-    onUseItem: (item: Item) => void;
+    onUseItem: (key: string) => void;
 }
 
 const PlayerComponent: React.FC<PlayerComponentProps> = ({player, onUseItem}) => {

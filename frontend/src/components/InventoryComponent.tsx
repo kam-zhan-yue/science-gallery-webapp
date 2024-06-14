@@ -1,14 +1,14 @@
 import Player from "../classes/Player.ts";
 import React, {useContext, useState} from "react";
 import SubPopup from "./SubPopup.tsx";
-import {getImage, Item} from "../classes/Item.ts";
+import {getImage, items} from "../classes/Item.ts";
 import InventoryItemComponent from "./InventoryItemComponent.tsx";
 import styled from "styled-components";
 import {GameContext, GameContextType} from "../contexts/GameContext.tsx";
 
 interface InventoryComponentProps {
     player: Player,
-    onUseItem: (item: Item) => void;
+    onUseItem: (key: string) => void;
     onCloseButton: () => void;
 }
 
@@ -83,19 +83,19 @@ const UseButton = styled.div<{isActive: boolean}>`
 `
 
 const InventoryComponent: React.FC<InventoryComponentProps> = ({player, onUseItem, onCloseButton}) => {
-    const [selected, setSelected] = useState<Item | null>(null);
+    const [selected, setSelected] = useState<string>('');
     const {inkState} = useContext(GameContext) as GameContextType;
 
-    const selectItem = (item: Item) => {
+    const selectItem = (item: string) => {
         if(selected === item) {
-            setSelected(null);
+            setSelected('');
         } else {
             setSelected(item);
         }
     }
 
     const useItem = () => {
-        if(selected) {
+        if(selected && active()) {
             onUseItem(selected);
             close();
         }
@@ -109,14 +109,17 @@ const InventoryComponent: React.FC<InventoryComponentProps> = ({player, onUseIte
         return inkState === "take_item";
     }
 
-    const isSelected = (item: Item) => {
+    const isSelected = (item: string) => {
         return selected === item;
     }
+
+    // Convert inventory object to an array for rendering
+    const inventoryArray = Object.values(player.inventory);
 
     // Determine number of items to display based on screen size
     const isMobileScreen = window.innerWidth < 768;
     const numItemsToShow = isMobileScreen ? 8 : 10;
-    const emptySlots = numItemsToShow - player.inventory.length;
+    const emptySlots = numItemsToShow - inventoryArray.length;
 
     return (
         <>
@@ -124,13 +127,14 @@ const InventoryComponent: React.FC<InventoryComponentProps> = ({player, onUseIte
                 <ItemHeader>
                     {selected &&
                         <>
+                            {/*Super dangerous code haha*/}
                             <ItemView>
-                                <ItemImage src={getImage(selected)} alt={selected.name}/>
+                                <ItemImage src={getImage(items[selected])} alt={items[selected].name}/>
                             </ItemView>
                             <div className="ml-2">
-                                <ItemTitle>{selected.name}</ItemTitle>
+                                <ItemTitle>{items[selected].name}</ItemTitle>
                                 <Separator/>
-                                <ItemDescription>{selected.description}</ItemDescription>
+                                <ItemDescription>{items[selected].description}</ItemDescription>
                             </div>
                         </>
                     }
@@ -138,10 +142,10 @@ const InventoryComponent: React.FC<InventoryComponentProps> = ({player, onUseIte
                 <ItemSlots>
                     <div className="grid grid-cols-4 md:grid-cols-5 gap-2 w-full">
                         {/* Render existing items */}
-                        {player.inventory.map((item, index) => (
+                        {inventoryArray.map((item, index) => (
                             <InventoryItemComponent
                                 key={index}
-                                item={item}
+                                itemKey={item}
                                 selected={isSelected(item)}
                                 onClick={selectItem}
                             />
@@ -149,8 +153,8 @@ const InventoryComponent: React.FC<InventoryComponentProps> = ({player, onUseIte
                         {/* Render empty slots */}
                         {Array.from({ length: emptySlots }).map((_, index) => (
                             <InventoryItemComponent
-                                key={player.inventory.length + index}
-                                item={null}
+                                key={inventoryArray.length + index}
+                                itemKey=''
                                 selected={false}
                                 onClick={() => {}} />
                         ))}
