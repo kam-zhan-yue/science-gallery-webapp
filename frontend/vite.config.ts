@@ -28,6 +28,10 @@ export default defineConfig({
         {
           src: 'src/assets/ui/*.png',
           dest: 'assets/ui'
+        },
+        {
+          src: 'src/assets/items/*.png',
+          dest: 'assets/items'
         }
       ]
     })

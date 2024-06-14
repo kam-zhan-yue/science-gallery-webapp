@@ -1,5 +1,5 @@
 import React from "react";
-import Item from "../classes/Item.ts";
+import {Item, getImage} from "../classes/Item.ts";
 import styled from "styled-components";
 
 interface InventoryItemProps {
@@ -9,19 +9,28 @@ interface InventoryItemProps {
 }
 
 const ItemBackground = styled.div<{ hasItem: boolean, selected: boolean }>`
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
   border: 20px solid;
-  width: 75px;
-  height: 75px;
+  width: 100%;
+  aspect-ratio: 1 / 1;
   border-image: url(${props => props.selected ? "../assets/ui/slot-inactive.png" : "../assets/ui/slot-active.png"}) 15 15 15 15 fill repeat;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
   &:hover {
     cursor: ${props => (props.hasItem ? "pointer" : "default")};
   }
+`
 
-  @media (max-width: 768px) {
-    width: 60px;
-    height: 60px;
-  }
+const ItemImage = styled.img`
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  width: 100%;
 `
 
 const InventoryItemComponent: React.FC<InventoryItemProps> = ({item, selected, onClick}) => {
@@ -29,9 +38,19 @@ const InventoryItemComponent: React.FC<InventoryItemProps> = ({item, selected, o
         if(onClick && item)
             onClick(item)
     }
+
+    const hasItem = (): boolean => {
+        return item !== null;
+    }
+
     return(
       <>
-          <ItemBackground hasItem={item !== null} selected={selected} onClick={onClicked}>
+          <ItemBackground hasItem={hasItem()} selected={selected} onClick={onClicked}>
+              {hasItem() &&
+                  <>
+                    <ItemImage src={getImage(item)} alt={item?.name}/>
+                  </>
+              }
           </ItemBackground>
       </>
     );

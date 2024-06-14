@@ -1,7 +1,7 @@
 import Player from "../classes/Player.ts";
 import React, {useContext, useState} from "react";
 import SubPopup from "./SubPopup.tsx";
-import Item from "../classes/Item.ts";
+import {Item} from "../classes/Item.ts";
 import InventoryItemComponent from "./InventoryItemComponent.tsx";
 import styled from "styled-components";
 import {GameContext, GameContextType} from "../contexts/GameContext.tsx";
@@ -82,7 +82,7 @@ const InventoryComponent: React.FC<InventoryComponentProps> = ({player, onUseIte
 
     // Determine number of items to display based on screen size
     const isMobileScreen = window.innerWidth < 768;
-    const numItemsToShow = isMobileScreen ? 12 : 10;
+    const numItemsToShow = isMobileScreen ? 8 : 10;
     const emptySlots = numItemsToShow - player.inventory.length;
 
     return (
@@ -92,7 +92,7 @@ const InventoryComponent: React.FC<InventoryComponentProps> = ({player, onUseIte
                     {selected?.name}
                 </ItemHeader>
                 <ItemSlots>
-                    <div className="grid grid-cols-4 md:grid-cols-5 gap-2">
+                    <div className="grid grid-cols-4 md:grid-cols-5 gap-2 w-full">
                         {/* Render existing items */}
                         {player.inventory.map((item, index) => (
                             <InventoryItemComponent

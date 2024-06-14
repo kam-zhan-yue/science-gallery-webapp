@@ -1,4 +1,4 @@
-import Item from './Item.ts'
+import {Item, items} from './Item.ts'
 
 class Player {
     private _class: string = "";
@@ -57,9 +57,9 @@ class Player {
 
         this._inventory = [];
         for (const item of arr) {
-            let inventoryItem: Item = new Item();
-            inventoryItem.name = item;
-            this._inventory.push(inventoryItem);
+            if(item in items) {
+                this._inventory.push(items[item]);
+            }
         }
     }
 }

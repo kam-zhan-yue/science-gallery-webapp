@@ -13,7 +13,7 @@ import main from "../assets/audio/main.mp3";
 import {GameContext, GameContextType} from "../contexts/GameContext.tsx";
 import PlanetComponent from "./PlanetComponent.tsx";
 import GuideComponent from "./GuideComponent.tsx";
-import Item from "../classes/Item.ts";
+import {Item} from "../classes/Item.ts";
 
 interface StoryComponentProps {
   universeRef: Universe | null;
