@@ -2,7 +2,6 @@ import React, {useState} from "react";
 import styled, {css, keyframes} from "styled-components";
 import Player from "../classes/Player.ts";
 import SubPopupComponent from "./SubPopupComponent.tsx";
-import {Item} from "../classes/Item.ts";
 
 const StatHolder = styled.div`
   position: fixed;
