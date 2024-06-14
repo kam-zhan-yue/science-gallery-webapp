@@ -1,7 +1,7 @@
 import Player from "../classes/Player.ts";
 import React, {useContext, useState} from "react";
 import SubPopup from "./SubPopup.tsx";
-import {Item} from "../classes/Item.ts";
+import {getImage, Item} from "../classes/Item.ts";
 import InventoryItemComponent from "./InventoryItemComponent.tsx";
 import styled from "styled-components";
 import {GameContext, GameContextType} from "../contexts/GameContext.tsx";
@@ -14,8 +14,39 @@ interface InventoryComponentProps {
 
 const ItemHeader = styled.div`
   border: 20px solid;
-  height: 100px;
   border-image: url("../assets/ui/slot-active.png") 15 15 15 15 fill repeat;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  min-height: 80px;
+  @media (max-width: 600px) {
+    border: 12px solid;
+    border-image: url("../assets/ui/slot-active.png") 15 15 15 15 fill repeat;  }
+`
+
+const ItemView = styled.div`
+    
+`
+
+const ItemImage = styled.img`
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  min-height: 50px;
+  min-width: 50px;
+`
+const Separator = styled.div`
+  border: none;
+  border-top: 1px solid #ccc; /* Adjust color and style */
+  margin: 2px 0; /* Adjust margin */
+`
+const ItemTitle = styled.div`
+  font-size: 24px;
+  margin-bottom: 5px;
+`
+
+const ItemDescription = styled.div`
+  text-overflow: ellipsis;
 `
 
 const ItemSlots = styled.div`
@@ -26,18 +57,18 @@ const ItemSlots = styled.div`
   align-items: center;
 `
 
-interface UseContainerProps {
-    isActive: boolean;
-}
+const UseContainer = styled.div`
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
 
-const UseContainer = styled.div<UseContainerProps>`
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
+const UseButton = styled.div<{isActive: boolean}>`
   width: 100px;
   height: 50px;
 
+  margin-top: auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -64,8 +95,10 @@ const InventoryComponent: React.FC<InventoryComponentProps> = ({player, onUseIte
     }
 
     const useItem = () => {
-        if(selected)
+        if(selected) {
             onUseItem(selected);
+            close();
+        }
     }
 
     const close = () => {
@@ -89,7 +122,18 @@ const InventoryComponent: React.FC<InventoryComponentProps> = ({player, onUseIte
         <>
             <SubPopup title={"Inventory"} onCloseButton={close}>
                 <ItemHeader>
-                    {selected?.name}
+                    {selected &&
+                        <>
+                            <ItemView>
+                                <ItemImage src={getImage(selected)} alt={selected.name}/>
+                            </ItemView>
+                            <div className="ml-2">
+                                <ItemTitle>{selected.name}</ItemTitle>
+                                <Separator/>
+                                <ItemDescription>{selected.description}</ItemDescription>
+                            </div>
+                        </>
+                    }
                 </ItemHeader>
                 <ItemSlots>
                     <div className="grid grid-cols-4 md:grid-cols-5 gap-2 w-full">
@@ -114,8 +158,10 @@ const InventoryComponent: React.FC<InventoryComponentProps> = ({player, onUseIte
                 </ItemSlots>
                 {selected &&
                     <>
-                        <UseContainer isActive={active()} onClick={useItem}>
-                            Use
+                        <UseContainer>
+                            <UseButton isActive={active()} onClick={useItem}>
+                                Use
+                            </UseButton>
                         </UseContainer>
                     </>
                 }

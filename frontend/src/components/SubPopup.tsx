@@ -36,6 +36,8 @@ const Background = styled.div`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    border: 35px solid;
+    border-image: url("../assets/ui/dialogue-box.png") 15 15 15 15 fill repeat;
   }
 `;
 
@@ -100,7 +102,6 @@ const SubPopup: React.FC<OverlayProps> = ({ title, children,  onCloseButton}) =>
                     {children}
                 </div>
             </Background>
-
             <HeaderContainer>
                 <Header
                     key={'subpopup-header'}

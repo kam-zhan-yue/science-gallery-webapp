@@ -254,12 +254,6 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
             </>
         }
 
-        {storyState !== StoryState.Travelling &&
-            <>
-              <CharacterComponent player={player} onUseItem={onUseItem}></CharacterComponent>
-            </>
-        }
-
         {storyState === StoryState.Choosing &&
             <>
               <GuideComponent/>
@@ -294,6 +288,13 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
               />
             </>
         }
+
+        {storyState !== StoryState.Travelling && storyState !== StoryState.Inspecting && storyState !== StoryState.Keypad &&
+            <>
+              <CharacterComponent player={player} onUseItem={onUseItem}></CharacterComponent>
+            </>
+        }
+
       </>
   );
 };

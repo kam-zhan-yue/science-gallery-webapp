@@ -24,6 +24,10 @@ const ItemBackground = styled.div<{ hasItem: boolean, selected: boolean }>`
   &:hover {
     cursor: ${props => (props.hasItem ? "pointer" : "default")};
   }
+  @media (max-width: 600px) {
+    border: 12px solid;
+    border-image: url(${props => props.selected ? "../assets/ui/slot-inactive.png" : "../assets/ui/slot-active.png"}) 15 15 15 15 fill repeat;
+  }
 `
 
 const ItemImage = styled.img`
