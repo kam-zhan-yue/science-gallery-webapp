@@ -4,6 +4,8 @@ INCLUDE earth.ink
 INCLUDE jupiter.ink
 INCLUDE player.ink
 INCLUDE inventory.ink
+INCLUDE newmyths.ink
+
 
 Hello {name}! Welcome to the adventure.
 
