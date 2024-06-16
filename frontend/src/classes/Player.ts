@@ -1,4 +1,4 @@
-import {items} from './Item.ts'
+import {items} from '../setup/Item.ts'
 
 class Player {
     private _class: string = "";

@@ -62,16 +62,19 @@ A memory that calls to you.
 You look into the shard, and you see...
 ~ game_state = character_selection
 *[An artist.]
-    -> chosen(Artist)
+    ~ set_class(Artist)
     ->artist
 *[A doctor.]
-    -> chosen(Doctor)
+    ~ set_class(Doctor)
     ->doctor
 *[A mechanic.]
-    -> chosen(Mechanic)
+    ~ set_class(Mechanic)
     ->mechanic
+*[An academic.]
+    ~ set_class(Academic)
+    ->academic
 *[A journalist.]
-    -> chosen(Journalist)
+    ~ set_class(Journalist)
     ->journalist
 
 ===artist===

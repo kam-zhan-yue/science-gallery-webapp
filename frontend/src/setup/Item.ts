@@ -10,6 +10,36 @@ export function getImage(item: Item | null): string {
 }
 
 export const items: { [key: string]: Item } = {
+    "paint_brush": {
+        name: "Paint Brush",
+        image: "apple.png",
+        description: "A paint brush."
+    },
+    "syringe": {
+        name: "Syringe",
+        image: "apple.png",
+        description: "A syringe."
+    },
+    "wrench": {
+        name: "Wrench",
+        image: "apple.png",
+        description: "A wrench."
+    },
+    "pen": {
+        name: "Pen",
+        image: "apple.png",
+        description: "A pen."
+    },
+    "red_shard": {
+        name: "Red Shard",
+        image: "cookie.png",
+        description: "A red shard."
+    },
+    "blue_shard": {
+        name: "Blue Shard",
+        image: "cookie.png",
+        description: "A blue shard.",
+    },
     "excalibur": {
         name: "Excalibur",
         image: "apple.png",

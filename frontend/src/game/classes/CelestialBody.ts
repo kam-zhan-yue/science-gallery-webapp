@@ -3,10 +3,11 @@ import Graphics = Phaser.GameObjects.Graphics;
 import Vector2 = Phaser.Math.Vector2;
 import Random = Phaser.Math.Angle.Random;
 import {EventBus} from "../../EventBus.tsx";
-import {PlanetData} from "./PlanetData.ts";
+import {PlanetData} from "../../setup/PlanetData.ts";
 
 
 export default class CelestialBody {
+    private id: string;
     private data: PlanetData;
     public body: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody;
     private angle: number = 0.0;
@@ -14,7 +15,8 @@ export default class CelestialBody {
     private orbitalRing: Phaser.GameObjects.Graphics;
     private nameText: Phaser.GameObjects.BitmapText;
 
-    constructor(data: PlanetData, physics: ArcadePhysics, graphics: Graphics, x: number, y: number) {
+    constructor(id: string, data: PlanetData, physics: ArcadePhysics, graphics: Graphics, x: number, y: number) {
+        this.id = id;
         this.data = data;
         this.parentPosition = new Vector2(x, y);
         this.body = physics.add.sprite(x, y, data.key);
@@ -58,7 +60,7 @@ export default class CelestialBody {
     }
 
     private onClick() {
-        EventBus.emit('inspect', this.data.name);
+        EventBus.emit('inspect', this.id);
         // this.body.clearTint(); // Clear tint when not hovering
         this.body.scene.input.setDefaultCursor('default'); // Change cursor back to default
     }

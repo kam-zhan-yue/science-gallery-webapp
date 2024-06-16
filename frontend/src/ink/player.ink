@@ -4,11 +4,6 @@ VAR finesse = 0
 VAR persuasion = 0
 VAR intuition = 0
 
-*[An artist.]->artist
-*[A doctor.]->doctor
-*[A mechanic.]->mechanic
-*[An academic.]->academic
-*[A journalist.]->journalist
 === function set_class(x) ===
 ~ class = x
 
@@ -17,6 +12,7 @@ VAR intuition = 0
     ~ finesse = 2
     ~ persuasion = 1
     ~ intuition = 2
+    ~ get(paint_brush)
 }
 
 { class == Doctor:
@@ -24,6 +20,7 @@ VAR intuition = 0
     ~ finesse = 2
     ~ persuasion = 0
     ~ intuition = 1
+    ~ get(syringe)
 }
 
 { class == Mechanic:
@@ -31,6 +28,7 @@ VAR intuition = 0
     ~ finesse = 1
     ~ persuasion = 0
     ~ intuition = 2
+    ~ get(wrench)
 }
 
 { class == Academic:
@@ -38,6 +36,7 @@ VAR intuition = 0
     ~ finesse = 0
     ~ persuasion = 2
     ~ intuition = 1
+    ~ get(paint_brush)
 }
 
 { class == Journalist:
@@ -45,6 +44,7 @@ VAR intuition = 0
     ~ finesse = 0
     ~ persuasion = -1
     ~ intuition = 2
+    ~ get(pen)
 }
 
 === function add_health(x) ===

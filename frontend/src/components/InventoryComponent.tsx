@@ -1,7 +1,7 @@
 import Player from "../classes/Player.ts";
 import React, {useContext, useState} from "react";
 import SubPopup from "./SubPopup.tsx";
-import {getImage, items} from "../classes/Item.ts";
+import {getImage, items} from "../setup/Item.ts";
 import InventoryItemComponent from "./InventoryItemComponent.tsx";
 import styled from "styled-components";
 import {GameContext, GameContextType} from "../contexts/GameContext.tsx";

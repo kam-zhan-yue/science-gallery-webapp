@@ -5,7 +5,7 @@ export type Galaxy = {
 
 export const galaxies: { [key: string]: Galaxy } = {
     "start": {
-        centre: "Shangri-La",
+        centre: "shangri_la",
         planets: [
             "new_myths",
             "debug"

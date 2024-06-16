@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Planet from "../classes/Planet.ts";
+import {planets} from "../setup/PlanetData.ts";
 
 interface PlanetComponentProps {
     planet: Planet;
@@ -48,7 +49,7 @@ const PlanetComponent: React.FC<PlanetComponentProps> = ({planet, onYesClicked, 
     return (
         <>
             <PromptContainer>
-                Travel to {planet.name}?
+                Travel to {planets[planet.name].name}?
                 <ChoiceContainer className='flex justify-center gap-20'>
                     <Text onClick={yesClicked}>Yes</Text>
                     <Text onClick={noClicked}>No</Text>

@@ -3,8 +3,8 @@ import Graphics = Phaser.GameObjects.Graphics;
 
 import Sun from "./Sun.ts";
 import Planet from "./Planet.ts";
-import {galaxies, Galaxy} from "./Galaxy.ts";
-import {planets} from "./PlanetData.ts";
+import {galaxies, Galaxy} from "../../setup/Galaxy.ts";
+import {planets} from "../../setup/PlanetData.ts";
 type Dictionary<Key extends keyof any, Value> = {
     [key in Key]: Value; // Mapped types syntax
 };
@@ -17,12 +17,13 @@ export default class SolarSystem {
     constructor(physics: ArcadePhysics, graphics: Graphics,  x: number, y: number) {
         this.galaxy = galaxies["start"];
 
-        this.sun = new Sun(planets[this.galaxy.centre], physics, graphics, x, y);
+        this.sun = new Sun(this.galaxy.centre, planets[this.galaxy.centre], physics, graphics, x, y);
         this.drawNames = true;
         // Instantiate Planets
         graphics.lineStyle(1, 0xffffff, 0.4);
-        for(let planet in this.galaxy.planets) {
-            this.orbits[planet] = new Planet(planets[planet], physics, graphics, x, y);
+        for(let planet of this.galaxy.planets) {
+            console.log(`try find ${planet}`);
+            this.orbits[planet] = new Planet(planet, planets[planet], physics, graphics, x, y);
         }
     }
 
@@ -48,6 +49,7 @@ export default class SolarSystem {
     }
 
     setInteractive(planets: string[]) {
+        console.log(`set interactive ${planets}`);
         for(const key in this.orbits) {
             if(this.orbits.hasOwnProperty(key)) {
                 this.orbits[key].setInteractive(false);

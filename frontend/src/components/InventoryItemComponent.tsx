@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Item, getImage, items} from "../classes/Item.ts";
+import {Item, getImage, items} from "../setup/Item.ts";
 import styled from "styled-components";
 
 interface InventoryItemProps {

@@ -47,6 +47,7 @@ export class Universe extends Scene {
     }
 
     inspect(planetName: string) {
+        console.log(`inspecting ${planetName}`)
         this.solarSystem?.setDrawNames(false);
         this.solarSystem?.setInteractive([]);
         const planet = this.solarSystem?.getPlanet(planetName)

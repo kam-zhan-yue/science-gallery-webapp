@@ -7,9 +7,12 @@ INCLUDE inventory.ink
 INCLUDE newmyths.ink
 INCLUDE shangrila.ink
 
-->prologue
+*[Debug]
+    ->debug_story(Doctor)
+*[From Beginning]
+    ->prologue
 
-=== chosen(class_type) ===
+=== debug_story(class_type) ===
 ~ set_class(class_type)
 -> universe_story
 
@@ -17,11 +20,12 @@ INCLUDE shangrila.ink
 === universe_story ===
 Where shall we go today?
 ~ game_state = planet_selection
-    * [NewMyths:1234]
+    // the planet name must correspond to the planet id
+    * [new_myths:1234]
         ~ game_state = exploring
         ~ planet = new_myths
         ->newmyths
-    * [Debug:1111]
+    * [debug:1111]
         ~ game_state = exploring
         ~ planet = debug
         -> earth_story
