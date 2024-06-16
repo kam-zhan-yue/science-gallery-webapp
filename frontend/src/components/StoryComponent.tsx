@@ -13,6 +13,7 @@ import main from "../assets/audio/main.mp3";
 import {GameContext, GameContextType} from "../contexts/GameContext.tsx";
 import PlanetComponent from "./PlanetComponent.tsx";
 import GuideComponent from "./GuideComponent.tsx";
+import BackgroundComponent from "./BackgroundComponent.tsx";
 
 interface StoryComponentProps {
   universeRef: Universe | null;
@@ -28,6 +29,7 @@ enum StoryState {
 
 const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
   const [story, setStory] = useState<Story | null>(null);
+  const [background, setBackground] = useState<string>('');
   const [storyText, setStoryText] = useState<string>('');
   const [showingChoices, setShowingChoices] = useState<boolean>(false);
   const [choices, setChoices] = useState<Choice[]>([]);
@@ -96,6 +98,10 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
             break;
           case 'planet':
             selectPlanet(value.toString());
+            break;
+          case 'background':
+            console.log('set background');
+            setBackground(value.toString());
             break;
         }
       });
@@ -247,6 +253,10 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
 
   return (
       <>
+        <BackgroundComponent
+            backgroundKey={background}
+        />
+
         {storyState === StoryState.Dialogue &&
             <>
               <DialogueComponent text={storyText} next={next}></DialogueComponent>

@@ -1,4 +1,5 @@
 ==prologue===
+~background = black
 Black.
 A cave.
 A pulsating light. 
@@ -9,6 +10,7 @@ A long lost memory...
 *[Wake up.] ->Shangrila_intro
 
 ===Shangrila_intro===
+~ background = shangrila_city
 Welcome to another day in paradise. 
 You wake up in your bed, the warmth of daylight gently hitting your face. 
 Another day in paradise. 
@@ -36,6 +38,7 @@ Hang on... didn't you see this before somewhere?
 *[Walk into the cave]->walk_into_the_cave
 
 ===walk_into_the_cave===
+~ background = empty
 You move towards the cave.
 11111.
 22222.
