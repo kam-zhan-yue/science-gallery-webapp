@@ -26,7 +26,6 @@ const NotificationComponent: React.FC = () => {
 
     useEffect(() => {
         EventBus.on("get_item", (item: string) =>  {
-            console.log(`get item ${item}`);
             if(item in items) {
                 const message = `You have obtained ${items[item].name}`;
                 setMessage(message);
