@@ -3,21 +3,27 @@ import Graphics = Phaser.GameObjects.Graphics;
 
 import Sun from "./Sun.ts";
 import Planet from "./Planet.ts";
+import {galaxies, Galaxy} from "./Galaxy.ts";
+import {planets} from "./PlanetData.ts";
 type Dictionary<Key extends keyof any, Value> = {
     [key in Key]: Value; // Mapped types syntax
 };
 
 export default class SolarSystem {
+    private galaxy: Galaxy;
     private sun: Sun;
     private drawNames: boolean;
-    private planets: Dictionary<string, Planet> = {};
+    private orbits: Dictionary<string, Planet> = {};
     constructor(physics: ArcadePhysics, graphics: Graphics,  x: number, y: number) {
-        this.sun = new Sun("Sun", physics, graphics,'sun', x, y);
+        this.galaxy = galaxies["start"];
+
+        this.sun = new Sun(planets[this.galaxy.centre], physics, graphics, x, y);
         this.drawNames = true;
         // Instantiate Planets
         graphics.lineStyle(1, 0xffffff, 0.4);
-        this.planets['Earth'] = new Planet("Earth", physics, graphics, 'earth', x, y, 50, 20);
-        this.planets['Jupiter'] = new Planet("Jupiter", physics, graphics, 'jupiter', x, y, 100, 30);
+        for(let planet in this.galaxy.planets) {
+            this.orbits[planet] = new Planet(planets[planet], physics, graphics, x, y);
+        }
     }
 
     public centre(): Planet {
@@ -25,46 +31,46 @@ export default class SolarSystem {
     }
 
     public getPlanet(planet: string): Planet {
-        if(this.planets[planet] === null) {
+        if(this.orbits[planet] === null) {
             throw new Error(`Planet with key ${planet} does not exist!`);
         }
-        return this.planets[planet];
+        return this.orbits[planet];
     }
 
     setDrawNames(draw: boolean) {
         this.drawNames = draw;
         this.sun.setNameVisible(draw);
-        for(const key in this.planets) {
-            if(this.planets.hasOwnProperty(key)) {
-                this.planets[key].setNameVisible(draw);
+        for(const key in this.orbits) {
+            if(this.orbits.hasOwnProperty(key)) {
+                this.orbits[key].setNameVisible(draw);
             }
         }
     }
 
     setInteractive(planets: string[]) {
-        for(const key in this.planets) {
-            if(this.planets.hasOwnProperty(key)) {
-                this.planets[key].setInteractive(false);
+        for(const key in this.orbits) {
+            if(this.orbits.hasOwnProperty(key)) {
+                this.orbits[key].setInteractive(false);
             }
         }
         for(const planet of planets) {
-            if(this.planets.hasOwnProperty(planet)) {
-                this.planets[planet].setInteractive(true);
+            if(this.orbits.hasOwnProperty(planet)) {
+                this.orbits[planet].setInteractive(true);
             }
         }
     }
 
     public simulate(time: number, delta: number) {
-        for(const key in this.planets) {
-            if(this.planets.hasOwnProperty(key)) {
-                this.planets[key].simulate(time, delta);
+        for(const key in this.orbits) {
+            if(this.orbits.hasOwnProperty(key)) {
+                this.orbits[key].simulate(time, delta);
             }
         }
         if(this.drawNames) {
             this.sun.drawName();
-            for(const key in this.planets) {
-                if(this.planets.hasOwnProperty(key)) {
-                    this.planets[key].drawName();
+            for(const key in this.orbits) {
+                if(this.orbits.hasOwnProperty(key)) {
+                    this.orbits[key].drawName();
                 }
             }
         }
@@ -72,27 +78,27 @@ export default class SolarSystem {
 
     public setVisible(visible: boolean) {
         this.sun.setVisible(visible);
-        for(const key in this.planets) {
-            if(this.planets.hasOwnProperty(key)) {
-                this.planets[key].setVisible(visible);
+        for(const key in this.orbits) {
+            if(this.orbits.hasOwnProperty(key)) {
+                this.orbits[key].setVisible(visible);
             }
         }
     }
 
     public fadeIn(duration: number) {
         this.sun.fadeIn(duration);
-        for(const key in this.planets) {
-            if(this.planets.hasOwnProperty(key)) {
-                this.planets[key].fadeIn(duration);
+        for(const key in this.orbits) {
+            if(this.orbits.hasOwnProperty(key)) {
+                this.orbits[key].fadeIn(duration);
             }
         }
     }
 
     public fadeOut(duration: number) {
         this.sun.fadeOut(duration);
-        for(const key in this.planets) {
-            if(this.planets.hasOwnProperty(key)) {
-                this.planets[key].fadeOut(duration);
+        for(const key in this.orbits) {
+            if(this.orbits.hasOwnProperty(key)) {
+                this.orbits[key].fadeOut(duration);
             }
         }
     }

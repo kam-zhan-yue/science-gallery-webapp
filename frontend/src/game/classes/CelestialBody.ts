@@ -3,31 +3,26 @@ import Graphics = Phaser.GameObjects.Graphics;
 import Vector2 = Phaser.Math.Vector2;
 import Random = Phaser.Math.Angle.Random;
 import {EventBus} from "../../EventBus.tsx";
+import {PlanetData} from "./PlanetData.ts";
 
 
 export default class CelestialBody {
+    private data: PlanetData;
     public body: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody;
-    private name: string;
     private angle: number = 0.0;
-    private orbitalPeriod: number = 2.0;
-    private orbitalRadius: number = 0;
-    private clockwise: boolean = false;
     private parentPosition: Vector2 = new Vector2(0, 0);
     private orbitalRing: Phaser.GameObjects.Graphics;
     private nameText: Phaser.GameObjects.BitmapText;
 
-    constructor(name: string, physics: ArcadePhysics, graphics: Graphics, key: string, x: number, y: number, orbitalRadius: number = 0, orbitalPeriod: number = 0, clockwise: boolean = false) {
-        this.name = name;
+    constructor(data: PlanetData, physics: ArcadePhysics, graphics: Graphics, x: number, y: number) {
+        this.data = data;
         this.parentPosition = new Vector2(x, y);
-        this.body = physics.add.sprite(x, y, key);
-        this.body.play(`${key}_spin`, true);
-        this.orbitalRadius = orbitalRadius;
-        this.orbitalPeriod = orbitalPeriod;
-        this.clockwise = clockwise;
+        this.body = physics.add.sprite(x, y, data.key);
+        this.body.play(`${data.key}_spin`, true);
         this.angle = Random() * 360;
-        this.orbitalRing = graphics.strokeCircle(x, y, orbitalRadius);
+        this.orbitalRing = graphics.strokeCircle(x, y, this.data.orbitalRadius);
         // Initialize the name text
-        this.nameText = this.body.scene.add.bitmapText(0, 0, 'pixelFont', this.name, 16);
+        this.nameText = this.body.scene.add.bitmapText(0, 0, 'pixelFont', this.data.name, 16);
     }
 
     public setNameVisible(visible: boolean) {
@@ -63,7 +58,7 @@ export default class CelestialBody {
     }
 
     private onClick() {
-        EventBus.emit('inspect', this.name);
+        EventBus.emit('inspect', this.data.name);
         // this.body.clearTint(); // Clear tint when not hovering
         this.body.scene.input.setDefaultCursor('default'); // Change cursor back to default
     }
@@ -96,11 +91,11 @@ export default class CelestialBody {
     }
 
     private getAngleStep(deltaTime: number) {
-        return (360.0 / this.orbitalPeriod) * deltaTime;
+        return (360.0 / this.data.orbitalPeriod) * deltaTime;
     }
 
     private getAngle(deltaTime: number): number {
-        return this.clockwise ? this.getAngleStep(deltaTime) : -this.getAngleStep(deltaTime);
+        return this.data.clockwiseOrbit ? this.getAngleStep(deltaTime) : -this.getAngleStep(deltaTime);
     }
 
     public getPosition(timeInFuture: number): Vector2 {
@@ -110,8 +105,8 @@ export default class CelestialBody {
         // Convert angle to radians
         const radians = Phaser.Math.DegToRad(newAngle);
         // Calculate new position using Math.sin and Math.cos
-        const newX = this.parentPosition.x + this.orbitalRadius * Math.cos(radians);
-        const newY = this.parentPosition.y + this.orbitalRadius * Math.sin(radians);
+        const newX = this.parentPosition.x + this.data.orbitalRadius * Math.cos(radians);
+        const newY = this.parentPosition.y + this.data.orbitalRadius * Math.sin(radians);
         return new Vector2(newX, newY);
     }
 

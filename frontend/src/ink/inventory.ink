@@ -1,5 +1,5 @@
 // If you wanna add an item, add it to the list and in take()
-LIST inventory = (empty_shard), teddy_bear, excalibur, seed_of_life, holy_water
+LIST inventory = (empty_shard), teddy_bear, excalibur, seed_of_life, holy_water, red_shard, blue_shard
 
 // this is a really bad implementation, i'm really sorry, but go with the flow. also please don't change take
 === function take(x)
@@ -12,6 +12,10 @@ LIST inventory = (empty_shard), teddy_bear, excalibur, seed_of_life, holy_water
     ~inventory -= seed_of_life
 -"holy_water":
     ~inventory -= holy_water
+-"red_shard":
+    ~inventory -= red_shard
+-"blue_shard":
+    ~inventory -= blue_shard
 }
 
 === shop_test ===

@@ -1,4 +1,3 @@
-->prologue
 ==prologue===
 Black.
 A cave.
@@ -7,12 +6,8 @@ You're rocking back and forth.
 A fight. 
 A hard decision. 
 A long lost memory...
-...
-...
-...
-...
-...
-*[Wake up.]->Shangrila_intro
+*[Wake up.] ->Shangrila_intro
+
 ===Shangrila_intro===
 Welcome to another day in paradise. 
 You wake up in your bed, the warmth of daylight gently hitting your face. 
@@ -29,26 +24,17 @@ And you sure feel wonderful. Your teachers always tried to teach you how to stay
 It wasn't hard to anyway...
 Truly another day in...
 ...
-...
-...
 You turn to your right. 
 You see a cave. 
 ...
-...
-...
 You're certain you've never seen a cave entrance on this walk before. 
-...
-...
 ...
 You surely would have seen it by now...
 ...
-...
-...
 Hang on... didn't you see this before somewhere?
 ...
-...
-...
-*[walk into the cave]->walk_into_the_cave
+*[Walk into the cave]->walk_into_the_cave
+
 ===walk_into_the_cave===
 You move towards the cave.
 11111.
@@ -59,7 +45,6 @@ It's also damp.
 The light slowly dims as you head into this cave. 
 But as it gets darker and darker...
 ...
-...
 A faint glow shines in the distance. 
 *[Move towards the light.]->faintlight
 *[Leave the cave. I don't like it here.] ->sheeplink
@@ -69,16 +54,26 @@ As you move closer and closer, you notice that it is emanating from the ground.
 As you near the glowing light, its shape becomes clearer. A small shard of... something. You're unsure of what it is, but you feel an overwhelming need to pick it up.
 *[Pick up the shard.] ->introshard
 *[Leave the shard and turn back.] ->sheeplink
+
 ===introshard===
 You pick up the shard. 
 It glows softly in your hand. As you look into the shard, you feel a foreign life flash before your eyes. It hits you like a tonne of bricks, and fills you with a pervasive memory. 
-A memory that calls to you. 
+A memory that calls to you.
 You look into the shard, and you see...
-*[An artist.]->artist
-*[A doctor.]->doctor
-*[A mechanic.]->mechanic
-*[An academic.]->academic
-*[A journalist.]->journalist
+~ game_state = character_selection
+*[An artist.]
+    -> chosen(Artist)
+    ->artist
+*[A doctor.]
+    -> chosen(Doctor)
+    ->doctor
+*[A mechanic.]
+    -> chosen(Mechanic)
+    ->mechanic
+*[A journalist.]
+    -> chosen(Journalist)
+    ->journalist
+
 ===artist===
 Two memories flood your mind: The first hits you with a splash of colour - colours you feel like you've never seen in your life. In your hand, a tool, splattered in these same colours. You can see in front of you brilliant shapes that you recognise in an odd way.
 The second memory melds these colours into terrifying reds, greys and a jet black that invades your senses with dryness and ash. You see the tool in your hand is gone, and you feel there is something to blame for the flames you see in front of you. Four people stand beside you, with concerned eyes, wishing only comfort for you.
@@ -92,6 +87,7 @@ You see your name written boldly in black. It warms you to see it. Funny, you th
 Two memories flood your mind: The first is of what looks like a graduation. You have donned a funny looking headress, black with some tassle obscuring your view. You're surrounded by four people you don't entirely recognise, but they cheer for you, and embrace you. One even gives you a peck on the cheek. In your hands, a scroll. You clutch it tightly and you feel a grin so wide it hurts your cheeks. 
 The second memory is painted crimson red. You look at your hands, and the scroll is gone. It has been replaced by a bloodied tool, which you can't quite remember what it was called. In front of you, an unrecogniseable person is clutching their arm, thanking you for trying. You can hear someone run up to you, and as you turn around, all you can recognise is the suit.
 *[I understand now.]->doctorname
+
 ===doctorname===
 You look at your white coat. You've loved this coat for as long as you remember. You suddenly feel something in your coat's breastpocket. It feels like something has somehow manifested there, as if it had always been there, but only now you can feel its bulk. You reach into your breastpocket and pull out a nametag. On the nametag reads...
 *[The player inserts their name here.]->doctorconfirmname
@@ -153,13 +149,16 @@ As the shuttle lights up, the door shuts behind you.
 In front of you, you see the shuttle's energy gauge, just like your zipcraft at home. It looks like it isn't full. 
 You look at the shard again, which now pulsates again. It urges you to choose. 
 *[What do you mean, choose?]->chooseplanet
+
 ===chooseplanet===
 Good question, you say to yourself. Next to the energy gauge is a keypad. A keypad for launch codes. 
 You think back... you remember there were two pieces of text written either side of the cave's entrance...
-...
+->universe_story
+
 NOTE: YOU WILL FIND TWO CODES SOMEWHERE IN SHANGRILA AROUND YOU. LOOK AROUND THE ARTWORK TO FIND THEM.
 *[Player inputs code 1]->liftoff1
 *[Player inputs code 2]->liftoff1
+
 ===liftoff1===
 Your shuttle shakes.
 It whirrs.

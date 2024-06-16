@@ -1,14 +1,25 @@
 VAR health = 0
-LIST class = (Hero), Doctor, Mechanic, Agent, Artist, ConspiracyTheorist, Academic
+LIST class = (none), Artist, Doctor, Mechanic, Academic, Journalist
 VAR finesse = 0
 VAR persuasion = 0
 VAR intuition = 0
 
-
+*[An artist.]->artist
+*[A doctor.]->doctor
+*[A mechanic.]->mechanic
+*[An academic.]->academic
+*[A journalist.]->journalist
 === function set_class(x) ===
 ~ class = x
+
+{ class == Artist:
+    ~ health = 100
+    ~ finesse = 2
+    ~ persuasion = 1
+    ~ intuition = 2
+}
+
 { class == Doctor:
-    You have chosen the Doctor. Which lives will you save. And equally.. which lives will you choose to forfeit?
     ~ health = 100
     ~ finesse = 2
     ~ persuasion = 0
@@ -16,31 +27,20 @@ VAR intuition = 0
 }
 
 { class == Mechanic:
-    You have chosen the Mechanic. With just a wrench, you can fix anything in your sight. Or, choose to destroy entire worlds.
     ~ health = 100
     ~ finesse = 1
     ~ persuasion = 0
     ~ intuition = 2
 }
 
-{ class == Agent:
-    You have chosen the Agent. There is nothing you can hide from, no information you don't know. What will you do when the world turns against you?
+{ class == Academic:
     ~ health = 100
     ~ finesse = 0
     ~ persuasion = 2
     ~ intuition = 1
 }
 
-{ class == Artist:
-    You have chosen the Artist.
-    ~ health = 100
-    ~ finesse = 2
-    ~ persuasion = 1
-    ~ intuition = 2
-}
-
-{ class == ConspiracyTheorist:
-    You have chosen the Conspiracy Theorist.
+{ class == Journalist:
     ~ health = 100
     ~ finesse = 0
     ~ persuasion = -1

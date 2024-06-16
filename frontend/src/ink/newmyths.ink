@@ -1,10 +1,8 @@
-->intronewmyths
-==intronewmyths==
+==newmyths==
 You land in what seems to be a planet covered in crimson - as you look around you, all you can see is a dense forest. 
 However, this forest isn't made of the trees or plants you've seen before. As your eyes adjust to the ruby haze, you notice that you are surrounded by streams of fabric. 
 The fabric is beautifully woven, with shimmering embroidery that glints faintly as if glowing. 
 You feel... warm. As if someone is holding you tightly, like a kiss on the cheek, like being cradled to sleep. It feels like... 
-...
 ...
 Among the forest of red, you see different coloured lights flashing faintly - you haven't seen anyone on this planet yet. Who might be waiting for you beyond the forest?
 *[Walk towards the light - 'Refabricated Realities'] ->rrencounter
@@ -62,8 +60,9 @@ You're taken by surprise, and the voice laughs.
 ==riddle1wrong==
 "That is incorrect. However, I do not wish to leave you with nothing. Hold out your hands."
 You hold out your hands, and with a soft, red glow, a shard appears in your hand. 
--BLUE SHARD has been added to your inventory.-
-->DONE
+~ get(blue_shard)
+->universe_story
+
 ==riddle2==
 "Well done. Your next riddle:
 "What floats in space created this art, A work that’s a woven, a work of the heart. Who am I?"
@@ -79,5 +78,5 @@ You hold out your hands, and with a soft, red glow, a shard appears in your hand
 ==riddlescorrect==
 "You have answered all of my riddles correctly. I keep my word: hold out your hand."
 You hold out your hands, and with a soft, red glow, a shard appears in your hand. 
--RED SHARD has been added to your inventory.-
-->DONE
+~ get(red_shard)
+->universe_story
