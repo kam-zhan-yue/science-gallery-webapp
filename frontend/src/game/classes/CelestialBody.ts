@@ -83,9 +83,12 @@ export default class CelestialBody {
         fadeTween.play();
     }
     public fadeIn(duration: number) {
+        this.body.alpha = 0;
+        this.orbitalRing.alpha = 0;
+        this.nameText.alpha = 0;
         this.setVisible(true);
         const fadeTween = this.body.scene.tweens.add({
-            targets: [this.body, this.orbitalRing],
+            targets: [this.body, this.orbitalRing, this.nameText],
             alpha: 1,
             duration: duration
         })

@@ -3,7 +3,7 @@ import React, {useContext, useEffect, useState} from 'react';
 import {Choice, InkObject, Story, EvaluateFunction} from "inkjs";
 import DialogueComponent from "./DialogueComponent.tsx";
 import ChoiceComponent from "./ChoiceComponent.tsx";
-import CharacterComponent from "./PlayerComponent.tsx";
+import PlayerComponent from "./PlayerComponent.tsx";
 import Player from "../classes/Player.ts";
 import Planet from "../classes/Planet.ts";
 import KeypadComponent from "./KeypadComponent.tsx";
@@ -93,6 +93,9 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
           case 'game_state':
             setInkState(value.toString());
             if(value.toString() === 'planet_selection') {
+              if(universeRef && !universeRef.started) {
+                universeRef?.start();
+              }
               choosePlanets(story)
             }
             break;
@@ -151,7 +154,6 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
 
   // Game listeners
   useEffect(() => {
-    universeRef?.start();
     // Once landed, should show UI options
     EventBus.on('landed', (_planet: string) => {
       setStoryState(StoryState.Inspecting);
@@ -300,7 +302,7 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
 
         {storyState !== StoryState.Travelling && storyState !== StoryState.Inspecting && storyState !== StoryState.Keypad &&
             <>
-              <CharacterComponent player={player} onUseItem={onUseItem}></CharacterComponent>
+              <PlayerComponent player={player} onUseItem={onUseItem}></PlayerComponent>
             </>
         }
 

@@ -86,38 +86,40 @@ const PlayerComponent: React.FC<PlayerComponentProps> = ({player, onUseItem}) =>
 
     return (
         <>
-            <StatHolder>
-                <CharacterHolder
-                    key={'character-holder'}
-                    id={'character-holder'}
-                    src={'../assets/ui/character-holder.png'}
-                    alt={'character-holder'}
-                    onClick={handlePlayerClicked}
-                />
-            {show &&
-                <>
-                    {["inventory", "stats", "skill"].map((tabId, index) => (
-                        <Tab
-                            key={tabId}
-                            id={tabId}
-                            src={
-                                tab === tabId
-                                    ? `../assets/ui/${tabId}-inactive.png`
-                                    : `../assets/ui/${tabId}-active.png`
-                            }
-                            alt={tabId}
-                            onClick={() => handleTabClicked(tabId)}
-                            delay={index * 0.1} // Staggered delay
-                        />
-                    ))}
-                    {tab !== '' &&
+            {player.class !== '' &&
+                <StatHolder>
+                    <CharacterHolder
+                        key={'character-holder'}
+                        id={'character-holder'}
+                        src={'../assets/ui/character-holder.png'}
+                        alt={'character-holder'}
+                        onClick={handlePlayerClicked}
+                    />
+                    {show &&
                         <>
-                            <SubPopupComponent tab={tab} player={player} onUseItem={onUseItem} onCloseButton={closeTab}/>
+                            {["inventory", "stats", "skill"].map((tabId, index) => (
+                                <Tab
+                                    key={tabId}
+                                    id={tabId}
+                                    src={
+                                        tab === tabId
+                                            ? `../assets/ui/${tabId}-inactive.png`
+                                            : `../assets/ui/${tabId}-active.png`
+                                    }
+                                    alt={tabId}
+                                    onClick={() => handleTabClicked(tabId)}
+                                    delay={index * 0.1} // Staggered delay
+                                />
+                            ))}
+                            {tab !== '' &&
+                                <>
+                                    <SubPopupComponent tab={tab} player={player} onUseItem={onUseItem} onCloseButton={closeTab}/>
+                                </>
+                            }
                         </>
                     }
-                </>
-            }
             </StatHolder>
+            }
         </>
     )
 }

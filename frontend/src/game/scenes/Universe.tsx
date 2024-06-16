@@ -3,6 +3,7 @@ import SolarSystem from "../classes/SolarSystem.ts";
 import {EventBus} from "../../EventBus.tsx";
 
 export class Universe extends Scene {
+    public started: boolean = false;
     private solarSystem?: SolarSystem;
     constructor() {
         super({ key: 'Universe' });
@@ -12,8 +13,9 @@ export class Universe extends Scene {
     }
 
     start() {
+        this.started = true;
         this.solarSystem?.setVisible(true);
-        this.solarSystem?.fadeIn(500);
+        this.solarSystem?.fadeIn(1500);
     }
 
     create() {
