@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
-import '../css/shapes.css';
-import {GameContext, GameContextType} from "../contexts/GameContext.tsx"; // Import the CSS file
+import '../../css/shapes.css';
+import {GameContext, GameContextType} from "../../contexts/GameContext.tsx"; // Import the CSS file
 
 interface Props {
     top: number;

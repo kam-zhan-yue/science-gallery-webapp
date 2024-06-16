@@ -30,14 +30,14 @@ const Background = styled.div`
   image-rendering: -moz-crisp-edges;
   image-rendering: crisp-edges;
   border: 40px solid;
-  border-image: url("../assets/ui/dialogue-box.png") 15 15 15 15 fill repeat;
-  
+  border-image: url("../../assets/ui/dialogue-box.png") 15 15 15 15 fill repeat;
+
   @media (max-width: 768px) {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     border: 35px solid;
-    border-image: url("../assets/ui/dialogue-box.png") 15 15 15 15 fill repeat;
+    border-image: url("../../assets/ui/dialogue-box.png") 15 15 15 15 fill repeat;
   }
 `;
 

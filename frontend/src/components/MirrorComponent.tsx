@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import Parallelogram from "../shapes/Parallelogram.tsx";
-import Triangle from "../shapes/Triangle.tsx";
+import Parallelogram from "./styled/Parallelogram.tsx";
+import Triangle from "./styled/Triangle.tsx";
 
 const Blocker = styled.div`
   position: fixed;

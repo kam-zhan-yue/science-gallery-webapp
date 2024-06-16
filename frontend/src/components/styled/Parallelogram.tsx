@@ -1,6 +1,6 @@
 import React, {useContext} from "react";
 import {StyledParallelogram} from "./StyledParallelogram.tsx";
-import {GameContext, GameContextType} from "../contexts/GameContext.tsx";
+import {GameContext, GameContextType} from "../../contexts/GameContext.tsx";
 
 interface ParallelogramProps {
     top: number;

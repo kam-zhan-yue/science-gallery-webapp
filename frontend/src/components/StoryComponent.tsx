@@ -14,6 +14,7 @@ import {GameContext, GameContextType} from "../contexts/GameContext.tsx";
 import PlanetComponent from "./PlanetComponent.tsx";
 import GuideComponent from "./GuideComponent.tsx";
 import BackgroundComponent from "./BackgroundComponent.tsx";
+import NotificationComponent from "./NotificationComponent.tsx";
 
 interface StoryComponentProps {
   universeRef: Universe | null;
@@ -305,7 +306,7 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
               <PlayerComponent player={player} onUseItem={onUseItem}></PlayerComponent>
             </>
         }
-
+        <NotificationComponent/>
       </>
   );
 };

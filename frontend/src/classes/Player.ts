@@ -1,4 +1,5 @@
 import {items} from '../setup/Item.ts'
+import {EventBus} from "../EventBus.tsx";
 
 class Player {
     private _class: string = "";
@@ -54,6 +55,14 @@ class Player {
 
     set inventory(value: string) {
         const arr: string[] = value.split(", ");
+
+        for (const item of arr) {
+            console.log(`${item} in items: ${item in items}`)
+            console.log(`${item}in inventory: ${item in this.inventory}`)
+            if (item in items && !(item in this._inventory)) {
+                EventBus.emit("get_item", item);
+            }
+        }
 
         this._inventory = [];
         for (const item of arr) {

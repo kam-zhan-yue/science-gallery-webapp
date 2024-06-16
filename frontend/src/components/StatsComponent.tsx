@@ -1,6 +1,6 @@
 import Player from "../classes/Player.ts";
 import React from "react";
-import SubPopup from "./SubPopup.tsx";
+import SubPopup from "./styled/SubPopup.tsx";
 import styled from "styled-components";
 
 interface StatsComponentProps {

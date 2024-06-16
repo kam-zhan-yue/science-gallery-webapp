@@ -1,6 +1,6 @@
 import React, {useContext} from "react";
 import {StyledTriangle} from "./StyledTriangle.tsx";
-import {GameContext, GameContextType} from "../contexts/GameContext.tsx";
+import {GameContext, GameContextType} from "../../contexts/GameContext.tsx";
 
 interface TriangleProps {
     top: number;
