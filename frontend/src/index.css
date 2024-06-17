@@ -19,3 +19,7 @@ body {
     justify-content: center;
     align-items: center;
 }
+
+.Choice {
+    background: black 2px;
+}

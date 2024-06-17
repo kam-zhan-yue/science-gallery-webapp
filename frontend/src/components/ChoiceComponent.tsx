@@ -2,6 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import {Choice} from "inkjs/engine/Choice";
 
+const ScreenOverlay = styled.div`
+    position: absolute;
+    width: 100%;
+    height: 100%;
+`
+
 const ChoiceOverlay = styled.div`
   position: fixed;
   top: 50%;
@@ -13,10 +19,11 @@ const ChoiceOverlay = styled.div`
 `
 
 const ChoiceOption = styled.button`
-  margin: 5px;
-  padding: 10px 20px;
-  background-color: #f0f0f0;
-  border: none;
+  margin: 10px;
+  padding: 10px 10px;
+  border: 10px solid;
+
+  border-image: url("../assets/ui/button.png") 10 10 10 10 fill repeat;
   cursor: pointer;
   width: 200px;
   box-sizing: border-box;
@@ -26,7 +33,7 @@ const ChoiceOption = styled.button`
   font-weight: 400;
   font-style: normal;
   line-height: 1em;
-  color: black;
+  color: white;
 `
 
 interface ChoiceComponentProps {
@@ -36,6 +43,7 @@ interface ChoiceComponentProps {
 
 const ChoiceComponent: React.FC<ChoiceComponentProps> = ({ choices, handleChoiceClick }) => {
     return (
+        <ScreenOverlay>
         <ChoiceOverlay>
             {choices.map((choice, index) => (
                 <ChoiceOption key={index} onClick={() => handleChoiceClick(index)}>
@@ -43,6 +51,7 @@ const ChoiceComponent: React.FC<ChoiceComponentProps> = ({ choices, handleChoice
                 </ChoiceOption>
             ))}
         </ChoiceOverlay>
+        </ScreenOverlay>
     );
 };
 
