@@ -7,7 +7,7 @@ const DialogueBackground = styled.div`
   left: 20px;
   right: 20px;
   min-height: 150px;
-  max-height: 300px; /* Max height of the dialogue box */
+  //max-height: 300px; /* Max height of the dialogue box */
   overflow-y: auto; /* Enable vertical scrolling if content overflows */
 
   image-rendering: pixelated;

@@ -18,6 +18,7 @@ INCLUDE shangrila.ink
 
 
 === universe_story ===
+~ background = empty
 Where shall we go today?
 ~ game_state = planet_selection
     // the planet name must correspond to the planet id

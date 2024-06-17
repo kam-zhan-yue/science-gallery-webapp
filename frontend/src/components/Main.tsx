@@ -4,6 +4,7 @@ import Game from "../game/Game.tsx";
 import {Universe} from "../game/scenes/Universe.tsx";
 import MirrorComponent from "./MirrorComponent.tsx";
 import {GameContext, GameContextType, GameState} from "../contexts/GameContext.tsx";
+import MenuComponent from "./MenuComponent.tsx";
 
 const Main: React.FC = () => {
     const universeRef = useRef<Universe>(null);
@@ -44,6 +45,7 @@ const Main: React.FC = () => {
 
     return (
         <>
+            <MenuComponent/>
             {(state == GameState.Menu || state == GameState.Mirror) &&
                 <MirrorComponent/>
             }

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import {motion} from "framer-motion";
 
 interface BackgroundComponentProps {
     backgroundKey: string;
@@ -9,7 +10,7 @@ const backgrounds: { [key: string]: string} = {
     "shangrila_city": "shangrila-city.png",
 }
 
-const Overlay = styled.div`
+const Overlay = styled(motion.div)`
   position: fixed;
   left: 0;
   top: 0;
@@ -21,7 +22,7 @@ const Black = styled(Overlay)`
   background: rgb(0,0,0,0.8);
 `
 
-const BackgroundBorder = styled.div`
+const BackgroundBorder = styled(motion.div)`
   position: fixed;
   bottom: 200px;
   top: 120px;
@@ -31,7 +32,7 @@ const BackgroundBorder = styled.div`
   border-radius: 5px;
 `
 
-const Background = styled.img`
+const Background = styled(motion.img)`
   image-rendering: pixelated;
   image-rendering: -moz-crisp-edges;
   image-rendering: crisp-edges;
@@ -54,11 +55,20 @@ const BackgroundComponent: React.FC<BackgroundComponentProps> = ({backgroundKey}
                 </>
             }
             {backgroundKey === "black" &&
-                <Black/>
+                <Black
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0, transition: {duration: 1} }}
+                    transition={{ duration: 1 }}
+                />
             }
             {backgroundKey in backgrounds &&
                 <>
-                    <BackgroundBorder>
+                    <BackgroundBorder
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0, transition: {duration: 1} }}
+                        transition={{ duration: 1 }}>
                         <Background src={getBackground()} alt='background'/>
                     </BackgroundBorder>
                 </>

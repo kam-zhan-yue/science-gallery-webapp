@@ -42,7 +42,7 @@ const InteractionOverlay = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  touch-action: none; /* Disable touch events */
+  //touch-action: none; /* Disable touch events */
 `
 
 const Typewriter: React.FC<TypewriterProps> = ({ text, delay, next }) => {

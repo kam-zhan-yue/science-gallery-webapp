@@ -38,7 +38,6 @@ Hang on... didn't you see this before somewhere?
 *[Walk into the cave]->walk_into_the_cave
 
 ===walk_into_the_cave===
-~ background = empty
 You move towards the cave.
 11111.
 22222.
