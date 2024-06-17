@@ -66,6 +66,25 @@ MISTRESS: Give me which that I seek and I will reward you accordingly.
     <>.. I sense a powerful force in your hands.
 }
 
+{inventory ? excalibur:
+    ->mistress_excalibur
+- else:
+    ->mistress_take_item
+}
+
+=== mistress_excalibur === 
+    *[Don't give anything (a normal dialogue button)]
+        How dare you.
+        ->->
+    *[Give Excalibur (make this button special)]
+        ~take("excalibur")
+        A fine specimen. You are now King of Camelot.
+        ->->
+    *[Choose an item from your inventory (make this button special?)]
+        ->mistress_take_item
+
+=== mistress_take_item ===
+MISTRESS: Show me what you got.
 ~ game_state = take_item
     *[{excalibur}]
         ~take("excalibur")

@@ -8,13 +8,14 @@ const ScreenOverlay = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* semi-transparent black background */
+    background-color: rgba(0, 0, 0, 0.6); /* semi-transparent black background */
 `
 
 const ChoiceOverlay = styled.div`
   position: fixed;
   top: 50%;
   left: 50%;
+  width: 100%;
   transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column; /* Display choices vertically */
@@ -28,7 +29,8 @@ const ChoiceOption = styled.button`
 
   border-image: url("../assets/ui/button.png") 10 10 10 10 fill repeat;
   cursor: pointer;
-  width: 200px;
+  width: 80%;
+  max-width: 500px;
   box-sizing: border-box;
   
   font-size: 20px;
@@ -46,15 +48,16 @@ interface ChoiceComponentProps {
 
 const ChoiceComponent: React.FC<ChoiceComponentProps> = ({ choices, handleChoiceClick }) => {
     return (
-        <ScreenOverlay>
-        <ChoiceOverlay>
-            {choices.map((choice, index) => (
-                <ChoiceOption key={index} onClick={() => handleChoiceClick(index)}>
-                    {choice.text}
-                </ChoiceOption>
-            ))}
-        </ChoiceOverlay>
-        </ScreenOverlay>
+        <>
+            <ScreenOverlay/>
+            <ChoiceOverlay>
+                {choices.map((choice, index) => (
+                    <ChoiceOption key={index} onClick={() => handleChoiceClick(index)}>
+                        {choice.text}
+                    </ChoiceOption>
+                ))}
+            </ChoiceOverlay>
+        </>
     );
 };
 
