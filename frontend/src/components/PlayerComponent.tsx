@@ -1,5 +1,5 @@
-import React, {useState} from "react";
-import styled, {css, keyframes} from "styled-components";
+import { useState, useImperativeHandle, forwardRef } from "react";
+import styled, { css, keyframes } from "styled-components";
 import Player from "../classes/Player.ts";
 import SubPopupComponent from "./SubPopupComponent.tsx";
 
@@ -14,7 +14,7 @@ const StatHolder = styled.div`
   font-weight: 400;
   font-style: normal;
   line-height: 1em;
-`
+`;
 
 const CharacterHolder = styled.img`
   width: 333px;
@@ -25,7 +25,8 @@ const CharacterHolder = styled.img`
   &:hover {
     cursor: pointer;
   }
-`
+`;
+
 // Define the fade-in keyframes
 const fadeIn = keyframes`
   from {
@@ -60,42 +61,55 @@ interface PlayerComponentProps {
     onUseItem: (key: string) => void;
 }
 
-const PlayerComponent: React.FC<PlayerComponentProps> = ({player, onUseItem}) => {
+export interface PlayerComponentHandle {
+    openInventory: () => void;
+}
+
+const PlayerComponent = forwardRef<PlayerComponentHandle, PlayerComponentProps>(({ player, onUseItem }, ref) => {
     const [show, setShow] = useState<boolean>(false);
-    const [tab, setTab] = useState<string>('');
+    const [tab, setTab] = useState<string>("");
+
+    const openInventory = () => {
+        setShow(true);
+        setTab("inventory");
+    };
+
+    useImperativeHandle(ref, () => ({
+        openInventory,
+    }));
 
     const handlePlayerClicked = () => {
-        console.log(`player clicked ${player.class}`)
+        console.log(`player clicked ${player.class}`);
         setShow(!show);
-        if(!show) {
-            setTab('');
+        if (!show) {
+            setTab("");
         }
-    }
+    };
 
     const handleTabClicked = (selectedTab: string) => {
-        if(selectedTab === tab) {
-            setTab('');
+        if (selectedTab === tab) {
+            setTab("");
         } else {
             setTab(selectedTab);
         }
-    }
+    };
 
     const closeTab = () => {
-        setTab('');
-    }
+        setTab("");
+    };
 
     return (
         <>
-            {player.class !== '' &&
+            {player.class !== "" && (
                 <StatHolder>
                     <CharacterHolder
-                        key={'character-holder'}
-                        id={'character-holder'}
-                        src={'../assets/ui/character-holder.png'}
-                        alt={'character-holder'}
+                        key={"character-holder"}
+                        id={"character-holder"}
+                        src={"../assets/ui/character-holder.png"}
+                        alt={"character-holder"}
                         onClick={handlePlayerClicked}
                     />
-                    {show &&
+                    {show && (
                         <>
                             {["inventory", "stats", "skill"].map((tabId, index) => (
                                 <Tab
@@ -111,18 +125,20 @@ const PlayerComponent: React.FC<PlayerComponentProps> = ({player, onUseItem}) =>
                                     delay={index * 0.1} // Staggered delay
                                 />
                             ))}
-                            {tab !== '' &&
-                                <>
-                                    <SubPopupComponent tab={tab} player={player} onUseItem={onUseItem} onCloseButton={closeTab}/>
-                                </>
-                            }
+                            {tab !== "" && (
+                                <SubPopupComponent
+                                    tab={tab}
+                                    player={player}
+                                    onUseItem={onUseItem}
+                                    onCloseButton={closeTab}
+                                />
+                            )}
                         </>
-                    }
-            </StatHolder>
-            }
+                    )}
+                </StatHolder>
+            )}
         </>
-    )
-}
+    );
+});
 
-export default PlayerComponent
-
+export default PlayerComponent;

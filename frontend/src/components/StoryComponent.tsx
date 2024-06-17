@@ -1,9 +1,9 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useEffect, useRef, useState} from 'react';
 // @ts-ignore
 import {Choice, InkObject, Story, EvaluateFunction} from "inkjs";
 import DialogueComponent from "./DialogueComponent.tsx";
 import ChoiceComponent from "./ChoiceComponent.tsx";
-import PlayerComponent from "./PlayerComponent.tsx";
+import PlayerComponent, {PlayerComponentHandle} from "./PlayerComponent.tsx";
 import Player from "../classes/Player.ts";
 import Planet from "../classes/Planet.ts";
 import KeypadComponent from "./KeypadComponent.tsx";
@@ -38,6 +38,7 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
   const [player, setPlayer] = useState<Player>(new Player());
   const [storyState, setStoryState] = useState<StoryState>(StoryState.Dialogue);
   const {debug, inkState, setInkState} = useContext(GameContext) as GameContextType;
+  const playerComponentRef = useRef<PlayerComponentHandle>(null);
 
   // Playing audio
   useEffect(() =>{
@@ -98,6 +99,13 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
                 universeRef?.start();
               }
               choosePlanets(story)
+            }
+            if(value.toString() === 'take_item') {
+              console.log(`player component is ${playerComponentRef.current}`)
+              if(playerComponentRef.current) {
+                console.log(`open inventory`)
+                playerComponentRef.current.openInventory();
+              }
             }
             break;
           case 'planet':
@@ -303,7 +311,7 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
 
         {storyState !== StoryState.Travelling && storyState !== StoryState.Inspecting && storyState !== StoryState.Keypad &&
             <>
-              <PlayerComponent player={player} onUseItem={onUseItem}></PlayerComponent>
+              <PlayerComponent ref={playerComponentRef} player={player} onUseItem={onUseItem}></PlayerComponent>
             </>
         }
         <NotificationComponent/>
