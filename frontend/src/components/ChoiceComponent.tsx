@@ -3,9 +3,12 @@ import styled from 'styled-components';
 import {Choice} from "inkjs/engine/Choice";
 
 const ScreenOverlay = styled.div`
-    position: absolute;
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* semi-transparent black background */
 `
 
 const ChoiceOverlay = styled.div`
