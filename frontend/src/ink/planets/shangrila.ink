@@ -72,12 +72,6 @@ You look into the shard, and you see...
 *[A mechanic.]
     ~ set_class(Mechanic)
     ->mechanic
-*[An academic.]
-    ~ set_class(Academic)
-    ->academic
-*[A journalist.]
-    ~ set_class(Journalist)
-    ->journalist
 
 ===artist===
 Two memories flood your mind: The first hits you with a splash of colour - colours you feel like you've never seen in your life. In your hand, a tool, splattered in these same colours. You can see in front of you brilliant shapes that you recognise in an odd way.

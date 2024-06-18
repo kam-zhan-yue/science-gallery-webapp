@@ -13,6 +13,10 @@ INCLUDE test/earth.ink
 INCLUDE test/jupiter.ink
 INCLUDE test/debug.ink
 INCLUDE player/battle.ink
+INCLUDE globals.ink
+INCLUDE navigation.ink
+INCLUDE test/shop.ink
+
 
 
 *[Debug]
@@ -20,9 +24,10 @@ INCLUDE player/battle.ink
 *[From Beginning]
     ->prologue
 
+
 === debug_story(class_type) ===
 ~ set_class(class_type)
--> universe_story
+-> navigation
 
 
 === universe_story ===

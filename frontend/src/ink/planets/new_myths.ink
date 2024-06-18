@@ -1,4 +1,4 @@
-==newmyths==
+=== newmyths ==
 You land in what seems to be a planet covered in crimson - as you look around you, all you can see is a dense forest. 
 However, this forest isn't made of the trees or plants you've seen before. As your eyes adjust to the ruby haze, you notice that you are surrounded by streams of fabric. 
 The fabric is beautifully woven, with shimmering embroidery that glints faintly as if glowing. 
