@@ -17,6 +17,7 @@ INCLUDE globals.ink
 INCLUDE navigation.ink
 INCLUDE test/shop.ink
 INCLUDE player/character_select.ink
+INCLUDE player/shard.ink
 
 
 Welcome, Tester.

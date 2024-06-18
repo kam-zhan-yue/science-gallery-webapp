@@ -28,5 +28,9 @@ LIST inventory = (none), paint_brush, syringe, wrench, calculator, pen, teddy_be
     ~inventory -= blue_shard
 }
 
+=== function shards() ===
+~ return good_shards + bad_shards
+
+
 === function get(x)
     ~ inventory += x
