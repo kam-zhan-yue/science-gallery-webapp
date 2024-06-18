@@ -81,7 +81,7 @@ You are dead.
 
 
 === generic ===
-->universe_story
+->navigation
 
 
 === function deal_damage(x) ===

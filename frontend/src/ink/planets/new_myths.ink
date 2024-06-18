@@ -61,7 +61,7 @@ You're taken by surprise, and the voice laughs.
 "That is incorrect. However, I do not wish to leave you with nothing. Hold out your hands."
 You hold out your hands, and with a soft, red glow, a shard appears in your hand. 
 ~ get(blue_shard)
-->universe_story
+->navigation
 
 ==riddle2==
 "Well done. Your next riddle:
@@ -79,4 +79,4 @@ You hold out your hands, and with a soft, red glow, a shard appears in your hand
 "You have answered all of my riddles correctly. I keep my word: hold out your hand."
 You hold out your hands, and with a soft, red glow, a shard appears in your hand. 
 ~ get(red_shard)
-->universe_story
+->navigation

@@ -9,7 +9,7 @@ Suddently, you find yourself in the den of a large snake deity.
 
 === snake_battle_success ===
 You run out of the snake's encloure. You have gained a Serpent's tooth.
--> universe_story
+-> navigation
 
 === snake_battle_failure ===
 The cold scales of the snake coil around your lifeless body.

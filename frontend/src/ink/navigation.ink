@@ -1,3 +1,8 @@
+=== start ===
+~ progress = 0
+~ planet = shangrila
+->shangri_la
+
 === navigation ===
 ~ background = empty
 ~ progress = progress + 1

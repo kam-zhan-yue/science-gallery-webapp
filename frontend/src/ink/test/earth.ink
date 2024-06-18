@@ -2,7 +2,7 @@
 Welcome to Earth. 
 -> shop_test ->
 -> use_test ->
--> universe_story
+-> navigation
 
 === encounter_1 ===
 A strange merchant approaches you, his eyes glinting with a mixture of curiosity and greed. He spreads his arms wide, displaying an array of glittering, mysterious items.
@@ -54,19 +54,19 @@ MERCHANT: Ah, a wise choice! I have cloaking devices, encryption keys, even old-
 You manage to subtly assess the items without revealing your intentions. Zed seems impressed.
 MERCHANT: I see you have a keen eye. For you, a special price. These tools will serve you well. 
 YOU: Deal. [You make the transaction and feel a sense of accomplishment]
--> universe_story
+-> navigation
 
 === finesse_failure ===
 Your attempt to outwit the merchant fails. Zed’s grin widens as he hands you a seemingly valuable item.
 MERCHANT: A pleasure doing business with you! [You later realize the item is a cheap trinket, useless against the AI Overlord’s surveillance]
 YOU: [Mutter to yourself] I need to be more careful next time...
--> universe_story
+-> navigation
 
 === show_skepticism ===
 YOU: How do I know you're not just another scammer?
 MERCHANT: A fair question, in these times. Trust is scarce, but I assure you, my wares are genuine. The choice is yours.
 *   [Decide to trust him] -> show_interest
-*   [Decide to walk away] -> universe_story
+*   [Decide to walk away] -> navigation
 
 
 === negotiate ===
@@ -79,4 +79,4 @@ MERCHANT: Hmm, you drive a hard bargain. But, alright. For a fellow traveler, I 
 YOU: I appreciate the discount, but I still think it could be lower.
 MERCHANT: You have spirit, I'll give you that. Very well, the final price is lower, but remember, you get what you pay for.
 *   [Accept the final price] -> finesse_success
-*   [Refuse to buy] -> universe_story
+*   [Refuse to buy] -> navigation

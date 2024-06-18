@@ -1,4 +1,4 @@
-==prologue===
+==shangri_la===
 ~background = black
 Black.
 A cave.
@@ -62,16 +62,12 @@ You pick up the shard.
 It glows softly in your hand. As you look into the shard, you feel a foreign life flash before your eyes. It hits you like a tonne of bricks, and fills you with a pervasive memory. 
 A memory that calls to you.
 You look into the shard, and you see...
-~ game_state = character_selection
-*[An artist.]
-    ~ set_class(Artist)
-    ->artist
-*[A doctor.]
-    ~ set_class(Doctor)
-    ->doctor
-*[A mechanic.]
-    ~ set_class(Mechanic)
-    ->mechanic
+->character_select ->
+{
+- class == Artist: ->artist
+- class == Doctor: ->doctor
+- class == Mechanic: ->mechanic
+}
 
 ===artist===
 Two memories flood your mind: The first hits you with a splash of colour - colours you feel like you've never seen in your life. In your hand, a tool, splattered in these same colours. You can see in front of you brilliant shapes that you recognise in an odd way.
@@ -152,7 +148,7 @@ You look at the shard again, which now pulsates again. It urges you to choose.
 ===chooseplanet===
 Good question, you say to yourself. Next to the energy gauge is a keypad. A keypad for launch codes. 
 You think back... you remember there were two pieces of text written either side of the cave's entrance...
-->universe_story
+->navigation
 
 NOTE: YOU WILL FIND TWO CODES SOMEWHERE IN SHANGRILA AROUND YOU. LOOK AROUND THE ARTWORK TO FIND THEM.
 *[Player inputs code 1]->liftoff1

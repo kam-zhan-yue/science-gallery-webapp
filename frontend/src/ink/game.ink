@@ -16,35 +16,13 @@ INCLUDE player/battle.ink
 INCLUDE globals.ink
 INCLUDE navigation.ink
 INCLUDE test/shop.ink
+INCLUDE player/character_select.ink
 
 
-
+Welcome, Tester.
 *[Debug]
-    ->debug_story(Doctor)
+    ->character_select ->
+    ~ planet = shangri_la
+    ->navigation
 *[From Beginning]
-    ->prologue
-
-
-=== debug_story(class_type) ===
-~ set_class(class_type)
--> navigation
-
-
-=== universe_story ===
-~ background = empty
-Where shall we go today?
-~ game_state = planet_selection
-    // the planet name must correspond to the planet id
-    * [new_myths:1234]
-        ~ game_state = exploring
-        ~ planet = new_myths
-        ->newmyths
-    * [debug:1111]
-        ~ game_state = exploring
-        ~ planet = debug
-        -> earth_story
-    * [DONE]
-        Okay, let's call it a day!
-        -> END
-        
--> END
+    ->start
