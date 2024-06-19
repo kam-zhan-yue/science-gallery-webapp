@@ -26,8 +26,8 @@ export const planets: { [key: string]: PlanetData } = {
     "words_and_worlds": {
         name: "Words and Worlds",
         key: "earth",
-        orbitalRadius: 40,
-        orbitalPeriod: 20,
+        orbitalRadius: 80,
+        orbitalPeriod: 30,
         clockwiseOrbit: false,
     },
     "new_nature": {
@@ -47,8 +47,8 @@ export const planets: { [key: string]: PlanetData } = {
     "crafting_new_worlds": {
         name: "Crafting New Worlds",
         key: "earth",
-        orbitalRadius: 40,
-        orbitalPeriod: 20,
+        orbitalRadius: 80,
+        orbitalPeriod: 30,
         clockwiseOrbit: false,
     },
     "the_monstrous_feminine": {
@@ -61,8 +61,8 @@ export const planets: { [key: string]: PlanetData } = {
     "new_myths": {
         name: "New Myths",
         key: "earth",
-        orbitalRadius: 40,
-        orbitalPeriod: 20,
+        orbitalRadius: 80,
+        orbitalPeriod: 30,
         clockwiseOrbit: false,
     },
     "in_a_new_light": {

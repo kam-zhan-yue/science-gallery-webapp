@@ -14,6 +14,7 @@ export default class CelestialBody {
     private parentPosition: Vector2 = new Vector2(0, 0);
     private orbitalRing: Phaser.GameObjects.Graphics;
     private nameText: Phaser.GameObjects.BitmapText;
+    private graphics: Graphics;
 
     constructor(id: string, data: PlanetData, physics: ArcadePhysics, graphics: Graphics, x: number, y: number) {
         this.id = id;
@@ -23,14 +24,17 @@ export default class CelestialBody {
         this.body.play(`${data.key}_spin`, true);
         this.angle = Random() * 360;
 
-        graphics.lineStyle(1, 0xffffff, 0.4);
-        this.orbitalRing = graphics.strokeCircle(x, y, this.data.orbitalRadius);
+        this.graphics = graphics.lineStyle(1, 0xffffff, 0.4);
+        this.orbitalRing = this.graphics.strokeCircle(x, y, this.data.orbitalRadius);
         // Initialize the name text
         this.nameText = this.body.scene.add.bitmapText(0, 0, 'pixelFont', this.data.name, 16);
     }
 
     public clean() {
+        this.graphics.clear();
         this.body.setActive(false).setVisible(false);
+        this.orbitalRing.setActive(false).setVisible(false);
+        this.nameText.setActive(false).setVisible(false);
     }
 
     public getId(): string {
@@ -94,13 +98,11 @@ export default class CelestialBody {
     }
     public fadeIn(duration: number) {
         this.body.alpha = 0;
-        // this.orbitalRing.alpha = 0;
-        // this.nameText.alpha = 0;
-        this.nameText.setVisible(true);
-        this.orbitalRing.setVisible(true);
+        this.orbitalRing.alpha = 0;
+        this.nameText.alpha = 0;
         this.setVisible(true);
         const fadeTween = this.body.scene.tweens.add({
-            targets: [this.body],
+            targets: [this.body, this.orbitalRing, this.nameText],
             alpha: 1,
             duration: duration
         })

@@ -1,7 +1,6 @@
 import {Scene} from 'phaser';
 import SolarSystem from "../classes/SolarSystem.ts";
 import {EventBus} from "../../EventBus.tsx";
-import Graphics = Phaser.GameObjects.Graphics;
 
 export enum UniverseState {
     Navigation = 0,
@@ -11,7 +10,6 @@ export enum UniverseState {
 export class Universe extends Scene {
     public started: boolean = false;
     private solarSystem?: SolarSystem;
-    private graphics: Graphics | undefined;
     private centreX: number | undefined;
     private centreY: number | undefined;
     public state: UniverseState;
@@ -33,19 +31,48 @@ export class Universe extends Scene {
 
     updateOrbits(orbits: string[]) {
         console.log('update orbits');
-        if(this.graphics && this.centreX && this.centreY) {
-            this.solarSystem?.clean();
-            this.solarSystem = new SolarSystem(this.centre, this.physics, this.graphics, this.centreX, this.centreY);
-            this.cameras.main.startFollow(this.solarSystem.centre().body);
-            this.solarSystem?.setVisible(false);
-            this.solarSystem?.updateOrbits(orbits);
-            this.solarSystem?.setVisible(true);
-            this.solarSystem?.fadeIn(1500);
+        if(this.centreX && this.centreY) {
+            if(this.solarSystem) {
+                this.solarSystemTransition(orbits, this.centreX, this.centreY);
+            } else {
+                this.solarSystemInit(orbits, this.centreX, this.centreY);
+                this.reset(orbits);
+            }
         }
     }
 
+    private solarSystemTransition(orbits: string[], centreX: number, centreY: number) {
+        const timeline = this.add.timeline([
+            {
+                // Fade out the existing solar system
+                at: 0,
+                run: () => {
+                    this.solarSystem?.fadeOut(1000);
+                }
+            },
+            {
+                // Clean and fade in the new solar system
+                at: 1500,
+                run: () => {
+                    this.solarSystemInit(orbits, centreX, centreY);
+                    this.reset(orbits);
+                }
+            }
+        ]);
+        timeline.play();
+    }
+
+    private solarSystemInit(orbits: string[],  centreX: number, centreY: number) {
+        this.solarSystem?.clean();
+        this.solarSystem = new SolarSystem(this.centre, this.physics, this.add.graphics(), centreX, centreY);
+        this.cameras.main.startFollow(this.solarSystem.centre().body);
+        this.solarSystem?.setVisible(false);
+        this.solarSystem?.updateOrbits(orbits);
+        this.solarSystem?.setVisible(true);
+        this.solarSystem?.fadeIn(1500);
+    }
+
     create() {
-        this.graphics = this.add.graphics();
         this.cameras.main.zoom = 2.5;
         this.centreX = this.cameras.main.centerX;
         this.centreY = this.cameras.main.centerY;

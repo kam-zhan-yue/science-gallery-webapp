@@ -129,8 +129,9 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
     if(universeRef?.state === UniverseState.Story) {
       universeRef?.setNavigation();
       universeRef?.updateOrbits(interactivePlanets);
+    } else {
+      universeRef?.reset(interactivePlanets);
     }
-    universeRef?.reset(interactivePlanets);
   }
 
   useEffect(() => {
