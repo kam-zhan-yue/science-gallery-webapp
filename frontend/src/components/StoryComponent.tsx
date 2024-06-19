@@ -32,6 +32,7 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
   const [story, setStory] = useState<Story | null>(null);
   const [background, setBackground] = useState<string>('');
   const [storyText, setStoryText] = useState<string>('');
+  const [centre, setCentre] = useState<string>('');
   const [showingChoices, setShowingChoices] = useState<boolean>(false);
   const [choices, setChoices] = useState<Choice[]>([]);
   const [planet, setPlanet] = useState<Planet>(new Planet());
@@ -95,9 +96,7 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
           case 'game_state':
             setInkState(value.toString());
             if(value.toString() === 'planet_selection') {
-              if(universeRef && !universeRef.started) {
-                universeRef?.start();
-              }
+              console.log("choosing planet")
               choosePlanets(story)
             }
             if(value.toString() === 'take_item') {
@@ -109,6 +108,7 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
             }
             break;
           case 'planet':
+            console.log("setting planet")
             selectPlanet(value.toString());
             break;
           case 'background':
@@ -118,11 +118,11 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
         }
       });
     }
-  }, [story]);
+  }, [story, centre]);
 
   const choosePlanets = (story: Story | null) => {
     // Reset the universe and state
-    setStoryState(StoryState.Travelling)
+    setStoryState(StoryState.Travelling);
     // Set the current planet from the current choices
     let interactivePlanets: string[] = [];
     for (let i= 0; i<story.currentChoices.length; ++i) {
@@ -132,8 +132,9 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
         interactivePlanets.push(values[0]);
       }
     }
+    console.log(`Centre: ${centre} Orbits: ${interactivePlanets}`)
+    universeRef?.init(centre, interactivePlanets);
     universeRef?.reset(interactivePlanets);
-
   }
 
   useEffect(() => {
@@ -219,6 +220,7 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
   }
 
   const selectPlanet = (_planet: string) => {
+    setCentre(_planet);
     setStoryState(StoryState.Dialogue);
   }
 

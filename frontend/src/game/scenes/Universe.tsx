@@ -1,10 +1,21 @@
 import {Scene} from 'phaser';
 import SolarSystem from "../classes/SolarSystem.ts";
 import {EventBus} from "../../EventBus.tsx";
+import Graphics = Phaser.GameObjects.Graphics;
+
+enum UniverseState {
+    Navigation = 0,
+    Story = 1
+}
 
 export class Universe extends Scene {
     public started: boolean = false;
     private solarSystem?: SolarSystem;
+    private graphics: Graphics | undefined;
+    private centreX: number | undefined;
+    private centreY: number | undefined;
+    private Universe
+
     constructor() {
         super({ key: 'Universe' });
     }
@@ -12,18 +23,21 @@ export class Universe extends Scene {
         this.load.glsl('stars', '/game/shaders/stars.glsl');
     }
 
-    start() {
-        this.started = true;
-        this.solarSystem?.setVisible(true);
-        this.solarSystem?.fadeIn(1500);
+    init(centre: string, orbits: string[]) {
+        if(this.graphics && this.centreX && this.centreY) {
+            this.solarSystem = new SolarSystem(centre, orbits, this.physics, this.graphics, this.centreX, this.centreY);
+            this.cameras.main.startFollow(this.solarSystem.centre().body);
+            this.solarSystem?.setVisible(true);
+            this.solarSystem?.fadeIn(1500);
+        }
     }
 
     create() {
+        this.graphics = this.add.graphics();
         this.cameras.main.zoom = 2.5;
-        const centerX = this.cameras.main.centerX;
-        const centerY = this.cameras.main.centerY;
-
-        this.add.shader('stars', centerX, centerY, 1000, 1000);
+        this.centreX = this.cameras.main.centerX;
+        this.centreY = this.cameras.main.centerY;
+        this.add.shader('stars', this.centreX, this.centreY, 1000, 1000);
         this.anims.create({
             key: 'earth_spin',
             frames: this.anims.generateFrameNumbers('earth', {frames:[0,1,2,3,4,5]}),
@@ -42,10 +56,6 @@ export class Universe extends Scene {
             frameRate: 12,
             repeat: -1
         });
-        const graphics = this.add.graphics();
-        this.solarSystem = new SolarSystem(this.physics, graphics, centerX, centerY);
-        this.cameras.main.startFollow(this.solarSystem.centre().body);
-        this.solarSystem.setVisible(false);
     }
 
     inspect(planetName: string) {

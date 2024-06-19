@@ -3,27 +3,51 @@ import Graphics = Phaser.GameObjects.Graphics;
 
 import Sun from "./Sun.ts";
 import Planet from "./Planet.ts";
-import {galaxies, Galaxy} from "../../setup/Galaxy.ts";
 import {planets} from "../../setup/PlanetData.ts";
 type Dictionary<Key extends keyof any, Value> = {
     [key in Key]: Value; // Mapped types syntax
 };
 
 export default class SolarSystem {
-    private galaxy: Galaxy;
     private sun: Sun;
     private drawNames: boolean;
     private orbits: Dictionary<string, Planet> = {};
-    constructor(physics: ArcadePhysics, graphics: Graphics,  x: number, y: number) {
-        this.galaxy = galaxies["start"];
+    private physics: ArcadePhysics;
+    private graphics: Graphics;
+    private x: number;
+    private y: number;
 
-        this.sun = new Sun(this.galaxy.centre, planets[this.galaxy.centre], physics, graphics, x, y);
+    constructor(centre: string, orbits: string[], physics: ArcadePhysics, graphics: Graphics,  x: number, y: number) {
+        this.physics = physics;
+        this.graphics = graphics;
+        this.x = x;
+        this.y = y;
+
         this.drawNames = true;
         // Instantiate Planets
         graphics.lineStyle(1, 0xffffff, 0.4);
-        for(let planet of this.galaxy.planets) {
-            console.log(`try find ${planet}`);
-            this.orbits[planet] = new Planet(planet, planets[planet], physics, graphics, x, y);
+        if(planets.hasOwnProperty(centre)) {
+            this.sun = new Sun(centre, planets[centre], this.physics, this.graphics, this.x, this.y);
+        } else {
+            console.log('uh oh ')
+            this.sun = new Sun("shangrila", planets["shangrila"], this.physics, this.graphics, this.x, this.y);
+        }
+        this.init(centre, orbits);
+    }
+
+    public init(centre: string, orbits: string[]) {
+        if(planets.hasOwnProperty(centre) && this.sun.getId() !== centre) {
+            this.sun = new Sun(centre, planets[centre], this.physics, this.graphics, this.x, this.y);
+        }
+
+        this.orbits = {};
+        for(let orbit of orbits) {
+            console.log(`Planet has ${orbit}: ${planets.hasOwnProperty(orbit)}`)
+            if(planets.hasOwnProperty(orbit)) {
+
+                console.log(`Adding ${orbit}`)
+                this.orbits[orbit] = new Planet(orbit, planets[orbit], this.physics, this.graphics, this.x, this.y);
+            }
         }
     }
 

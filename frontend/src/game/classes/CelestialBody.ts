@@ -27,6 +27,10 @@ export default class CelestialBody {
         this.nameText = this.body.scene.add.bitmapText(0, 0, 'pixelFont', this.data.name, 16);
     }
 
+    public getId(): string {
+        return this.id;
+    }
+
     public setNameVisible(visible: boolean) {
         this.nameText.setVisible(visible);
     }

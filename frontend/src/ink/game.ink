@@ -23,7 +23,7 @@ INCLUDE player/shard.ink
 Welcome, Tester.
 *[Debug]
     ->character_select ->
-    ~ planet = shangri_la
+    ~ planet = shangrila
     ->navigation
 *[From Beginning]
     ->start

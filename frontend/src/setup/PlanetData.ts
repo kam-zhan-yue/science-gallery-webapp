@@ -9,7 +9,7 @@ export type PlanetData = {
 }
 
 export const planets: { [key: string]: PlanetData } = {
-    "shangri_la" : {
+    "shangrila" : {
         name: "Shangri-la",
         key: "earth",
         orbitalRadius: 0,
