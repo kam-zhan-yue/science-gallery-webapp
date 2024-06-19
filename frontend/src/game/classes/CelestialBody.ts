@@ -22,9 +22,15 @@ export default class CelestialBody {
         this.body = physics.add.sprite(x, y, data.key);
         this.body.play(`${data.key}_spin`, true);
         this.angle = Random() * 360;
+
+        graphics.lineStyle(1, 0xffffff, 0.4);
         this.orbitalRing = graphics.strokeCircle(x, y, this.data.orbitalRadius);
         // Initialize the name text
         this.nameText = this.body.scene.add.bitmapText(0, 0, 'pixelFont', this.data.name, 16);
+    }
+
+    public clean() {
+        this.body.setActive(false).setVisible(false);
     }
 
     public getId(): string {
@@ -77,7 +83,7 @@ export default class CelestialBody {
 
     public fadeOut(duration: number) {
         const fadeTween = this.body.scene.tweens.add({
-            targets: [this.body, this.orbitalRing],
+            targets: [this.body, this.orbitalRing, this.nameText],
             alpha: 0,
             duration: duration,
             onComplete: () => {
@@ -90,9 +96,11 @@ export default class CelestialBody {
         this.body.alpha = 0;
         this.orbitalRing.alpha = 0;
         this.nameText.alpha = 0;
+        this.nameText.setVisible(true);
+        this.orbitalRing.setVisible(true);
         this.setVisible(true);
         const fadeTween = this.body.scene.tweens.add({
-            targets: [this.body, this.orbitalRing, this.nameText],
+            targets: [this.body],
             alpha: 1,
             duration: duration
         })

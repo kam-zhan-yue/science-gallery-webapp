@@ -32,7 +32,6 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
   const [story, setStory] = useState<Story | null>(null);
   const [background, setBackground] = useState<string>('');
   const [storyText, setStoryText] = useState<string>('');
-  const [centre, setCentre] = useState<string>('');
   const [showingChoices, setShowingChoices] = useState<boolean>(false);
   const [choices, setChoices] = useState<Choice[]>([]);
   const [planet, setPlanet] = useState<Planet>(new Planet());
@@ -99,25 +98,21 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
               choosePlanets(story)
             }
             if(value.toString() === 'take_item') {
-              console.log(`player component is ${playerComponentRef.current}`)
               if(playerComponentRef.current) {
-                console.log(`open inventory`)
                 playerComponentRef.current.openInventory();
               }
             }
             break;
           case 'planet':
-            console.log("setting planet")
             selectPlanet(value.toString());
             break;
           case 'background':
-            console.log('set background');
             setBackground(value.toString());
             break;
         }
       });
     }
-  }, [story, centre]);
+  }, [story]);
 
   const choosePlanets = (story: Story | null) => {
     // Reset the universe and state
@@ -131,14 +126,11 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
         interactivePlanets.push(values[0]);
       }
     }
-    console.log(`Centre: ${centre} Orbits: ${interactivePlanets}`)
     if(universeRef?.state === UniverseState.Story) {
-      console.log('here')
       universeRef?.setNavigation();
-      universeRef?.init(centre, interactivePlanets);
-    } else {
-      universeRef?.reset(interactivePlanets);
+      universeRef?.updateOrbits(interactivePlanets);
     }
+    universeRef?.reset(interactivePlanets);
   }
 
   useEffect(() => {
@@ -193,7 +185,6 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
       setChoices(story.currentChoices)
     } else if (!showingChoices) {
       const choices: Choice[] = story.currentChoices;
-      console.log(`Show choices! ${choices}`);
       if (choices.length > 0) {
         setShowingChoices(true);
       }
@@ -226,7 +217,8 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
   }
 
   const selectPlanet = (_planet: string) => {
-    setCentre(_planet);
+    console.log(`setting planet to ${_planet}`)
+    universeRef?.init(_planet);
     setStoryState(StoryState.Dialogue);
   }
 

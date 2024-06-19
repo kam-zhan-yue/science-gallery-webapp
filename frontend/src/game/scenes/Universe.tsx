@@ -15,20 +15,30 @@ export class Universe extends Scene {
     private centreX: number | undefined;
     private centreY: number | undefined;
     public state: UniverseState;
+    private centre: string;
 
     constructor() {
         super({ key: 'Universe' });
         this.state = UniverseState.Story;
+        this.centre = '';
     }
 
     preload() {
         this.load.glsl('stars', '/game/shaders/stars.glsl');
     }
 
-    init(centre: string, orbits: string[]) {
+    init(centre: string) {
+        this.centre = centre;
+    }
+
+    updateOrbits(orbits: string[]) {
+        console.log('update orbits');
         if(this.graphics && this.centreX && this.centreY) {
-            this.solarSystem = new SolarSystem(centre, orbits, this.physics, this.graphics, this.centreX, this.centreY);
+            this.solarSystem?.clean();
+            this.solarSystem = new SolarSystem(this.centre, this.physics, this.graphics, this.centreX, this.centreY);
             this.cameras.main.startFollow(this.solarSystem.centre().body);
+            this.solarSystem?.setVisible(false);
+            this.solarSystem?.updateOrbits(orbits);
             this.solarSystem?.setVisible(true);
             this.solarSystem?.fadeIn(1500);
         }

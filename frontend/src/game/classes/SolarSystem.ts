@@ -17,35 +17,35 @@ export default class SolarSystem {
     private x: number;
     private y: number;
 
-    constructor(centre: string, orbits: string[], physics: ArcadePhysics, graphics: Graphics,  x: number, y: number) {
+    constructor(centre: string, physics: ArcadePhysics, graphics: Graphics,  x: number, y: number) {
         this.physics = physics;
         this.graphics = graphics;
         this.x = x;
-        this.y = y;
 
+        this.y = y;
         this.drawNames = true;
         // Instantiate Planets
-        graphics.lineStyle(1, 0xffffff, 0.4);
         if(planets.hasOwnProperty(centre)) {
             this.sun = new Sun(centre, planets[centre], this.physics, this.graphics, this.x, this.y);
         } else {
             console.log('uh oh ')
             this.sun = new Sun("shangrila", planets["shangrila"], this.physics, this.graphics, this.x, this.y);
         }
-        this.init(centre, orbits);
     }
 
-    public init(centre: string, orbits: string[]) {
-        if(planets.hasOwnProperty(centre) && this.sun.getId() !== centre) {
-            this.sun = new Sun(centre, planets[centre], this.physics, this.graphics, this.x, this.y);
+    clean() {
+        this.sun.clean();
+        for(const key in this.orbits) {
+            if(this.orbits.hasOwnProperty(key)) {
+                this.orbits[key].clean();
+            }
         }
+    }
 
+    updateOrbits(orbits: string[]) {
         this.orbits = {};
         for(let orbit of orbits) {
-            console.log(`Planet has ${orbit}: ${planets.hasOwnProperty(orbit)}`)
             if(planets.hasOwnProperty(orbit)) {
-
-                console.log(`Adding ${orbit}`)
                 this.orbits[orbit] = new Planet(orbit, planets[orbit], this.physics, this.graphics, this.x, this.y);
             }
         }
@@ -73,7 +73,6 @@ export default class SolarSystem {
     }
 
     setInteractive(planets: string[]) {
-        console.log(`set interactive ${planets}`);
         for(const key in this.orbits) {
             if(this.orbits.hasOwnProperty(key)) {
                 this.orbits[key].setInteractive(false);
