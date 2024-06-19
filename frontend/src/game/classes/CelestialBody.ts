@@ -94,8 +94,8 @@ export default class CelestialBody {
     }
     public fadeIn(duration: number) {
         this.body.alpha = 0;
-        this.orbitalRing.alpha = 0;
-        this.nameText.alpha = 0;
+        // this.orbitalRing.alpha = 0;
+        // this.nameText.alpha = 0;
         this.nameText.setVisible(true);
         this.orbitalRing.setVisible(true);
         this.setVisible(true);
