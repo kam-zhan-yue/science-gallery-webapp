@@ -52,6 +52,7 @@ Choose a planet.
 
 === go_to_planet(next) ===
 ~ planet = next
+~ game_state = exploring
 {
 - planet == paradox_of_paradise:
     ->paradox

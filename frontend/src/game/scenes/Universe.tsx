@@ -3,7 +3,7 @@ import SolarSystem from "../classes/SolarSystem.ts";
 import {EventBus} from "../../EventBus.tsx";
 import Graphics = Phaser.GameObjects.Graphics;
 
-enum UniverseState {
+export enum UniverseState {
     Navigation = 0,
     Story = 1
 }
@@ -14,11 +14,13 @@ export class Universe extends Scene {
     private graphics: Graphics | undefined;
     private centreX: number | undefined;
     private centreY: number | undefined;
-    private Universe
+    public state: UniverseState;
 
     constructor() {
         super({ key: 'Universe' });
+        this.state = UniverseState.Story;
     }
+
     preload() {
         this.load.glsl('stars', '/game/shaders/stars.glsl');
     }
@@ -127,5 +129,13 @@ export class Universe extends Scene {
 
     update(time: number, delta: number) {
         this.solarSystem?.simulate(time, delta);
+    }
+
+    setNavigation() {
+        this.state = UniverseState.Navigation;
+    }
+
+    setStory() {
+        this.state = UniverseState.Story;
     }
 }

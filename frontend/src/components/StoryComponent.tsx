@@ -7,7 +7,7 @@ import PlayerComponent, {PlayerComponentHandle} from "./PlayerComponent.tsx";
 import Player from "../classes/Player.ts";
 import Planet from "../classes/Planet.ts";
 import KeypadComponent from "./KeypadComponent.tsx";
-import {Universe} from "../game/scenes/Universe.tsx";
+import {Universe, UniverseState} from "../game/scenes/Universe.tsx";
 import {EventBus} from "../EventBus.tsx";
 import main from "../assets/audio/main.mp3";
 import {GameContext, GameContextType} from "../contexts/GameContext.tsx";
@@ -96,7 +96,6 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
           case 'game_state':
             setInkState(value.toString());
             if(value.toString() === 'planet_selection') {
-              console.log("choosing planet")
               choosePlanets(story)
             }
             if(value.toString() === 'take_item') {
@@ -133,8 +132,13 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
       }
     }
     console.log(`Centre: ${centre} Orbits: ${interactivePlanets}`)
-    universeRef?.init(centre, interactivePlanets);
-    universeRef?.reset(interactivePlanets);
+    if(universeRef?.state === UniverseState.Story) {
+      console.log('here')
+      universeRef?.setNavigation();
+      universeRef?.init(centre, interactivePlanets);
+    } else {
+      universeRef?.reset(interactivePlanets);
+    }
   }
 
   useEffect(() => {
@@ -189,6 +193,7 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
       setChoices(story.currentChoices)
     } else if (!showingChoices) {
       const choices: Choice[] = story.currentChoices;
+      console.log(`Show choices! ${choices}`);
       if (choices.length > 0) {
         setShowingChoices(true);
       }
@@ -211,6 +216,7 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
 
   const handleCodeInput = (choiceIndex: number) => {
     if(story) {
+      universeRef?.setStory();
       setStoryState(StoryState.Dialogue);
       story.ChooseChoiceIndex(choiceIndex);
       setShowingChoices(false);
