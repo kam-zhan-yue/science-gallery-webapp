@@ -24,6 +24,6 @@ Welcome, Tester.
 *[Debug]
     ->character_select ->
     ~ planet = shangrila
-    ->navigation
+    ->debug_navigation
 *[From Beginning]
     ->start
