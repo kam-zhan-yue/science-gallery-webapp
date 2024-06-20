@@ -3,7 +3,6 @@ import React, {useContext, useEffect, useRef, useState} from 'react';
 import {Choice, InkObject, Story, EvaluateFunction} from "inkjs";
 import DialogueComponent from "./DialogueComponent.tsx";
 import ChoiceComponent from "./choices/ChoiceComponent.tsx";
-import PlayerComponent, {PlayerComponentHandle} from "./player/PlayerComponent.tsx";
 import Planet from "../classes/Planet.ts";
 import KeypadComponent from "./KeypadComponent.tsx";
 import {Universe, UniverseState} from "../game/scenes/Universe.tsx";
@@ -14,6 +13,7 @@ import PlanetComponent from "./PlanetComponent.tsx";
 import GuideComponent from "./GuideComponent.tsx";
 import BackgroundComponent from "./BackgroundComponent.tsx";
 import NotificationComponent from "./NotificationComponent.tsx";
+import PlayerComponent, {PlayerComponentHandle} from './player/PlayerComponent.tsx';
 
 interface StoryComponentProps {
   universeRef: Universe | null;
