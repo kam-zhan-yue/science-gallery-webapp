@@ -4,7 +4,6 @@ import {Choice, InkObject, Story, EvaluateFunction} from "inkjs";
 import DialogueComponent from "./DialogueComponent.tsx";
 import ChoiceComponent from "./choices/ChoiceComponent.tsx";
 import PlayerComponent, {PlayerComponentHandle} from "./player/PlayerComponent.tsx";
-import Player from "../classes/Player.ts";
 import Planet from "../classes/Planet.ts";
 import KeypadComponent from "./KeypadComponent.tsx";
 import {Universe, UniverseState} from "../game/scenes/Universe.tsx";
@@ -35,9 +34,8 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
   const [showingChoices, setShowingChoices] = useState<boolean>(false);
   const [choices, setChoices] = useState<Choice[]>([]);
   const [planet, setPlanet] = useState<Planet>(new Planet());
-  const [player, setPlayer] = useState<Player>(new Player());
   const [storyState, setStoryState] = useState<StoryState>(StoryState.Dialogue);
-  const {debug, inkState, setInkState} = useContext(GameContext) as GameContextType;
+  const {debug, inkState, setInkState, player, setPlayer} = useContext(GameContext) as GameContextType;
   const playerComponentRef = useRef<PlayerComponentHandle>(null);
 
   // Playing audio

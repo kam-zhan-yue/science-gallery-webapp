@@ -36,6 +36,10 @@ export default defineConfig({
         {
           src: 'src/assets/backgrounds/*.png',
           dest: 'assets/backgrounds'
+        },
+        {
+          src: 'src/assets/characters/*.png',
+          dest: 'assets/characters'
         }
       ]
     })

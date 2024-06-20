@@ -1,4 +1,5 @@
 import React, {ReactNode, useState} from 'react';
+import Player from "../classes/Player.ts";
 
 export enum GameState {
     Menu,
@@ -15,6 +16,8 @@ export interface GameContextType {
     setDebug: (value: boolean) => void;
     inkState: string;
     setInkState: (value: string) => void;
+    player: Player;
+    setPlayer: (value: Player) => void;
 }
 
 export const GameContext = React.createContext<GameContextType>({
@@ -26,6 +29,8 @@ export const GameContext = React.createContext<GameContextType>({
     setDebug: (_value: boolean) => {},
     inkState: '',
     setInkState: (_value: string) => {},
+    player: new Player(),
+    setPlayer: (_value: Player) => {},
 });
 
 export const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
@@ -33,6 +38,7 @@ export const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     const [state, setState] = useState<GameState>(GameState.Menu);
     const [debug, setDebug] = useState<boolean>(false);
     const [inkState, setInkState] = useState<string>('');
+    const [player, setPlayer] = useState<Player>(new Player());
 
     const start = () => {
         setStarted(true);
@@ -50,6 +56,8 @@ export const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
                     setDebug: setDebug,
                     inkState: inkState,
                     setInkState: setInkState,
+                    player: player,
+                    setPlayer: setPlayer,
                 }
             }>
                 {children}

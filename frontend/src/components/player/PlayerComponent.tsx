@@ -103,6 +103,7 @@ const PlayerComponent = forwardRef<PlayerComponentHandle, PlayerComponentProps>(
         <>
             {player.class !== "" && (
                 <>
+                    <ProgressComponent progress={player.progress}/>
                     <StatHolder>
                         <CharacterHolder
                             key={"character-holder"}
@@ -111,7 +112,6 @@ const PlayerComponent = forwardRef<PlayerComponentHandle, PlayerComponentProps>(
                             alt={"character-holder"}
                             onClick={handlePlayerClicked}
                         />
-                        <ProgressComponent progress={player.progress}/>
                         {show && (
                             <>
                                 {["inventory", "stats", "skill"].map((tabId, index) => (

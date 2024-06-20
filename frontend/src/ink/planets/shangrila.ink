@@ -10,7 +10,7 @@ A long lost memory...
 *[Wake up.] ->Shangrila_intro
 
 ===Shangrila_intro===
-~ background = shangrila_city
+~ background = shangrila_main
 Welcome to another day in paradise. 
 You wake up in your bed, the warmth of daylight gently hitting your face. 
 Another day in paradise. 

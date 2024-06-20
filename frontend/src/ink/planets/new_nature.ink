@@ -1,4 +1,5 @@
 === nature ===
+~ background = new_nature_main
 You step out of your spacecraft and into a beautiful forest glade with a winding path, leading away.
 
 You encounter what looks to be an ancient town, buildings overgrown by vines and trees. It seems nature has reclaimed this planet.

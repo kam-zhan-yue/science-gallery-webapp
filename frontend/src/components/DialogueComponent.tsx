@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import styled from 'styled-components';
 import Typewriter from "./Typewriter.tsx";
 import DialogueBox from "./DialogueBox.tsx";
 import {motion} from "framer-motion";
 import {characters} from "../setup/Character.ts";
+import {GameContext, GameContextType} from "../contexts/GameContext.tsx";
 
 const TitleText = styled.div`
   font-size: 40px;
@@ -52,25 +53,28 @@ const DialogueComponent: React.FC<DialogueComponentProps> = ({ text, next }) => 
     const colonIndex = text.indexOf(':');
     const characterName = colonIndex !== -1 ? text.substring(0, colonIndex).trim() : '';
     const dialogueBody = colonIndex !== -1 ? text.substring(colonIndex + 1).trim() : text;
+    const {player} = useContext(GameContext) as GameContextType;
 
-    const getCharacter = (): string => {
+    const getCharacterFullBody = (): string => {
         if(characterName === "Ship") {
-            return `../assets/characters/${characters[characterName]}`;
+            return `../assets/characters/${characters[player.class].fullBody}`;
+        } else if(characterName in characters) {
+            return `../assets/characters/${characters[characterName].fullBody}`;
         } else {
-            return `../assets/characters/${characters[characterName]}`;
+            return '';
         }
     }
 
     return (
         <>
-            {characterName && characterName in characters &&
+            {characterName && getCharacterFullBody() !== '' &&
                 <>
                     <CharacterContainer
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        exit={{ opacity: 0, transition: {duration: 1} }}
-                        transition={{ duration: 1 }}>
-                        <Character src={getCharacter()} alt='character'/>
+                        exit={{ opacity: 0, transition: {duration: 0.2} }}
+                        transition={{ duration: 0.2 }}>
+                        <Character src={getCharacterFullBody()} alt='character'/>
                     </CharacterContainer>
                 </>
             }

@@ -7,7 +7,8 @@ interface BackgroundComponentProps {
 }
 
 const backgrounds: { [key: string]: string} = {
-    "shangrila_city": "shangrila-city.png",
+    "shangrila_main": "shngrila.png",
+    "new_nature_main": "new_nature.png",
 }
 
 const Overlay = styled(motion.div)`
