@@ -10,6 +10,9 @@ class Player {
     private _inventory: string[] = [];
     private _inkProgress: number = 0;
     private _gameProgress: number = 0;
+    private _firstShard: string = ''
+    private _secondShard: string = '';
+    private _thirdShard: string = '';
 
     get class(): string {
         return this._class;
@@ -29,6 +32,18 @@ class Player {
 
     get health(): number {
         return this._health;
+    }
+
+    get firstShard(): string {
+        return this._firstShard;
+    }
+
+    get secondShard(): string {
+        return this._secondShard;
+    }
+
+    get thirdShard(): string {
+        return this._thirdShard;
     }
 
     get inventory(): string[] {
@@ -53,6 +68,18 @@ class Player {
 
     set health(stat: number) {
         this._health = stat;
+    }
+
+    set firstShard(value: string) {
+        this._firstShard = value;
+    }
+
+    set secondShard(value: string) {
+        this._firstShard = value;
+    }
+
+    set thirdShard(value: string) {
+        this._firstShard = value;
     }
 
     set inkProgress(value: number) {

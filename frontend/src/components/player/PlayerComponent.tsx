@@ -114,7 +114,7 @@ const PlayerComponent = forwardRef<PlayerComponentHandle, PlayerComponentProps>(
                         />
                         {show && (
                             <>
-                                {["inventory", "stats", "skill"].map((tabId, index) => (
+                                {["inventory", "stats", "shard"].map((tabId, index) => (
                                     <Tab
                                         key={tabId}
                                         id={tabId}

@@ -65,33 +65,46 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
       story.variablesState.ObserveVariableChange((variableName: string, value: InkObject) => {
         // Update the character inkState whenever 'class' variable changes
         // console.log(`VARIABLE ${variableName} changed to ${value}`)
+        const valueString = value.toString();
         switch(variableName) {
           case 'class':
-            player.class = value.toString();
+            player.class = valueString;
             setPlayer(player);
             break;
           case 'finesse':
-            player.finesse = Number(value.toString());
+            player.finesse = Number(valueString);
             setPlayer(player);
             break;
           case 'intuition':
-            player.intuition = Number(value.toString());
+            player.intuition = Number(valueString);
             setPlayer(player);
             break;
           case 'persuasion':
-            player.persuasion = Number(value.toString());
+            player.persuasion = Number(valueString);
             setPlayer(player);
             break;
           case 'health':
-            player.health = Number(value.toString());
+            player.health = Number(valueString);
             setPlayer(player);
             break;
           case 'inventory':
-            player.inventory = value.toString();
+            player.inventory = valueString;
             setPlayer(player);
             break;
           case 'progress':
-            player.inkProgress = Number(value.toString());
+            player.inkProgress = Number(valueString);
+            setPlayer(player);
+            break;
+          case 'first_shard':
+            player.firstShard = valueString;
+            setPlayer(player);
+            break;
+          case 'second_shard':
+            player.secondShard = valueString;
+            setPlayer(player);
+            break;
+          case 'third_shard':
+            player.thirdShard = valueString;
             setPlayer(player);
             break;
           case 'game_state':

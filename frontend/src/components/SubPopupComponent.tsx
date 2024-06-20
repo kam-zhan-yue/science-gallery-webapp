@@ -2,6 +2,7 @@ import Player from "../classes/Player.ts";
 import React from "react";
 import InventoryComponent from "./player/InventoryComponent.tsx";
 import StatsComponent from "./player/StatsComponent.tsx";
+import ShardComponent from "./player/ShardComponent.tsx";
 
 interface SubPopupProps {
     tab: string,
@@ -25,6 +26,11 @@ const SubPopupComponent: React.FC<SubPopupProps> = ({tab, player,  onUseItem, on
             {tab === "stats" &&
                 <>
                     <StatsComponent player={player} onCloseButton={close}/>
+                </>
+            }
+            {tab === "shard" &&
+                <>
+                    <ShardComponent player={player} onCloseButton={close}/>
                 </>
             }
         </>

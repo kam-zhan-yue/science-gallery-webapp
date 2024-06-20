@@ -52,6 +52,7 @@ Choose a planet.
 === debug_navigation ===
 Debug Navigation Panel.
 ~ game_state = exploring
+~get_good_shard()
 *[normal route]
     ->navigation
 *[paradox_of_paradise]
