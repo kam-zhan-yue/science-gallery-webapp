@@ -1,7 +1,7 @@
 import Player from "../classes/Player.ts";
 import React from "react";
-import InventoryComponent from "./InventoryComponent.tsx";
-import StatsComponent from "./StatsComponent.tsx";
+import InventoryComponent from "./player/InventoryComponent.tsx";
+import StatsComponent from "./player/StatsComponent.tsx";
 
 interface SubPopupProps {
     tab: string,

@@ -3,7 +3,7 @@ import React, {useContext, useEffect, useRef, useState} from 'react';
 import {Choice, InkObject, Story, EvaluateFunction} from "inkjs";
 import DialogueComponent from "./DialogueComponent.tsx";
 import ChoiceComponent from "./choices/ChoiceComponent.tsx";
-import PlayerComponent, {PlayerComponentHandle} from "./PlayerComponent.tsx";
+import PlayerComponent, {PlayerComponentHandle} from "./player/PlayerComponent.tsx";
 import Player from "../classes/Player.ts";
 import Planet from "../classes/Planet.ts";
 import KeypadComponent from "./KeypadComponent.tsx";
@@ -90,6 +90,10 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
             break;
           case 'inventory':
             player.inventory = value.toString();
+            setPlayer(player);
+            break;
+          case 'progress':
+            player.inkProgress = Number(value.toString());
             setPlayer(player);
             break;
           case 'game_state':
@@ -184,7 +188,6 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
       const bodyText: string = story.Continue() ?? '';
       setStoryText(bodyText);
       setChoices(story.currentChoices)
-    } else if (!showingChoices) {
       const choices: Choice[] = story.currentChoices;
       if (choices.length > 0) {
         setShowingChoices(true);

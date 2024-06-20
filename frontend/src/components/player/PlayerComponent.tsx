@@ -1,7 +1,8 @@
 import { useState, useImperativeHandle, forwardRef } from "react";
 import styled, { css, keyframes } from "styled-components";
-import Player from "../classes/Player.ts";
-import SubPopupComponent from "./SubPopupComponent.tsx";
+import Player from "../../classes/Player.ts";
+import SubPopupComponent from "../SubPopupComponent.tsx";
+import ProgressComponent from "./ProgressComponent.tsx";
 
 const StatHolder = styled.div`
   position: fixed;
@@ -101,41 +102,44 @@ const PlayerComponent = forwardRef<PlayerComponentHandle, PlayerComponentProps>(
     return (
         <>
             {player.class !== "" && (
-                <StatHolder>
-                    <CharacterHolder
-                        key={"character-holder"}
-                        id={"character-holder"}
-                        src={"../assets/ui/character-holder.png"}
-                        alt={"character-holder"}
-                        onClick={handlePlayerClicked}
-                    />
-                    {show && (
-                        <>
-                            {["inventory", "stats", "skill"].map((tabId, index) => (
-                                <Tab
-                                    key={tabId}
-                                    id={tabId}
-                                    src={
-                                        tab === tabId
-                                            ? `../assets/ui/${tabId}-inactive.png`
-                                            : `../assets/ui/${tabId}-active.png`
-                                    }
-                                    alt={tabId}
-                                    onClick={() => handleTabClicked(tabId)}
-                                    delay={index * 0.1} // Staggered delay
-                                />
-                            ))}
-                            {tab !== "" && (
-                                <SubPopupComponent
-                                    tab={tab}
-                                    player={player}
-                                    onUseItem={onUseItem}
-                                    onCloseButton={closeTab}
-                                />
-                            )}
-                        </>
-                    )}
-                </StatHolder>
+                <>
+                    <StatHolder>
+                        <CharacterHolder
+                            key={"character-holder"}
+                            id={"character-holder"}
+                            src={"../assets/ui/character-holder.png"}
+                            alt={"character-holder"}
+                            onClick={handlePlayerClicked}
+                        />
+                        <ProgressComponent progress={player.progress}/>
+                        {show && (
+                            <>
+                                {["inventory", "stats", "skill"].map((tabId, index) => (
+                                    <Tab
+                                        key={tabId}
+                                        id={tabId}
+                                        src={
+                                            tab === tabId
+                                                ? `../assets/ui/${tabId}-inactive.png`
+                                                : `../assets/ui/${tabId}-active.png`
+                                        }
+                                        alt={tabId}
+                                        onClick={() => handleTabClicked(tabId)}
+                                        delay={index * 0.1} // Staggered delay
+                                    />
+                                ))}
+                                {tab !== "" && (
+                                    <SubPopupComponent
+                                        tab={tab}
+                                        player={player}
+                                        onUseItem={onUseItem}
+                                        onCloseButton={closeTab}
+                                    />
+                                )}
+                            </>
+                        )}
+                    </StatHolder>
+                </>
             )}
         </>
     );

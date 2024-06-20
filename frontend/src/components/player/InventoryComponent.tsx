@@ -1,10 +1,10 @@
-import Player from "../classes/Player.ts";
+import Player from "../../classes/Player.ts";
 import React, {useContext, useState} from "react";
-import SubPopup from "./styled/SubPopup.tsx";
-import {getImage, items} from "../setup/Item.ts";
+import SubPopup from "../styled/SubPopup.tsx";
+import {getImage, items} from "../../setup/Item.ts";
 import InventoryItemComponent from "./InventoryItemComponent.tsx";
 import styled from "styled-components";
-import {GameContext, GameContextType} from "../contexts/GameContext.tsx";
+import {GameContext, GameContextType} from "../../contexts/GameContext.tsx";
 
 interface InventoryComponentProps {
     player: Player,
@@ -14,14 +14,15 @@ interface InventoryComponentProps {
 
 const ItemHeader = styled.div`
   border: 20px solid;
-  border-image: url("../assets/ui/slot-active.png") 15 15 15 15 fill repeat;
+  border-image: url("../../assets/ui/slot-active.png") 15 15 15 15 fill repeat;
   display: flex;
   flex-direction: row;
   align-items: center;
   min-height: 80px;
   @media (max-width: 600px) {
     border: 12px solid;
-    border-image: url("../assets/ui/slot-active.png") 15 15 15 15 fill repeat;  }
+    border-image: url("../../assets/ui/slot-active.png") 15 15 15 15 fill repeat;
+  }
 `
 
 const ItemView = styled.div`

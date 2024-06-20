@@ -8,6 +8,8 @@ class Player {
     private _persuasion: number = 0;
     private _health: number = 0;
     private _inventory: string[] = [];
+    private _inkProgress: number = 0;
+    private _gameProgress: number = 0;
 
     get class(): string {
         return this._class;
@@ -51,6 +53,18 @@ class Player {
 
     set health(stat: number) {
         this._health = stat;
+    }
+
+    set inkProgress(value: number) {
+        this._inkProgress = value;
+    }
+
+    set gameProgress(value: number) {
+        this._gameProgress = value;
+    }
+
+    get progress() {
+        return this._inkProgress + this._gameProgress;
     }
 
     set inventory(value: string) {

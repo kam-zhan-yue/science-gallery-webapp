@@ -6,4 +6,4 @@ LIST planet = (none), debug, words_and_worlds, new_nature, paradox_of_paradise, 
 
 LIST background = (empty), black, shangrila_city
 
-VAR progress = 0
+VAR progress = 1

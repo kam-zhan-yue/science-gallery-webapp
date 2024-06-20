@@ -1,5 +1,4 @@
 === start ===
-~ progress = 0
 ~ planet = shangrila
 ->shangri_la
 
@@ -51,6 +50,10 @@ Choose a planet.
     ->go_to_planet(in_a_new_light)
 
 === debug_navigation ===
+Debug Navigation Panel.
+~ game_state = exploring
+*[normal route]
+    ->navigation
 *[paradox_of_paradise]
     ->go_to_planet(paradox_of_paradise)
 *[words_and_worlds]
