@@ -13,7 +13,7 @@ const ChoiceOption = styled.div<{buttonUrl: string}>`
   padding: 10px 10px;
   border: 10px solid;
 
-  border-image: url(${props => props.buttonUrl}) 50 fill repeat;
+  border-image: url(${props => props.buttonUrl}) 40 fill repeat;
   cursor: pointer;
   width: 80%;
   max-width: 500px;
