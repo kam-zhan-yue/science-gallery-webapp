@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useRef, useState} from 'react';
 // @ts-ignore
 import {Choice, InkObject, Story, EvaluateFunction} from "inkjs";
 import DialogueComponent from "./DialogueComponent.tsx";
-import ChoiceComponent from "./ChoiceComponent.tsx";
+import ChoiceComponent from "./choices/ChoiceComponent.tsx";
 import PlayerComponent, {PlayerComponentHandle} from "./PlayerComponent.tsx";
 import Player from "../classes/Player.ts";
 import Planet from "../classes/Planet.ts";
