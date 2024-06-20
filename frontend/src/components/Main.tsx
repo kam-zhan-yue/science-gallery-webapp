@@ -5,6 +5,8 @@ import {Universe} from "../game/scenes/Universe.tsx";
 import MirrorComponent from "./MirrorComponent.tsx";
 import {GameContext, GameContextType, GameState} from "../contexts/GameContext.tsx";
 import MenuComponent from "./MenuComponent.tsx";
+import {StyleSheetManager} from "styled-components";
+import isPropValid from "@emotion/is-prop-valid";
 
 const Main: React.FC = () => {
     const universeRef = useRef<Universe>(null);
@@ -43,8 +45,19 @@ const Main: React.FC = () => {
         }
     };
 
+    // This implements the default behavior from styled-components v5
+    function shouldForwardProp(propName: string, target: any) {
+        if (typeof target === "string") {
+            // For HTML elements, forward the prop if it is a valid HTML attribute
+            return isPropValid(propName);
+        }
+        // For other elements, forward all props
+        return true;
+    }
+
     return (
         <>
+            <StyleSheetManager shouldForwardProp={shouldForwardProp}>
             <MenuComponent/>
             {(state == GameState.Menu || state == GameState.Mirror) &&
                 <MirrorComponent/>
@@ -57,6 +70,7 @@ const Main: React.FC = () => {
                     />
                 </>
             }
+            </StyleSheetManager>
         </>
     );
 };
