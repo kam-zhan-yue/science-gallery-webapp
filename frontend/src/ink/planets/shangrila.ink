@@ -25,35 +25,25 @@ You look at your hand, and see your code etched in beautiful neon blue. You reme
 And you sure feel wonderful. Your teachers always tried to teach you how to stay happy. 
 It wasn't hard to anyway...
 Truly another day in...
-...
 You turn to your right. 
-You see a cave. 
-...
+You see a cave...
 You're certain you've never seen a cave entrance on this walk before. 
-...
-You surely would have seen it by now...
-...
-Hang on... didn't you see this before somewhere?
-...
 *[Walk into the cave]->walk_into_the_cave
 
 ===walk_into_the_cave===
 You move towards the cave.
-11111.
-22222.
 You walk through its entrance. 
-Unlike the wonderful gentle warmth of the daylight, it's cold. 
-It's also damp. 
+Unlike the wonderful gentle warmth of the daylight, it's cold. It's also damp. 
 The light slowly dims as you head into this cave. 
 But as it gets darker and darker...
-...
 A faint glow shines in the distance. 
 *[Move towards the light.]->faintlight
 *[Leave the cave. I don't like it here.] ->sheeplink
 ===faintlight===
 You move towards the light. 
 As you move closer and closer, you notice that it is emanating from the ground. 
-As you near the glowing light, its shape becomes clearer. A small shard of... something. You're unsure of what it is, but you feel an overwhelming need to pick it up.
+As you near the glowing light, its shape becomes clearer. A small shard of... something. 
+You're unsure of what it is, but you feel an overwhelming need to pick it up.
 *[Pick up the shard.] ->introshard
 *[Leave the shard and turn back.] ->sheeplink
 
@@ -70,51 +60,40 @@ You look into the shard, and you see...
 }
 
 ===artist===
-Two memories flood your mind: The first hits you with a splash of colour - colours you feel like you've never seen in your life. In your hand, a tool, splattered in these same colours. You can see in front of you brilliant shapes that you recognise in an odd way.
-The second memory melds these colours into terrifying reds, greys and a jet black that invades your senses with dryness and ash. You see the tool in your hand is gone, and you feel there is something to blame for the flames you see in front of you. Four people stand beside you, with concerned eyes, wishing only comfort for you.
+A montage of images flood your mind. You can see yourself surrounded by colour and light. 
+In each flash of memory, you see yourself holding a paintbrush and easel, a lump of clay on a spinning wheel, and...
+You reach into your pant pocket. That's right... 
+You produce a spool of red thread, tied to a needle, wedged in between the fibers. The thread seems to glow faintly in your hand. 
 *[I understand now.] ->artistname
 ===artistname===
-You dig back through your first memory, trying to relive the moment as clearly as possible. On the bottom of the array of colours, you see a name you resonate with. Your name.
+You put the thread back in your pocket. This might come in handy later, you think to yourself.
+Flicking through your memory again, your mind clears to see a signature on each of your artworks. What name does it read?
 *[The player inserts their name here.]->artistconfirmname
 ===artistconfirmname===
-You see your name written boldly in black. It warms you to see it. Funny, you thought having names only existed in ancient history. At least, that's what you were taught in school.->cavedoor
+You see {name} written, woven and etched in every artwork you remember. You think fondly of your old crafts. ->cavedoor
 ===doctor===
-Two memories flood your mind: The first is of what looks like a graduation. You have donned a funny looking headress, black with some tassle obscuring your view. You're surrounded by four people you don't entirely recognise, but they cheer for you, and embrace you. One even gives you a peck on the cheek. In your hands, a scroll. You clutch it tightly and you feel a grin so wide it hurts your cheeks. 
-The second memory is painted crimson red. You look at your hands, and the scroll is gone. It has been replaced by a bloodied tool, which you can't quite remember what it was called. In front of you, an unrecogniseable person is clutching their arm, thanking you for trying. You can hear someone run up to you, and as you turn around, all you can recognise is the suit.
+The glint of the shard brings your memory back to you as you stare into your reflection in the syringe you're holding. 
+You stare into the syringe, with its viscous medicine sticking to its little walls. You see your patient, but can't quite make out a face. 
+Your memory suddenly becomes your present again, and you reach into your coat pocket. A syringe, still in its wrapping, rests in your hand.
 *[I understand now.]->doctorname
 
 ===doctorname===
-You look at your white coat. You've loved this coat for as long as you remember. You suddenly feel something in your coat's breastpocket. It feels like something has somehow manifested there, as if it had always been there, but only now you can feel its bulk. You reach into your breastpocket and pull out a nametag. On the nametag reads...
+You put the syringe back into your pocket. I wonder when this might become useful, you think to yourself. 
+As you do, you also catch a glimpse of your nametag, catching the glow of the shard. What name does it read?
 *[The player inserts their name here.]->doctorconfirmname
 ===doctorconfirmname===
-The nametag clearly states your name, which makes you feel warm hearing it read in your mind. You recognise this name, and hear someone's voice calling out for it, one you haven't heard in a long time. Funny, you thought having names only existed in ancient history. At least, that's what you were taught in school.->cavedoor
+Your name tag reads "My name is: {name}". You make sure it stays secured on your coat. ->cavedoor
 ===mechanic===
-Two memories flood your mind: The first memory adds weight to your right hand. You look down and see a heavy instrument, but you can't quite remember what it's called. A winch? A wrangle? You look up to see a beautiful machine, which moves, clanks and steams in perfect harmony. It's like a mechanic orchestra, sounding sweetly in your ears. 
-The second memory sees this machine move. It moves... fast. It moves fast towards four people you seem to recognise somehow, and they run with the sound of fear in their panting breaths. You can't quite make out what is happening, other than hearing them call out to you to stop the machine. Behind you stands a suited figure.
+As you stare into the shard, it suddenly feels heavier in your hands. You realise, that what you see is no longer a shard, but a memory of a wrench in your hand. 
+You're covered in grease from fixing a metro shuttle, and you see the line of other shuttles waiting to be repaired.
+As the memory fades away, the weight of the wrench moves from your hand to your hip. You see your wrench, fastened securely to your belt. Maybe it'll come in handy someday, you think to yourself.
 *[I understand now.]->mechanicname
 ===mechanicname===
-You look down at your blue clothing. You have always worn blue, and today you wanted to wear your lucky blue boilersuit. As you look to your chest, a faint cloud of red seems to manifest, as if made of moving thread and fabric. You swear you haven't ever seen your boilersuit embroidered. As it becomes clearer, you see a name appear, sewn in a flaming firetruck red.
+As you pay attention to the wrench on your hip, you notice something in your pant pocket. You reach into your pocket and produce a card - your license. What name does it read?
 *[The player inserts their name here.]->mechanicconfirmname
 ===mechanicconfirmname===
-You recognise this name. It's yours. You look down proudly, yet befuddled as to who gave it to you. Funny, you thought having names only existed in ancient history. At least, that's what you were taught in school.->cavedoor
-===academic===
-Two memories flood your mind: The first memory takes you to a comfy couch. You look around you, and you are surrounded by infinite knowledge. However, this knowledge isn't documented in holographic glass that you've seen at your local library. This knowledge is noted down in cumbersome blocks that fill the walls around you. You even have one of these blocks in your hand - the texture feels familiar to you, its smell transports you somewhere, but you don't know where. At the front of it reads some sort of title, which you're still trying to make out.
-The second memory takes you to a podium. You stand in front of a microphone, in front of a crowd of what seems to be thousands. Nobody in the crowd seems to be pleased with you. You feel yourself sweating. At the front, four particular people catch your eye, all of whom look concerned, and uncomfortable. You feel like you've been responsible for something... bad.
-*[I understand now.]->academicname
-===academicname===
-You think back to your first memory. Those blocks... they look similar to that little pagebook that you have carried for so long. It was a gift, somebody gave it to you, but you were too young to remember who, you think. You look through your satchel to see if you still have it on your person, and you produce the pagebook - with its little black blanket that encases it. When you open it, a new piece of text appears, which you were certain wasn't there before. It reads... a name.
-*[The player inserts their name here.]->academicconfirmname
-===academicconfirmname===
-Your name appears. Your name... hang on. You don't even remember having a name. You read it letter by letter, and you feel a warmth in your chest, like a long hug. Funny, you thought having names only existed in ancient history. At least, that's what you were taught in school.->cavedoor
-===journalist===
-Two memories flood your mind:  the first, a corkboard, filled with images you can't quite recognise, and scrawled notes on scrap pieces of paper, torn and pinned up around the board. You see red thread that seems to interweave each image and scrawling together in an intricate web. 
-The second memory makes your chest sting. You remember four people, all with their backs turned to you, walking away. One briefly looks back to you, but seeing their face feels as harsh as a knife to your chest. 
-*[I understand now.] ->journalistname
-===journalistname===
-You look down at your left arm. Suddenly, what you thought was a vague birthmark starts to shift and warp, seemingly spelling out words. You make it out to say "DON'T FORGET YOUR NAME:"
-*[The player inserts their name here.]-> journalistconfirmname
-===journalistconfirmname===
-A name is written clearly on your skin. Your name. You hear a faint call of this name as if read off a teleprompter. Funny, you thought having names only existed in ancient history. At least, that's what you were taught in school.->cavedoor
+{name} is clearly written on your license. You were wondering where that went... You put it back in your pocket. ->cavedoor
+
 ===cavedoor===
 In your confusion, you see more shifting of your surroundings. You look up from where you picked up the shard. 
 A door appears. The shard glows in your hand with pulsating light. You feel it calls you to the door.
@@ -125,29 +104,15 @@ You walk out of the cave. As you turn around to see the light outside. You see a
 "I'm sorry you had to see this, you aren't allowed here." The suited figure speaks as it echoes through the cave. 
 You go to sleep. ->DONE
 ===opendoor===
-You open the door and walk through.
-...
-...
-...
-...
-...
-...
+You open the door and walk through...
 It's dark in here. 
 *[Please let there be light.] ->lightswitch
 ===lightswitch===
 You feel your way around the walls on either side, and hear the familiar sound of a lightswitch. 
-As the light turns on, you see a small shuttle ship. It looks a little rusted, as if it hasn't been touched in years. You have seen this ship before - there are old pictures of it in the central museum, in "print" form. 
-*[Can I turn it on?]->shuttleon
-===shuttleon===
-You look around, and you find a latch to open the shuttle. As you go in, the shuttle automatically turns on. 
-As the shuttle lights up, the door shuts behind you. 
-In front of you, you see the shuttle's energy gauge, just like your zipcraft at home. It looks like it isn't full. 
-You look at the shard again, which now pulsates again. It urges you to choose. 
-*[What do you mean, choose?]->chooseplanet
-
-===chooseplanet===
-Good question, you say to yourself. Next to the energy gauge is a keypad. A keypad for launch codes. 
-You think back... you remember there were two pieces of text written either side of the cave's entrance...
+As the light turns on, you see a small shuttle ship. It looks a little rusted, as if it hasn't been touched in years. You also see two empty spaces... it looks like two more shuttle ships were deployed before.->inputcodeshangrila
+===inputcodeshangrila===
+The shuttle's interior lights up, and you can hear a little voice emanating from it. 
+"Welcome, traveller. Please input launch code."
 ->navigation
 
 NOTE: YOU WILL FIND TWO CODES SOMEWHERE IN SHANGRILA AROUND YOU. LOOK AROUND THE ARTWORK TO FIND THEM.
@@ -155,19 +120,10 @@ NOTE: YOU WILL FIND TWO CODES SOMEWHERE IN SHANGRILA AROUND YOU. LOOK AROUND THE
 *[Player inputs code 2]->liftoff1
 
 ===liftoff1===
-Your shuttle shakes.
-It whirrs.
-It clanks.
+Your shuttle shakes. It whirrs. It clanks.
 Your shard's light is growing and pulsing.
-You feel your heart beating in your throat. 
-The sounds rise, and rise, and rise...
 The shuttle shakes and starts to move. 
-Where will it go?
-What lies in store for you?
+Where will it go? at lies in store for you?
 Only one way to find out...
-...
-and...
-...
-...
-LIFTOFF!
+and... LIFTOFF!
 ->DONE
