@@ -2,7 +2,6 @@ import { useState, useImperativeHandle, forwardRef } from "react";
 import styled, { css, keyframes } from "styled-components";
 import Player from "../../classes/Player.ts";
 import SubPopupComponent from "../SubPopupComponent.tsx";
-import ProgressComponent from "./ProgressComponent.tsx";
 
 const StatHolder = styled.div`
   position: fixed;
@@ -17,16 +16,44 @@ const StatHolder = styled.div`
   line-height: 1em;
 `;
 
-const CharacterHolder = styled.img`
+const CharacterContainer = styled.div`
   width: 333px;
-  height: 80px;
+  height: 87px;
+  :hover {
+    cursor: pointer;
+  }
+`
+
+const BaseStatBar = styled.img`
+  position: fixed;
+  width: 333px;
+  height: 87px;
   image-rendering: pixelated;
   image-rendering: -moz-crisp-edges;
   image-rendering: crisp-edges;
-  &:hover {
-    cursor: pointer;
-  }
 `;
+
+const HealthBar = styled.img`
+  position: fixed;
+  left: 106px;
+  top: 52px;
+  width: 200px;
+  height: 20px;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+`
+
+const ProgressBar = styled.img`
+  position: fixed;
+  left: 242px;
+  top: 83.3px;
+  width: 101px;
+  height: 17px;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+`
 
 // Define the fade-in keyframes
 const fadeIn = keyframes`
@@ -99,19 +126,40 @@ const PlayerComponent = forwardRef<PlayerComponentHandle, PlayerComponentProps>(
         setTab("");
     };
 
+    const prefix: string = "../../assets/ui/";
+
+    const progressUrl = (): string => {
+        let index = Math.min(Math.max(player.progress, 1), 5);
+        return prefix + `progress-${index}.png`;
+    }
+
     return (
         <>
             {player.class !== "" && (
                 <>
-                    <ProgressComponent progress={player.progress}/>
                     <StatHolder>
-                        <CharacterHolder
-                            key={"character-holder"}
-                            id={"character-holder"}
-                            src={"../assets/ui/character-holder.png"}
-                            alt={"character-holder"}
-                            onClick={handlePlayerClicked}
-                        />
+                        <CharacterContainer>
+                            <BaseStatBar
+                                key={"base-stat-bar"}
+                                id={"base-stat-bar"}
+                                alt={"base-stat-bar"}
+                                src={"../assets/ui/base-stat-bar.png"}
+                                onClick={handlePlayerClicked}
+                            />
+                            <HealthBar
+                                key={"health"}
+                                id={"health"}
+                                alt={"health"}
+                                src={"../assets/ui/health-8.png"}
+                            />
+                            <ProgressBar
+                                key={"health"}
+                                id={"health"}
+                                alt={"health"}
+                                src={progressUrl()}
+                            />
+                        </CharacterContainer>
+
                         {show && (
                             <>
                                 {["inventory", "stats", "shard"].map((tabId, index) => (
