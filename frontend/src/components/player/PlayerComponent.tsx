@@ -159,7 +159,6 @@ const PlayerComponent = forwardRef<PlayerComponentHandle, PlayerComponentProps>(
 
     const profileUrl = (): string => {
         if(player.class in characters) {
-            console.log(prefix+characters[player.class].thumbnail);
             return prefix+characters[player.class].thumbnail;
         } else {
             return prefix + `thumbnail-${player.class}.png`;
@@ -176,13 +175,13 @@ const PlayerComponent = forwardRef<PlayerComponentHandle, PlayerComponentProps>(
             {player.class !== "" && (
                 <>
                     <StatHolder>
-                        <CharacterContainer>
+                        <CharacterContainer
+                            onClick={handlePlayerClicked}>
                             <BaseStatBar
                                 key={"base-stat-bar"}
                                 id={"base-stat-bar"}
                                 alt={"base-stat-bar"}
                                 src={"../assets/ui/base-stat-bar.png"}
-                                onClick={handlePlayerClicked}
                             />
 
                             <Title
