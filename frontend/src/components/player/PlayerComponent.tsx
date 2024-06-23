@@ -2,6 +2,7 @@ import { useState, useImperativeHandle, forwardRef } from "react";
 import styled, { css, keyframes } from "styled-components";
 import Player from "../../classes/Player.ts";
 import SubPopupComponent from "../SubPopupComponent.tsx";
+import {characters} from "../../setup/Character.ts";
 
 const StatHolder = styled.div`
   position: fixed;
@@ -32,6 +33,26 @@ const BaseStatBar = styled.img`
   image-rendering: -moz-crisp-edges;
   image-rendering: crisp-edges;
 `;
+
+const Title = styled.img`
+  position: fixed;
+  left: 105px;
+  top: 22px;
+  height: 18px;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+`
+
+const Profile = styled.img`
+  position: fixed;
+  top: 27px;
+  left: 28px;
+  height: 67px;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+`
 
 const HealthBar = styled.img`
   position: fixed;
@@ -128,6 +149,23 @@ const PlayerComponent = forwardRef<PlayerComponentHandle, PlayerComponentProps>(
 
     const prefix: string = "../../assets/ui/";
 
+    const titleUrl = (): string => {
+        if(player.class in characters) {
+            return prefix+characters[player.class].title;
+        } else {
+            return prefix + `title-${player.class}.png`;
+        }
+    }
+
+    const profileUrl = (): string => {
+        if(player.class in characters) {
+            console.log(prefix+characters[player.class].thumbnail);
+            return prefix+characters[player.class].thumbnail;
+        } else {
+            return prefix + `thumbnail-${player.class}.png`;
+        }
+    }
+
     const progressUrl = (): string => {
         let index = Math.min(Math.max(player.progress, 1), 5);
         return prefix + `progress-${index}.png`;
@@ -146,6 +184,21 @@ const PlayerComponent = forwardRef<PlayerComponentHandle, PlayerComponentProps>(
                                 src={"../assets/ui/base-stat-bar.png"}
                                 onClick={handlePlayerClicked}
                             />
+
+                            <Title
+                                key={player.class}
+                                id={player.class}
+                                alt={player.class}
+                                src={titleUrl()}
+                            />
+
+                            <Profile
+                                key='profile'
+                                id='profile'
+                                alt='profile'
+                                src={profileUrl()}
+                            />
+
                             <HealthBar
                                 key={"health"}
                                 id={"health"}
@@ -153,9 +206,9 @@ const PlayerComponent = forwardRef<PlayerComponentHandle, PlayerComponentProps>(
                                 src={"../assets/ui/health-8.png"}
                             />
                             <ProgressBar
-                                key={"health"}
-                                id={"health"}
-                                alt={"health"}
+                                key={"progress"}
+                                id={"progress"}
+                                alt={"progress"}
                                 src={progressUrl()}
                             />
                         </CharacterContainer>
