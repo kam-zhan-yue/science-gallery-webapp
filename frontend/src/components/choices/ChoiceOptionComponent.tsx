@@ -17,6 +17,9 @@ const ChoiceContainer = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
+  :hover {
+    cursor: pointer;
+  }
 `;
 
 const ChoiceImage = styled.img`

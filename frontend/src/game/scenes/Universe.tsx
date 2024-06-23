@@ -76,6 +76,12 @@ export class Universe extends Scene {
         this.cameras.main.zoom = 2.5;
         this.centreX = this.cameras.main.centerX;
         this.centreY = this.cameras.main.centerY;
+
+        // Crude fix for resizing shader
+        this.solarSystem = new SolarSystem('shangrila', this.physics, this.add.graphics(), this.centreX, this.centreY);
+        this.cameras.main.startFollow(this.solarSystem.centre().body);
+        this.solarSystem?.setVisible(false);
+
         this.add.shader('stars', this.centreX, this.centreY, 1000, 1000);
         this.anims.create({
             key: 'earth_spin',
