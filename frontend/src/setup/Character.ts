@@ -3,7 +3,8 @@ export type Character = {
     thumbnail?: string,
     fullBody?: string,
     title?: string,
-    description: string,
+    description?: string,
+    animations?: {[id: string]: string},
 }
 
 export const characters: { [key: string]: Character } = {
@@ -27,5 +28,11 @@ export const characters: { [key: string]: Character } = {
         thumbnail: "thumbnail-artist.png",
         title: "title-artist.png",
         description: "Loves painting. And coffee."
+    },
+    "Librarian": {
+        name: "Librarian",
+        animations: {
+            "neutral": ""
+        }
     },
 };

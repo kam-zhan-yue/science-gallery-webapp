@@ -77,11 +77,6 @@ export class Universe extends Scene {
         this.centreX = this.cameras.main.centerX;
         this.centreY = this.cameras.main.centerY;
 
-        // Crude fix for resizing shader
-        this.solarSystem = new SolarSystem('shangrila', this.physics, this.add.graphics(), this.centreX, this.centreY);
-        this.cameras.main.startFollow(this.solarSystem.centre().body);
-        this.solarSystem?.setVisible(false);
-
         this.add.shader('stars', this.centreX, this.centreY, 1000, 1000);
         this.anims.create({
             key: 'earth_spin',
@@ -89,18 +84,21 @@ export class Universe extends Scene {
             frameRate: 12,
             repeat: -1
         });
+
+
         this.anims.create({
-            key: 'jupiter_spin',
-            frames: this.anims.generateFrameNumbers('jupiter', {frames:[0,1,2,3,4,5]}),
+            key: 'shangrila_spin',
+            frames: this.anims.generateFrameNumbers('shangrila', {frames:[0,1,2,3,4,5,6,7,8,9,10]}),
             frameRate: 12,
             repeat: -1
         });
-        this.anims.create({
-            key: 'sun_spin',
-            frames: this.anims.generateFrameNumbers('sun', {frames:[0,1,2,3,4,5]}),
-            frameRate: 12,
-            repeat: -1
-        });
+
+
+        // Crude fix for resizing shader
+        this.solarSystem = new SolarSystem('shangrila', this.physics, this.add.graphics(), this.centreX, this.centreY);
+        this.cameras.main.startFollow(this.solarSystem.centre().body);
+        this.solarSystem?.setVisible(false);
+
     }
 
     inspect(planetName: string) {
