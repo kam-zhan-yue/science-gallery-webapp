@@ -32,9 +32,10 @@ export class Universe extends Scene {
     updateOrbits(orbits: string[]) {
         console.log('update orbits');
         if(this.centreX && this.centreY) {
-            if(this.solarSystem) {
+            if(this.solarSystem && this.started) {
                 this.solarSystemTransition(orbits, this.centreX, this.centreY);
             } else {
+                this.started = true;
                 this.solarSystemInit(orbits, this.centreX, this.centreY);
                 this.reset(orbits);
             }
@@ -134,6 +135,7 @@ export class Universe extends Scene {
     }
 
     reset(planets: string[]) {
+        console.log('reset');
         this.solarSystem?.setDrawNames(true);
         if(this.cameras.main.zoom === 2.5) {
             if(this.solarSystem?.centre())

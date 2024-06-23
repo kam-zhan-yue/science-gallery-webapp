@@ -74,7 +74,9 @@ const Typewriter: React.FC<TypewriterProps> = ({ text, delay, next }) => {
         if (currentText.length !== text.length) {
             setCurrentIndex(text.length);
             setCurrentText(text.split(''));
+            console.log('fill')
         } else if (next) {
+            console.log('next')
             next();
             setState(TypewriterState.Finished);
         }

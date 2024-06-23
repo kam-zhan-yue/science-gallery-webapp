@@ -139,7 +139,7 @@ You can’t quite explain why, but you need that shard. You weigh up your option
 
 === words_convince ===
 You: It is certainly a wonder. Is there any way I might be able to take it with me?
-{-class == Doctor:
+{class == Doctor:
     ->words_convince_doctor
 - else: 
     ->words_convince_normal

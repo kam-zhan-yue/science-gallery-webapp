@@ -31,8 +31,12 @@ export const characters: { [key: string]: Character } = {
     },
     "Librarian": {
         name: "Librarian",
+        fullBody: "npc_librarian_neutral.png",
         animations: {
-            "neutral": ""
+            "neutral": "npc_librarian_neutral.png",
+            "angry": "npc_librarian_angry.png",
+            "happy": "npc_librarian_happy.png",
+            "sad": "npc_librarian_sad.png",
         }
     },
 };

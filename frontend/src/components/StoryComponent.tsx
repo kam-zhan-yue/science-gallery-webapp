@@ -201,6 +201,7 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
       setChoices(story.currentChoices)
       const choices: Choice[] = story.currentChoices;
       if (choices.length > 0) {
+        console.log('set showing choices true')
         setShowingChoices(true);
       }
     }
