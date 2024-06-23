@@ -29,6 +29,7 @@ const PromptContainer = styled.div`
   font-weight: 400;
   font-style: normal;
   line-height: 1em;
+  text-align: center;
 `
 
 const ChoiceContainer = styled.div`

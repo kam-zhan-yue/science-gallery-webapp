@@ -7,7 +7,7 @@ You're rocking back and forth.
 A fight. 
 A hard decision. 
 A long lost memory...
-*[Wake up.] ->Shangrila_intro
+*[important:Wake up.] ->Shangrila_intro
 
 ===Shangrila_intro===
 ~ background = shangrila_main
@@ -37,14 +37,14 @@ Unlike the wonderful gentle warmth of the daylight, it's cold. It's also damp.
 The light slowly dims as you head into this cave. 
 But as it gets darker and darker...
 A faint glow shines in the distance. 
-*[Move towards the light.]->faintlight
+*[important:Move towards the light.]->faintlight
 *[Leave the cave. I don't like it here.] ->sheeplink
 ===faintlight===
 You move towards the light. 
 As you move closer and closer, you notice that it is emanating from the ground. 
 As you near the glowing light, its shape becomes clearer. A small shard of... something. 
 You're unsure of what it is, but you feel an overwhelming need to pick it up.
-*[Pick up the shard.] ->introshard
+*[important:Pick up the shard.] ->introshard
 *[Leave the shard and turn back.] ->sheeplink
 
 ===introshard===
@@ -97,7 +97,7 @@ As you pay attention to the wrench on your hip, you notice something in your pan
 ===cavedoor===
 In your confusion, you see more shifting of your surroundings. You look up from where you picked up the shard. 
 A door appears. The shard glows in your hand with pulsating light. You feel it calls you to the door.
-*[Try to open the door.]->opendoor
+*[important:Try to open the door.]->opendoor
 *[Turn around and leave. This is too dangerous.]->sheeplink
 ===sheeplink===
 You walk out of the cave. As you turn around to see the light outside. You see a silhouette. A suited figure. 

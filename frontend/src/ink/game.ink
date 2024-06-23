@@ -23,9 +23,13 @@ INCLUDE test/buttons.ink
 
 
 Welcome, Tester.
-*[Debug]
++[Debug]
     ->character_select ->
     ~ planet = shangrila
     ->debug_navigation
-*[From Beginning]
++[Skip Intro]
+    ->character_select ->
+    ~planet = shangrila
+    ->navigation
++[From Beginning]
     ->start
