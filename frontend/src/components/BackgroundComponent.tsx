@@ -7,7 +7,7 @@ interface BackgroundComponentProps {
 }
 
 const backgrounds: { [key: string]: string} = {
-    "shangrila_main": "shngrila.png",
+    "shangrila_main": "shangrila.png",
     "new_nature_main": "new_nature.png",
 }
 
