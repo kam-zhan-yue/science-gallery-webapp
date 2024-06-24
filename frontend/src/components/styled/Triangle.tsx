@@ -1,5 +1,5 @@
 import React from "react";
-import { StyledTriangle } from "./StyledTriangle";
+import {StyledCharacter, StyledTriangle} from "./StyledTriangle";
 
 interface TriangleProps {
     top: number;
@@ -16,6 +16,17 @@ const Triangle: React.FC<TriangleProps> = ({ top, left, bleft, bright, bbottom, 
     return (
         <>
             <StyledTriangle
+                bleft={bleft}
+                left={left}
+                bbottom={bbottom}
+                bright={bright}
+                top={top}
+                rotate={rotate}
+                background={background}
+                imageUrl='../../assets/characters/artist_fullbody.png' // Pass the image URL
+                move={false}
+            />
+            <StyledCharacter
                 bleft={bleft}
                 left={left}
                 bbottom={bbottom}

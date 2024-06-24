@@ -77,15 +77,31 @@ export const StyledTriangle = styled.div<Props>`
   border-right: ${(props) => props.bright}px solid transparent;
   border-bottom: ${(props) => props.bbottom}px solid ${(props) => props.background};
   rotate: ${(props) => props.rotate}deg;
-
-    border-bottom: none; // Remove the bottom border color
-    clip-path: polygon(50% 0%, 0% 100%, 100% 100%); // Clip the image to fit within the triangle
-    background: url(${(props) => props.imageUrl}) no-repeat center center;
-    background-size: cover;
-    width: ${(props) => props.bbottom}px;
-    height: ${(props) => props.bbottom}px;
-
   filter: drop-shadow(0 0 10px hsla(220, 100%, 70%, 0.8)) drop-shadow(0 0 30px hsla(220, 90%, 50%, 0.6));
+  animation: ${(props) =>
+          props.move
+                  ? css`${move(props.top, props.left, props.rotate)} 0.7s ease-in-out forwards`
+                  : css`${idle()} 5s ease-in-out infinite`};
+`;
+
+export const StyledCharacter = styled.div<Props>`
+  position: absolute;
+  top: ${(props) => props.top}px;
+  left: ${(props) => props.left}px;
+  transform: translateZ(0);
+  rotate: ${(props) => props.rotate}deg;
+
+  background: url(${(props) => props.imageUrl}) no-repeat center center;
+  background-size: cover;
+  width: ${(props) => props.bright * 2}px; // Adjusted to fit the triangle's width
+  height: ${(props) => props.bbottom}px;
+
+  clip-path: polygon(
+          50% 0%,
+          0% 100%,
+          100% 100%
+  );
+
   animation: ${(props) =>
           props.move
                   ? css`${move(props.top, props.left, props.rotate)} 0.7s ease-in-out forwards`

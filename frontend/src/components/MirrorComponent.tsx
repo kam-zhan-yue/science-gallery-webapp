@@ -31,7 +31,6 @@ const colors = {
 }
 
 const debug: boolean = false;
-
 const MirrorComponent: React.FC = () => {
     return (
         <>
