@@ -1,6 +1,5 @@
-~background = folding_space_main
-
 === folding_space ===
+~background = folding_space_main
 You come upon a world covered entirely in ocean. Its deep blue seas glisten in the light of distant stars, making the planet look like a perfect sphere, made entirely of water.  
 
 // Show ship sprite

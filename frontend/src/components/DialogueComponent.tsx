@@ -46,6 +46,17 @@ interface DialogueComponentProps {
     next?: () => void;
 }
 
+// Styled component for the Overlay
+const Blocker = styled(motion.div)`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+  display: block; /* Initially hidden */
+`;
+
 const DialogueComponent: React.FC<DialogueComponentProps> = ({ text, next }) => {
     // Splitting the text into character name and dialogue body if a colon exists
     const colonIndex = text.indexOf(':');
@@ -54,7 +65,7 @@ const DialogueComponent: React.FC<DialogueComponentProps> = ({ text, next }) => 
     const {player} = useContext(GameContext) as GameContextType;
 
     const getCharacterFullBody = (): string => {
-        if(characterName === "Ship") {
+        if(characterName === "Ship" || characterName == "You") {
             return `../assets/characters/${characters[player.class].fullBody}`;
         } else if(characterName in characters) {
             return `../assets/characters/${characters[characterName].fullBody}`;
@@ -67,6 +78,7 @@ const DialogueComponent: React.FC<DialogueComponentProps> = ({ text, next }) => 
         <>
             {characterName && getCharacterFullBody() !== '' &&
                 <>
+                    <Blocker/>
                     <CharacterContainer
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
