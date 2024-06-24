@@ -2,7 +2,7 @@ import { useState, useImperativeHandle, forwardRef } from "react";
 import styled, { css, keyframes } from "styled-components";
 import Player from "../../classes/Player.ts";
 import SubPopupComponent from "../SubPopupComponent.tsx";
-import ProgressComponent from "./ProgressComponent.tsx";
+import {characters} from "../../setup/Character.ts";
 
 const StatHolder = styled.div`
   position: fixed;
@@ -17,16 +17,64 @@ const StatHolder = styled.div`
   line-height: 1em;
 `;
 
-const CharacterHolder = styled.img`
+const CharacterContainer = styled.div`
   width: 333px;
-  height: 80px;
+  height: 87px;
+  :hover {
+    cursor: pointer;
+  }
+`
+
+const BaseStatBar = styled.img`
+  position: fixed;
+  width: 333px;
+  height: 87px;
   image-rendering: pixelated;
   image-rendering: -moz-crisp-edges;
   image-rendering: crisp-edges;
-  &:hover {
-    cursor: pointer;
-  }
 `;
+
+const Title = styled.img`
+  position: fixed;
+  left: 105px;
+  top: 22px;
+  height: 18px;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+`
+
+const Profile = styled.img`
+  position: fixed;
+  top: 27px;
+  left: 28px;
+  height: 67px;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+`
+
+const HealthBar = styled.img`
+  position: fixed;
+  left: 106px;
+  top: 52px;
+  width: 200px;
+  height: 20px;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+`
+
+const ProgressBar = styled.img`
+  position: fixed;
+  left: 242px;
+  top: 83.3px;
+  width: 101px;
+  height: 17px;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+`
 
 // Define the fade-in keyframes
 const fadeIn = keyframes`
@@ -99,19 +147,71 @@ const PlayerComponent = forwardRef<PlayerComponentHandle, PlayerComponentProps>(
         setTab("");
     };
 
+    const prefix: string = "../../assets/ui/";
+
+    const titleUrl = (): string => {
+        if(player.class in characters) {
+            return prefix+characters[player.class].title;
+        } else {
+            return prefix + `title-${player.class}.png`;
+        }
+    }
+
+    const profileUrl = (): string => {
+        if(player.class in characters) {
+            return prefix+characters[player.class].thumbnail;
+        } else {
+            return prefix + `thumbnail-${player.class}.png`;
+        }
+    }
+
+    const progressUrl = (): string => {
+        let index = Math.min(Math.max(player.progress, 1), 5);
+        return prefix + `progress-${index}.png`;
+    }
+
     return (
         <>
             {player.class !== "" && (
                 <>
-                    <ProgressComponent progress={player.progress}/>
                     <StatHolder>
-                        <CharacterHolder
-                            key={"character-holder"}
-                            id={"character-holder"}
-                            src={"../assets/ui/character-holder.png"}
-                            alt={"character-holder"}
-                            onClick={handlePlayerClicked}
-                        />
+                        <CharacterContainer
+                            onClick={handlePlayerClicked}>
+                            <BaseStatBar
+                                key={"base-stat-bar"}
+                                id={"base-stat-bar"}
+                                alt={"base-stat-bar"}
+                                src={"../assets/ui/base-stat-bar.png"}
+                            />
+
+                            <Title
+                                key={player.class}
+                                id={player.class}
+                                alt={player.class}
+                                src={titleUrl()}
+                            />
+
+                            <Profile
+                                key='profile'
+                                id='profile'
+                                alt='profile'
+                                src={profileUrl()}
+                            />
+
+                            <HealthBar
+                                key={"health"}
+                                id={"health"}
+                                alt={"health"}
+                                src={"../assets/ui/health-8.png"}
+                            />
+                            <ProgressBar
+                                key={"progress"}
+                                id={"progress"}
+                                alt={"progress"}
+                                src={progressUrl()}
+                            />
+                        </CharacterContainer>
+
                         {show && (
                             <>
                                 {["inventory", "stats", "shard"].map((tabId, index) => (

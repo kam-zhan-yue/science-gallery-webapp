@@ -11,7 +11,7 @@ export type PlanetData = {
 export const planets: { [key: string]: PlanetData } = {
     "shangrila" : {
         name: "Shangri-la",
-        key: "earth",
+        key: "shangrila",
         orbitalRadius: 0,
         orbitalPeriod: 0,
         clockwiseOrbit: false,

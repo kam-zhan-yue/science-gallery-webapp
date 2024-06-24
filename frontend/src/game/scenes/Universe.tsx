@@ -32,9 +32,10 @@ export class Universe extends Scene {
     updateOrbits(orbits: string[]) {
         console.log('update orbits');
         if(this.centreX && this.centreY) {
-            if(this.solarSystem) {
+            if(this.solarSystem && this.started) {
                 this.solarSystemTransition(orbits, this.centreX, this.centreY);
             } else {
+                this.started = true;
                 this.solarSystemInit(orbits, this.centreX, this.centreY);
                 this.reset(orbits);
             }
@@ -76,6 +77,7 @@ export class Universe extends Scene {
         this.cameras.main.zoom = 2.5;
         this.centreX = this.cameras.main.centerX;
         this.centreY = this.cameras.main.centerY;
+
         this.add.shader('stars', this.centreX, this.centreY, 1000, 1000);
         this.anims.create({
             key: 'earth_spin',
@@ -83,18 +85,21 @@ export class Universe extends Scene {
             frameRate: 12,
             repeat: -1
         });
+
+
         this.anims.create({
-            key: 'jupiter_spin',
-            frames: this.anims.generateFrameNumbers('jupiter', {frames:[0,1,2,3,4,5]}),
+            key: 'shangrila_spin',
+            frames: this.anims.generateFrameNumbers('shangrila', {frames:[0,1,2,3,4,5,6,7,8,9,10]}),
             frameRate: 12,
             repeat: -1
         });
-        this.anims.create({
-            key: 'sun_spin',
-            frames: this.anims.generateFrameNumbers('sun', {frames:[0,1,2,3,4,5]}),
-            frameRate: 12,
-            repeat: -1
-        });
+
+
+        // Crude fix for resizing shader
+        this.solarSystem = new SolarSystem('shangrila', this.physics, this.add.graphics(), this.centreX, this.centreY);
+        this.cameras.main.startFollow(this.solarSystem.centre().body);
+        this.solarSystem?.setVisible(false);
+
     }
 
     inspect(planetName: string) {
@@ -130,6 +135,7 @@ export class Universe extends Scene {
     }
 
     reset(planets: string[]) {
+        console.log('reset');
         this.solarSystem?.setDrawNames(true);
         if(this.cameras.main.zoom === 2.5) {
             if(this.solarSystem?.centre())

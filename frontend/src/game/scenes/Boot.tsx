@@ -13,6 +13,11 @@ export class Boot extends Scene {
             frameHeight: 33
         });
 
+        this.load.spritesheet('shangrila', 'atlas/shangrila_atlas_32.png', {
+            frameWidth: 32,
+            frameHeight: 32
+        });
+
         this.load.spritesheet('jupiter', 'atlas/earth.png', {
             frameWidth:33,
             frameHeight: 33

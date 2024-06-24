@@ -23,12 +23,10 @@ const Separator = styled.div`
 
 const CharacterContainer = styled(motion.div)`
   position: fixed;
-  bottom: 200px;
-  top: 120px;
-  left: 20px;
-  right: 20px;
-  border: 5px white solid;
-  border-radius: 5px;
+  bottom: 150px;
+  height: 60%;
+  //border: 5px white solid;
+  //border-radius: 5px;
 `
 
 const Character = styled(motion.img)`
@@ -87,7 +85,7 @@ const DialogueComponent: React.FC<DialogueComponentProps> = ({ text, next }) => 
                         <Separator />
                     </>
                 }
-                <Typewriter text={dialogueBody} delay={20} next={next}/>
+                <Typewriter text={dialogueBody} delay={15} next={next}/>
             </DialogueBox>
         </>
     );
