@@ -76,7 +76,6 @@ The glint of the shard brings your memory back to you as you stare into your ref
 You stare into the syringe, with its viscous medicine sticking to its little walls. You see your patient, but can't quite make out a face. 
 Your memory suddenly becomes your present again, and you reach into your coat pocket. A syringe, still in its wrapping, rests in your hand.
 *[I understand now.]->doctorname
-
 ===doctorname===
 You put the syringe back into your pocket. I wonder when this might become useful, you think to yourself. 
 As you do, you also catch a glimpse of your nametag, catching the glow of the shard. What name does it read?
@@ -114,7 +113,9 @@ You feel your way around the walls on either side, and hear the familiar sound o
 As the light turns on, you see a small shuttle ship. It looks a little rusted, as if it hasn't been touched in years. You also see two empty spaces... it looks like two more shuttle ships were deployed before.->inputcodeshangrila
 ===inputcodeshangrila===
 The shuttle's interior lights up, and you can hear a little voice emanating from it. 
-"Welcome, traveller. Please input launch code."
+"Welcome, traveller. Please input launch code!"
+You look at it... puzzled.
+"We don't have much time!"
 ->navigation
 
 NOTE: YOU WILL FIND TWO CODES SOMEWHERE IN SHANGRILA AROUND YOU. LOOK AROUND THE ARTWORK TO FIND THEM.
@@ -122,6 +123,7 @@ NOTE: YOU WILL FIND TWO CODES SOMEWHERE IN SHANGRILA AROUND YOU. LOOK AROUND THE
 *[Player inputs code 2]->liftoff1
 
 ===liftoff1===
+"Ah, great job, traveller! Welcome aboard, and... hold on!"
 Your shuttle shakes. It whirrs. It clanks.
 Your shard's light is growing and pulsing.
 The shuttle shakes and starts to move. 
