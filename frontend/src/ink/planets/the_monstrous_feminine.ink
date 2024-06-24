@@ -45,5 +45,20 @@ The ship's door opens, and you feel a force pushing you out.
 *[Venture into THE MONSTROUS FEMININE]->monstrous
 === monstrous ===
 The Monstrous Feminine!
+->justenough1
+===justenough1===
+The ship glows a faint red.
+"You have taken a long time to return. Where have you been?"
+The ship's door shuts. 
+You feel the ship shake, ready for takeoff.
+*[Where are you taking me?]->movingtoanewlight1
+*[I thought we didn't have enough fuel...]->shush1
+===shush1===
+"You know, {name}, you really must shush sometimes. I wish to surprise you!"
+"You've travelled for so long, and have had to make all the hard decisions..."
+->movingtoanewlight1
+===movingtoanewlight1===
+"Let's float around for a little bit, shall we, {name}?"
+the ship blasts off into the aether.
 ->test_get_shard->
 ->navigation
