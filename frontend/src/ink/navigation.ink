@@ -6,7 +6,6 @@
 ~ background = empty
 ~ progress = progress + 1
 ~ game_state = planet_selection
-Choose a planet.
 
 {
 - progress == 1:
