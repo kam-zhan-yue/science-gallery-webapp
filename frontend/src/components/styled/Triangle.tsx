@@ -1,6 +1,5 @@
-import React, {useContext} from "react";
-import {StyledTriangle} from "./StyledTriangle.tsx";
-import {GameContext, GameContextType} from "../../contexts/GameContext.tsx";
+import React from "react";
+import { StyledTriangle } from "./StyledTriangle";
 
 interface TriangleProps {
     top: number;
@@ -10,14 +9,23 @@ interface TriangleProps {
     bbottom: number;
     rotate: number;
     background: string;
+    imageUrl?: string; // Optional prop for the image URL
 }
 
-const Triangle: React.FC<TriangleProps> = ({top, left, bleft, bright, bbottom, rotate, background}) => {
-    const { started } = useContext(GameContext) as GameContextType;
-
+const Triangle: React.FC<TriangleProps> = ({ top, left, bleft, bright, bbottom, rotate, background, imageUrl }) => {
     return (
         <>
-            <StyledTriangle bleft={bleft} left={left} bbottom={bbottom} bright={bright} top={top} rotate={rotate} background={background} move={started}/>
+            <StyledTriangle
+                bleft={bleft}
+                left={left}
+                bbottom={bbottom}
+                bright={bright}
+                top={top}
+                rotate={rotate}
+                background={background}
+                imageUrl='../../assets/characters/artist_fullbody.png' // Pass the image URL
+                move={false}
+            />
         </>
     );
 }

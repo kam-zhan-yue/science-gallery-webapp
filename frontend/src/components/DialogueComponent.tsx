@@ -84,7 +84,6 @@ const DialogueComponent: React.FC<DialogueComponentProps> = ({ text, tags, next 
 
     const getAnimationFromTag = (tag: string): string | null => {
         const split = tag.split(':');
-        console.log(split);
         if (split.length > 1) {
             const name = split[0];
             const animationName = split[1];
@@ -111,7 +110,6 @@ const DialogueComponent: React.FC<DialogueComponentProps> = ({ text, tags, next 
                 anims.push(prefix + animation);
             }
         }
-        console.log(anims.length);
         return anims;
     };
 

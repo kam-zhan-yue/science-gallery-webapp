@@ -1,6 +1,5 @@
-import React, {useContext} from "react";
+import React from "react";
 import {StyledParallelogram} from "./StyledParallelogram.tsx";
-import {GameContext, GameContextType} from "../../contexts/GameContext.tsx";
 
 interface ParallelogramProps {
     top: number;
@@ -14,11 +13,10 @@ interface ParallelogramProps {
 
 
 const Parallelogram: React.FC<ParallelogramProps> = ({ top, left, width, height, skew, rotate, background}) => {
-    const { started } = useContext(GameContext) as GameContextType;
 
     return (
         <>
-            <StyledParallelogram height={height} left={left} skew={skew} top={top} width={width} rotate={rotate} background={background} move={started}/>
+            <StyledParallelogram height={height} left={left} skew={skew} top={top} width={width} rotate={rotate} background={background} move={false}/>
         </>
     );
 };

@@ -2,7 +2,6 @@ import React, {useEffect, useRef, useContext} from 'react';
 import StoryComponent from "./StoryComponent.tsx";
 import Game from "../game/Game.tsx";
 import {Universe} from "../game/scenes/Universe.tsx";
-import MirrorComponent from "./MirrorComponent.tsx";
 import {GameContext, GameContextType, GameState} from "../contexts/GameContext.tsx";
 import MenuComponent from "./MenuComponent.tsx";
 import {StyleSheetManager} from "styled-components";
@@ -38,10 +37,7 @@ const Main: React.FC = () => {
     const startGame = () => {
         if(!started) {
             start();
-            setState(GameState.Mirror);
-            setTimeout(() => {
-                setState(GameState.Game);
-            }, 1000); // Delay execution by one second (1000 milliseconds)
+            setState(GameState.Game);
         }
     };
 
@@ -58,9 +54,8 @@ const Main: React.FC = () => {
     return (
         <>
             <StyleSheetManager shouldForwardProp={shouldForwardProp}>
-            <MenuComponent/>
             {(state == GameState.Menu || state == GameState.Mirror) &&
-                <MirrorComponent/>
+                <MenuComponent/>
             }
             <Game ref={universeRef}/>
             {state == GameState.Game &&

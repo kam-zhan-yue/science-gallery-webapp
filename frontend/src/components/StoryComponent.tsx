@@ -14,6 +14,7 @@ import GuideComponent from "./GuideComponent.tsx";
 import BackgroundComponent from "./BackgroundComponent.tsx";
 import NotificationComponent from "./NotificationComponent.tsx";
 import PlayerComponent, {PlayerComponentHandle} from './player/PlayerComponent.tsx';
+import MirrorComponent from "./MirrorComponent.tsx";
 
 interface StoryComponentProps {
   universeRef: Universe | null;
@@ -294,7 +295,7 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
             backgroundKey={background}
         />
 
-        {storyState === StoryState.Dialogue &&
+        {storyState === StoryState.Dialogue && inkState != "character_selection" &&
             <>
               <DialogueComponent text={storyText} tags={tags} next={next}></DialogueComponent>
             </>
@@ -338,6 +339,12 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
         {storyState !== StoryState.Travelling && storyState !== StoryState.Inspecting && storyState !== StoryState.Keypad &&
             <>
               <PlayerComponent ref={playerComponentRef} player={player} onUseItem={onUseItem}></PlayerComponent>
+            </>
+        }
+
+        {inkState == "character_selection" &&
+            <>
+              <MirrorComponent/>
             </>
         }
         <NotificationComponent/>
