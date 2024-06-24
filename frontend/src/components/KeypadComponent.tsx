@@ -3,8 +3,10 @@ import styled from 'styled-components';
 import { Choice } from 'inkjs/engine/Choice';
 import KeypadButtonComponent, { KeypadType } from './KeypadButtonComponent';
 import Planet from '../classes/Planet';
+import {motion} from "framer-motion";
+import {TextStyle} from "./styled/Text.tsx";
 
-const KeypadOverlay = styled.div<{ shake: boolean }>`
+const KeypadOverlay = styled(motion.div)`
   position: fixed;
   top: 50%;
   left: 50%;
@@ -22,7 +24,7 @@ const CodeBackground = styled.div`
   align-items: center;
   justify-items: center;
   justify-content: center;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
 `;
 
 const CodeText = styled.div`
@@ -34,25 +36,40 @@ const CodeText = styled.div`
   color: white;
 `;
 
-const BackButton = styled.div`
+const BackButton = styled(TextStyle)`
+  margin-top: 10px;
   width: 60px;
   height: 60px;
+
   display: flex;
   align-items: center;
   justify-items: center;
   justify-content: center;
-  background: #afaebeaa;
-  border: solid 5px #42ffee;
-  border-radius: 5px;
+  border: solid 20px #42ffee;
+  border-image: url("../assets/ui/button.png") 15 fill repeat;
 
   transition: 0.3s;
   -webkit-transition: 0.3s;
+  
+  font-size: 36px;
 
   &:hover {
     cursor: pointer;
-    background: #afaebeff;
   }
 `;
+
+const KeypadContainer = styled(motion.div)`
+  border: 20px solid;
+  border-image: url("../assets/ui/button.png") 15 15 15 15 fill repeat;
+`
+
+const Error = styled(TextStyle)`
+  height: 20px;
+  text-align: center;
+  margin-bottom: 12px;
+  font-size: 20px;
+  color: #FF000D;
+`
 
 interface KeypadComponentProps {
     choices: Choice[];
@@ -63,19 +80,20 @@ interface KeypadComponentProps {
 
 const KeypadComponent: React.FC<KeypadComponentProps> = ({planet, handleCodeInput, handleBackClicked,}) => {
     const [inputValue, setInputValue] = useState<string>('');
-    const [isShaking, setIsShaking] = useState<boolean>(false);
+    const [showError, setShowError] = useState<boolean>(false);
 
     const handleSubmit = () => {
         if (inputValue === planet.code) {
+            setShowError(false);
             handleCodeInput(planet.choice);
         } else {
             // Incorrect code: trigger shake animation
-            setIsShaking(true);
-            setTimeout(() => setIsShaking(false), 500); // Reset shake state after animation
+            setShowError(true);
         }
     };
 
     const handleKeypadClick = (type: KeypadType, code: string) => {
+        setShowError(false);
         if (type === KeypadType.Submit) {
             handleSubmit();
         } else if (type === KeypadType.Delete) {
@@ -87,27 +105,33 @@ const KeypadComponent: React.FC<KeypadComponentProps> = ({planet, handleCodeInpu
 
     return (
         <>
-            <KeypadOverlay shake={isShaking}>
-                <CodeBackground>
-                    <CodeText>{inputValue}</CodeText>
-                </CodeBackground>
-                <div className="grid grid-cols-3 gap-3">
-                    <KeypadButtonComponent code={'1'} type={KeypadType.Code} onClick={handleKeypadClick} />
-                    <KeypadButtonComponent code={'2'} type={KeypadType.Code} onClick={handleKeypadClick} />
-                    <KeypadButtonComponent code={'3'} type={KeypadType.Code} onClick={handleKeypadClick} />
-                    <KeypadButtonComponent code={'4'} type={KeypadType.Code} onClick={handleKeypadClick} />
-                    <KeypadButtonComponent code={'5'} type={KeypadType.Code} onClick={handleKeypadClick} />
-                    <KeypadButtonComponent code={'6'} type={KeypadType.Code} onClick={handleKeypadClick} />
-                    <KeypadButtonComponent code={'7'} type={KeypadType.Code} onClick={handleKeypadClick} />
-                    <KeypadButtonComponent code={'8'} type={KeypadType.Code} onClick={handleKeypadClick} />
-                    <KeypadButtonComponent code={'9'} type={KeypadType.Code} onClick={handleKeypadClick} />
-                    <KeypadButtonComponent type={KeypadType.Delete} onClick={handleKeypadClick} />
-                    <KeypadButtonComponent code={'0'} type={KeypadType.Code} onClick={handleKeypadClick} />
-                    <KeypadButtonComponent type={KeypadType.Submit} onClick={handleKeypadClick} />
-                    <div />
-                    <BackButton onClick={handleBackClicked} />
-                    <div />
-                </div>
+            <KeypadOverlay
+                initial={{ top: '100%', opacity: 0 }}
+                animate={{ top: '50%', opacity: 1 }}
+                exit={{ top: '100%', opacity: 0, transition: { duration: 1 } }}
+                transition={{ duration: 0.3 }}>
+                <KeypadContainer>
+                    <CodeBackground>
+                        <CodeText>{inputValue}</CodeText>
+                    </CodeBackground>
+                    {showError && <Error>INCORRECT CODE</Error>}
+                    {!showError && <Error></Error>}
+                    <div className="grid grid-cols-3 gap-3">
+                        <KeypadButtonComponent code={'1'} type={KeypadType.Code} onClick={handleKeypadClick} />
+                        <KeypadButtonComponent code={'2'} type={KeypadType.Code} onClick={handleKeypadClick} />
+                        <KeypadButtonComponent code={'3'} type={KeypadType.Code} onClick={handleKeypadClick} />
+                        <KeypadButtonComponent code={'4'} type={KeypadType.Code} onClick={handleKeypadClick} />
+                        <KeypadButtonComponent code={'5'} type={KeypadType.Code} onClick={handleKeypadClick} />
+                        <KeypadButtonComponent code={'6'} type={KeypadType.Code} onClick={handleKeypadClick} />
+                        <KeypadButtonComponent code={'7'} type={KeypadType.Code} onClick={handleKeypadClick} />
+                        <KeypadButtonComponent code={'8'} type={KeypadType.Code} onClick={handleKeypadClick} />
+                        <KeypadButtonComponent code={'9'} type={KeypadType.Code} onClick={handleKeypadClick} />
+                        <KeypadButtonComponent type={KeypadType.Delete} onClick={handleKeypadClick} />
+                        <KeypadButtonComponent code={'0'} type={KeypadType.Code} onClick={handleKeypadClick} />
+                        <KeypadButtonComponent type={KeypadType.Submit} onClick={handleKeypadClick} />
+                    </div>
+                </KeypadContainer>
+                <BackButton onClick={handleBackClicked}>X</BackButton>
             </KeypadOverlay>
         </>
     );
