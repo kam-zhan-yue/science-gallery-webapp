@@ -84,12 +84,14 @@ As you do, you also catch a glimpse of your nametag, catching the glow of the sh
 ===doctorconfirmname===
 Your name tag reads "My name is: {name}". You make sure it stays secured on your coat. ->cavedoor
 ===mechanic===
-As you stare into the shard, it suddenly feels heavier in your hands. You realise, that what you see is no longer a shard, but a memory of a wrench in your hand. 
+As you stare into the shard, it suddenly feels heavier in your hands. You realise, that what you see is no longer a shard, but a toolbox, glowing in your hand. 
 You're covered in grease from fixing a metro shuttle, and you see the line of other shuttles waiting to be repaired.
-As the memory fades away, the weight of the wrench moves from your hand to your hip. You see your wrench, fastened securely to your belt. Maybe it'll come in handy someday, you think to yourself.
+As the memory fades away, you feel the toolbox... move? 
+You snap back to reality, and the toolbox manifests in front of your eyes. It floats in front of you, with its faint glow.
 *[I understand now.]->mechanicname
 ===mechanicname===
-As you pay attention to the wrench on your hip, you notice something in your pant pocket. You reach into your pocket and produce a card - your license. What name does it read?
+The toolbox slowly floats towards your leg, gesturing to your pocket, in a way.
+You reach into your pocket and produce a card - your license. What name does it read?
 *[The player inserts their name here.]->mechanicconfirmname
 ===mechanicconfirmname===
 {name} is clearly written on your license. You were wondering where that went... You put it back in your pocket. ->cavedoor
