@@ -1,5 +1,6 @@
 import React from "react";
 import {StyledCharacter, StyledTriangle} from "./StyledTriangle";
+// import {characters} from "../../setup/Character.ts";
 
 interface TriangleProps {
     top: number;
@@ -9,10 +10,16 @@ interface TriangleProps {
     bbottom: number;
     rotate: number;
     background: string;
-    imageUrl?: string; // Optional prop for the image URL
+    character?: string;
 }
 
-const Triangle: React.FC<TriangleProps> = ({ top, left, bleft, bright, bbottom, rotate, background, imageUrl }) => {
+const Triangle: React.FC<TriangleProps> = ({ top, left, bleft, bright, bbottom, rotate, background }) => {
+    // const getImage = (): string => {
+    //     if(!character) return '';
+    //     if(character in characters) {
+    //         return characters[character].fullBody;
+    //     }
+    // }
     return (
         <>
             <StyledTriangle
