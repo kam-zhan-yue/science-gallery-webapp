@@ -1,5 +1,5 @@
 // If you wanna add an item, add it to the list and in take()
-LIST inventory = (none), paint_brush, syringe, wrench, calculator, pen, teddy_bear, excalibur, seed_of_life, holy_water, red_shard, blue_shard, book_1, book_2, book_3, book_4, alt_book_1, alt_book_2, library_card
+LIST inventory = (none), paint_brush, syringe, wrench, calculator, pen, teddy_bear, excalibur, seed_of_life, holy_water, red_shard, blue_shard, book_1, book_2, book_3, book_4, alt_book_1, alt_book_2, library_card, scroll
 
 // this is a really bad implementation, i'm really sorry, but go with the flow. also please don't change take
 === function take(x)
@@ -41,6 +41,9 @@ LIST inventory = (none), paint_brush, syringe, wrench, calculator, pen, teddy_be
     ~inventory -= alt_book_2
 -"library_card":
     ~inventory -= library_card
+//WAYS OF FOLDING SPACE
+-"scroll":
+    ~inventory -= scroll
 }
 
 === function shards() ===
