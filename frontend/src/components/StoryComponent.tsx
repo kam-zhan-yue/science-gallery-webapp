@@ -195,14 +195,24 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
 
   const advance = (story: Story | null) => {
     if (!story) return;
+    // If the story can continue, it means there is new text!
+    // If the story cannot continue, it means there might be choices.
+    // If the choices are not showing, show the choices
+    // If the choices are showing, do nothing
     if (story.canContinue) {
       const bodyText: string = story.Continue() ?? '';
       setStoryText(bodyText);
-      setChoices(story.currentChoices)
+      setChoices(story.currentChoices);
+    } else if(!showingChoices) {
+      setChoices(story.currentChoices);
       const choices: Choice[] = story.currentChoices;
       if (choices.length > 0) {
-        console.log('set showing choices true')
+        // If there are choices, then show them!
+        console.log('has choices, display them!!');
         setShowingChoices(true);
+      } else {
+        // If there are no choices, and we are not showing the choices, then the story has ended
+        console.log('story has ended!');
       }
     }
   }

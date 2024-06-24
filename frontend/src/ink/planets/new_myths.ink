@@ -1,48 +1,3 @@
-->lastship
-===lastship===
-Your ship lands. The glass has fogged up a bit, but you see shades of red all around your ship.
-"You've travelled so far, {name}. I wonder what this planet has in store for you!"
-*[I'm keen to go!]->notenoughfuel
-*[I'm a bit nervous...]->dontbenervous
-===dontbenervous===
-"Oh... that's fair. I don't know what that feels like, but I've heard it's not a nice feeling."
-*[No, it isn't. It sucks.]->nervoussucks
-*[It's not that bad, it can be helpful.]->nervoushelpful
-===nervoushelpful===
-"Well then, I hope you are feeling incredibly nervous. You will need it."
-*[Thanks...?]->notenoughfuel
-*[That's kind of rude.]->kindarudeofyou
-===nervoussucks===
-"Gee, that certainly sounds bad. I guess this is a feeling you will have to live with. Good luck!"
-*[Thanks...?]->notenoughfuel
-*[That's kind of rude.]->kindarudeofyou
-===kindarudeofyou===
-"I will not tolerate statements of this kind, {name}. Do not question me. Or there will be consequences."
-"I hope you enjoy your time on this planet!"
-*[Okay.] ->notenoughfuel
-===notenoughfuel===
-"Actually, before you go, I must inform you that I do not have sufficient fuel to take you to another planet."
-*[What do you mean?]->fuelexplain
-*[Well, I guess we're stuck here then.]->notstuck
-===notstuck===
-"We may not be stuck, if you give over your shards. I can use your shards to be converted into fuel."
-*[Oh, that's good to know!]->goodluck1
-*[Wait... how do you use the shards?]->enoughquestions
-===fuelexplain===
-"You did not ask, so I did not inform you. However fuel levels are critically low."
-"This can be somewhat mitigated by using your shards. Your shards can be converted to fuel."
-*[Oh, that's good to know!]->goodluck1
-*[Wait... how do you use the shards?]->enoughquestions
-===goodluck1===
-"Collect more shards on this planet, and bring them to me. I will make sure you will get to where you need to."
-*[Which planets will I be able to visit?]->enoughquestions
-*[Where will you take me?]->enoughquestions
-*[Can I stay here?]->enoughquestions
-===enoughquestions===
-"You ask too many questions. Bring the shards to me."
-The ship's door opens, and you feel a force pushing you out.
-"I cannot wait to hear what adventures you get up to! Enjoy, {name}!"
-*[Venture into NEW MYTHS]->newmyths
 === newmyths ==
 You land in what seems to be a planet covered in crimson - as you look around you, all you can see is a dense forest. 
 However, this forest isn't made of the trees or plants you've seen before. As your eyes adjust to the ruby haze, you notice that you are surrounded by streams of fabric. 
@@ -127,7 +82,7 @@ You wonder what this might mean.
 You present the starry silk that brought you here.
 "Where... where did you find it?" The silk in your hand floats in the air.
 "Thank you for returning it to me... you will be greatly rewarded!"
-~ get(red_shard) 
+~get_good_shard()
 ->navigation
 ===riddleintro===
 "No matter. Look around you, there is so much to learn from my woven make. Answer these three riddles correctly, and you will find what you seek."
@@ -137,7 +92,7 @@ You present the starry silk that brought you here.
 "You will find out, young one. But first, you must take a leap of fate."
 *[Okay, I understand.]->riddle1
 ==riddle1==
-"Your first riddle:
+"Your first riddle..
 "The myth that surrounds me inspired my make, the marriage of thread, with another name it takes. What am I?"
 *[Snake.]->riddle1wrong
 *[String.]->riddle2
@@ -146,17 +101,17 @@ You present the starry silk that brought you here.
 ==riddle1wrong==
 "That is incorrect. However, I do not wish to leave you with nothing. Hold out your hands."
 (INCOMPLETE SHARD ADDED TO INVENTORY) 
-~ get(blue_shard)
+~get_bad_shard()
 ->navigation
 
 ==riddle2==
-"Well done. Your next riddle:
+"Well done. Your next riddle is...
 "What floats in space created this art, A work that’s a woven, a work of the heart. Who am I?"
 *[Sputniko.]->riddle3
 *[Apollon.]->riddle1wrong
 *[Suomi.]->riddle1wrong
 ==riddle3==
-"Correct. Your final riddle:
+"Correct. Your final riddle...
 "It binds us together, through thick and through thin, this silk has this ruby glow woven in. What am I?"
 *[Glue.]->riddle1wrong
 *[Love.]->riddlescorrect
@@ -165,10 +120,10 @@ You present the starry silk that brought you here.
 You present the silk square.
 "How... did you find this?" The square floats out of your hands into the air.
 "Nevermind the riddles... You have done me a great service. I will reward you well!"
-~ get(red_shard)
-
+~get_good_shard()
+->navigation
 ==riddlescorrect==
-"You have answered all of my riddles correctly. I keep my word: hold out your hand."
+"You have answered all of my riddles correctly. I keep my word - hold out your hand."
 You hold out your hands, and with a soft, red glow, a shard appears in your hand. 
-~ get(red_shard)
-
+~get_bad_shard()
+->navigation

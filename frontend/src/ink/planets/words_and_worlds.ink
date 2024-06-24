@@ -60,7 +60,7 @@ Librarian: Dearie? Are you quite alright?
 === words_library_card ===
 Librarian: No trouble, here’s your library card. Make sure you bring it back before the date written there.” She hands you a smooth shiny card.
 ~get(library_card)
-You look at the library card and realise it somehow correctly displays your name, photo, and birthday. On the back, “I Robot: Due 27 March 8042”
+You look at the library card and realise it somehow correctly displays your name, photo, and birthday. On the back, “I Robot - Due 27 March 8042”
 ->words_occupation
 
 === words_random_book ===
@@ -119,7 +119,7 @@ She blows off a layer of dust that had accumulated on the cover, and presents yo
 ~get(book_2)
 Librarian: Make sure you return it by the date on your library card.
 ~get(library_card)
-You look at the library card she’s given you and realise it somehow correctly displays your name, photo, and birthday. On the back, “Atopic dermatitis, the good, the bad, and the itchy: a thesis”: Due 27 March 8042”
+You look at the library card she’s given you and realise it somehow correctly displays your name, photo, and birthday. On the back, “Atopic dermatitis, the good, the bad, and the itchy: a thesis” - Due 27 March 8042”
 ->words_occupation
 
 === words_occupation ===
@@ -188,10 +188,11 @@ It seems she does not like what she sees. One of her tentacles extends outwards,
 === words_use_item ===
 Give the librarian an item from your inventory.
 ~game_state = take_item
-//TODO fill this in
-*[{excalibur}]
+*[{book_1}]
+    ~game_state = exploring
     ->words_persuasion_success_ending
 *[other]
+    ~game_state = exploring
     ->words_persuasion_failure_ending
 
 === words_persuasion_failure_ending ===
@@ -248,7 +249,7 @@ The sharpness of your needle is a surprisingly effective weapon, though it sadde
 Use an item to fight the Librarian.
 ~game_state = take_item
 //TODO fill this in
-*[{excalibur}]
+*[{book_1}]
     ->words_fight_success
 *[other]
     ->words_fight_failure

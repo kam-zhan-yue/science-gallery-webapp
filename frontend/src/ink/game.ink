@@ -9,13 +9,10 @@ INCLUDE planets/in_a_new_light.ink
 INCLUDE planets/shangrila.ink
 INCLUDE player/variables.ink
 INCLUDE player/inventory.ink
-INCLUDE test/earth.ink
-INCLUDE test/jupiter.ink
 INCLUDE test/debug.ink
 INCLUDE player/battle.ink
 INCLUDE globals.ink
 INCLUDE navigation.ink
-INCLUDE test/shop.ink
 INCLUDE player/character_select.ink
 INCLUDE player/shard.ink
 INCLUDE test/buttons.ink
