@@ -5,7 +5,6 @@
 === navigation ===
 ~ background = empty
 ~ progress = progress + 1
-Your progress is now {progress}.
 ~ game_state = planet_selection
 Choose a planet.
 

@@ -71,15 +71,18 @@ class Player {
     }
 
     set firstShard(value: string) {
+        EventBus.emit('get_shard', value);
         this._firstShard = value;
     }
 
     set secondShard(value: string) {
-        this._firstShard = value;
+        EventBus.emit('get_shard', value);
+        this._secondShard = value;
     }
 
     set thirdShard(value: string) {
-        this._firstShard = value;
+        EventBus.emit('get_shard', value);
+        this._thirdShard = value;
     }
 
     set inkProgress(value: number) {

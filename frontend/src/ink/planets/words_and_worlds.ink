@@ -38,7 +38,7 @@ It feels like it’s calling to you. Like the shard back on Shangri-La did.
 
 Librarian: Dearie? Are you quite alright?
 
-- You snap your focus back to the librarian. 
+- You snap your focus back to the librarian.
     +[speech: Yes of course!]
         Librarian: Well, that's good
     +[speech: No, I don't know who I am]

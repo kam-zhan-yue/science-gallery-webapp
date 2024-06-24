@@ -42,7 +42,7 @@ Fysi smiles at you, and walks to a market stall near you
 
 === fysi_walk_away ===
 The townspeople seem to be going about their days. However, there is a palpable tension in the air. Laughter is too loud and smiles seem forced.
-*[Approach Fysi and ask what's going on]
++[Approach Fysi and ask what's going on]
     ->fysi_approach
 
 === fysi_approach ===

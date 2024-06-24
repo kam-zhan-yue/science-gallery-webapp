@@ -31,6 +31,7 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
   const [story, setStory] = useState<Story | null>(null);
   const [background, setBackground] = useState<string>('');
   const [storyText, setStoryText] = useState<string>('');
+  const [tags, setTags] = useState<string[]>([]);
   const [showingChoices, setShowingChoices] = useState<boolean>(false);
   const [choices, setChoices] = useState<Choice[]>([]);
   const [planet, setPlanet] = useState<Planet>(new Planet());
@@ -191,7 +192,7 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
       EventBus.removeListener('reset');
     }
 
-  }, [universeRef])
+  }, [universeRef]);
 
   const advance = (story: Story | null) => {
     if (!story) return;
@@ -203,16 +204,17 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
       const bodyText: string = story.Continue() ?? '';
       setStoryText(bodyText);
       setChoices(story.currentChoices);
+      setTags(story.currentTags);
     } else if(!showingChoices) {
       setChoices(story.currentChoices);
       const choices: Choice[] = story.currentChoices;
       if (choices.length > 0) {
         // If there are choices, then show them!
-        console.log('has choices, display them!!');
+        // console.log('has choices, display them!!');
         setShowingChoices(true);
       } else {
         // If there are no choices, and we are not showing the choices, then the story has ended
-        console.log('story has ended!');
+        // console.log('story has ended!');
       }
     }
   }
@@ -243,7 +245,6 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
   }
 
   const selectPlanet = (_planet: string) => {
-    console.log(`setting planet to ${_planet}`)
     universeRef?.init(_planet);
     setStoryState(StoryState.Dialogue);
   }
@@ -264,7 +265,6 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
   const onUseItem = (itemKey: string) => {
     if(inkState === "take_item" && story) {
       story.EvaluateFunction('take', [itemKey], true);
-      console.log(`try use ${itemKey} from story component`)
 
       for (let i= 0; i<story.currentChoices.length; ++i) {
         const choice: string = story.currentChoices[i].text;
@@ -296,7 +296,7 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
 
         {storyState === StoryState.Dialogue &&
             <>
-              <DialogueComponent text={storyText} next={next}></DialogueComponent>
+              <DialogueComponent text={storyText} tags={tags} next={next}></DialogueComponent>
             </>
         }
 

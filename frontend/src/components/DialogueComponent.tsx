@@ -25,8 +25,14 @@ const CharacterContainer = styled(motion.div)`
   position: fixed;
   bottom: 150px;
   height: 60%;
-  //border: 5px white solid;
-  //border-radius: 5px;
+  
+  display: flex;
+  flex-wrap: nowrap;
+
+  & > * {
+    flex: 1 1 auto; /* Flex-grow, flex-shrink, and flex-basis combined */
+    min-width: 0; /* Ensure items can shrink below their content size */
+  }
 `
 
 const Character = styled(motion.img)`
@@ -43,6 +49,7 @@ const Character = styled(motion.img)`
 
 interface DialogueComponentProps {
     text: string;
+    tags: string[];
     next?: () => void;
 }
 
@@ -57,26 +64,76 @@ const Blocker = styled(motion.div)`
   display: block; /* Initially hidden */
 `;
 
-const DialogueComponent: React.FC<DialogueComponentProps> = ({ text, next }) => {
+const DialogueComponent: React.FC<DialogueComponentProps> = ({ text, tags, next }) => {
     // Splitting the text into character name and dialogue body if a colon exists
     const colonIndex = text.indexOf(':');
     const characterName = colonIndex !== -1 ? text.substring(0, colonIndex).trim() : '';
     const dialogueBody = colonIndex !== -1 ? text.substring(colonIndex + 1).trim() : text;
     const {player} = useContext(GameContext) as GameContextType;
 
+    const prefix: string = '../assets/characters/';
     const getCharacterFullBody = (): string => {
         if(characterName === "Ship" || characterName == "You") {
-            return `../assets/characters/${characters[player.class].fullBody}`;
+            return prefix + characters[player.class].fullBody;
         } else if(characterName in characters) {
-            return `../assets/characters/${characters[characterName].fullBody}`;
+            return prefix + characters[characterName].fullBody;
         } else {
             return '';
         }
     }
 
+    const getAnimationFromTag = (tag: string): string | null => {
+        const split = tag.split(':');
+        console.log(split);
+        if (split.length > 1) {
+            const name = split[0];
+            const animationName = split[1];
+            if (name in characters && animationName in characters[name].animations) {
+                return characters[name].animations[animationName];
+            }
+        } else if (split.length > 0) {
+            const name = split[0];
+            if (name in characters) {
+                const fullBody: string | undefined = characters[name].fullBody;
+                if (fullBody) {
+                    return fullBody;
+                }
+            }
+        }
+        return null;
+    };
+
+    const animations = (): string[] => {
+        let anims: string[] = [];
+        for (let tag of tags) {
+            const animation = getAnimationFromTag(tag);
+            if (animation) {
+                anims.push(prefix + animation);
+            }
+        }
+        console.log(anims.length);
+        return anims;
+    };
+
+    const characterAnimations = animations(); // Get the animations once
+
     return (
         <>
-            {characterName && getCharacterFullBody() !== '' &&
+            {characterAnimations.length > 0 &&
+            <>
+                <Blocker/>
+                <CharacterContainer
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0, transition: {duration: 0.2} }}
+                    transition={{ duration: 0.2 }}>
+                    {characterAnimations.map((animation, index) => (
+                        <Character key={index} src={animation} alt='character'/>
+                    ))}
+                </CharacterContainer>
+            </>
+            }
+            {characterAnimations.length == 0 && characterName && getCharacterFullBody() &&
                 <>
                     <Blocker/>
                     <CharacterContainer

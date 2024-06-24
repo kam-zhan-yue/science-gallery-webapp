@@ -14,6 +14,10 @@ const Notification = styled(motion.div)`
   image-rendering: crisp-edges;
   border: 15px solid;
   border-image: url("../assets/ui/button.png") 15 15 15 15 fill repeat;
+  
+  @media (max-width: 768px) {
+    top: 120px;
+  }
 `
 
 const Message = styled(TextStyle)`
@@ -32,8 +36,19 @@ const NotificationComponent: React.FC = () => {
             }
         })
 
+        EventBus.on("get_shard", (shard: string) =>  {
+            if(shard == 'good') {
+                const message: string = 'You have obtained a Pure Shard';
+                setMessage(message);
+            } else if (shard == 'bad'){
+                const message: string = 'You have obtained a Corrupted Shard';
+                setMessage(message);
+            }
+        })
+
         return () => {
             EventBus.off("get_item");
+            EventBus.off("get_shard");
         };
     }, []);
 
@@ -53,9 +68,9 @@ const NotificationComponent: React.FC = () => {
               {message &&
                   <>
                       <Notification
-                          initial={{ y: -300, opacity: 0 }}
+                          initial={{ y: -200, opacity: 0 }}
                           animate={{ y: 0, opacity: 1 }}
-                          exit={{ y: -300, opacity: 0, transition: { duration: 0.2 } }}
+                          exit={{ y: -200, opacity: 0, transition: { duration: 0.2 } }}
                           transition={{ duration: 0.2, delay: 0.1 }}
                       >
                           <Message>
