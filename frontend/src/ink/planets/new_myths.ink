@@ -193,7 +193,7 @@ That's true, you think to yourself. You feel nervous.
 ===finalreturntoship===
 With all its warmth and welcome, you close your eyes to enjoy it.
 When you open your eyes, you are back in your ship.
-
+->justenough
 ===justenough===
 The ship glows a faint red.
 "You have taken a long time to return. Where have you been?"
@@ -207,4 +207,4 @@ You feel the ship shake, ready for takeoff.
 ->movingtoanewlight
 ===movingtoanewlight===
 "Let's float around for a little bit, shall we, {name}?"
-the ship blasts off into the aether.
+the ship blasts off into the aether.->new_light
