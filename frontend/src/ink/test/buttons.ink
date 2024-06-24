@@ -15,11 +15,11 @@ Testing responsive buttons.
 === test_open_inventory ===
 Testing open inventory.
 ~ game_state = take_item
-    *[{excalibur}]
+    *[{artist_item}]
         ~take("excalibur")
         A fine specimen. You are now King of Camelot.
         ->->
-    *[{seed_of_life},{holy_water}]
+    *[{doctor_item},{mechanic_item}]
         // take is called outside of the story
         Hmmm. I will find some use of this.
         ->->

@@ -12,7 +12,7 @@ VAR intuition = 0
     ~ finesse = 2
     ~ persuasion = 1
     ~ intuition = 2
-    ~ get(paint_brush)
+    ~ get(artist_item)
 }
 
 { class == Doctor:
@@ -20,7 +20,7 @@ VAR intuition = 0
     ~ finesse = 2
     ~ persuasion = 0
     ~ intuition = 1
-    ~ get(syringe)
+    ~ get(doctor_item)
 }
 
 { class == Mechanic:
@@ -28,7 +28,7 @@ VAR intuition = 0
     ~ finesse = 1
     ~ persuasion = 0
     ~ intuition = 2
-    ~ get(wrench)
+    ~ get(mechanic_item)
 }
 
 === function add_health(x) ===

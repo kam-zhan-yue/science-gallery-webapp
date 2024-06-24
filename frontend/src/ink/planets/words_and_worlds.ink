@@ -188,10 +188,11 @@ It seems she does not like what she sees. One of her tentacles extends outwards,
 === words_use_item ===
 Give the librarian an item from your inventory.
 ~game_state = take_item
-//TODO fill this in
-*[{excalibur}]
+*[{book_1}]
+    ~game_state = exploring
     ->words_persuasion_success_ending
 *[other]
+    ~game_state = exploring
     ->words_persuasion_failure_ending
 
 === words_persuasion_failure_ending ===
@@ -248,7 +249,7 @@ The sharpness of your needle is a surprisingly effective weapon, though it sadde
 Use an item to fight the Librarian.
 ~game_state = take_item
 //TODO fill this in
-*[{excalibur}]
+*[{book_1}]
     ->words_fight_success
 *[other]
     ->words_fight_failure

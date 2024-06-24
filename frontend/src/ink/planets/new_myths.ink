@@ -82,7 +82,7 @@ You wonder what this might mean.
 You present the starry silk that brought you here.
 "Where... where did you find it?" The silk in your hand floats in the air.
 "Thank you for returning it to me... you will be greatly rewarded!"
-~ get(red_shard) 
+~get_good_shard()
 ->navigation
 ===riddleintro===
 "No matter. Look around you, there is so much to learn from my woven make. Answer these three riddles correctly, and you will find what you seek."
@@ -101,7 +101,7 @@ You present the starry silk that brought you here.
 ==riddle1wrong==
 "That is incorrect. However, I do not wish to leave you with nothing. Hold out your hands."
 (INCOMPLETE SHARD ADDED TO INVENTORY) 
-~ get(blue_shard)
+~get_bad_shard()
 ->navigation
 
 ==riddle2==
@@ -120,10 +120,10 @@ You present the starry silk that brought you here.
 You present the silk square.
 "How... did you find this?" The square floats out of your hands into the air.
 "Nevermind the riddles... You have done me a great service. I will reward you well!"
-~ get(red_shard)
+~get_good_shard()
 ->navigation
 ==riddlescorrect==
 "You have answered all of my riddles correctly. I keep my word: hold out your hand."
 You hold out your hands, and with a soft, red glow, a shard appears in your hand. 
-~ get(red_shard)
+~get_bad_shard()
 ->navigation

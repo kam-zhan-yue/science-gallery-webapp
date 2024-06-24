@@ -99,20 +99,20 @@ Fysi: Well... The thing is, we have two very severe problems, and only one solut
 
 === fysi_shard_explain ===
 Fysi: Sorry, I’m rambling.  Now that I’ve explained our situation, we need you to decide. You’re an unbiased third party, you can see this problem from an objective perspective. Who would you give the shard to?
-//TODO: BUTTON TYPES!
-*[Give the shard to the Gardeners - the town needs food.]
+
+*[important:Give the shard to the Gardeners - the town needs food.]
     ->shard_gardeners
-*[Give the shard to the Guards - they need to protect the town.]
+*[important:Give the shard to the Guards - they need to protect the town.]
     ->shard_guards
-*[I have a torch on my ship, I can give it to the Guards and the Gardeners can have the shard.]
+*[important:I have a torch on my ship, I can give it to the Guards and the Gardeners can have the shard.]
     ->torch_appease
-*[I have a torch on my ship, I can give it to you, in return for the shard]
+*[important:I have a torch on my ship, I can give it to you, in return for the shard]
     ->torch_swap
-*[Take me to see the shard]
+*[speech:Take me to see the shard]
     ->see_shard
-*[I can heal your scouts. I'll give the Gardeners the torch, and I'll take the shard]
+*[speech:I can heal your scouts. I'll give the Gardeners the torch, and I'll take the shard]
     ->heal
-+[I wasn't listening. Give me the run down again]
++[speech:I wasn't listening. Give me the run down again]
     ->fysi_backstory_end
 
 // GARDENER PATH
@@ -145,13 +145,14 @@ The structure looks like hanging flowers, with spiralling wire hanging down from
 === shard_gardeners_5 ===
 Lyanne: This is the Gardeners’ most prized possession. This plant is what keeps morale up when times are tough. It is our proverbial shining beacon of hope. You have given us another hope. I thank you.
 Lyanne takes a flower from the structure, and gives it to you with an air of reverence. It warms your hands, and you feel a sense of calm purpose flow through you. 
-// TODO: GET FLOWER HERE
+
 *[Oh, thank you so much! (Pocket the flower)]
 ->shard_gardeners_flower_accept
 *[Oh, I couldn't possibly take such an important item from you! (Refuse the flower)]
 ->shard_gardeners_flower_decline
 
 === shard_gardeners_flower_accept ===
+~get(flower)
 Lyanne: Feel free to stay in the town for as long as you want. 
 Lyanne smiles at you, and walks away.
 +[Walk out of the building]
@@ -195,6 +196,7 @@ Bellator walks to a weapons rack, and picks up an ornate spear. He hands it to y
 ->spear_decline
 
 === spear_accept ===
+~get(spear)
 Bellator: Feel free to stay in the town for as long as you want.
 Bellator smiles at you, and walks away.
 +[Walk out of the building.]
@@ -217,7 +219,8 @@ They walk away
 === torch_appease_1 ===
 Lyanne and Bellator lead you to a small glass cottage, where they introduce you to Anna, the town’s herbalist.
 Anna gives you a pendant made of multicoloured glass, red and white, green and yellow. You put it on, and feel that the universe smiles on you. 
-//TODO: GET ANNA'S PENDANT HERE!!!
+
+~get(pendant)
 Congratulations!  You helped both factions, and have gained a pendant that gives you +1 Knack!
 //TODO: ADD KNACK HERE!!!
 Bellator and Lyanne lead you outside. 
@@ -252,6 +255,7 @@ Lyanne and Bellator lead you to a locked glass building. They unlock it and moti
 === torch_swap_4 ===
 The leaders move towards a chest in the room’s centre, and unlock it. Bellator reaches inside, and takes out a glowing glass shard. He motions you forward, and places it in your hands. 
 //TODO EXCHANGE ITEMS HERE
+~get_good_shard()
 +[Thank you. (Pocket the shard, give the leaders the torch from your ship)]
 ->torch_swap_5
 
@@ -286,6 +290,7 @@ You grab the sprite and run. Fysi shouts, and tries to grab at you.
 
 === steal_shard_win ===
 //TODO GET SHARD HERE
+~get_bad_shard()
 Fysi shouts after you as you sprint towards your ship, shard clutched to your chest.
 Fysi: Come back!  Please, you’ve left us with nothing!
 You feel the shard cool in your hands.

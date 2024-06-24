@@ -1,7 +1,7 @@
 export type Item = {
     name: string,
     image: string,
-    description: string,
+    description?: string,
 }
 
 const itemRoot: string = "../assets/items/"
@@ -10,54 +10,54 @@ export function getImage(item: Item | null): string {
 }
 
 export const items: { [key: string]: Item } = {
-    "paint_brush": {
-        name: "Paint Brush",
+    "artist_item": {
+        name: "Needle and Thread",
         image: "apple.png",
-        description: "A paint brush."
+        description: "Red thread thingy."
     },
-    "syringe": {
-        name: "Syringe",
+    "mechanic_item": {
+        name: "The Sentient Toolbox",
         image: "apple.png",
         description: "A syringe."
     },
-    "wrench": {
-        name: "Wrench",
+    "doctor_item": {
+        name: "A Syringe",
         image: "apple.png",
         description: "A wrench."
     },
-    "pen": {
-        name: "Pen",
+    "book_1": {
+        name: "'I, Robot'",
         image: "apple.png",
         description: "A pen."
     },
-    "red_shard": {
-        name: "Red Shard",
+    "book_2": {
+        name: "'(Untitled) Heat Book'",
         image: "cookie.png",
         description: "A red shard."
     },
-    "blue_shard": {
-        name: "Blue Shard",
+    "library_card": {
+        name: "Library Card",
         image: "cookie.png",
         description: "A blue shard.",
     },
-    "excalibur": {
-        name: "Excalibur",
+    "spear": {
+        name: "Spear",
         image: "apple.png",
         description: "The sword of legend."
     },
-    "teddy_bear": {
-        name: "Teddy Bear",
+    "flower": {
+        name: "Flower",
         image: "bread.png",
         description: "Cuddly and snuggly."
     },
-    "seed_of_life": {
-        name: "Seed of Life",
+    "pendant": {
+        name: "Anna's Pendant",
+        image: "bread.png",
+        description: "Cuddly and snuggly."
+    },
+    "scroll": {
+        name: "Scroll",
         image: "avocado.png",
         description: "A powerful seed."
-    },
-    "holy_water": {
-        name: "Holy Water",
-        image: "apple-pie.png",
-        description: "Washes dirt and grime away like magic!"
     },
 };
