@@ -82,7 +82,7 @@ You put the syringe back into your pocket. I wonder when this might become usefu
 As you do, you also catch a glimpse of your nametag, catching the glow of the shard. What name does it read?
 *[The player inserts their name here.]->doctorconfirmname
 ===doctorconfirmname===
-Your name tag reads "My name is: {name}". You make sure it stays secured on your coat. ->cavedoor
+Your name tag reads "My name is - {name}". You make sure it stays secured on your coat. ->cavedoor
 ===mechanic===
 As you stare into the shard, it suddenly feels heavier in your hands. You realise, that what you see is no longer a shard, but a toolbox, glowing in your hand. 
 You're covered in grease from fixing a metro shuttle, and you see the line of other shuttles waiting to be repaired.
@@ -117,7 +117,7 @@ The shuttle's interior lights up, and you can hear a little voice emanating from
 "Welcome, traveller. Please input launch code."
 ->navigation
 
-NOTE: YOU WILL FIND TWO CODES SOMEWHERE IN SHANGRILA AROUND YOU. LOOK AROUND THE ARTWORK TO FIND THEM.
+NOTE - YOU WILL FIND TWO CODES SOMEWHERE IN SHANGRILA AROUND YOU. LOOK AROUND THE ARTWORK TO FIND THEM.
 *[Player inputs code 1]->liftoff1
 *[Player inputs code 2]->liftoff1
 

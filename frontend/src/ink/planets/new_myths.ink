@@ -92,7 +92,7 @@ You present the starry silk that brought you here.
 "You will find out, young one. But first, you must take a leap of fate."
 *[Okay, I understand.]->riddle1
 ==riddle1==
-"Your first riddle:
+"Your first riddle..
 "The myth that surrounds me inspired my make, the marriage of thread, with another name it takes. What am I?"
 *[Snake.]->riddle1wrong
 *[String.]->riddle2
@@ -105,13 +105,13 @@ You present the starry silk that brought you here.
 ->navigation
 
 ==riddle2==
-"Well done. Your next riddle:
+"Well done. Your next riddle is...
 "What floats in space created this art, A work that’s a woven, a work of the heart. Who am I?"
 *[Sputniko.]->riddle3
 *[Apollon.]->riddle1wrong
 *[Suomi.]->riddle1wrong
 ==riddle3==
-"Correct. Your final riddle:
+"Correct. Your final riddle...
 "It binds us together, through thick and through thin, this silk has this ruby glow woven in. What am I?"
 *[Glue.]->riddle1wrong
 *[Love.]->riddlescorrect
@@ -123,7 +123,7 @@ You present the silk square.
 ~get_good_shard()
 ->navigation
 ==riddlescorrect==
-"You have answered all of my riddles correctly. I keep my word: hold out your hand."
+"You have answered all of my riddles correctly. I keep my word - hold out your hand."
 You hold out your hands, and with a soft, red glow, a shard appears in your hand. 
 ~get_bad_shard()
 ->navigation
