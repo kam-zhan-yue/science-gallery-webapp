@@ -119,29 +119,26 @@ const DialogueComponent: React.FC<DialogueComponentProps> = ({ text, tags, next 
 
     return (
         <>
-            {characterAnimations.length > 0 &&
-            <>
-                <Blocker/>
-                <CharacterContainer
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0, transition: {duration: 0.2} }}
-                    transition={{ duration: 0.2 }}>
-                    {characterAnimations.map((animation, index) => (
-                        <Character key={index} src={animation} alt='character'/>
-                    ))}
-                </CharacterContainer>
-            </>
-            }
-            {characterAnimations.length == 0 && characterName && getCharacterFullBody() &&
+            {(characterAnimations.length > 0 || (characterName && getCharacterFullBody()))&&
                 <>
                     <Blocker/>
                     <CharacterContainer
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        exit={{ opacity: 0, transition: {duration: 0.2} }}
+                        exit={{ opacity: 0, transition: {duration: 0.8} }}
                         transition={{ duration: 0.2 }}>
-                        <Character src={getCharacterFullBody()} alt='character'/>
+                        {characterAnimations.length > 0 &&
+                            <>
+                                {characterAnimations.map((animation, index) => (
+                                    <Character key={index} src={animation} alt='character'/>
+                                ))}
+                            </>
+                        }
+                        {characterAnimations.length == 0 &&
+                            <>
+                                <Character src={getCharacterFullBody()} alt='character'/>
+                            </>
+                        }
                     </CharacterContainer>
                 </>
             }

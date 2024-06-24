@@ -86,7 +86,7 @@ Debug Navigation Panel.
 - planet == crafting_new_worlds:
     ->crafting
 - planet == the_monstrous_feminine:
-    ->lastship1
+    ->monstrous_feminine_start
 - planet == new_myths:
     ->lastship
 - planet == in_a_new_light:

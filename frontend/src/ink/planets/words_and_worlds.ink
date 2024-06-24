@@ -14,36 +14,35 @@ You breathe in the smell of old and new books. Do you pick one up?
 === words_book ===
 ~look_book_1 = true
 You run your fingers along the spines of the books, and pick up one that calls to you. It’s old and dusty, as though no one has opened it in years. The title reads ‘I, Robot’.
-~get(book_1)
 
 You open the book, and briefly skim a tale about humans and robots co-existing. You wonder how long ago this was written, and whether it depicts an accurate history of this planet, Earth.
 
 - Although the library feels cosy, you don’t want to stand around reading. Would you like to take the book?
     +[Yes, take the book]
+        ~get(book_1)
         You slip the book into your bag. Suddenly a voice pierces the silence.
-        
-        Librarian: Well hello dearie!! I’d be happy to help you check out that book!
+        Librarian: Well hello dearie!! I’d be happy to help you check out that book! #Librarian:happy
     +[No, you're not a book thief.]
         You’ve had enough of books for now. It’s time to go further into the library. You need to find something, but you’re not quite sure what you’re looking for.
     - ->words_librarian
 
 
 === words_librarian ===
-Suddenly, you come face to face with something, no, someone, who you can only assume to be the librarian. You don’t know how long she’s been there, or how she managed to appear so quietly.
-You try not to stare, instead fixing your gaze past the librarian.
+Suddenly, you come face to face with something, no, someone, who you can only assume to be the librarian. You don’t know how long she’s been there, or how she managed to appear so quietly. #Librarian
+You try not to stare, instead fixing your gaze past the librarian. #Librarian
 
-As you do so, you notice a warm glow emanating from one of the aisles behind her. 
+As you do so, you notice a warm glow emanating from one of the aisles behind her.  #Librarian
 
-It feels like it’s calling to you. Like the shard back on Shangri-La did.
+It feels like it’s calling to you. Like the shard back on Shangri-La did. #Librarian
 
-Librarian: Dearie? Are you quite alright?
+Librarian: Dearie? Are you quite alright? #Librarian:happy
 
-- You snap your focus back to the librarian.
+- You snap your focus back to the librarian. #Librarian
     +[speech: Yes of course!]
         Librarian: Well, that's good
     +[speech: No, I don't know who I am]
-        Librarian: Well, you’re in the right place. You can learn about a great number of people here. Maybe you’ll find one you want to be.
-    - LIbrarian: Now, what can I do for you?
+        Librarian: Well, you’re in the right place. You can learn about a great number of people here. Maybe you’ll find one you want to be. #Librarian:happy
+    - Librarian: Now, what can I do for you?
     +[speech: I'd like to borrow this, please]
         ->words_borrow
     +[speech: What's that thing back there?]
@@ -58,17 +57,17 @@ Librarian: Dearie? Are you quite alright?
 }
 
 === words_library_card ===
-Librarian: No trouble, here’s your library card. Make sure you bring it back before the date written there.” She hands you a smooth shiny card.
+Librarian: No trouble, here’s your library card. Make sure you bring it back before the date written there.” She hands you a smooth shiny card. #Librarian:happy
 ~get(library_card)
-You look at the library card and realise it somehow correctly displays your name, photo, and birthday. On the back, “I Robot - Due 27 March 8042”
+You look at the library card and realise it somehow correctly displays your name, photo, and birthday. On the back, “I Robot - Due 27 March 8042” #Librarian
 ->words_occupation
 
 === words_random_book ===
-You grasp for a random book on the shelf to go along with your claim, and hand it to the librarian.
+You grasp for a random book on the shelf to go along with your claim, and hand it to the librarian. #Librarian
 
-She looks down at the book in her hands and reads “Atopic dermatitis, the good, the bad, and the itchy: a thesis”. She looks back at you, her gaze suddenly piercing.
+She looks down at the book in her hands and reads “Atopic dermatitis, the good, the bad, and the itchy: a thesis”. She looks back at you, her gaze suddenly piercing. #Librarian:sad
 
-Librarian: This book isn’t what you’re interested in here.
+Librarian: This book isn’t what you’re interested in here. #Librarian:sad
 { class == Doctor:
     ->words_doctor
 -else: 
@@ -94,7 +93,7 @@ Librarian: This book isn’t what you’re interested in here.
     ->words_persuasion_success
 - else:
     Librarian: No. I don't think so.
-    Her gaze sharpens.
+    Her gaze sharpens. #Librarian:sad
     +[Double down. Start yapping about eczema.]
         ->words_persuasion_check_2
     +[Alright, you got me, what's that glowing thing?]
@@ -105,40 +104,40 @@ Librarian: This book isn’t what you’re interested in here.
 { - persuasion > 2:
     ->words_persuasion_success
 - else:
-    Suddenly she screams.
-    Librarian: THIEF! You don’t care about books, you’re trying to distract me so you can steal our memory shard. 
-    You realise there’s no more talking. You only have one option.
+    Suddenly she screams. #Librarian:angry
+    Librarian: THIEF! You don’t care about books, you’re trying to distract me so you can steal our memory shard. #Librarian:angry
+    You realise there’s no more talking. You only have one option. #Librarian:angry
     +[Fight her.]
     ->words_fight
 }
 
 === words_persuasion_success ===
-Her agitation softens as she senses your genuine interest in the book.
+Her agitation softens as she senses your genuine interest in the book. #Librarian:happy
 Librarian: Well, then of course you should borrow this book!
-She blows off a layer of dust that had accumulated on the cover, and presents you with the book and a smooth shiny card. 
+She blows off a layer of dust that had accumulated on the cover, and presents you with the book and a smooth shiny card. #Librarian
 ~get(book_2)
 Librarian: Make sure you return it by the date on your library card.
 ~get(library_card)
-You look at the library card she’s given you and realise it somehow correctly displays your name, photo, and birthday. On the back, “Atopic dermatitis, the good, the bad, and the itchy: a thesis” - Due 27 March 8042”
+You look at the library card she’s given you and realise it somehow correctly displays your name, photo, and birthday. On the back, “Atopic dermatitis, the good, the bad, and the itchy: a thesis” - Due 27 March 8042” #Librarian
 ->words_occupation
 
 === words_occupation ===
-That’s strange. It also lists your occupation, [mechanic/doctor/artist], and says ???
-You shake off the strange feeling of not being able to remember exactly who you are, and place the card and book in your bag.
-You are once again drawn to the glowing shard in the distance. This time the librarian notices your interest.
+That’s strange. It also lists your occupation, [mechanic/doctor/artist], and says ??? #Librarian
+You shake off the strange feeling of not being able to remember exactly who you are, and place the card and book in your bag. #Librarian
+You are once again drawn to the glowing shard in the distance. This time the librarian notices your interest. #Librarian
 ->words_enquire
 
 
 === words_enquire ===
 Librarian: Ah, I see you’re interested in our memory shard. Excellent isn’t it? Our house of knowledge is such a fitting home for it.
-You can’t quite explain why, but you need that shard. You weigh up your options and decide how to get it from her.
+You can’t quite explain why, but you need that shard. You weigh up your options and decide how to get it from her. #Librarian
 +[important: Talk her into giving it to you]
     ->words_convince
 +[attack: Fight her for the shard]
     ->words_fight
 
 === words_convince ===
-You: It is certainly a wonder. Is there any way I might be able to take it with me?
+You: It is certainly a wonder. Is there any way I might be able to take it with me? #Librarian
 {class == Doctor:
     ->words_convince_doctor
 - else: 
@@ -146,16 +145,17 @@ You: It is certainly a wonder. Is there any way I might be able to take it with 
 }
 
 === words_convince_doctor ===
-You: I have extensive knowledge of medical practices and procedures.” You see her eyes light with joy at the mention of knowledge
-You: I could spend some time talking with you, and add the knowledge I have to this library?
-She looks thoughtfully at the shard.
-Librarian: Yes, I think that sounds about right. Come over here."
+You: I have extensive knowledge of medical practices and procedures.” You see her eyes light with joy at the mention of knowledge #Librarian
+You: I could spend some time talking with you, and add the knowledge I have to this library? #Librarian
+She looks thoughtfully at the shard. #Librarian
+Librarian: Yes, I think that sounds about right. Come over here." #Librarian:happy
 ->words_persuasion_success_ending
 
 === words_convince_normal ===
-Her eyes widen. “Take it with you? Well, I don’t know about that.”
+Her eyes widen. #Librarian:sad
+Librarian: Take it with you? Well, I don’t know about that. #Librarian:sad
 
-You: I know it is a big ask. I just feel like I need it.
+You: I know it is a big ask. I just feel like I need it. #Librarian:sad
 +[speech: I will take good care of it.]
     ->words_persuasion_check_3
 +[inventory: I could trade you something for it?]
@@ -169,10 +169,10 @@ You: I know it is a big ask. I just feel like I need it.
 }
 
 === words_persuasion_check_3_success ===
-    She looks at you, and it feels like she is staring into your soul. 
-    It seems she likes what she sees.
-    Librarian: Well, child, I cannot let you take something from the library without giving me something in return.
-    If you would be willing to share what knowledge you have with me, I would be willing to part with the shard.
+She looks at you, and it feels like she is staring into your soul. #Librarian:neutral
+It seems she likes what she sees. #Librarian:happy
+Librarian: Well, child, I cannot let you take something from the library  without giving me something in return. #Librarian:neutral
+If you would be willing to share what knowledge you have with me, I would be willing to part with the shard. #Librarian:happy
     +[speech: Thank you, I would be happy to share.]
     ->words_persuasion_success_ending
     +[On second thoughts, you don't want to talk, you want to fight]
@@ -180,13 +180,13 @@ You: I know it is a big ask. I just feel like I need it.
 
 === words_persuasion_check_3_failure ===
 Librarian: The library also has needs, child.
-She looks at you, and it feels like she is staring into your soul.
-It seems she does not like what she sees. One of her tentacles extends outwards, in a different direction to the shard.
+She looks at you, and it feels like she is staring into your soul. #Librarian:sad
+It seems she does not like what she sees. One of her tentacles extends outwards, in a different direction to the shard. #Librarian:neutral
 ->words_persuasion_failure_ending
 
 
 === words_use_item ===
-Give the librarian an item from your inventory.
+Give the librarian an item from your inventory. #Librarian:neutral
 ~game_state = take_item
 *[{book_1}]
     ~game_state = exploring
@@ -196,10 +196,10 @@ Give the librarian an item from your inventory.
     ->words_persuasion_failure_ending
 
 === words_persuasion_failure_ending ===
-You brace yourself. Is she going to hurt you?
-The tentacle returns as quickly as it left, clutching… a shard?
+You brace yourself. Is she going to hurt you? #Librarian:neutral
+The tentacle returns as quickly as it left, clutching… a shard? #Librarian:neutral
 Librarian: This is what you deserve.
-She hands you the shard.
+She hands you the shard. #Librarian:neutral
 ~get_bad_shard()
 It feels … wrong. It’s so cold it stings your skin. You tuck it into your bag as you sense it’s time for you to leave.
 You walk down the halls, trying to find your ship, and stumble upon a long timeline. You wonder if you can learn something from this, maybe where to go next.
@@ -208,12 +208,12 @@ You return to your ship, hopeful that your next journey will be better.
 ->words_end
 
 === words_persuasion_success_ending ===
-She leads you down one of the aisles to the cosiest space you’ve ever seen.
-You settle into a plush reading chair, and spend a few hours sharing your knowledge with the librarian.
-After you’re done. She thanks you, and one of her tentacles reaches out the door.
-Shortly after she draws it back inside, holding the shard. She hands it over to you.
+She leads you down one of the aisles to the cosiest space you’ve ever seen. #Librarian:neutral
+You settle into a plush reading chair, and spend a few hours sharing your knowledge with the librarian. #Librarian:neutral
+After you’re done. She thanks you, and one of her tentacles reaches out the door. #Librarian:happy
+Shortly after she draws it back inside, holding the shard. She hands it over to you. #Librarian:happy
 ~get_good_shard()
-Despite its glass-like appearance it feels warm.
+Despite its glass-like appearance it feels warm. #Librarian:neutral
 Librarian: Well, feel free to stay as long as you like. Once you’re done in this room I’d encourage you to go next door and look at our timeline.
 You take advantage of the respite of this cosy room. Your eyes close, and when they open again you feel rested and refreshed.
 The librarian seems to know things, so you should take her up on the suggestion and look at the Sci-Fi timeline next door.
@@ -222,22 +222,22 @@ Once you have had your fill of the library, and have a sense of where to go next
 ->words_end
     
 === words_fight ===
-You need this shard, and the librarian is in your way. You brace yourself.
+You need this shard, and the librarian is in your way. You brace yourself. #Librarian:angry
 +[attack: Fight with your fists.]
     ->words_fight_fists
 +[inventory: Use an item from your inventory]
     ->words_fight_item
 
 === words_fight_fists ===
-You unleash the force of your fists upon the librarian.
+You unleash the force of your fists upon the librarian. #Librarian:angry
 {class == Mechanic:
-    Your sentient toolbox also gets in a hit or two.
+    Your sentient toolbox also gets in a hit or two. #Librarian:angry
 }
 {class == Doctor:
-This feels wrong, against everything you trained for.
+This feels wrong, against everything you trained for. #Librarian:angry
 }
 {class == Artist:
-The sharpness of your needle is a surprisingly effective weapon, though it saddens you to see it stained with blood.
+The sharpness of your needle is a surprisingly effective weapon, though it saddens you to see it stained with blood. #Librarian:angry
 }
 {-finesse>3:
     ->words_fight_success
@@ -246,7 +246,7 @@ The sharpness of your needle is a surprisingly effective weapon, though it sadde
 }
 
 === words_fight_item ===
-Use an item to fight the Librarian.
+Use an item to fight the Librarian. #Librarian:angry
 ~game_state = take_item
 //TODO fill this in
 *[{book_1}]
@@ -272,18 +272,19 @@ It feels … wrong. It’s so cold it stings your skin. You tuck it into your ba
         ->words_end
 
 === words_fight_failure ===
-It’s no use. Every time you try to strike, you are blocked by a tentacle.
-Eventually it is clear that it is not worth fighting anymore. You have been defeated.
-The librarian looks down at you. It seems like she pities you.
-Librarian: My dear. Sharing is the foundation of a library.
-Librarian: Take this, and think about what you have done here.
-~get_good_shard()
-She reaches out a tentacle and grabs the shard, passing it gently to you.
+It’s no use. Every time you try to strike, you are blocked by a tentacle. #Librarian:angry
+Eventually it is clear that it is not worth fighting anymore. You have been defeated. #Librarian:angry
+The librarian looks down at you. It seems like she pities you. #Librarian:sad
+Librarian: My dear. Sharing is the foundation of a library. #Librarian:sad
+Librarian: Take this, and think about what you have done here. #Librarian:sad
+She reaches out a tentacle and grabs the shard, passing it gently to you. #Librarian:neutral
 Librarian: Goodbye.
+~get_good_shard()
 Despite its glass-like appearance, it feels warm. You put it in your bag and walk away.
 As you go looking for your ship, you bump into a large metal book. It feels like the library showed you this for a reason.
 Maybe it will have a clue for where you could go next.
 You stay looking at Untitled (Heat Book) until you know where to go next.
+~get(book_2)
 You return to your ship, feeling a mix of emotions.
 ->words_end
 

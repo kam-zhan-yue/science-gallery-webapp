@@ -1,9 +1,9 @@
-->lastship1
-===lastship1===
+===monstrous_feminine_start===
 Your ship lands. The glass has fogged up a bit, but you see shades of red all around your ship.
 "You've travelled so far, {name}. I wonder what this planet has in store for you!"
 *[I'm keen to go!]->notenoughfuel1
 *[I'm a bit nervous...]->dontbenervous1
+
 ===dontbenervous1===
 "Oh... that's fair. I don't know what that feels like, but I've heard it's not a nice feeling."
 *[No, it isn't. It sucks.]->nervoussucks1
@@ -43,6 +43,7 @@ Your ship lands. The glass has fogged up a bit, but you see shades of red all ar
 The ship's door opens, and you feel a force pushing you out.
 "I cannot wait to hear what adventures you get up to! Enjoy, {name}!"
 *[Venture into THE MONSTROUS FEMININE]->monstrous
+
 === monstrous ===
 The Monstrous Feminine!
 ->justenough1

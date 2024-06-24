@@ -16,7 +16,6 @@ INCLUDE navigation.ink
 INCLUDE player/character_select.ink
 INCLUDE player/shard.ink
 
-
 Welcome, Tester.
 +[Debug]
     ->character_select ->

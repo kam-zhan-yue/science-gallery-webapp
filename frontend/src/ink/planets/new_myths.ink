@@ -1,4 +1,3 @@
-->lastship
 ===lastship===
 Your ship lands. The glass has fogged up a bit, but you see shades of red all around your ship.
 "You've travelled so far, {name}. I wonder what this planet has in store for you!"
