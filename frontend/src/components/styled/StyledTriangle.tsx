@@ -14,7 +14,8 @@ interface Props {
 }
 
 const idle = () => {
-    const random = Math.floor(Math.random() * 5) + 5; // Random number between 5 and 10 for x-axis translation
+    // const random = Math.floor(Math.random() * 5) + 5; // Random number between 5 and 10 for x-axis translation
+    const random: number = 7;
     return keyframes`
     0%, 100% {
       transform: translateY(${random}px) translateZ(0);
