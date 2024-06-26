@@ -220,6 +220,23 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
     }
   }
 
+  const selectCharacter = (character: string) => {
+    console.log(`Story Component Selected ${character}`);
+    chooseChoice(character);
+  }
+
+  const chooseChoice = (choice: string) => {
+    if(story && choices) {
+      for(let i: number = 0; i<story.currentChoices.length; ++i) {
+        console.log(choices[i].text);
+        if(choices[i].text == choice) {
+          story.ChooseChoiceIndex(i);
+          advance(story);
+        }
+      }
+    }
+  }
+
   // Handle clicking
   const next = () => {
     advance(story);
@@ -344,7 +361,7 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
 
         {inkState == "character_selection" &&
             <>
-              <MirrorComponent/>
+              <MirrorComponent selectCharacter={selectCharacter}/>
             </>
         }
         <NotificationComponent/>

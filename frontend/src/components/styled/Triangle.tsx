@@ -1,6 +1,5 @@
 import React from "react";
 import {StyledCharacter, StyledTriangle} from "./StyledTriangle";
-// import {characters} from "../../setup/Character.ts";
 
 interface TriangleProps {
     top: number;
@@ -11,15 +10,27 @@ interface TriangleProps {
     rotate: number;
     background: string;
     character?: string;
+    selectCharacter?: (character: string) => void,
 }
 
-const Triangle: React.FC<TriangleProps> = ({ top, left, bleft, bright, bbottom, rotate, background }) => {
-    // const getImage = (): string => {
-    //     if(!character) return '';
-    //     if(character in characters) {
-    //         return characters[character].fullBody;
-    //     }
-    // }
+const Triangle: React.FC<TriangleProps> = ({ top, left, bleft, bright, bbottom, rotate, background, character, selectCharacter }) => {
+    const getImage = (): string => {
+        if(!character) return '';
+        if(character == 'Artist') {
+            return '../../assets/characters/artist_rotated.png';
+        } else if(character == 'Doctor') {
+            return '../../assets/characters/doctor_rotated.png';
+        } else if(character == 'Mechanic') {
+            return '../../assets/characters/mechanic_rotated.png';
+        }
+        return '';
+    }
+
+    const handleClick = () => {
+        if(selectCharacter && character)
+            selectCharacter(character)
+    }
+
     return (
         <>
             <StyledTriangle
@@ -30,20 +41,25 @@ const Triangle: React.FC<TriangleProps> = ({ top, left, bleft, bright, bbottom, 
                 top={top}
                 rotate={rotate}
                 background={background}
-                imageUrl='../../assets/characters/artist_fullbody.png' // Pass the image URL
                 move={false}
-            />
-            <StyledCharacter
-                bleft={bleft}
-                left={left}
-                bbottom={bbottom}
-                bright={bright}
-                top={top}
-                rotate={rotate}
-                background={background}
-                imageUrl='../../assets/characters/artist_fullbody.png' // Pass the image URL
-                move={false}
-            />
+                onClick={()=>{console.log('clicked')}}>
+            </StyledTriangle>
+            {getImage() != '' &&
+                <>
+                    <StyledCharacter
+                        bleft={bleft}
+                        left={left}
+                        bbottom={bbottom}
+                        bright={bright}
+                        top={top}
+                        rotate={rotate}
+                        background={background}
+                        imageUrl={getImage()}
+                        move={false}
+                        onClick={handleClick}
+                    />
+                </>
+            }
         </>
     );
 }

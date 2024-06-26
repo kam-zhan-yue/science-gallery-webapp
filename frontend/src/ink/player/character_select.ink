@@ -1,11 +1,14 @@
 === character_select ===
 ~ game_state = character_selection
-*[An artist.]
+*[Artist]
     ~ set_class(Artist)
+    ~game_state = exploring
     ->->
-*[A doctor.]
+*[Doctor]
     ~ set_class(Doctor)
+    ~game_state = exploring
     ->->
-*[A mechanic.]
+*[Mechanic]
     ~ set_class(Mechanic)
+    ~game_state = exploring
     ->->

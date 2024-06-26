@@ -1,7 +1,8 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
 import Parallelogram from "./styled/Parallelogram.tsx";
 import Triangle from "./styled/Triangle.tsx";
+import CharacterSelectComponent from "./CharacterSelectComponent.tsx";
 
 const Blocker = styled.div`
   position: fixed;
@@ -31,7 +32,26 @@ const colors = {
 }
 
 const debug: boolean = false;
-const MirrorComponent: React.FC = () => {
+
+interface MirrorProps {
+    selectCharacter: (character: string) => void,
+}
+
+const MirrorComponent: React.FC<MirrorProps> = ({selectCharacter}) => {
+    const [character, setCharacter] = useState<string>('');
+
+    const viewCharacter = (char: string) => {
+        setCharacter(char);
+    }
+
+    const select = (char: string) => {
+        selectCharacter(char);
+    }
+
+    const close = () => {
+        setCharacter('');
+    }
+
     return (
         <>
             <Blocker/>
@@ -60,7 +80,8 @@ const MirrorComponent: React.FC = () => {
                         top={-210} left={-150}
                         bleft={50} bright={50}
                         bbottom={250} rotate={126}
-                        background={debug ? "green" : colors.secondary}/>
+                        background={debug ? "green" : colors.secondary}
+                        character='Doctor' selectCharacter={viewCharacter}/>
                     <Triangle
                         top={-300} left={-180}
                         bleft={75} bright={75}
@@ -75,7 +96,8 @@ const MirrorComponent: React.FC = () => {
                         top={100} left={-175}
                         bleft={50} bright={50}
                         bbottom={300} rotate={24}
-                        background={debug ? "pink" : colors.primary}/>
+                        background={debug ? "pink" : colors.primary}
+                        character='Mechanic' selectCharacter={viewCharacter}/>
                     <Triangle
                         top={280} left={-130}
                         bleft={50} bright={50}
@@ -95,8 +117,19 @@ const MirrorComponent: React.FC = () => {
                         top={-400} left={10}
                         bleft={75} bright={75}
                         bbottom={250} rotate={-160}
-                        background={debug ? "fuchsia" : colors.primary}/>
+                        background={debug ? "fuchsia" : colors.primary}
+                        character='Artist' selectCharacter={viewCharacter}
+                    />
             </Overlay>
+            {character !== '' &&
+                <>
+                    <CharacterSelectComponent
+                        character={character}
+                        select={select}
+                        close={close}
+                    />
+                </>
+            }
         </>
     )
 }
