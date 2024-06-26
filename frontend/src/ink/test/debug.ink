@@ -25,14 +25,17 @@ Testing responsive buttons.
 Testing open inventory.
 ~ game_state = take_item
     *[{artist_item}]
-        ~take(artist_item)
+        ~take_ink(artist_item)
         A fine specimen. You are now King of Camelot.
+        ~ game_state = exploring
         ->->
     *[{doctor_item},{mechanic_item}]
         // take is called outside of the story
         Hmmm. I will find some use of this.
+        ~ game_state = exploring
         ->->
     *[other]
         // take is called outside of the story
         You imbecile.
+        ~ game_state = exploring
         ->->

@@ -30,7 +30,6 @@ export class Universe extends Scene {
     }
 
     updateOrbits(orbits: string[]) {
-        console.log('update orbits');
         if(this.centreX && this.centreY) {
             if(this.solarSystem && this.started) {
                 this.solarSystemTransition(orbits, this.centreX, this.centreY);

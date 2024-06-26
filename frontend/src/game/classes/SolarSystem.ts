@@ -28,7 +28,6 @@ export default class SolarSystem {
         if(planets.hasOwnProperty(centre)) {
             this.sun = new Sun(centre, planets[centre], this.physics, this.graphics, this.x, this.y);
         } else {
-            console.log('uh oh ')
             this.sun = new Sun("shangrila", planets["shangrila"], this.physics, this.graphics, this.x, this.y);
         }
     }

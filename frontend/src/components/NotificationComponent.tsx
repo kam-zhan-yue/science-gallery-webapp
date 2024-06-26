@@ -37,6 +37,7 @@ const NotificationComponent: React.FC = () => {
         })
 
         EventBus.on("get_shard", (shard: string) =>  {
+            console.log('get shard')
             if(shard == 'good') {
                 const message: string = 'You have obtained a Pure Shard';
                 setMessage(message);

@@ -29,6 +29,9 @@ LIST inventory = (none), artist_item, doctor_item, mechanic_item, book_1, book_2
     ~inventory -= scroll
 }
 
+=== function take_ink(x) ===
+~inventory -= x
+
 === function shards() ===
 ~ return good_shards + bad_shards
 

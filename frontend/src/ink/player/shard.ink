@@ -26,21 +26,21 @@ Shards: {shards()}
 === function get_good_shard() ===
 ~ good_shards = good_shards + 1
 {
-- shards() == 0:
-    ~first_shard = good
 - shards() == 1:
-    ~second_shard = good
+    ~first_shard = good
 - shards() == 2:
+    ~second_shard = good
+- shards() == 3:
     ~third_shard = good
 }
 
 === function get_bad_shard() ===
 ~ bad_shards = bad_shards + 1
 {
-- shards() == 0:
-    ~first_shard = bad
 - shards() == 1:
-    ~second_shard = bad
+    ~first_shard = bad
 - shards() == 2:
+    ~second_shard = bad
+- shards() == 3:
     ~third_shard = bad
 }

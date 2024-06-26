@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import {motion} from "framer-motion";
 
 // Styled component for the Overlay
 const Blocker = styled.div`
@@ -87,6 +88,10 @@ const CloseButton = styled.div`
   }
 `
 
+const BackgroundContent = styled(motion.div)`
+    overflow: hidden;
+`
+
 interface OverlayProps {
     title: string;
     children: React.ReactNode;
@@ -98,9 +103,9 @@ const SubPopup: React.FC<OverlayProps> = ({ title, children,  onCloseButton}) =>
         <>
             <Blocker onClick={onCloseButton}/>
             <Background>
-                <div className='flex justify-center max-w-2xl flex-col mx-auto'>
+                <BackgroundContent className='flex justify-center max-w-2xl flex-col mx-auto'>
                     {children}
-                </div>
+                </BackgroundContent>
             </Background>
             <HeaderContainer>
                 <Header

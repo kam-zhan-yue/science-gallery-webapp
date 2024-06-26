@@ -167,7 +167,6 @@ const PlayerComponent = forwardRef<PlayerComponentHandle, PlayerComponentProps>(
 
     const progressUrl = (): string => {
         let index = Math.min(Math.max(player.progress, 0), 5);
-        console.log(prefix + `progress-${index}.png`);
         return prefix + `progress-${index}.png`;
     }
 
