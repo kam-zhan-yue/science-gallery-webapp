@@ -22,9 +22,9 @@ Your ship flies further down to the planet’s surface, revealing two black ston
 
 Your ship buzzes, having finished identifying the strange markings. 
 Ship: The words on these structures are written in an ancient language. The left one loosely translates to ‘Folding Space’, and the right describes ‘Flight’.
-*[What does ‘Folding Space’ signify?]
+*[speech:What does ‘Folding Space’ signify?]
     ->folding_space_explanation
-*[What does ‘Flight’ signify?]
+*[speech:What does ‘Flight’ signify?]
     ->flight_explanation
 *   ->continue_folding
 
