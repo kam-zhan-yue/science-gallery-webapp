@@ -68,9 +68,10 @@ const SelectButton = styled(TextStyle)`
   display: flex;
   justify-content: center;
   text-align: center;
-  border: 10px solid;
+  border: 8px solid;
   width: 50%;
   height: 10%;
+  font-size: 20px;
   border-image: url("../assets/ui/button-submit.png") 6 fill repeat;
   margin-bottom: 10px;
   &:hover {
@@ -82,8 +83,8 @@ const BackButton = styled(TextStyle)`
   display: flex;
   justify-content: center;
   text-align: center;
-  border: 8px solid;
-  width: 40%;
+  border: 6px solid;
+  width: 25%;
   border-image: url("../assets/ui/button-cancel.png") 6 fill repeat;
   
   &:hover {
