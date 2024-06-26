@@ -47,6 +47,7 @@ const Triangle: React.FC<TriangleProps> = ({ top, left, bleft, bright, bbottom, 
             {getImage() != '' &&
                 <>
                     <StyledCharacter
+                        layoutId={character}
                         bleft={bleft}
                         left={left}
                         bbottom={bbottom}

@@ -33,7 +33,7 @@ const Overlay = styled.div`
 `
 
 
-const Background = styled.div`
+const Background = styled(motion.div)`
   position: fixed;
   top: 50%;
   left: 50%;
@@ -98,7 +98,7 @@ const CharacterContainer = styled(motion.div)`
   overflow: hidden;
 `
 
-const Character = styled.img`
+const Character = styled(motion.img)`
 `
 
 const Title = styled(TextStyle)`
@@ -130,7 +130,11 @@ const CharacterSelectComponent: React.FC<CharacterSelectProps> = ({character, se
         <>
             <Blocker onClick={close}/>
             <Overlay>
-                <Background>
+                <Background
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0, transition: { duration: 1 } }}
+                    transition={{ duration: 0.3 }}>
                     <CharacterContainer>
                         <Character src={getImage()} alt={character}/>
                     </CharacterContainer>

@@ -1,4 +1,5 @@
 import styled, {css, keyframes} from 'styled-components';
+import {motion} from "framer-motion";
 
 interface Props {
     top: number;
@@ -66,7 +67,7 @@ const move = (top: number, left: number, rotate: number) => {
     `;
 }
 
-export const StyledTriangle = styled.div<Props>`
+export const StyledTriangle = styled(motion.div)<Props>`
   position: absolute;
   width: 0;
   height: 0;
@@ -84,7 +85,7 @@ export const StyledTriangle = styled.div<Props>`
                   : css`${idle()} 5s ease-in-out infinite`};
 `;
 
-export const StyledCharacter = styled.div<Props>`
+export const StyledCharacter = styled(motion.div)<Props>`
   position: absolute;
   top: ${(props) => props.top}px;
   left: ${(props) => props.left}px;

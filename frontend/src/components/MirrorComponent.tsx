@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Parallelogram from "./styled/Parallelogram.tsx";
 import Triangle from "./styled/Triangle.tsx";
 import CharacterSelectComponent from "./CharacterSelectComponent.tsx";
+import {motion} from "framer-motion";
 
 const Blocker = styled.div`
   position: fixed;
@@ -16,7 +17,7 @@ const Blocker = styled.div`
   background: #2A213899;
 `
 
-const Overlay = styled.div`
+const Overlay = styled(motion.div)`
   position: fixed;
   top: 50%;
   left: 50%;
@@ -55,7 +56,11 @@ const MirrorComponent: React.FC<MirrorProps> = ({selectCharacter}) => {
     return (
         <>
             <Blocker/>
-            <Overlay>
+            <Overlay
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0, transition: { duration: 1 } }}
+                transition={{ duration: 0.3 }}>
                     <Parallelogram
                         top={-180} left={-75}
                         width={125} height={90}
