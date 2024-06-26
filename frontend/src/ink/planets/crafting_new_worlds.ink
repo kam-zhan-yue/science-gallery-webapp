@@ -191,10 +191,11 @@ Thank you for your openness. Here.
 === grove_item ===
 
 Give her an item
-
-Ellwyn: Thank you friend! Here.
-
--> grove_get_shard
+~game_state = take_item
+*[important:other]
+    ~game_state = exploring
+    Ellwyn: Thank you friend! Here.
+    -> grove_get_shard
 
 === grove_free_shard ===
 
@@ -235,7 +236,6 @@ Your joy at success fades as the colour and warmth drain from the shard.
 It becomes a muddy red, and so cold to the touch it hurts your fingers.
 
 You shove it in your bag, and sneak around Cloudscape until you know where to go next.
-
 You return to your ship with the shard, but not sure if you really succeeded.
 
 -> navigation
