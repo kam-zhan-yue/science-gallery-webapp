@@ -165,7 +165,7 @@ You stay, enjoying the atmosphere and sharing more stories until you feel like y
 
 Ellwyn: Well if you truly need it, we can spare it.
 
-+[speech:Share something in return]
++[important:Share something in return]
     -> grove_speech
 +[She's giving it for nothing? What a fool! Take the shard]
     -> grove_free_shard
