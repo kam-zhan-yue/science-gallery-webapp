@@ -38,6 +38,7 @@ const ChoiceText = styled.div`
   line-height: 1em;
   color: white; /* Adjust the color as needed */
   pointer-events: none;
+  margin-right: 5px;
 `;
 
 const ChoiceOptionComponent: React.FC<ChoiceOptionProps> = ({ choice, index, handleClick }) => {

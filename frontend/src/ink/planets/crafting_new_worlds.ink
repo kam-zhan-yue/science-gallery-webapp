@@ -192,7 +192,7 @@ Thank you for your openness. Here.
 
 Give her an item
 ~game_state = take_item
-*[important:other]
+*[other]
     ~game_state = exploring
     Ellwyn: Thank you friend! Here.
     -> grove_get_shard

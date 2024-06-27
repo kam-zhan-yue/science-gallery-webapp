@@ -10,6 +10,9 @@ const backgrounds: { [key: string]: string} = {
     "shangrila_main": "shangrila.png",
     "new_nature_main": "new_nature.png",
     "folding_space_main": "folding_space.png",
+    "crafting_main": "crafting_new_worlds.png",
+    "new_myths_silk": "new_myths_silk.png",
+    "new_myths_silk_voice": "new_myths_silk_voice.png",
 }
 
 const Overlay = styled(motion.div)`
