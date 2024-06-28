@@ -54,6 +54,8 @@ const Background = styled(motion.div)`
   image-rendering: crisp-edges;
   border: 40px solid;
   border-image: url("../assets/ui/dialogue-box.png") 15 15 15 15 fill repeat;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
 
   @media (max-width: 768px) {
     top: 50%;
