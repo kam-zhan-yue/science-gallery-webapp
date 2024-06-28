@@ -5,6 +5,20 @@ import KeypadButtonComponent, { KeypadType } from './KeypadButtonComponent';
 import Planet from '../classes/Planet';
 import {motion} from "framer-motion";
 import {TextStyle} from "./styled/Text.tsx";
+import {colours} from "./styled/Constants.tsx";
+
+
+const Blocker = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: ${colours.blocker};
+`;
 
 const KeypadOverlay = styled(motion.div)`
   position: fixed;
@@ -36,27 +50,27 @@ const CodeText = styled.div`
   color: white;
 `;
 
-const BackButton = styled(TextStyle)`
-  margin-top: 10px;
-  width: 60px;
-  height: 60px;
-
-  display: flex;
-  align-items: center;
-  justify-items: center;
-  justify-content: center;
-  border: solid 20px #42ffee;
-  border-image: url("../assets/ui/button.png") 15 fill repeat;
-
-  transition: 0.3s;
-  -webkit-transition: 0.3s;
-  
-  font-size: 36px;
-
-  &:hover {
-    cursor: pointer;
-  }
-`;
+// const BackButton = styled(TextStyle)`
+//   margin-top: 10px;
+//   width: 60px;
+//   height: 60px;
+//
+//   display: flex;
+//   align-items: center;
+//   justify-items: center;
+//   justify-content: center;
+//   border: solid 20px #42ffee;
+//   border-image: url("../assets/ui/button.png") 15 fill repeat;
+//
+//   transition: 0.3s;
+//   -webkit-transition: 0.3s;
+//
+//   font-size: 36px;
+//
+//   &:hover {
+//     cursor: pointer;
+//   }
+// `;
 
 const KeypadContainer = styled(motion.div)`
   border: 20px solid;
@@ -105,6 +119,8 @@ const KeypadComponent: React.FC<KeypadComponentProps> = ({planet, handleCodeInpu
 
     return (
         <>
+            <Blocker onClick={handleBackClicked}/>
+
             <KeypadOverlay
                 initial={{ top: '100%', opacity: 0 }}
                 animate={{ top: '50%', opacity: 1 }}
@@ -131,7 +147,7 @@ const KeypadComponent: React.FC<KeypadComponentProps> = ({planet, handleCodeInpu
                         <KeypadButtonComponent type={KeypadType.Submit} onClick={handleKeypadClick} />
                     </div>
                 </KeypadContainer>
-                <BackButton onClick={handleBackClicked}>X</BackButton>
+                {/*<BackButton onClick={handleBackClicked}>X</BackButton>*/}
             </KeypadOverlay>
         </>
     );

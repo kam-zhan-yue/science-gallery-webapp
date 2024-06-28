@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import Planet from "../classes/Planet.ts";
 import {planets} from "../setup/PlanetData.ts";
+import {colours} from "./styled/Constants.tsx";
+import {TextStyle} from "./styled/Text.tsx";
 
 interface PlanetComponentProps {
     planet: Planet;
@@ -9,20 +11,13 @@ interface PlanetComponentProps {
     onNoClicked?: () => void;
 }
 
-const Text = styled.div`
-  text-align: center;
-  font-size: 40px;
-  font-family: "VT323", monospace;
-  font-weight: 400;
-  font-style: normal;
-  line-height: 1em;
-`
-
 const PromptContainer = styled.div`
   position: fixed;
-  top: 50%;
-  transform: translateY(-50%);
-  margin-top: 220px;
+  top: 70%;
+  
+  display: flex;
+  flex-direction: column;
+  width: 90%;
   
   font-size: 48px;
   font-family: "VT323", monospace;
@@ -34,6 +29,21 @@ const PromptContainer = styled.div`
 
 const ChoiceContainer = styled.div`
   margin-top: 5px;
+`
+
+const Text = styled(TextStyle)`
+  text-align: center;
+  font-size: 40px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1em;
+  transition: 0.3s all;
+  -webkit-transition: 0.3s all;
+
+  &:hover {
+    cursor: pointer;
+    color: ${colours.primary};
+  }
 `
 
 const PlanetComponent: React.FC<PlanetComponentProps> = ({planet, onYesClicked, onNoClicked}) => {

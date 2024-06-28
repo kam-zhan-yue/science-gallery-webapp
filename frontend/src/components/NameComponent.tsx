@@ -18,7 +18,7 @@ const Blocker = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #2A213899;
+  background: ${colours.blocker};
 `;
 
 const Overlay = styled.div`

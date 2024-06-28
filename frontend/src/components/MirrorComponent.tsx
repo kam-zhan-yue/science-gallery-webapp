@@ -4,6 +4,7 @@ import Parallelogram from "./styled/Parallelogram.tsx";
 import Triangle from "./styled/Triangle.tsx";
 import CharacterSelectComponent from "./CharacterSelectComponent.tsx";
 import {motion} from "framer-motion";
+import {colours} from "./styled/Constants.tsx";
 
 const Blocker = styled.div`
   position: fixed;
@@ -14,7 +15,7 @@ const Blocker = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #2A213899;
+  background: ${colours.blocker};
 `
 
 const Overlay = styled(motion.div)`

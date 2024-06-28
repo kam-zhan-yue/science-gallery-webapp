@@ -3,6 +3,7 @@ import styled from "styled-components";
 import {motion} from "framer-motion";
 import {characters} from "../setup/Character.ts";
 import {TextStyle} from "./styled/Text.tsx";
+import {colours} from "./styled/Constants.tsx";
 
 interface CharacterSelectProps {
     character: string,
@@ -19,7 +20,7 @@ const Blocker = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #2A213899;
+  background: ${colours.blocker};
 `
 
 const Overlay = styled.div`
