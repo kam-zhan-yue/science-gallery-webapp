@@ -19,6 +19,7 @@ const StatsComponent: React.FC<StatsComponentProps> = ({player, onCloseButton}) 
     return (
         <>
             <SubPopup title={"Stats"} onCloseButton={close}>
+                <Stat>Name: {player.name}</Stat>
                 <Stat>Class: {player.class}</Stat>
                 <Stat>Finesse: {player.finesse}</Stat>
                 <Stat>Intuition: {player.intuition}</Stat>

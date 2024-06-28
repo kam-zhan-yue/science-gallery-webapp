@@ -15,6 +15,7 @@ import BackgroundComponent from "./BackgroundComponent.tsx";
 import NotificationComponent from "./NotificationComponent.tsx";
 import PlayerComponent, {PlayerComponentHandle} from './player/PlayerComponent.tsx';
 import MirrorComponent from "./MirrorComponent.tsx";
+import NameSelectComponent from "./NameComponent.tsx";
 
 interface StoryComponentProps {
   universeRef: Universe | null;
@@ -69,6 +70,10 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
         // console.log(`VARIABLE ${variableName} changed to ${value}`)
         const valueString = value.toString();
         switch(variableName) {
+          case 'name':
+            player.name = valueString;
+            setPlayer(player);
+            break;
           case 'class':
             player.class = valueString;
             setPlayer(player);
@@ -110,11 +115,12 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
             setPlayer(player);
             break;
           case 'game_state':
-            setInkState(value.toString());
-            if(value.toString() === 'planet_selection') {
+            console.log(`game state is ${valueString}`)
+            setInkState(valueString);
+            if(valueString === 'planet_selection') {
               choosePlanets(story)
             }
-            if(value.toString() === 'take_item') {
+            if(valueString === 'take_item') {
               if(playerComponentRef.current) {
                 playerComponentRef.current.openInventory();
               }
@@ -224,6 +230,15 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
     chooseChoice(character);
   }
 
+  function selectName(name: string) {
+    story.EvaluateFunction('set_name', [name], true);
+    chooseChoice('done');
+  }
+
+  function skipName() {
+    chooseChoice('done');
+  }
+
   const chooseChoice = (choice: string) => {
     if(story && choices) {
       for(let i: number = 0; i<story.currentChoices.length; ++i) {
@@ -307,11 +322,15 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
 
   return (
       <>
-        <BackgroundComponent
-            backgroundKey={background}
-        />
+        {inkState != "character_selection" && inkState != 'name_select' &&
+            <>
+              <BackgroundComponent
+                  backgroundKey={background}
+              />
+            </>
+        }
 
-        {storyState === StoryState.Dialogue && inkState != "character_selection" &&
+        {storyState === StoryState.Dialogue && inkState != "character_selection" && inkState != 'name_select' &&
             <>
               <DialogueComponent text={storyText} tags={tags} next={next}></DialogueComponent>
             </>
@@ -343,7 +362,8 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
             />
           </>
         }
-        {inkState != "planet_selection" && inkState != "take_item" && storyState !== StoryState.Travelling && showingChoices &&
+
+        {inkState !== "planet_selection" && inkState !== "take_item" && inkState !== 'name_select' && storyState !== StoryState.Travelling && showingChoices &&
             <>
               <ChoiceComponent
                   choices={choices}
@@ -352,13 +372,21 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
             </>
         }
 
-        {storyState !== StoryState.Travelling && storyState !== StoryState.Inspecting && storyState !== StoryState.Keypad &&
+        {storyState !== StoryState.Travelling && storyState !== StoryState.Inspecting && storyState !== StoryState.Keypad
+            && inkState != "character_selection" && inkState != 'name_select' &&
             <>
               <PlayerComponent ref={playerComponentRef} player={player} onUseItem={onUseItem}></PlayerComponent>
             </>
         }
 
-        {inkState == "character_selection" &&
+
+        {inkState === "name_select" &&
+            <>
+              <NameSelectComponent select={selectName} skip={skipName}/>
+            </>
+        }
+
+        {inkState ===  "character_selection" &&
             <>
               <MirrorComponent selectCharacter={selectCharacter}/>
             </>

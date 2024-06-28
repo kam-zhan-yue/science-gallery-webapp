@@ -68,18 +68,24 @@ You produce a spool of red thread, tied to a needle, wedged in between the fiber
 ===artistname===
 You put the thread back in your pocket. This might come in handy later, you think to yourself.
 Flicking through your memory again, your mind clears to see a signature on each of your artworks. What name does it read?
-*[The player inserts their name here.]->artistconfirmname
+->name_input ->
+->artistconfirmname
+
 ===artistconfirmname===
 You see {name} written, woven and etched in every artwork you remember. You think fondly of your old crafts. ->cavedoor
+
 ===doctor===
 The glint of the shard brings your memory back to you as you stare into your reflection in the syringe you're holding. 
 You stare into the syringe, with its viscous medicine sticking to its little walls. You see your patient, but can't quite make out a face. 
 Your memory suddenly becomes your present again, and you reach into your coat pocket. A syringe, still in its wrapping, rests in your hand.
 *[I understand now.]->doctorname
+
 ===doctorname===
 You put the syringe back into your pocket. I wonder when this might become useful, you think to yourself. 
 As you do, you also catch a glimpse of your nametag, catching the glow of the shard. What name does it read?
-*[The player inserts their name here.]->doctorconfirmname
+->name_input ->
+->doctorconfirmname
+
 ===doctorconfirmname===
 Your name tag reads "My name is - {name}". You make sure it stays secured on your coat. ->cavedoor
 ===mechanic===
@@ -91,7 +97,9 @@ You snap back to reality, and the toolbox manifests in front of your eyes. It fl
 ===mechanicname===
 The toolbox slowly floats towards your leg, gesturing to your pocket, in a way.
 You reach into your pocket and produce a card - your license. What name does it read?
-*[The player inserts their name here.]->mechanicconfirmname
+->name_input ->
+->mechanicconfirmname
+
 ===mechanicconfirmname===
 {name} is clearly written on your license. You were wondering where that went... You put it back in your pocket. ->cavedoor
 

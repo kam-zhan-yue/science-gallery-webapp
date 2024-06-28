@@ -14,6 +14,9 @@ const Notification = styled(motion.div)`
   image-rendering: crisp-edges;
   border: 15px solid;
   border-image: url("../assets/ui/button.png") 15 15 15 15 fill repeat;
+
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
   
   @media (max-width: 768px) {
     top: 120px;
@@ -72,7 +75,7 @@ const NotificationComponent: React.FC = () => {
                           initial={{ y: -200, opacity: 0 }}
                           animate={{ y: 0, opacity: 1 }}
                           exit={{ y: -200, opacity: 0, transition: { duration: 0.2 } }}
-                          transition={{ duration: 0.2, delay: 0.1 }}
+                          transition={{ duration: 0.2}}
                       >
                           <Message>
                               {message}

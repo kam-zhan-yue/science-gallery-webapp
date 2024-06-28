@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import {Choice} from "inkjs/engine/Choice";
 import ChoiceOptionComponent from "./ChoiceOptionComponent.tsx";
+import {motion} from "framer-motion";
 
 const ScreenOverlay = styled.div`
     position: fixed;
@@ -12,7 +13,7 @@ const ScreenOverlay = styled.div`
     background-color: rgba(0, 0, 0, 0.6); /* semi-transparent black background */
 `
 
-const ChoiceOverlay = styled.div`
+const ChoiceOverlay = styled(motion.div)`
   position: fixed;
   top: 50%;
   left: 50%;
@@ -21,6 +22,8 @@ const ChoiceOverlay = styled.div`
   display: flex;
   flex-direction: column; /* Display choices vertically */
   align-items: center; /* Center horizontally */
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
 `
 
 interface ChoiceComponentProps {
@@ -32,7 +35,11 @@ const ChoiceComponent: React.FC<ChoiceComponentProps> = ({ choices, handleChoice
     return (
         <>
             <ScreenOverlay/>
-            <ChoiceOverlay>
+            <ChoiceOverlay
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0}}
+                transition={{ duration: 0.2 }}>
                 {choices.map((choice, index) => (
                     <ChoiceOptionComponent key={index} choice={choice} index={index} handleClick={handleChoiceClick}/>
                 ))}

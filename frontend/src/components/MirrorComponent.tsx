@@ -25,6 +25,8 @@ const Overlay = styled(motion.div)`
   display: flex;
   flex-direction: column;
   align-items: center;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
 `
 
 const colors = {

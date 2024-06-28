@@ -2,6 +2,7 @@ import {items} from '../setup/Item.ts'
 import {EventBus} from "../EventBus.tsx";
 
 class Player {
+    private _name: string = '';
     private _class: string = "";
     private _finesse: number = 0;
     private _intuition: number = 0;
@@ -13,6 +14,10 @@ class Player {
     private _firstShard: string = ''
     private _secondShard: string = '';
     private _thirdShard: string = '';
+
+    get name(): string {
+        return this._name;
+    }
 
     get class(): string {
         return this._class;
@@ -48,6 +53,10 @@ class Player {
 
     get inventory(): string[] {
         return this._inventory;
+    }
+
+    set name(value: string) {
+        this._name = value;
     }
 
     set class(className: string) {

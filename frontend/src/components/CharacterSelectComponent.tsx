@@ -54,8 +54,8 @@ const Background = styled(motion.div)`
   image-rendering: crisp-edges;
   border: 40px solid;
   border-image: url("../assets/ui/dialogue-box.png") 15 15 15 15 fill repeat;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
 
   @media (max-width: 768px) {
     top: 50%;
@@ -136,8 +136,8 @@ const CharacterSelectComponent: React.FC<CharacterSelectProps> = ({character, se
                 <Background
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    exit={{ opacity: 0, transition: { duration: 1 } }}
-                    transition={{ duration: 0.3 }}>
+                    exit={{ opacity: 0}}
+                    transition={{ duration: 0.2 }}>
                     <CharacterContainer>
                         <Character src={getImage()} alt={character}/>
                     </CharacterContainer>

@@ -13,7 +13,6 @@ INCLUDE test/debug.ink
 INCLUDE player/battle.ink
 INCLUDE globals.ink
 INCLUDE navigation.ink
-INCLUDE player/character_select.ink
 INCLUDE player/shard.ink
 
 Welcome, Tester.
@@ -23,6 +22,7 @@ Welcome, Tester.
     ->debug_navigation
 +[Skip Intro]
     ->character_select ->
+    ->name_input ->
     ~planet = shangrila
     ->navigation
 +[From Beginning]
