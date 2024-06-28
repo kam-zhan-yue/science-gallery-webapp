@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import {useState, useEffect, forwardRef, useImperativeHandle} from 'react';
 import styled, {keyframes} from 'styled-components';
 import {TextStyle} from "./styled/Text.tsx";
 
@@ -37,15 +37,20 @@ enum TypewriterState {
 }
 
 export interface TypewriterHandle {
-    openInventory: () => void;
+    handleClick: () => void;
 }
 
-const Typewriter: React.FC<TypewriterProps> = ({ text, delay, next }) => {
+const Typewriter = forwardRef<TypewriterHandle, TypewriterProps>(({ text, delay, next }, ref) => {
     const [currentText, setCurrentText] = useState<string[]>([]);
     const [currentIndex, setCurrentIndex] = useState(0);
 
     const [state, setState] = useState<TypewriterState>(TypewriterState.Idle);
     const fade: boolean = false;
+
+    useImperativeHandle(ref, () => ({
+        handleClick,
+    }));
+
 
     // Use Effect for setting text
     useEffect(() => {
@@ -91,6 +96,6 @@ const Typewriter: React.FC<TypewriterProps> = ({ text, delay, next }) => {
             {<DialogueText>{fade ? animatedText() : currentText}</DialogueText>}
         </>
         );
-};
+});
 
 export default Typewriter;

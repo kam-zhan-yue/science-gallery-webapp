@@ -1,6 +1,6 @@
-import React, {useContext} from 'react';
+import React, {useContext, useRef} from 'react';
 import styled from 'styled-components';
-import Typewriter from "./Typewriter.tsx";
+import Typewriter, {TypewriterHandle} from "./Typewriter.tsx";
 import DialogueBox from "./DialogueBox.tsx";
 import {motion} from "framer-motion";
 import {characters} from "../setup/Character.ts";
@@ -79,6 +79,8 @@ const DialogueComponent: React.FC<DialogueComponentProps> = ({ text, tags, next 
     const characterName = colonIndex !== -1 ? text.substring(0, colonIndex).trim() : '';
     const dialogueBody = colonIndex !== -1 ? text.substring(colonIndex + 1).trim() : text;
     const {player} = useContext(GameContext) as GameContextType;
+    const typewriterRef = useRef<TypewriterHandle>(null);
+
 
     const prefix: string = '../assets/characters/';
     const getCharacterFullBody = (): string => {
@@ -123,7 +125,9 @@ const DialogueComponent: React.FC<DialogueComponentProps> = ({ text, tags, next 
     };
 
     function touch() {
-        console.log('touch screen');
+        if(typewriterRef.current) {
+            typewriterRef.current.handleClick();
+        }
     }
 
     const characterAnimations = animations(); // Get the animations once
@@ -163,11 +167,7 @@ const DialogueComponent: React.FC<DialogueComponentProps> = ({ text, tags, next 
                         <Separator />
                     </>
                 }
-                <Typewriter text={dialogueBody} delay={15} next={next}/>
-                <div>ewoifjweiojfeofjwefjeoiwjf</div>
-                <div>ewoifjweiojfeofjwefjeoiwjf</div>
-                <div>ewoifjweiojfeofjwefjeoiwjf</div>
-                <div>ewoifjweiojfeofjwefjeoiwjf</div>
+                <Typewriter ref={typewriterRef} text={dialogueBody} delay={15} next={next}/>
             </DialogueBox>
         </>
     );
