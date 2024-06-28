@@ -35,6 +35,10 @@ const BackgroundBorder = styled(motion.div)`
   right: 20px;
   border: 5px white solid;
   border-radius: 5px;
+  
+  @media (max-width: 600px) {
+    bottom: 240px;
+  }
 `
 
 const Background = styled(motion.img)`

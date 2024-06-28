@@ -7,7 +7,7 @@ import {characters} from "../setup/Character.ts";
 import {GameContext, GameContextType} from "../contexts/GameContext.tsx";
 
 const TitleText = styled.div`
-  font-size: 40px;
+  font-size: 32px;
   font-family: "VT323", monospace;
   font-weight: 400;
   font-style: normal;
@@ -18,7 +18,7 @@ const TitleText = styled.div`
 const Separator = styled.div`
   border: none;
   border-top: 1px solid #ccc; /* Adjust color and style */
-  margin: 8px 0; /* Adjust margin */
+  margin: 2px 0; /* Adjust margin */
 `
 
 const CharacterContainer = styled(motion.div)`
@@ -63,6 +63,15 @@ const Blocker = styled(motion.div)`
   background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
   display: block; /* Initially hidden */
 `;
+
+const InteractionOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  touch-action: none; /* Disable touch events */
+`
 
 const DialogueComponent: React.FC<DialogueComponentProps> = ({ text, tags, next }) => {
     // Splitting the text into character name and dialogue body if a colon exists
@@ -113,6 +122,10 @@ const DialogueComponent: React.FC<DialogueComponentProps> = ({ text, tags, next 
         return anims;
     };
 
+    function touch() {
+        console.log('touch screen');
+    }
+
     const characterAnimations = animations(); // Get the animations once
 
     return (
@@ -141,7 +154,8 @@ const DialogueComponent: React.FC<DialogueComponentProps> = ({ text, tags, next 
                 </>
             }
 
-            <DialogueBox>
+            <InteractionOverlay onClick={touch}/>
+            <DialogueBox handleClick={touch}>
                 {/* Render character name, separator, and dialogue body separately if character name exists */}
                 {characterName &&
                     <>
@@ -150,6 +164,10 @@ const DialogueComponent: React.FC<DialogueComponentProps> = ({ text, tags, next 
                     </>
                 }
                 <Typewriter text={dialogueBody} delay={15} next={next}/>
+                <div>ewoifjweiojfeofjwefjeoiwjf</div>
+                <div>ewoifjweiojfeofjwefjeoiwjf</div>
+                <div>ewoifjweiojfeofjwefjeoiwjf</div>
+                <div>ewoifjweiojfeofjwefjeoiwjf</div>
             </DialogueBox>
         </>
     );

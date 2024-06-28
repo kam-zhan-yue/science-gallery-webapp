@@ -19,7 +19,7 @@ const fadeIn = keyframes`
 `;
 
 const DialogueText = styled(TextStyle)`
-  font-size: 25px;
+  font-size: 22px;
   font-weight: 400;
   font-style: normal;
   line-height: 1em;
@@ -36,14 +36,9 @@ enum TypewriterState {
     Finished,
 }
 
-const InteractionOverlay = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  //touch-action: none; /* Disable touch events */
-`
+export interface TypewriterHandle {
+    openInventory: () => void;
+}
 
 const Typewriter: React.FC<TypewriterProps> = ({ text, delay, next }) => {
     const [currentText, setCurrentText] = useState<string[]>([]);
@@ -94,7 +89,6 @@ const Typewriter: React.FC<TypewriterProps> = ({ text, delay, next }) => {
     return (
         <>
             {<DialogueText>{fade ? animatedText() : currentText}</DialogueText>}
-            <InteractionOverlay onClick={handleClick}/>
         </>
         );
 };

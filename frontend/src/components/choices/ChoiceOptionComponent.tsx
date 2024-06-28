@@ -10,7 +10,7 @@ interface ChoiceOptionProps {
 }
 
 const ChoiceContainer = styled.div`
-  width: 80%;
+  width: 85%;
   max-width: 500px;
   margin: 10px;
   display: flex;
