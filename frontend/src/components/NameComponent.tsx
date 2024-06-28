@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { TextStyle } from "./styled/Text.tsx";
+import {colours} from "./styled/Constants.tsx";
 
 interface NameSelectProps {
     select: (name: string) => void;
@@ -74,7 +75,7 @@ const NameInput = styled.input<{ isValid: boolean }>`
   padding: 10px;
   margin-bottom: 20px;
   background: black;
-  border: 3px solid ${props => (props.isValid ? '#43FEEF' : '#D80B0C')};
+  border: 3px solid ${props => (props.isValid ? colours.primary : colours.cancel)};
   border-radius: 4px;
   width: 100%;
 

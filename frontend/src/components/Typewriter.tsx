@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled, {keyframes} from 'styled-components';
+import {TextStyle} from "./styled/Text.tsx";
 
 interface TypewriterProps {
     text: string;
@@ -17,9 +18,8 @@ const fadeIn = keyframes`
   }
 `;
 
-const DialogueText = styled.div`
+const DialogueText = styled(TextStyle)`
   font-size: 25px;
-  font-family: "VT323", monospace;
   font-weight: 400;
   font-style: normal;
   line-height: 1em;

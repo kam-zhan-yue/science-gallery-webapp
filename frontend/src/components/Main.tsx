@@ -27,14 +27,8 @@ const Main: React.FC = () => {
         }
     }, []);
 
-    useEffect(() => {
-        document.body.addEventListener('click', startGame, true);
-        return () => {
-            document.body.removeEventListener('click', startGame, true);
-        };
-    }, [started]); // Empty dependency array ensures this effect runs only once on mount
-
     const startGame = () => {
+        console.log(`start`)
         if(!started) {
             start();
             setState(GameState.Game);
@@ -55,7 +49,7 @@ const Main: React.FC = () => {
         <>
             <StyleSheetManager shouldForwardProp={shouldForwardProp}>
             {(state == GameState.Menu || state == GameState.Mirror) &&
-                <MenuComponent/>
+                <MenuComponent start={startGame}/>
             }
             <Game ref={universeRef}/>
             {state == GameState.Game &&
