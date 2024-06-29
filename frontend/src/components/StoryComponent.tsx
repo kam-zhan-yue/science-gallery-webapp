@@ -13,7 +13,7 @@ import PlanetComponent from "./PlanetComponent.tsx";
 import GuideComponent from "./GuideComponent.tsx";
 import BackgroundComponent from "./BackgroundComponent.tsx";
 import NotificationComponent from "./NotificationComponent.tsx";
-import {PlayerComponentHandle} from './player/PlayerComponent.tsx';
+import PlayerComponent, {PlayerComponentHandle} from './player/PlayerComponent.tsx';
 import MirrorComponent from "./MirrorComponent.tsx";
 import NameSelectComponent from "./NameComponent.tsx";
 import styled from "styled-components";
