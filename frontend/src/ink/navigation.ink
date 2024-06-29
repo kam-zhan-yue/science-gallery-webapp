@@ -39,21 +39,7 @@
 
 === final_stage ===
 *[in_a_new_light:5]
-    ->go_to_planet(in_a_new_light)
-
-=== debug_navigation ===
-~ game_state = exploring
-~get_good_shard()
-Debug Navigation Panel.
-+[Normal Route]
-    ->navigation
-+[Band 1]
-    ->band_1
-+[Band 2]
-    ->band_2
-+[Band 3]
-    ->band_3
-+[New Light]
+    ~progress = progress + 1
     ->go_to_planet(in_a_new_light)
 
 === go_to_planet(next) ===
@@ -80,7 +66,42 @@ Debug Navigation Panel.
 
 
 
+=== debug_navigation ===
+~ game_state = exploring
+~get_good_shard()
+Debug Navigation Panel.
++[Normal Route]
+    ->navigation
++[Band 1]
+    ->debug_band_1
++[Band 2]
+    ->debug_band_2
++[Band 3]
+    ->debug_band_3
++[New Light]
+    ->go_to_planet(in_a_new_light)
 
+
+=== debug_band_1 ===
+Band 1
+*[Words and Worlds]
+    ->go_to_planet(words_and_worlds)
+*[New Nature]
+    ->go_to_planet(new_nature)
+    
+=== debug_band_2 ===
+Band 2
+*[Ways of Folding Space]
+    ->go_to_planet(ways_of_folding_space)
+*[Crafting New Worlds]
+    ->go_to_planet(crafting_new_worlds)
+    
+=== debug_band_3 ===
+Band 3
+*[The Monstrous Feminine]
+    ->go_to_planet(the_monstrous_feminine)
+*[New Myths]
+    ->go_to_planet(new_myths)
 
 
 

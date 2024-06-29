@@ -104,6 +104,7 @@ You leave the light show, and make your way through the forest of silk. As you w
 *[I touch the silk.]->touchthesilk
 *[I follow the silk.]->followsilk2
 ==touchthesilk==
+~background = new_myths_silk_voice
 You touch the silk, and the warmth you have felt grows. What felt like a warm hug becomes a thick blanket of visible red glow, which covers you. 
 The red glow suddenly starts to lift you off the ground, and takes you high above the red forest. As you are taken up into the sky, you look down to see the light show, and the crowd cheering along. 
 Things feel small from up here. You feel calm. You gently land through the thickest part of the forest.

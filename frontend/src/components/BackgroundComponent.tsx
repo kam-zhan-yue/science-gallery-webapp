@@ -11,7 +11,7 @@ const backgrounds: { [key: string]: string } = {
     "shangrila_main": "shangrila-main.png",
     "shangrila_cave": "shangrila-cave.png",
     "new_nature_main": "new-nature-main.png",
-    "folding_space_main": "folding-space-main.png",
+    "folding_space_main": "folding-main.png",
     "crafting_main": "crafting-main.png",
     "new_myths_silk": "new-myths-main.png",
     "new_myths_silk_voice": "new-myths-main-light.png",
