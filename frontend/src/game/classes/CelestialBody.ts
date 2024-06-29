@@ -49,7 +49,6 @@ export default class CelestialBody {
         if (interactive) {
             // Make the body interactive
             this.body.setInteractive({ useHandCursor: true });
-            this.body.setTint(0x44ff44); // Change tint on hover
             // Add pointer events
             this.body.on('pointerover', this.onPointerOver, this);
             this.body.on('pointerout', this.onPointerOut, this);
