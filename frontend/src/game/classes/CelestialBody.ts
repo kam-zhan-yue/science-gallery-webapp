@@ -29,7 +29,7 @@ export default class CelestialBody {
         // Initialize the name text
         this.nameText = this.body.scene.add.bitmapText(0, 0, 'pixelFont', this.data.name, 16);
 
-        this.body.setInteractive({ useHandCursor: true });
+        this.body.setInteractive();
         // Add pointer events
         this.body.on('pointerover', this.onPointerOver, this);
         this.body.on('pointerout', this.onPointerOut, this);
