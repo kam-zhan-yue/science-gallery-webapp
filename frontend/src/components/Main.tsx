@@ -9,17 +9,7 @@ import isPropValid from "@emotion/is-prop-valid";
 
 const Main: React.FC = () => {
     const universeRef = useRef<Universe>(null);
-    const { started, state, setState, start, debug, setDebug} = useContext(GameContext) as GameContextType;
-
-    useEffect(()=> {
-        setDebug(false);
-        if(debug) {
-            start();
-            setTimeout(() => {
-                setState(GameState.Game);
-            }, 10); // Delay execution by one second (1000 milliseconds)
-        }
-    });
+    const { started, state, setState, start} = useContext(GameContext) as GameContextType;
 
     useEffect(() => {
         if (universeRef.current) {
@@ -49,7 +39,7 @@ const Main: React.FC = () => {
         <>
             <StyleSheetManager shouldForwardProp={shouldForwardProp}>
             {(state == GameState.Menu || state == GameState.Mirror) &&
-                <MenuComponent start={startGame}/>
+                <MenuComponent startGame={startGame}/>
             }
             <Game ref={universeRef}/>
             {state == GameState.Game &&

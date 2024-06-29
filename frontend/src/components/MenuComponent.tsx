@@ -1,10 +1,12 @@
-import React from "react";
+import React, {useContext} from "react";
 import styled from "styled-components";
 import {motion} from "framer-motion";
 import {NormalText, TextStyle} from "./styled/Text.tsx";
+import {colours} from "./styled/Constants.tsx";
+import {GameContext, GameContextType} from "../contexts/GameContext.tsx";
 
 interface MenuProps {
-    start: () => void,
+    startGame: () => void,
 }
 
 const Overlay = styled(motion.div)`
@@ -100,7 +102,74 @@ const Warning = styled(NormalText)`
   font-weight: 100;
 `
 
-const MenuComponent: React.FC<MenuProps> = ({start}) => {
+const ToggleSwitch = styled(TextStyle)`
+    margin-top: 10px;
+
+    label {
+        display: flex;
+        align-items: center;
+        font-size: 16px;
+    }
+
+    input {
+        margin-left: 10px;
+        transform: scale(1.2);
+    }
+`;
+
+const Slider = styled.label`
+    position: relative;
+    display: inline-block;
+    width: 34px;
+    height: 20px;
+    margin-left: 10px;
+
+    input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: .4s;
+        border-radius: 34px;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 14px;
+        width: 14px;
+        left: 3px;
+        bottom: 3px;
+        background-color: white;
+        transition: .4s;
+        border-radius: 50%;
+    }
+
+    input:checked + .slider {
+        background-color: ${colours.secondary};
+    }
+
+    input:checked + .slider:before {
+        transform: translateX(14px);
+    }
+`;
+
+const MenuComponent: React.FC<MenuProps> = ({startGame}) => {
+    const {debug, setDebug} = useContext(GameContext) as GameContextType;
+
+    const handleToggle = () => {
+        setDebug(!debug);
+    };
+
     return (
         <>
             <Overlay
@@ -111,7 +180,16 @@ const MenuComponent: React.FC<MenuProps> = ({start}) => {
                 <TextContainer>
                     <Title>re:COLLECT</Title>
                     <Subtitle>What will you remember?</Subtitle>
-                    <StartButton onClick={start}>Start</StartButton>
+                    <StartButton onClick={startGame}>Start</StartButton>
+                    <ToggleSwitch>
+                        <label>
+                            Debug Mode
+                            <Slider>
+                                <input type="checkbox" checked={debug} onChange={handleToggle} />
+                                <span className="slider round"></span>
+                            </Slider>
+                        </label>
+                    </ToggleSwitch>
                 </TextContainer>
                 <Footer>
                     <LogoContainer>

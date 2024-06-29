@@ -134,7 +134,6 @@ export class Universe extends Scene {
     }
 
     reset(planets: string[]) {
-        console.log('reset');
         this.solarSystem?.setDrawNames(true);
         if(this.cameras.main.zoom === 2.5) {
             if(this.solarSystem?.centre())

@@ -49,7 +49,8 @@ export default class CelestialBody {
         if (interactive) {
             // Make the body interactive
             this.body.setInteractive({ useHandCursor: true });
-
+            this.body.clearTint();
+            this.body.setTint(0x44ff44); // Change tint on hover
             // Add pointer events
             this.body.on('pointerover', this.onPointerOver, this);
             this.body.on('pointerout', this.onPointerOut, this);
@@ -57,6 +58,7 @@ export default class CelestialBody {
         } else {
             // Remove interactive properties and pointer events
             this.body.disableInteractive();
+            this.body.clearTint();
             this.body.off('pointerover', this.onPointerOver, this);
             this.body.off('pointerout', this.onPointerOut, this);
             this.body.off('pointerdown', this.onClick, this);
@@ -74,6 +76,7 @@ export default class CelestialBody {
     }
 
     private onClick() {
+        console.log(`Celestial Body Inspect ${this.id}`);
         EventBus.emit('inspect', this.id);
         // this.body.clearTint(); // Clear tint when not hovering
         this.body.scene.input.setDefaultCursor('default'); // Change cursor back to default

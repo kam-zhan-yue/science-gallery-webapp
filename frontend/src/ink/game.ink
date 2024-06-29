@@ -15,6 +15,13 @@ INCLUDE globals.ink
 INCLUDE navigation.ink
 INCLUDE player/shard.ink
 
+->tester
+// +[debug]
+//     ->tester
+// +[game]
+    // ->start
+
+=== tester ===
 Welcome, Tester.
 +[Debug]
     ->character_select ->
