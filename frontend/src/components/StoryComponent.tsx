@@ -16,6 +16,8 @@ import NotificationComponent from "./NotificationComponent.tsx";
 import PlayerComponent, {PlayerComponentHandle} from './player/PlayerComponent.tsx';
 import MirrorComponent from "./MirrorComponent.tsx";
 import NameSelectComponent from "./NameComponent.tsx";
+import styled from "styled-components";
+import {TextStyle} from "./styled/Text.tsx";
 
 interface StoryComponentProps {
   universeRef: Universe | null;
@@ -28,6 +30,15 @@ enum StoryState {
   Inspecting,
   Keypad,
 }
+
+const DebugPanel = styled(TextStyle)`
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+`
 
 const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
   const [story, setStory] = useState<Story | null>(null);
@@ -392,6 +403,11 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
             </>
         }
         <NotificationComponent/>
+
+        <DebugPanel>
+          <div>Ink State: {inkState}</div>
+          <div>Story State: {StoryState[storyState]}</div>
+        </DebugPanel>
       </>
   );
 };
