@@ -28,6 +28,12 @@ export default class CelestialBody {
         this.orbitalRing = this.graphics.strokeCircle(x, y, this.data.orbitalRadius);
         // Initialize the name text
         this.nameText = this.body.scene.add.bitmapText(0, 0, 'pixelFont', this.data.name, 16);
+
+        this.body.setInteractive({ useHandCursor: true });
+        // Add pointer events
+        this.body.on('pointerover', this.onPointerOver, this);
+        this.body.on('pointerout', this.onPointerOut, this);
+        this.body.on('pointerdown', this.onClick, this);
     }
 
     public clean() {
@@ -46,23 +52,25 @@ export default class CelestialBody {
     }
 
     public setInteractive(interactive: boolean) {
-        if (interactive) {
-            // Make the body interactive
-            this.body.setInteractive({ useHandCursor: true });
-            this.body.clearTint();
-            this.body.setTint(0x44ff44); // Change tint on hover
-            // Add pointer events
-            this.body.on('pointerover', this.onPointerOver, this);
-            this.body.on('pointerout', this.onPointerOut, this);
-            this.body.on('pointerdown', this.onClick, this);
-        } else {
-            // Remove interactive properties and pointer events
-            this.body.disableInteractive();
-            this.body.clearTint();
-            this.body.off('pointerover', this.onPointerOver, this);
-            this.body.off('pointerout', this.onPointerOut, this);
-            this.body.off('pointerdown', this.onClick, this);
+        if(interactive) {
+
         }
+        // if (interactive) {
+        //     // Make the body interactive
+        //     this.body.setInteractive({ useHandCursor: true });
+        //     this.body.setTint(0x44ff44); // Change tint on hover
+        //     // Add pointer events
+        //     this.body.on('pointerover', this.onPointerOver, this);
+        //     this.body.on('pointerout', this.onPointerOut, this);
+        //     this.body.on('pointerdown', this.onClick, this);
+        // } else {
+        //     // Remove interactive properties and pointer events
+        //     this.body.disableInteractive();
+        //     this.body.clearTint();
+        //     this.body.off('pointerover', this.onPointerOver, this);
+        //     this.body.off('pointerout', this.onPointerOut, this);
+        //     this.body.off('pointerdown', this.onClick, this);
+        // }
     }
 
     private onPointerOver() {
