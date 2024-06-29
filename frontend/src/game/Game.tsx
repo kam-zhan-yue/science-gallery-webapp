@@ -27,6 +27,7 @@ const Game = forwardRef<Universe, GameProps>((_props, ref) => {
       physics: {
         default: 'arcade',
         arcade: {
+          debug: true,
           gravity: { x: 0, y: 0 },
         },
       },
