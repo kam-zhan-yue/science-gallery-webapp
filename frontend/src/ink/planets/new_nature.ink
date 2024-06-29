@@ -330,7 +330,39 @@ You return to your ship, a sense of shame and failure washing over you. You are 
 ->nature_end
 
 === heal ===
-->nature_end
+Fysi:Really? Are you a healer of some sort? Thank you so much, I’ll take you to the scouts immediately!
+- Fysi leads you to the healer’s building, where you see seven guards, lying on beds. They have various injuries, which look to have been tended to. They look to be deep in sleep. 
+    +[important:Heal the scouts with your Doctor’s training.]
+- You spend the night in the healer’s building. After a long and difficult night, you are able to wake one of the scouts.
+    +[Ask the scout what happened to them]
+- Scout: “It- it was horrible. A monster that I could barely see in the darkness, seemed to be made entirely of vines! It released a spore that exhausted me. I tried to fight it off, but I fell unconscious.” 
+    +[Turn to Fysi]
+- Fysi: This sounds like a creature that I’ve heard of, but didn’t think really existed. An Ampelos, a creature of myth. Now that we know what it is, given enough time, we could devise a countertoxin for its spores!
+    +[important:Offer to help devise a countertoxin.]
+- After another night of research and development, you and Fysi develop a powder that will nullify the Ampelos’ sleep spores. You give it to Bellatos, the leader of the Guards, and explain its purpose. 
+Bellatos: This is incredibly impressive! It’s a vital step in preventing any more attacks!  We shall prepare for its use, and put it to the test tonight! Thank you both for your efforts.
+You spend the rest of the day sleeping, finally getting some rest after two long days of work. 
+You are woken by Fysi, jostling your shoulder.  
+- Fysi:Bellatos and the Guards are about to fight the Ampelos!
+    +[Get up and follow Fysi.]
+- The sounds of fighting, clanging swords and swishing vines emanate from outside the town walls. The townspeople gather behind the gates, trying to gain a glance at the combat.  
+After what feels like forever, Bellatos enters through the gate. He has a large cut on his forehead, but looks happy. 
+Bellatos:The Ampelos is dead!
+The townspeople cheer, and celebrations start.
+During the celebrations, you find Lyanne, the leader of the Gardeners, and approach her. 
+You hand her the torch.
+~take("torch")
+She smiles at you, and takes the torch. 
+Fysi:Thank you for all that you have done.
+She reaches into her robes and retrieves the shard, putting it into your hands. 
+Fysi:You have done us a great service.
++[important:Accept the shard.]
+    ~get_good_shard()
+Lyanne gestures to the surrounding celebrations. 
+Fysi:Feel free to stay in the town for as long as you want. You are always welcome here
+She smiles at you and walk away.
+->nature_good_end
+
 
 === nature_good_end ===
 ->nature_good_end_1
