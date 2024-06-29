@@ -76,6 +76,7 @@ export default class CelestialBody {
     }
 
     private onClick() {
+        console.log(`Celestial Body Inspect ${this.id}`);
         EventBus.emit('inspect', this.id);
         // this.body.clearTint(); // Clear tint when not hovering
         this.body.scene.input.setDefaultCursor('default'); // Change cursor back to default

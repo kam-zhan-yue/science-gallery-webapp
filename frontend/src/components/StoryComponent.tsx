@@ -171,6 +171,7 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
   useEffect(() => {
     // Inspecting a planet will trigger the travelling state due to animations
     EventBus.on('inspect', (planet: string) => {
+      console.log(`StoryComponent Inspect ${planet}`);
       setStoryState(StoryState.Travelling);
       universeRef?.inspect(planet);
 
