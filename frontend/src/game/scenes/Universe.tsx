@@ -103,34 +103,34 @@ export class Universe extends Scene {
 
     inspect(planetName: string) {
         console.log(`inspecting ${planetName}`)
-        // this.solarSystem?.setDrawNames(false);
-        // this.solarSystem?.setInteractive([]);
-        // const planet = this.solarSystem?.getPlanet(planetName)
-        // if(planet === undefined) return;
-        //
-        // const zoomInTime: number = 1000;
-        // const tweenTime = zoomInTime;
-        // // Get the position at the future time
-        // const position = planet.getPosition(tweenTime);
-        // const timeline = this.add.timeline([
-        //     {
-        //         // Zoom back in at half of the tween and pan the camera
-        //         at: 0,
-        //         run: () => {
-        //             this.cameras.main.zoomTo(10, zoomInTime);
-        //             this.cameras.main.pan(position.x, position.y, zoomInTime, 'Power2');
-        //         }
-        //     },
-        //     {
-        //         // Start following the planet's body at the end of the tween
-        //         at: tweenTime,
-        //         run: () => {
-        //             this.cameras.main.startFollow(planet.body);
-        //             EventBus.emit('landed')
-        //         }
-        //     }
-        // ]);
-        // timeline.play();
+        this.solarSystem?.setDrawNames(false);
+        this.solarSystem?.setInteractive([]);
+        const planet = this.solarSystem?.getPlanet(planetName)
+        if(planet === undefined) return;
+
+        const zoomInTime: number = 1000;
+        const tweenTime = zoomInTime;
+        // Get the position at the future time
+        const position = planet.getPosition(tweenTime);
+        const timeline = this.add.timeline([
+            {
+                // Zoom back in at half of the tween and pan the camera
+                at: 0,
+                run: () => {
+                    this.cameras.main.zoomTo(10, zoomInTime);
+                    this.cameras.main.pan(position.x, position.y, zoomInTime, 'Power2');
+                }
+            },
+            {
+                // Start following the planet's body at the end of the tween
+                at: tweenTime,
+                run: () => {
+                    this.cameras.main.startFollow(planet.body);
+                    EventBus.emit('landed')
+                }
+            }
+        ]);
+        timeline.play();
     }
 
     reset(planets: string[]) {
