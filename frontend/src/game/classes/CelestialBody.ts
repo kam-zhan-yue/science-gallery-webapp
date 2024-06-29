@@ -32,6 +32,7 @@ export default class CelestialBody {
 
     public clean() {
         this.graphics.clear();
+        this.graphics.setVisible(false);
         this.body.setActive(false).setVisible(false);
         this.orbitalRing.setActive(false).setVisible(false);
         this.nameText.setActive(false).setVisible(false);

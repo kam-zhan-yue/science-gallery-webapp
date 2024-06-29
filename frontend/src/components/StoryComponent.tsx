@@ -59,10 +59,19 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
   const playerComponentRef = useRef<PlayerComponentHandle>(null);
 
   // Playing audio
-  useEffect(() =>{
-    if(!debug) {
+  useEffect(() => {
+    if (!debug) {
       const audio = new Audio(main);
-      audio.play();
+      audio.loop = true;
+      audio.play()
+          .then(() => {
+            // Audio started successfully
+            console.log('Audio is playing');
+          })
+          .catch((error) => {
+            // Handle the error
+            console.error('Error playing audio:', error);
+          });
     }
   }, []);
 
@@ -78,7 +87,14 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
 
   // Loading game.json for the story
   useEffect(() => {
-    loadStory();
+    loadStory()
+        .then(() => {
+          console.log('Game loaded successfully');
+        })
+        .catch((error) => {
+          // Handle the error
+          console.error('Error loading game:', error);
+        });
   }, []);
 
   // Handles variable changes
