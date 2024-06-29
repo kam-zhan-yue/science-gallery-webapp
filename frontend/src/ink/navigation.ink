@@ -9,22 +9,16 @@
 
 {
 - progress == 1:
-    ->first_stage
-- progress == 2:
     ->band_1
-- progress == 3:
+- progress == 2:
     ->band_2
-- progress == 4:
+- progress == 3:
     ->band_3
-- progress == 5:
+- progress == 4:
     ->final_stage
 }
 ->DONE
 
-=== first_stage ===
-*[paradox_of_paradise:5]
-    ->go_to_planet(paradox_of_paradise)
-    
 === band_1 ===
 *[words_and_worlds:5]
     ->go_to_planet(words_and_worlds)

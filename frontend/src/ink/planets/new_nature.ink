@@ -10,16 +10,16 @@ One of the townsfolk approaches.
 
 Fysi: Hello!  My name is Fysi, welcome to our beautiful town. I wish we had met under happier circumstances, but our town is under some amount of strife at the minute.
 
-+[Ask what happened]
++[speech:Ask what happened]
     ->fysi
 
 
 === fysi === 
 Fysi: We have a problem that we seem to be struggling to solve ourselves. I hate to ask, but, as an impartial third party, would you be able to help us?
 
-*[Yes, what can I do for you?]
+*[speech:Yes, what can I do for you?]
 ->fysi_interested
-*[Sorry, I'm not interested]
+*[speech:Sorry, I'm not interested]
 ->fysi_uninterested
 
 
@@ -47,9 +47,9 @@ The townspeople seem to be going about their days. However, there is a palpable 
 
 === fysi_approach ===
 Fysi: Oh, hello! Have you changed your mind?
-*[Yes, what's going on?]
+*[speech:Yes, what's going on?]
     ->fysi_backstory
-*[No, never mind]
+*[speech:No, never mind]
     ->fysi_walk_away
 
 
@@ -58,12 +58,12 @@ Fysi: We have two town factions, the Guards and the Gardeners. They both improve
 ->fysi_backstory_choices
 
 === fysi_backstory_choices ===
-*[What's happening with the Gardeners?]
+*[speech:What's happening with the Gardeners?]
 ->fysi_backstory_gardeners
-*[What's happening with the Guards?]
+*[speech:What's happening with the Guards?]
 ->fysi_backstory_guards
-*[I only asked out of politeness, I'm not interested...]
-->fysi_backstory_skip
+*[important:I'm busy, what did you want?]
+->fysi_backstory_end
 
 ->fysi_backstory_end
 
@@ -76,41 +76,60 @@ Fysi: Every night, we send scouts out to protect the town. Each morning for the 
 Fysi: We don’t know what’s doing this, but we’re afraid to send more out. We don’t have enough Guards to risk more losses, but we need those scouts to protect the town.
 ->fysi_backstory_choices
 
-=== fysi_backstory_skip ===
-Fysi: Well... At least let me request...
-*[Get to the point]
-    ->fysi_backstory_end
-
 === fysi_backstory_end ===
 Fysi: I was walking through the forest looking for mushrooms, and I came across a strange pool. It was filled with what looked like bioluminescent algae, with a glass shard lying at the bottom.
 Fysi: The shard was glowing a bright green-blue, the same colour as the algae. I picked it up and it kept glowing, even outside of the water. It intrigued me, so I took it back to the town.
 Fysi: When I brought the shard back to town, both factions immediately found a use for it.
 Fysi: The guards could use it to protect themselves at night. Whatever was attacking them didn’t approach when they had the shard. The one night that the scout held the shard was the one night that they came back, well- conscious.
 Fysi: The Gardeners brought the shard to their crops. When the shard was in a greenhouse, the plants grew to twice their normal size! Something about the light that the shard emits greatly improves crop yield.
-+[So... what do you need from me?]
++[speech:So... what do you need from me?]
 ->fysi_shard
 
 === fysi_shard ===
 Fysi: Well... The thing is, we have two very severe problems, and only one solution. No one in the town is unbiased – The Guards have families, and everyone needs to eat, so we can’t decide who gets the shard by vote.
-+[Be clearer - what do you need from me?]
++[speech:Be clearer - what do you need from me?]
 ->fysi_shard_explain
 +[Stay silent and let Fysi talk]
 ->fysi_shard_explain
 
 === fysi_shard_explain ===
 Fysi: Sorry, I’m rambling.  Now that I’ve explained our situation, we need you to decide. You’re an unbiased third party, you can see this problem from an objective perspective. Who would you give the shard to?
-
-*[important:Give the shard to the Gardeners - the town needs food.]
+{ class == Doctor:
+    ->options_doctor
+-else: 
+    ->options_normal
+}
+    
+=== options_normal ===
+*[important:Give the shard to the Gardeners]
     ->shard_gardeners
-*[important:Give the shard to the Guards - they need to protect the town.]
+*[important:Give the shard to the Guards]
     ->shard_guards
-*[important:I have a torch on my ship, I can give it to the Guards and the Gardeners can have the shard.]
+*[inventory:Give your ship's torch to the Guards.]
+    You:I have a torch on my ship, I can give it to the Guards and the Gardeners can have the shard.
     ->torch_appease
-*[important:I have a torch on my ship, I can give it to you, in return for the shard]
+*[important:Trade your ship's torch for the shard.]
+    You:I have a torch on my ship, I can give it to you, in return for the shard
     ->torch_swap
 *[speech:Take me to see the shard]
     ->see_shard
-*[speech:I can heal your scouts. I'll give the Gardeners the torch, and I'll take the shard]
++[speech:I wasn't listening. Give me the run down again]
+    ->fysi_backstory_end
+    
+=== options_doctor ===
+*[important:Give the shard to the Gardeners]
+    ->shard_gardeners
+*[important:Give the shard to the Guards]
+    ->shard_guards
+*[inventory:Give your ship's torch to the Guards.]
+    You:I have a torch on my ship, I can give it to the Guards and the Gardeners can have the shard.
+    ->torch_appease
+*[inventory:Trade your ship's torch for the shard.]
+    You:I have a torch on my ship, I can give it to you, in return for the shard
+    ->torch_swap
+*[speech:Take me to see the shard]
+    ->see_shard
+*[speech:I can heal your scouts.]
     ->heal
 +[speech:I wasn't listening. Give me the run down again]
     ->fysi_backstory_end
@@ -122,18 +141,18 @@ Fysi: Alright, we shall respect your decision. The shard will go to the Gardener
 
 === shard_gardeners_1 ===
 Lyanne: Hello! My name is Lyanne, I am the head of the Gardener faction. I would like to thank you, on behalf of the town, for giving the shard to the Gardeners.
-+[You're very welcome]
++[speech:You're very welcome]
 ->shard_gardeners_2
 
 === shard_gardeners_2 ===
 Lyanne: I would like to show you something, as a reward for your kindness. Please, come with me.
 Lyanne walks away.
-+[Follow Lyanne]
++[important:Follow Lyanne]
 ->shard_gardeners_3
 
 === shard_gardeners_3 ===
 Lyanne leads you to a small building. It is made of stone, the first opaque building you have seen in this town. She unlocks the door, and motions you inside. 
-+[Enter the building]
++[important:Enter the building]
 ->shard_gardeners_4
 
 === shard_gardeners_4 ===
@@ -146,9 +165,9 @@ The structure looks like hanging flowers, with spiralling wire hanging down from
 Lyanne: This is the Gardeners’ most prized possession. This plant is what keeps morale up when times are tough. It is our proverbial shining beacon of hope. You have given us another hope. I thank you.
 Lyanne takes a flower from the structure, and gives it to you with an air of reverence. It warms your hands, and you feel a sense of calm purpose flow through you. 
 
-*[Oh, thank you so much! (Pocket the flower)]
+*[speech:Oh, thank you so much!]
 ->shard_gardeners_flower_accept
-*[Oh, I couldn't possibly take such an important item from you! (Refuse the flower)]
+*[speech:Oh, I couldn't possibly take such an important item from you!]
 ->shard_gardeners_flower_decline
 
 === shard_gardeners_flower_accept ===
@@ -161,7 +180,7 @@ Lyanne smiles at you, and walks away.
 
 === shard_gardeners_flower_decline ===
 Lyanne: No please. You have given us a gift, and I want to repay the favour.
-+[Thank you so much, I appreciate your gratitude.]
++[speech:Thank you so much, I appreciate your gratitude.]
 ->shard_gardeners_flower_accept
 
 //GUARD PATH
@@ -171,18 +190,18 @@ Fysi: Alright, we shall respect your decision. The shard will go to the Guards. 
 
 === shard_guards_1 ===
 Bellator: Hello! My name is Bellator, I am the head of the Guard faction. I would like to thank you, on behalf of the town, for giving the shard to the Guards.
-+[You're very welcome]
++[speech:You're very welcome]
 ->shard_guards_2
 
 === shard_guards_2 ===
 Bellator: I would like to show you something, as a reward for your kindness. Please, come with me.
 Bellator walks away.
-+[Follow Bellator]
++[important:Follow Bellator]
 ->shard_guards_3
 
 === shard_guards_3 ===
 Bellator leads you to the guard barracks, and walks through a set of corridors. You reach an archway, and he motions you through.   
-+[Enter the building]
++[important:Enter the building]
 ->shard_guards_4
 
 === shard_guards_4 ===
@@ -190,9 +209,9 @@ You walk inside and see a room with strange green objects, spinning in the middl
 Bellator: This is where my guards come to train. The room gives them confidence to continue, even when the going gets tough.
 Bellator: It is the boost to morale that the hardworking guards need in these trying times, especially now that doing their job involves them risking themselves.
 Bellator walks to a weapons rack, and picks up an ornate spear. He hands it to you, smiling. It feels powerful in your hands. 
-+[Oh, thank you so much! (Pocket the spear)]
++[speech:Oh, thank you so much!]
 ->spear_accept
-+[Oh, I couldn’t possibly take such an important item from you! (Refuse the spear)]
++[speech:Oh, I couldn’t possibly take such an important item from you!]
 ->spear_decline
 
 === spear_accept ===
@@ -204,11 +223,12 @@ Bellator smiles at you, and walks away.
 
 === spear_decline ===
 Bellator: No please. You have given us a gift, and I want to repay the favour.
-+[Thank you so much, I appreciate your gratitude.]
++[speech:Thank you so much, I appreciate your gratitude.]
 ->spear_accept
 
 // TORCH TO GUARDS, SHARD TO GARDENERS
 === torch_appease ===
+~take("torch")
 Fysi: Really? Thank you so much, you’re incredibly generous!  The leaders of both factions will want to thank you for this.
 Lyanne, leader of the Farmers, and Bellator, leader of the Guards approach you.
 Lyanne: Thank you for entrusting us with your light, and the shard. You have helped our village greatly.
@@ -221,7 +241,7 @@ Lyanne and Bellator lead you to a small glass cottage, where they introduce you 
 Anna gives you a pendant made of multicoloured glass, red and white, green and yellow. You put it on, and feel that the universe smiles on you. 
 
 ~get(pendant)
-Congratulations!  You helped both factions, and have gained a pendant that gives you +1 Knack!
+Congratulations! You helped both factions, and have gained a pendant that gives you +1 Knack!
 //TODO: ADD KNACK HERE!!!
 Bellator and Lyanne lead you outside. 
 Lyanne: Thank you again. Feel free to stay in the town for as long as you want.
@@ -237,18 +257,18 @@ Fysi: Alright, that seems fair. I’ll let the leaders know, and they can decide
 === torch_swap_1 ===
 Lyanne, leader of the Farmers, and Bellator, leader of the Guards approach you.
 Lyanne: Thank you for giving us the torch. We will decide how to use it to its fullest extent.
-+[You're very welcome]
++[speech:You're very welcome]
 ->torch_swap_2
 
 === torch_swap_2 ===
 Bellator: We will take you to the shard. Please follow us.
 They walk away.
-+[Follow Lyanne and Bellator]
++[important:Follow Lyanne and Bellator]
 ->torch_swap_3
 
 === torch_swap_3 ===
 Lyanne and Bellator lead you to a locked glass building. They unlock it and motion you inside.
-+[Enter the buliding]
++[important:Enter the buliding]
 ->torch_swap_4
 
 
@@ -256,8 +276,9 @@ Lyanne and Bellator lead you to a locked glass building. They unlock it and moti
 The leaders move towards a chest in the room’s centre, and unlock it. Bellator reaches inside, and takes out a glowing glass shard. He motions you forward, and places it in your hands. 
 //TODO EXCHANGE ITEMS HERE
 ~get_good_shard()
-+[Thank you. (Pocket the shard, give the leaders the torch from your ship)]
-->torch_swap_5
++[speech:Thank you. Here's the torch.]
+    ~take("torch")
+    ->torch_swap_5
 
 === torch_swap_5 ===
 Bellator and Lyanne lead you outside. 
@@ -271,7 +292,7 @@ Fysi leads you to a locked glass building. He unlocks it and motions you inside.
 Fysi moves towards a chest in the room’s centre, and unlocks it. He reaches inside, and takes out a glowing glass shard.
 +[Inspect the shard.]
 ->inspect_shard
-+[Grab the shard and run.]
++[important:Grab the shard and run.]
 ->steal_shard
 
 === inspect_shard ===
@@ -282,9 +303,9 @@ Fysi looks at you. “What would you have us do?
 === steal_shard ===
 You grab the sprite and run. Fysi shouts, and tries to grab at you. 
 //TODO Combat here?
-+[Combat win]
++[In Progress - Combat win]
 ->steal_shard_win
-+[Combat lose]
++[In Progress - Combat lose]
 ->steal_shard_lose
 
 
@@ -304,6 +325,7 @@ Fysi: Leave now, and never return!  You are not welcome here.
 ->steal_shard_lose_1
 
 === steal_shard_lose_1 ===
+~background = ship_navigation
 You return to your ship, a sense of shame and failure washing over you. You are no longer welcome on this planet, and for what?  You have left with nothing, and shown your true character. 
 ->nature_end
 
@@ -320,12 +342,9 @@ After staying in the city for as long as you want, resting and generally enjoyin
 
 
 === nature_good_end_2 ===
+~background = ship_navigation
 You return to your ship, a sense of purpose and happiness washing over you. You did some good on this planet. 
 ->nature_end
 
 === nature_end ===
-->test_get_shard->
-+[Replay]
-->nature
-+[End]
 ->navigation

@@ -38,6 +38,12 @@ const NotificationComponent: React.FC = () => {
                 setMessage(message);
             }
         })
+        EventBus.on("use_item", (item: string) =>  {
+            if(item in items) {
+                const message = `You have used ${items[item].name}`;
+                setMessage(message);
+            }
+        })
 
         EventBus.on("get_shard", (shard: string) =>  {
             console.log('get shard')
@@ -52,6 +58,7 @@ const NotificationComponent: React.FC = () => {
 
         return () => {
             EventBus.off("get_item");
+            EventBus.off("use_item");
             EventBus.off("get_shard");
         };
     }, []);

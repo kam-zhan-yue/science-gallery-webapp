@@ -55,6 +55,11 @@ export const items: { [key: string]: Item } = {
         image: "bread.png",
         description: "Cuddly and snuggly."
     },
+    "torch": {
+        name: "Torch",
+        image: "bread.png",
+        description: "A torch."
+    },
     "scroll": {
         name: "Scroll",
         image: "avocado.png",

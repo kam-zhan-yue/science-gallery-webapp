@@ -33,6 +33,7 @@ You're certain you've never seen a cave entrance on this walk before.
 ===walk_into_the_cave===
 You move towards the cave.
 You walk through its entrance. 
+~background = shangrila_cave
 Unlike the wonderful gentle warmth of the daylight, it's cold. It's also damp. 
 The light slowly dims as you head into this cave. 
 But as it gets darker and darker...
@@ -111,7 +112,9 @@ A door appears. The shard glows in your hand with pulsating light. You feel it c
 ===sheeplink===
 You walk out of the cave. As you turn around to see the light outside. You see a silhouette. A suited figure. 
 "I'm sorry you had to see this, you aren't allowed here." The suited figure speaks as it echoes through the cave. 
-You go to sleep. ->DONE
+You go to sleep. 
+~ending = sheep
+->DONE
 ===opendoor===
 You open the door and walk through...
 It's dark in here. 
@@ -120,6 +123,8 @@ It's dark in here.
 You feel your way around the walls on either side, and hear the familiar sound of a lightswitch. 
 As the light turns on, you see a small shuttle ship. It looks a little rusted, as if it hasn't been touched in years. You also see two empty spaces... it looks like two more shuttle ships were deployed before.->inputcodeshangrila
 ===inputcodeshangrila===
+~background = ship_navigation
+~get(torch)
 The shuttle's interior lights up, and you can hear a little voice emanating from it. 
 "Welcome, traveller. Please input launch code!"
 You look at it... puzzled.

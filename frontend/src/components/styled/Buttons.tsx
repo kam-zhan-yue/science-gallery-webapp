@@ -13,7 +13,7 @@ export const SelectButton = styled(TextStyle)`
   border-image: url("../../assets/ui/button-submit.png") 6 fill repeat;
   font-weight: 800;
   color: white;
-  text-shadow: 0 0 1px #000000;
+  text-shadow: 0 0 3px #000000;
   margin-bottom: 10px;
   &:hover {
     cursor: pointer;
@@ -28,7 +28,7 @@ export const BackButton = styled(TextStyle)`
   width: 100%;
   font-weight: 800;
   color: white;
-  text-shadow: 0 0 1px #000000;
+  text-shadow: 0 0 3px #000000;
   border-image: url("../../assets/ui/button-secondary.png") 6 fill repeat;
 
   &:hover {

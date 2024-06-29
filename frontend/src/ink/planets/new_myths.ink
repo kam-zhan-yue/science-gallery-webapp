@@ -1,62 +1,67 @@
 ===lastship===
+~background = ship_navigation
 Your ship lands. The glass has fogged up a bit, but you see shades of red all around your ship.
-"You've travelled so far, {name}. I wonder what this planet has in store for you!"
-*[I'm keen to go!]->notenoughfuel
-*[I'm a bit nervous...]->dontbenervous
+Ship: You've travelled so far, {name}. I wonder what this planet has in store for you!
+*[speech:I'm keen to go!]->notenoughfuel
+*[speech:I'm a bit nervous...]->dontbenervous
 ===dontbenervous===
-"Oh... that's fair. I don't know what that feels like, but I've heard it's not a nice feeling."
-*[No, it isn't. It sucks.]->nervoussucks
-*[It's not that bad, it can be helpful.]->nervoushelpful
+Ship: Oh... that's fair. I don't know what that feels like, but I've heard it's not a nice feeling.
+*[speech:No, it isn't. It sucks.]->nervoussucks
+*[speech:It's not that bad, it can be helpful.]->nervoushelpful
 ===nervoushelpful===
-"Well then, I hope you are feeling incredibly nervous. You will need it."
-*[Thanks...?]->notenoughfuel
-*[That's kind of rude.]->kindarudeofyou
+Ship: Well then, I hope you are feeling incredibly nervous. You will need it.
+*[speech:Thanks...?]->notenoughfuel
+*[speech:That's kind of rude.]->kindarudeofyou
 ===nervoussucks===
-"Gee, that certainly sounds bad. I guess this is a feeling you will have to live with. Good luck!"
-*[Thanks...?]->notenoughfuel
-*[That's kind of rude.]->kindarudeofyou
+Ship:Gee, that certainly sounds bad. I guess this is a feeling you will have to live with. Good luck!
+*[speech:Thanks...?]->notenoughfuel
+*[speech:That's kind of rude.]->kindarudeofyou
 ===kindarudeofyou===
-"I will not tolerate statements of this kind, {name}. Do not question me. Or there will be consequences."
-"I hope you enjoy your time on this planet!"
-*[Okay.] ->notenoughfuel
+Ship:I will not tolerate statements of this kind, {name}. Do not question me. Or there will be consequences.
+Ship:I hope you enjoy your time on this planet!
+*[speech:Okay.] ->notenoughfuel
 ===notenoughfuel===
-"Actually, before you go, I must inform you that I do not have sufficient fuel to take you to another planet."
-*[What do you mean?]->fuelexplain
-*[Well, I guess we're stuck here then.]->notstuck
+Ship:Actually, before you go, I must inform you that I do not have sufficient fuel to take you to another planet.
+*[speech:What do you mean?]->fuelexplain
+*[speech:Well, I guess we're stuck here then.]->notstuck
 ===notstuck===
-"We may not be stuck, if you give over your shards. I can use your shards to be converted into fuel."
-*[Oh, that's good to know!]->goodluck1
-*[Wait... how do you use the shards?]->enoughquestions
+Ship:We may not be stuck, if you give over your shards. I can use your shards to be converted into fuel.
+*[speech:Oh, that's good to know!]->goodluck1
+*[speech:Wait... how do you use the shards?]->enoughquestions
 ===fuelexplain===
-"You did not ask, so I did not inform you. However fuel levels are critically low."
-"This can be somewhat mitigated by using your shards. Your shards can be converted to fuel."
-*[Oh, that's good to know!]->goodluck1
-*[Wait... how do you use the shards?]->enoughquestions
+Ship:You did not ask, so I did not inform you. However fuel levels are critically low.
+Ship:This can be somewhat mitigated by using your shards. Your shards can be converted to fuel.
+*[speech:Oh, that's good to know!]->goodluck1
+*[speech:Wait... how do you use the shards?]->enoughquestions
 ===goodluck1===
-"Collect more shards on this planet, and bring them to me. I will make sure you will get to where you need to."
-*[Which planets will I be able to visit?]->enoughquestions
-*[Where will you take me?]->enoughquestions
-*[Can I stay here?]->enoughquestions
+Ship:Collect more shards on this planet, and bring them to me. I will make sure you will get to where you need to.
+*[speech:Which planets will I be able to visit?]->enoughquestions
+*[speech:Where will you take me?]->enoughquestions
+*[speech:Can I stay here?]->enoughquestions
 ===enoughquestions===
-"You ask too many questions. Bring the shards to me."
+Ship:You ask too many questions. Bring the shards to me.
 The ship's door opens, and you feel a force pushing you out.
-"I cannot wait to hear what adventures you get up to! Enjoy, {name}!"
-*[Venture into NEW MYTHS]->newmyths
+Ship:I cannot wait to hear what adventures you get up to! Enjoy, {name}!
+*[important:Venture into NEW MYTHS]->newmyths
 === newmyths ==
+~background=new_myths_silk
 You land in what seems to be a planet covered in crimson - as you look around you, all you can see is a dense forest. 
 However, this forest isn't made of the trees or plants you've seen before. As your eyes adjust to the ruby haze, you notice that you are surrounded by streams of fabric. 
 The fabric is beautifully woven, with shimmering embroidery that glints faintly as if glowing. 
 You feel... warm. As if someone is holding you tightly, like a kiss on the cheek, like being cradled to sleep. 
 As you wade through the layers of silk, you reach a clearing, where a lady sits, faintly sobbing. 
-"What happened to you, my darling?", The woman whispers, as she cradles a piece of silk in her hands.
-*[Ask the lady what's wrong.]->helpsilklady
+Lady:What happened to you, my darling?
+The woman whispers, as she cradles a piece of silk in her hands.
+*[speech:Ask the lady what's wrong.]->helpsilklady
 *[Walk away, see what's beyond the silk.]->wandertosilk
 ===helpsilklady===
-"Oh, hello... I'm just... well, look!" The lady shows you the silk. 
+Lady:Oh, hello... I'm just... well, look!
+The lady shows you the silk. 
 It has a large tear in the centre, and seems to have lost its colour around the tear.
-"I... had an argument with my partner. And it didn't go well."
-"When they left, I felt my silk tear. It's all my fault!"
-"I don't know what to do..." The lady sheds a tear over the torn silk.
+Lady:I... had an argument with my partner. And it didn't go well.
+Lady:When they left, I felt my silk tear. It's all my fault!
+Lady:I don't know what to do...
+The lady sheds a tear over the torn silk.
 *[I can mend that! (OPEN ARTIST INVENTORY)]->artistmendsilk
 *[Would you like some company?]->keephercompany
 *[I don't know if I can help.]->canthelplady

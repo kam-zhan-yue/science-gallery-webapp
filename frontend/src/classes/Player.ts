@@ -114,6 +114,11 @@ class Player {
                 EventBus.emit("get_item", item);
             }
         }
+        for (const item of this._inventory) {
+            if (item in items && !(arr.includes(item))) {
+                EventBus.emit("use_item", item);
+            }
+        }
 
         this._inventory = [];
         for (const item of arr) {

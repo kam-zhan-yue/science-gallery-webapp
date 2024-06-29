@@ -1,5 +1,5 @@
 // If you wanna add an item, add it to the list and in take()
-LIST inventory = (none), artist_item, doctor_item, mechanic_item, book_1, book_2, library_card, spear, flower, scroll, pendant
+LIST inventory = (none), artist_item, doctor_item, mechanic_item, book_1, book_2, library_card, spear, flower, scroll, pendant, torch
 
 // this is a really bad implementation, i'm really sorry, but go with the flow.
 === function take(x)
@@ -24,6 +24,8 @@ LIST inventory = (none), artist_item, doctor_item, mechanic_item, book_1, book_2
     ~inventory -= flower
 -"pendant":
     ~inventory -= pendant
+-"torch":
+    ~inventory -= torch
 //WAYS OF FOLDING SPACE
 -"scroll":
     ~inventory -= scroll

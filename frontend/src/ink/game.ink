@@ -26,11 +26,13 @@ Welcome, Tester.
 +[Debug]
     ->character_select ->
     ~ planet = shangrila
+    ~get(torch)
     ->debug_navigation
 +[Skip Intro]
     ->character_select ->
     ->name_input ->
     ~planet = shangrila
+    ~get(torch)
     ->navigation
 +[From Beginning]
     ->start

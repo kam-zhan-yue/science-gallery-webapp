@@ -285,6 +285,7 @@ As you go looking for your ship, you bump into a large metal book. It feels like
 Maybe it will have a clue for where you could go next.
 You stay looking at Untitled (Heat Book) until you know where to go next.
 ~get(book_2)
+~background = ship_navigation
 You return to your ship, feeling a mix of emotions.
 ->words_end
 

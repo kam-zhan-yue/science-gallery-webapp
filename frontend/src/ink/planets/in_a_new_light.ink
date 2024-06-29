@@ -1,6 +1,6 @@
 === new_light ===
 
-~background = black
+~background = new_light_main
 
 You stare out into space.
 
@@ -292,9 +292,9 @@ Ship: It’s time. Place the shards into the beam producer.
 
 Ship: 3
 
-Ship: 2
+Ship: ..2
 
-Ship: 1
+Ship: ..1
 
 A beam of bright, warm, light extends from your ship down to the planet.
 
@@ -315,4 +315,5 @@ You are excited for what the future holds.
 ->final
 
 === final ===
+~ending = unknown
 ->DONE

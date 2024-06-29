@@ -7,12 +7,15 @@ interface BackgroundComponentProps {
 }
 
 const backgrounds: { [key: string]: string} = {
-    "shangrila_main": "shangrila.png",
-    "new_nature_main": "new_nature.png",
-    "folding_space_main": "folding_space.png",
-    "crafting_main": "crafting_new_worlds.png",
-    "new_myths_silk": "new_myths_silk.png",
-    "new_myths_silk_voice": "new_myths_silk_voice.png",
+    "ship_navigation": "ship-navigation.png",
+    "shangrila_main": "shangrila-main.png",
+    "shangrila_cave": "shangrila-cave.png",
+    "new_nature_main": "new-nature-main.png",
+    "folding_space_main": "folding-space-main.png",
+    "crafting_main": "crafting-main.png",
+    "new_myths_silk": "new-myths-main.png",
+    "new_myths_silk_voice": "new-myths-main-light.png",
+    "new_light_main": "new-light-main.png",
 }
 
 const Overlay = styled(motion.div)`
@@ -21,6 +24,7 @@ const Overlay = styled(motion.div)`
   top: 0;
   width: 100%;
   height: 100%;
+  background: rgb(0,0,0,0.4);
 `
 
 const Black = styled(Overlay)`
@@ -73,13 +77,15 @@ const BackgroundComponent: React.FC<BackgroundComponentProps> = ({backgroundKey}
             }
             {backgroundKey in backgrounds &&
                 <>
-                    <BackgroundBorder
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0, transition: {duration: 1} }}
-                        transition={{ duration: 1 }}>
-                        <Background src={getBackground()} alt='background'/>
-                    </BackgroundBorder>
+                    <Overlay>
+                        <BackgroundBorder
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0, transition: {duration: 1} }}
+                            transition={{ duration: 1 }}>
+                            <Background src={getBackground()} alt='background'/>
+                        </BackgroundBorder>
+                    </Overlay>
                 </>
             }
         </>
