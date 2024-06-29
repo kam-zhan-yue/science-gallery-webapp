@@ -10,7 +10,7 @@ import {EventBus} from "../EventBus.tsx";
 import main from "../assets/audio/main.mp3";
 import {GameContext, GameContextType} from "../contexts/GameContext.tsx";
 import PlanetComponent from "./PlanetComponent.tsx";
-// import GuideComponent from "./GuideComponent.tsx";
+import GuideComponent from "./GuideComponent.tsx";
 import BackgroundComponent from "./BackgroundComponent.tsx";
 // import NotificationComponent from "./NotificationComponent.tsx";
 import {PlayerComponentHandle} from './player/PlayerComponent.tsx';
@@ -348,11 +348,11 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
             </>
         }
 
-        {/*{storyState === StoryState.Choosing &&*/}
-        {/*    <>*/}
-        {/*      <GuideComponent/>*/}
-        {/*    </>*/}
-        {/*}*/}
+        {storyState === StoryState.Choosing &&
+            <>
+              <GuideComponent/>
+            </>
+        }
 
         {storyState === StoryState.Inspecting &&
             <>
