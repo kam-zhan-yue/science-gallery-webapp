@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 import { TextStyle } from "./styled/Text.tsx";
 import {colours} from "./styled/Constants.tsx";
+import {BackButton, SelectButton} from "./styled/Buttons.tsx";
 
 interface NameSelectProps {
     select: (name: string) => void;
@@ -85,15 +86,9 @@ const NameInput = styled.input<{ isValid: boolean }>`
   text-align: center;
 `;
 
-const SelectButton = styled(TextStyle)<{ disabled: boolean }>`
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  border: 8px solid;
+const Select = styled(SelectButton)<{ disabled: boolean}>`
   width: 100%;
-  font-size: 20px;
   border-image: url("../assets/ui/button-submit.png") 6 fill repeat;
-  margin-bottom: 10px;
   background-color: ${props => (props.disabled ? 'grey' : 'initial')};
   pointer-events: ${props => (props.disabled ? 'none' : 'auto')};
   opacity: ${props => (props.disabled ? 0.5 : 1)};
@@ -103,30 +98,17 @@ const SelectButton = styled(TextStyle)<{ disabled: boolean }>`
   }
 `;
 
-
-const SkipButton = styled(TextStyle)`
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  border: 6px solid;
-  width: 100%;
-  border-image: url("../assets/ui/button-cancel.png") 6 fill repeat;
-
-  &:hover {
-    cursor: pointer;
-  }
-`
-
 const NameSelectComponent: React.FC<NameSelectProps> = ({ select, skip }) => {
     const [name, setName] = useState("");
-    const isValid = name.length <= 20;
+    const invalid = name.length <= 0;
+    const disabled = name.length > 20;
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setName(e.target.value);
     };
 
     const handleSubmit = () => {
-        if (isValid) {
+        if (!invalid && !disabled) {
             select(name);
         }
     };
@@ -142,9 +124,9 @@ const NameSelectComponent: React.FC<NameSelectProps> = ({ select, skip }) => {
                     transition={{ duration: 0.2 }}
                 >
                     <Title>Choose a Name</Title>
-                    <NameInput type='text' value={name} onChange={handleInputChange} isValid={isValid} />
-                    <SelectButton onClick={handleSubmit} disabled={!isValid}>Submit</SelectButton>
-                    <SkipButton onClick={skip}>Skip</SkipButton>
+                    <NameInput type='text' value={name} onChange={handleInputChange} isValid={!disabled} />
+                    <Select onClick={handleSubmit} disabled={invalid || disabled}>Submit</Select>
+                    <BackButton onClick={skip}>Skip</BackButton>
                 </Background>
             </Overlay>
         </>
