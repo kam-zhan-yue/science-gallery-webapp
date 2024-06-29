@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import styled from "styled-components";
-import Parallelogram from "./styled/Parallelogram.tsx";
 import Triangle from "./styled/Triangle.tsx";
 import CharacterSelectComponent from "./CharacterSelectComponent.tsx";
 import {motion} from "framer-motion";
@@ -64,36 +63,16 @@ const MirrorComponent: React.FC<MirrorProps> = ({selectCharacter}) => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0, transition: { duration: 1 } }}
                 transition={{ duration: 0.3 }}>
-                    <Parallelogram
-                        top={-180} left={-75}
-                        width={125} height={90}
-                        skew={50} rotate={50}
-                        background={debug ? "red" : colors.primary}/>
-                    <Parallelogram
-                        top={-110} left={40}
-                        width={150} height={90}
-                        skew={50} rotate={110}
-                        background={debug ? "gray" : colors.secondary}/>
-                    <Parallelogram
-                        top={80} left={-60}
-                        width={150} height={100}
-                        skew={50} rotate={110}
-                        background={debug ? "white" : colors.primary}/>
-                    <Parallelogram
-                        top={-50} left={-260}
-                        width={200} height={80}
-                        skew={60} rotate={0}
-                        background={debug ? "blue" : colors.primary}/>
                     <Triangle
-                        top={-210} left={-150}
-                        bleft={50} bright={50}
-                        bbottom={250} rotate={126}
+                        top={-220} left={-240}
+                        bleft={120} bright={120}
+                        bbottom={300} rotate={126}
                         background={debug ? "green" : colors.secondary}
                         character='Doctor' selectCharacter={viewCharacter}/>
                     <Triangle
-                        top={-300} left={-180}
-                        bleft={75} bright={75}
-                        bbottom={150} rotate={155}
+                        top={-190} left={-50}
+                        bleft={40} bright={40}
+                        bbottom={170} rotate={165}
                         background={debug ? "yellow" : colors.primary}/>
                     <Triangle
                         top={0} left={-240}
@@ -101,30 +80,30 @@ const MirrorComponent: React.FC<MirrorProps> = ({selectCharacter}) => {
                         bbottom={200} rotate={63}
                         background={debug ? "purple" : colors.secondary}/>
                     <Triangle
-                        top={100} left={-175}
-                        bleft={50} bright={50}
-                        bbottom={300} rotate={24}
+                        top={50} left={-155}
+                        bleft={120} bright={120}
+                        bbottom={350} rotate={12}
                         background={debug ? "pink" : colors.primary}
                         character='Mechanic' selectCharacter={viewCharacter}/>
                     <Triangle
-                        top={280} left={-130}
-                        bleft={50} bright={50}
-                        bbottom={150} rotate={-10}
+                        top={190} left={50}
+                        bleft={50} bright={20}
+                        bbottom={150} rotate={-5}
                         background={debug ? "orange" : colors.secondary}/>
                     <Triangle
-                        top={200} left={20}
+                        top={50} left={20}
                         bleft={40} bright={40}
-                        bbottom={200} rotate={155}
+                        bbottom={200} rotate={185}
                         background={debug ? "cyan" : colors.secondary}/>
                     <Triangle
-                        top={20} left={75}
+                        top={-100} left={75}
                         bleft={60} bright={60}
-                        bbottom={175} rotate={-140}
+                        bbottom={175} rotate={-110}
                         background={debug ? "teal" : colors.secondary}/>
                     <Triangle
-                        top={-400} left={10}
-                        bleft={75} bright={75}
-                        bbottom={250} rotate={-160}
+                        top={-300} left={10}
+                        bleft={100} bright={100}
+                        bbottom={300} rotate={-150}
                         background={debug ? "fuchsia" : colors.primary}
                         character='Artist' selectCharacter={viewCharacter}
                     />

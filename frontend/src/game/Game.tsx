@@ -15,8 +15,8 @@ const Game = forwardRef<Universe, GameProps>((_props, ref) => {
     const universeScene: Universe = new Universe();
     const config: Phaser.Types.Core.GameConfig = {
       type: Phaser.AUTO,
-      width: 800,
-      height: 600,
+      width: 1000,
+      height: 1000,
       parent: 'game-container',
       backgroundColor: '#1f1137',
       scale: {

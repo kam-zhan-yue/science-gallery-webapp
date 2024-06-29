@@ -4,6 +4,7 @@ import {motion} from "framer-motion";
 import {characters} from "../setup/Character.ts";
 import {TextStyle} from "./styled/Text.tsx";
 import {colours} from "./styled/Constants.tsx";
+import {BackButton, SelectButton} from "./styled/Buttons.tsx";
 
 interface CharacterSelectProps {
     character: string,
@@ -67,34 +68,6 @@ const Background = styled(motion.div)`
     border-image: url("../assets/ui/dialogue-box.png") 15 15 15 15 fill repeat;
   }
 `;
-
-const SelectButton = styled(TextStyle)`
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  border: 8px solid;
-  width: 50%;
-  height: 10%;
-  font-size: 20px;
-  border-image: url("../assets/ui/button-submit.png") 6 fill repeat;
-  margin-bottom: 10px;
-  &:hover {
-    cursor: pointer;
-  }
-`
-
-const BackButton = styled(TextStyle)`
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  border: 6px solid;
-  width: 25%;
-  border-image: url("../assets/ui/button-cancel.png") 6 fill repeat;
-  
-  &:hover {
-    cursor: pointer;
-  }
-`
 
 const CharacterContainer = styled(motion.div)`
   width: 100%;
