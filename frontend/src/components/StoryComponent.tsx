@@ -10,14 +10,14 @@ import {EventBus} from "../EventBus.tsx";
 import main from "../assets/audio/main.mp3";
 import {GameContext, GameContextType} from "../contexts/GameContext.tsx";
 import PlanetComponent from "./PlanetComponent.tsx";
-import GuideComponent from "./GuideComponent.tsx";
+// import GuideComponent from "./GuideComponent.tsx";
 import BackgroundComponent from "./BackgroundComponent.tsx";
-import NotificationComponent from "./NotificationComponent.tsx";
-import PlayerComponent, {PlayerComponentHandle} from './player/PlayerComponent.tsx';
+// import NotificationComponent from "./NotificationComponent.tsx";
+import {PlayerComponentHandle} from './player/PlayerComponent.tsx';
 import MirrorComponent from "./MirrorComponent.tsx";
 import NameSelectComponent from "./NameComponent.tsx";
-import styled from "styled-components";
-import {TextStyle} from "./styled/Text.tsx";
+// import styled from "styled-components";
+// import {TextStyle} from "./styled/Text.tsx";
 
 interface StoryComponentProps {
   universeRef: Universe | null;
@@ -31,14 +31,14 @@ enum StoryState {
   Keypad,
 }
 
-const DebugPanel = styled(TextStyle)`
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  display: flex;
-  flex-direction: column;
-  text-align: right;
-`
+// const DebugPanel = styled(TextStyle)`
+//   position: absolute;
+//   top: 15px;
+//   right: 15px;
+//   display: flex;
+//   flex-direction: column;
+//   text-align: right;
+// `
 
 const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
   const [story, setStory] = useState<Story | null>(null);
@@ -306,31 +306,31 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
     setStoryState(StoryState.Inspecting);
   }
 
-  const onUseItem = (itemKey: string) => {
-    if(inkState === "take_item" && story) {
-      story.EvaluateFunction('take', [itemKey], true);
-
-      for (let i= 0; i<story.currentChoices.length; ++i) {
-        const choice: string = story.currentChoices[i].text;
-        // check whether is direct equivalent, other, or in list
-        if(choice === itemKey) {
-          handleChoiceClick(i)
-          break;
-        } else if(choice === 'other') {
-          handleChoiceClick(i)
-          break;
-        } else {
-          const values: string[] = choice.split(',');
-          for(let j=0; j<values.length; ++j) {
-            if(values[j] === itemKey) {
-              handleChoiceClick(i)
-              break;
-            }
-          }
-        }
-      }
-    }
-  }
+  // const onUseItem = (itemKey: string) => {
+  //   if(inkState === "take_item" && story) {
+  //     story.EvaluateFunction('take', [itemKey], true);
+  //
+  //     for (let i= 0; i<story.currentChoices.length; ++i) {
+  //       const choice: string = story.currentChoices[i].text;
+  //       // check whether is direct equivalent, other, or in list
+  //       if(choice === itemKey) {
+  //         handleChoiceClick(i)
+  //         break;
+  //       } else if(choice === 'other') {
+  //         handleChoiceClick(i)
+  //         break;
+  //       } else {
+  //         const values: string[] = choice.split(',');
+  //         for(let j=0; j<values.length; ++j) {
+  //           if(values[j] === itemKey) {
+  //             handleChoiceClick(i)
+  //             break;
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
 
   return (
       <>
@@ -348,11 +348,11 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
             </>
         }
 
-        {storyState === StoryState.Choosing &&
-            <>
-              <GuideComponent/>
-            </>
-        }
+        {/*{storyState === StoryState.Choosing &&*/}
+        {/*    <>*/}
+        {/*      <GuideComponent/>*/}
+        {/*    </>*/}
+        {/*}*/}
 
         {storyState === StoryState.Inspecting &&
             <>
@@ -384,12 +384,12 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
             </>
         }
 
-        {storyState !== StoryState.Travelling && storyState !== StoryState.Inspecting && storyState !== StoryState.Keypad
-            && inkState != "character_selection" && inkState != 'name_select' &&
-            <>
-              <PlayerComponent ref={playerComponentRef} player={player} onUseItem={onUseItem}></PlayerComponent>
-            </>
-        }
+        {/*{storyState !== StoryState.Travelling && storyState !== StoryState.Inspecting && storyState !== StoryState.Keypad*/}
+        {/*    && inkState != "character_selection" && inkState != 'name_select' &&*/}
+        {/*    <>*/}
+        {/*      <PlayerComponent ref={playerComponentRef} player={player} onUseItem={onUseItem}></PlayerComponent>*/}
+        {/*    </>*/}
+        {/*}*/}
 
 
         {inkState === "name_select" &&
@@ -403,16 +403,16 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
               <MirrorComponent selectCharacter={selectCharacter}/>
             </>
         }
-        <NotificationComponent/>
+        {/*<NotificationComponent/>*/}
 
-        {debug &&
-            <>
-              <DebugPanel>
-                <div>Ink State: {inkState}</div>
-                <div>Story State: {StoryState[storyState]}</div>
-              </DebugPanel>
-            </>
-        }
+        {/*{debug &&*/}
+        {/*    <>*/}
+        {/*      <DebugPanel>*/}
+        {/*        <div>Ink State: {inkState}</div>*/}
+        {/*        <div>Story State: {StoryState[storyState]}</div>*/}
+        {/*      </DebugPanel>*/}
+        {/*    </>*/}
+        {/*}*/}
       </>
   );
 };
