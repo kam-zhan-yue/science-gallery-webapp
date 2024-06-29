@@ -66,16 +66,18 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
     }
   }, []);
 
+  const loadStory = async () => {
+    setBackground('');
+    setStoryState(StoryState.Dialogue);
+    const response: Response = await fetch('/ink/game.json');
+    const storyContent: string = await response.text();
+    const inkStory = new Story(storyContent);
+    setStory(inkStory);
+    start(inkStory);
+  };
+
   // Loading game.json for the story
   useEffect(() => {
-    const loadStory = async () => {
-      const response: Response = await fetch('/ink/game.json');
-      const storyContent: string = await response.text();
-      const inkStory = new Story(storyContent);
-      setStory(inkStory);
-      start(inkStory);
-    };
-
     loadStory();
   }, []);
 
@@ -374,7 +376,7 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
   }
 
   function restart() {
-
+    loadStory();
   }
 
   return (
