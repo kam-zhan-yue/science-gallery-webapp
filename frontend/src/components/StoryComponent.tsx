@@ -404,10 +404,14 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
         }
         <NotificationComponent/>
 
-        <DebugPanel>
-          <div>Ink State: {inkState}</div>
-          <div>Story State: {StoryState[storyState]}</div>
-        </DebugPanel>
+        {debug &&
+            <>
+              <DebugPanel>
+                <div>Ink State: {inkState}</div>
+                <div>Story State: {StoryState[storyState]}</div>
+              </DebugPanel>
+            </>
+        }
       </>
   );
 };
