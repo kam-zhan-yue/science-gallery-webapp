@@ -18,6 +18,7 @@ import MirrorComponent from "./MirrorComponent.tsx";
 import NameSelectComponent from "./NameComponent.tsx";
 import styled from "styled-components";
 import {TextStyle} from "./styled/Text.tsx";
+import EndingComponent from "./EndingComponent.tsx";
 
 interface StoryComponentProps {
   universeRef: Universe | null;
@@ -29,6 +30,7 @@ enum StoryState {
   Travelling,
   Inspecting,
   Keypad,
+  End,
 }
 
 const DebugPanel = styled(TextStyle)`
@@ -38,6 +40,9 @@ const DebugPanel = styled(TextStyle)`
   display: flex;
   flex-direction: column;
   text-align: right;
+  @media (max-width: 600px) {
+    top: 120px;
+  }
 `
 
 const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
@@ -49,6 +54,7 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
   const [choices, setChoices] = useState<Choice[]>([]);
   const [planet, setPlanet] = useState<Planet>(new Planet());
   const [storyState, setStoryState] = useState<StoryState>(StoryState.Dialogue);
+  const [ending, setEnding] = useState<string>('unknown');
   const {debug, inkState, setInkState, player, setPlayer} = useContext(GameContext) as GameContextType;
   const playerComponentRef = useRef<PlayerComponentHandle>(null);
 
@@ -67,7 +73,7 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
       const storyContent: string = await response.text();
       const inkStory = new Story(storyContent);
       setStory(inkStory);
-      advance(inkStory);
+      start(inkStory);
     };
 
     loadStory();
@@ -112,6 +118,9 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
           case 'progress':
             player.inkProgress = Number(valueString);
             setPlayer(player);
+            break;
+          case 'ending':
+            setEnding(valueString);
             break;
           case 'first_shard':
             player.firstShard = valueString;
@@ -213,6 +222,28 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
 
   }, [universeRef]);
 
+  function start(story: Story | null) {
+    if(!story) return;
+    if(!story.canContinue) return;
+    story.Continue();
+    console.log(`Start Choices`)
+    for(let i: number = 0; i<story.currentChoices.length; ++i) {
+      const choice: string = story.currentChoices[i].text;
+      console.log(`Choice: ${choice}`);
+      if(debug && choice === 'debug') {
+        story.ChooseChoiceIndex(i);
+        advance(story);
+        console.log(`Debug`)
+        break;
+      } else if(!debug && choice === 'game') {
+        console.log(`Game`)
+        story.ChooseChoiceIndex(i);
+        advance(story);
+        break;
+      }
+    }
+  }
+
   const advance = (story: Story | null) => {
     if (!story) return;
     // If the story can continue, it means there is new text!
@@ -234,7 +265,17 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
       } else {
         // If there are no choices, and we are not showing the choices, then the story has ended
         // console.log('story has ended!');
+        end();
       }
+    }
+  }
+
+  function end(){
+    setStoryState(StoryState.End);
+    if(ending === 'sheep') {
+
+    } else if(ending === 'unknown') {
+
     }
   }
 
@@ -332,78 +373,86 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
     }
   }
 
+  function restart() {
+
+  }
+
   return (
       <>
-        {inkState != "character_selection" && inkState != 'name_select' &&
-            <>
-              <BackgroundComponent
-                  backgroundKey={background}
-              />
-            </>
-        }
-
-        {storyState === StoryState.Dialogue && inkState != "character_selection" && inkState != 'name_select' &&
-            <>
-              <DialogueComponent text={storyText} tags={tags} next={next}></DialogueComponent>
-            </>
-        }
-
-        {storyState === StoryState.Choosing &&
-            <>
-              <GuideComponent/>
-            </>
-        }
-
-        {storyState === StoryState.Inspecting &&
-            <>
-              <PlanetComponent
-                  planet={planet}
-                  onYesClicked={inspectYes}
-                  onNoClicked={inspectNo}
-              />
-            </>
-        }
-
-        {storyState === StoryState.Keypad &&
+        {storyState !== StoryState.End &&
           <>
-            <KeypadComponent
-                choices={choices}
-                handleCodeInput={handleCodeInput}
-                handleBackClicked={keypadBack}
-                planet={planet}
-            />
+            {inkState != "character_selection" && inkState != 'name_select' &&
+                <>
+                  <BackgroundComponent
+                      backgroundKey={background}
+                  />
+                </>
+            }
+
+            {storyState === StoryState.Dialogue && inkState != "character_selection" && inkState != 'name_select' &&
+                <>
+                  <DialogueComponent text={storyText} tags={tags} next={next}></DialogueComponent>
+                </>
+            }
+
+            {storyState === StoryState.Choosing &&
+                <>
+                  <GuideComponent/>
+                </>
+            }
+
+            {storyState === StoryState.Inspecting &&
+                <>
+                  <PlanetComponent
+                      planet={planet}
+                      onYesClicked={inspectYes}
+                      onNoClicked={inspectNo}
+                  />
+                </>
+            }
+
+            {storyState === StoryState.Keypad &&
+              <>
+                <KeypadComponent
+                    choices={choices}
+                    handleCodeInput={handleCodeInput}
+                    handleBackClicked={keypadBack}
+                    planet={planet}
+                />
+              </>
+            }
+
+            {inkState !== "planet_selection" && inkState !== "take_item" && inkState !== 'name_select' && storyState !== StoryState.Travelling && showingChoices &&
+                <>
+                  <ChoiceComponent
+                      choices={choices}
+                      handleChoiceClick={handleChoiceClick}
+                  />
+                </>
+            }
+
+            {storyState !== StoryState.Travelling && storyState !== StoryState.Inspecting && storyState !== StoryState.Keypad
+                && inkState != "character_selection" && inkState != 'name_select' &&
+                <>
+                  <PlayerComponent ref={playerComponentRef} player={player} onUseItem={onUseItem}></PlayerComponent>
+                </>
+            }
+
+
+            {inkState === "name_select" &&
+                <>
+                  <NameSelectComponent select={selectName} skip={skipName}/>
+                </>
+            }
+
+            {inkState ===  "character_selection" &&
+                <>
+                  <MirrorComponent selectCharacter={selectCharacter}/>
+                </>
+            }
+            <NotificationComponent/>
           </>
         }
-
-        {inkState !== "planet_selection" && inkState !== "take_item" && inkState !== 'name_select' && storyState !== StoryState.Travelling && showingChoices &&
-            <>
-              <ChoiceComponent
-                  choices={choices}
-                  handleChoiceClick={handleChoiceClick}
-              />
-            </>
-        }
-
-        {storyState !== StoryState.Travelling && storyState !== StoryState.Inspecting && storyState !== StoryState.Keypad
-            && inkState != "character_selection" && inkState != 'name_select' &&
-            <>
-              <PlayerComponent ref={playerComponentRef} player={player} onUseItem={onUseItem}></PlayerComponent>
-            </>
-        }
-
-
-        {inkState === "name_select" &&
-            <>
-              <NameSelectComponent select={selectName} skip={skipName}/>
-            </>
-        }
-
-        {inkState ===  "character_selection" &&
-            <>
-              <MirrorComponent selectCharacter={selectCharacter}/>
-            </>
-        }
-        <NotificationComponent/>
 
         {debug &&
             <>
@@ -411,6 +460,11 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
                 <div>Ink State: {inkState}</div>
                 <div>Story State: {StoryState[storyState]}</div>
               </DebugPanel>
+            </>
+        }
+        {storyState === StoryState.End &&
+            <>
+              <EndingComponent ending={ending} restart={restart}/>
             </>
         }
       </>

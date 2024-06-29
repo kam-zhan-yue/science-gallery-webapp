@@ -42,26 +42,18 @@
     ->go_to_planet(in_a_new_light)
 
 === debug_navigation ===
-Debug Navigation Panel.
 ~ game_state = exploring
 ~get_good_shard()
-*[normal route]
+Debug Navigation Panel.
++[Normal Route]
     ->navigation
-*[paradox_of_paradise]
-    ->go_to_planet(paradox_of_paradise)
-*[words_and_worlds]
-    ->go_to_planet(words_and_worlds)
-*[new_nature]
-    ->go_to_planet(new_nature)
-*[ways_of_folding_space]
-    ->go_to_planet(ways_of_folding_space)
-*[crafting_new_worlds]
-    ->go_to_planet(crafting_new_worlds)
-*[the_monstrous_feminine]
-    ->go_to_planet(the_monstrous_feminine)
-*[new_myths]
-    ->go_to_planet(new_myths)
-*[in_a_new_light]
++[Band 1]
+    ->band_1
++[Band 2]
+    ->band_2
++[Band 3]
+    ->band_3
++[New Light]
     ->go_to_planet(in_a_new_light)
 
 === go_to_planet(next) ===

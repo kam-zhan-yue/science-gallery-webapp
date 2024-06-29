@@ -41,7 +41,7 @@ const Background = styled(motion.div)`
   left: 50%;
   transform: translate(-50%, -50%);
   width: 80vw;
-  max-width: 500px;
+  max-width: 400px;
   max-height: 800px;
 
   display: flex;
@@ -87,10 +87,11 @@ const Title = styled(TextStyle)`
 `
 
 const Description = styled(TextStyle)`
-  font-size: 18px;
+  font-size: 16px;
   line-height: 1em;
   margin-top: 5px;
   margin-bottom: 10px;
+  text-align: left;
 `
 
 const CharacterSelectComponent: React.FC<CharacterSelectProps> = ({character, select, close}) => {

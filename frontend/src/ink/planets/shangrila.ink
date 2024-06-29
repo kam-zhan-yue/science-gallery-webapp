@@ -1,4 +1,5 @@
 ===shangri_la===
+...
 ~background = black
 Black.
 A cave.

@@ -15,11 +15,10 @@ INCLUDE globals.ink
 INCLUDE navigation.ink
 INCLUDE player/shard.ink
 
-->tester
-// +[debug]
-//     ->tester
-// +[game]
-    // ->start
++[debug]
+    ->tester
++[game]
+    ->start
 
 === tester ===
 Welcome, Tester.
@@ -34,5 +33,13 @@ Welcome, Tester.
     ~planet = shangrila
     ~get(torch)
     ->navigation
++[Sheep Ending]
+    Press one more time to end.
+    ~ending = sheep
+    ->DONE
++[Unknown Ending]
+    Press one more time to end.
+    ~ending = unknown
+    ->DONE
 +[From Beginning]
     ->start

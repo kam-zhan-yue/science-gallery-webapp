@@ -13,7 +13,7 @@ export const characters: { [key: string]: Character } = {
         fullBody: "doctor_fullbody.png",
         thumbnail: "thumbnail-doctor.png",
         title: "title-doctor.png",
-        description: "Which lives will you save. And equally.. which lives will you choose to forfeit?",
+        description: "From the moment you could read, you’ve been interested in the human body. You feel that you are in this world to help people, and you have spent the majority of your life doing just that. Your expertise has helped many people, and will help many more in the years to come.",
         animations: {},
     },
     "Mechanic": {
@@ -21,7 +21,7 @@ export const characters: { [key: string]: Character } = {
         fullBody: "mechanic_fullbody.png",
         thumbnail: "thumbnail-mechanic.png",
         title: "title-mechanic.png",
-        description: "With just a wrench, you can fix anything in your sight. Or, choose to destroy entire worlds.",
+        description: "For as long as you can remember, you’ve been enamoured with mechanics. The inner workings of machines, the whirring, spinning parts. You’ve become adept at your craft, and are regarded one of the most proficient mechanics in the galaxy.",
         animations: {},
     },
     "Artist": {
@@ -29,7 +29,7 @@ export const characters: { [key: string]: Character } = {
         fullBody: "artist_fullbody.png",
         thumbnail: "thumbnail-artist.png",
         title: "title-artist.png",
-        description: "Loves painting. And coffee.",
+        description: "Your creativity has always been your driving force. You see patterns, exquisite visions everywhere you look, and you convey this for all to see. Your work often expresses a feeling of deep calm and great beauty.",
         animations: {},
     },
     "Librarian": {

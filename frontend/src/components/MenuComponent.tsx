@@ -18,7 +18,7 @@ const Overlay = styled(motion.div)`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #2A213899;
+  background: #2A213866;
   
   -webkit-transition: all 0.2s;
   transition: all 0.2s;

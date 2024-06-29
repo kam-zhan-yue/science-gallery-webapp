@@ -2,7 +2,7 @@ import {items} from '../setup/Item.ts'
 import {EventBus} from "../EventBus.tsx";
 
 class Player {
-    private _name: string = '';
+    private _name: string = 'Hero';
     private _class: string = "";
     private _finesse: number = 0;
     private _intuition: number = 0;
