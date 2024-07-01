@@ -182,13 +182,10 @@ The Fate: A lady came here to seek help... she knew its power, and stole it from
 ===notartistfateoption===
 *[speech:I see.] ->riddleintro
 ===foundsilk1===
-You reach into your pocket.
-~game_state = take_item
-*[{star}]
-    ~game_state = exploring
+You reach into your pocket and produce the glowing silk.
 ->foundsilk2
 ===foundsilk2===
-You present the starry silk that brought you here.
+You present the starry silk to The Fate.
 The Fate: Where... where did you find it?
 The silk in your hand floats in the air.
 The Fate: Thank you for returning it to me... you will be greatly rewarded!
