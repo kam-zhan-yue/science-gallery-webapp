@@ -1,4 +1,4 @@
-<<<<<<< Updated upstream
+->lastship
 ===lastship===
 ~background = ship_navigation
 =======
