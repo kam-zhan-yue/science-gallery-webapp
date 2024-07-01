@@ -54,6 +54,14 @@ You feel... warm. As if someone is holding you tightly, like a kiss on the cheek
 As you wade through the layers of silk, you reach a clearing, where a lady sits, faintly sobbing. 
 Lady:What happened to you, my darling?
 The woman whispers, as she cradles a piece of silk in her hands.
+{ class == Artist:
+    ->artistladyoption
+-else: 
+    ->notartistladyoption
+}
+===artistladyoption===
+*[speech:Ask the lady what's wrong.]->helpsilklady
+===notartistladyoption===
 *[speech:Ask the lady what's wrong.]->helpsilklady
 *[Walk away, see what's beyond the silk.]->wandertosilk
 ===helpsilklady===
