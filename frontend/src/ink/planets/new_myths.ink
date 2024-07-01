@@ -1,5 +1,10 @@
+<<<<<<< Updated upstream
 ===lastship===
 ~background = ship_navigation
+=======
+->newmyths
+===newmyths===
+>>>>>>> Stashed changes
 Your ship lands. The glass has fogged up a bit, but you see shades of red all around your ship.
 Ship: You've travelled so far, {name}. I wonder what this planet has in store for you!
 *[speech:I'm keen to go!]->notenoughfuel
@@ -41,10 +46,15 @@ Ship:Collect more shards on this planet, and bring them to me. I will make sure 
 ===enoughquestions===
 Ship:You ask too many questions. Bring the shards to me.
 The ship's door opens, and you feel a force pushing you out.
+<<<<<<< Updated upstream
 Ship:I cannot wait to hear what adventures you get up to! Enjoy, {name}!
 *[important:Venture into NEW MYTHS]->newmyths
 === newmyths ==
 ~background=new_myths_silk
+=======
+Ship: I cannot wait to hear what adventures you get up to! Enjoy, {name}!
+*[Venture into NEW MYTHS]->newmythsbegin
+=== newmythsbegin ==
 You land in what seems to be a planet covered in crimson - as you look around you, all you can see is a dense forest. 
 However, this forest isn't made of the trees or plants you've seen before. As your eyes adjust to the ruby haze, you notice that you are surrounded by streams of fabric. 
 The fabric is beautifully woven, with shimmering embroidery that glints faintly as if glowing. 
@@ -62,34 +72,66 @@ Lady:I... had an argument with my partner. And it didn't go well.
 Lady:When they left, I felt my silk tear. It's all my fault!
 Lady:I don't know what to do...
 The lady sheds a tear over the torn silk.
-*[I can mend that! (OPEN ARTIST INVENTORY)]->artistmendsilk
+{ class == Artist:
+    ->artistoption
+-else: 
+    ->artistnotoption
+}
+===artistoption===
+*[I can mend that!]->artistmendsilk
+===notartistoption===
 *[Would you like some company?]->keephercompany
 *[I don't know if I can help.]->canthelplady
 ===keephercompany===
-"I think that would be nice..." the lady sniffles. 
-You sit with her, and she tells a story to you. 
-[DEVELOP FURTHER - LINK TO VIDEO EXHIBIT] ->followthesilk
+Lady: I think that would be nice... the lady sniffles. 
+You sit with her, in silence. She takes a moment to breathe. 
+Lady: Sometimes, all you need is the comfort of someone simply being there with you.
+Lady: I know it will take time to mend this tear, but that's okay.
+Lady: Thank you kind stranger. I hope you can find the silk path you need.
+*[What's the silk path?]->storyofsilk
+*[Where can I find the silk path?] ->followthesilk
+===storyofsilk===
+Lady: Each silk that hangs above you was made from a connection between two people.
+Lady: It may be two souls finding love, it may be a new friendship, it may be finding your family...
+Lady: ... but every silk is forged by love and learning.
+Lady: Let me show you my journey.
+She waves her hand to the sky.
+Suddenly, the world around you shifts, a soft, hazy veil covers your surroundings, showing you memories. 
+The lady tells you a story - the story of her memories, her world, and the lessons she has learnt.
+You are invited to sit and view 'Refabricated Realities'. You may stay here at any time.
+*[Where do I go from here?]->followthesilk
 ===canthelplady===
-"I understand..." the lady sniffles. 
-[DEVELOP FURTHER - LINK TO VIDEO EXHIBIT]->followthesilk
+The lady sniffles. 
+Lady: I understand. I don't know what I can do either.
+Lady: This place teaches us so many things, and sometimes the lesson is to feel our fears and be uncomfortable.
+She invites you to sit with her, and she waves her hand to the sky. 
+Suddenly, the world around you shifts, a soft, hazy veil covers your surroundings, showing you memories. 
+The lady tells you a story - the story of her memories, her world, and the lessons she has learnt.
+You are invited to sit and view 'Refabricated Realities'. You may stay here at any time.
+*[Where do I go from here?] ->followthesilk
 ===artistmendsilk===
-"Oh, could you? I would be so eternally grateful!"
+Lady: Oh, could you? I would be so eternally grateful!
+~game_state = take_item
+*[{artist_item}]
+    ~game_state = exploring
 You pull out your red thread and needle. The red is a perfect match to the silk.
 You get to work - the lady watches you in your mastery as you seamlessly make the silk whole again.
 When you're finished, the thread glows. And the lady faintly smiles.
-"It's not a complete fix, but I feel ready to fix the rest. I cannot thank you enough, friend."
+Lady: It's not a complete fix, but I feel ready to fix the rest. I cannot thank you enough, friend.
 She reaches into a little bag, and pulls out a small silk square with a gold star embroidered on the front. 
-"Take this - follow the star, and you'll find where you need to be."
-*[Thank you.] ->artistjourneyheart
+Lady: Take this - follow the star, and you'll find where you need to be.
+~get(star)
+*[What are all these silks for?]->storyofsilk
+*[Where do I go from here?] ->followthesilk
 ===artistjourneyheart===
 As you turn around to leave, the silk square in your hand glows. 
 The glow engulfs you, and in a blink of an eye, you're transported.
 As you look around, you notice you're in a cave, the walls made of the dense silk forestry you saw before. 
 You have made it to the heart of the planet - the Fate. ->theheart
 ==followthesilk==
-"The best adivce I can give you is to follow the silk - they all really do lead to the heart. 
-"I wish you luck, friend. It was lovely to meet you."
-You can spend as long as you'd like here, but when you're ready, follow the silk. 
+Lady: The best adivce I can give you is to follow the silk - they all really do lead to the heart.
+Lady: We call it The Fate - they will challenge you, but they are kind.
+Lady: I wish you luck, friend. It was lovely to meet you. 
 *[I'm ready - Red Silk of Fate]->traveltotheheart
 ===wandertosilk===
 You pass the lady, and continue further into the jungle of silk. 
@@ -116,83 +158,92 @@ You pick up speed, pushing away wades of silk as you do. It fills you with pure 
 As you look around, you notice you're in a cave, the walls made of the dense silk forestry you saw before. 
 You have made it to the heart of the planet - the Fate.->theheart
 ==theheart==
-"I have been waiting for you, young one."
+The Fate: I have been waiting for you, young one.
 You're taken by surprise, and the voice laughs.
-"I know what you seek. You have been collecting many pieces of a past memory, and I wish to help you."
-"But I will not give this away for free - The last time I let someone through, they stole my beloved star from me."
+The Fate: I know what you seek. You have been collecting many pieces of a past memory, and I wish to help you.
+The Fate: But I will not give this away for free - The last time I let someone through, they stole my beloved star from me.
 You wonder what this might mean.
 *[Hang on... what is the star?]->starsilk
 *[I'm sorry to hear.] ->riddleintro
+
+*[I'm sorry to hear.] ->riddleintro
 ===starsilk===
-"If you must ask, I had made this star, preserved on the first silk brought to this planet. It heals the broken hearts of those who seek it."
-"A lady came here to seek help... she knew its power, and stole it from me."
-*[Do you mean this? (OPEN INVENTORY)] ->foundsilk1
+The Fate: If you must ask, I had made this star, preserved on the first silk brought to this planet. It heals the broken hearts of those who seek it.
+The Fate: A lady came here to seek help... she knew its power, and stole it from me.
+{ class == artist:
+    ->artistfateoption
+-else: 
+    ->notartistfateoption
+}
+===artistfateoption===
+*[I think I have it!] ->foundsilk1
+*[I see.] ->riddleintro
+===notartistfateoption===
 *[I see.] ->riddleintro
 ===foundsilk1===
+~game_state = take_item
+*[{star}]
+    ~game_state = exploring
 You present the starry silk that brought you here.
-"Where... where did you find it?" The silk in your hand floats in the air.
-"Thank you for returning it to me... you will be greatly rewarded!"
+The Fate: Where... where did you find it?
+The silk in your hand floats in the air.
+The Fate: Thank you for returning it to me... you will be greatly rewarded!
 ~get_good_shard()
-->navigation
+->fate_whereto
 ===riddleintro===
-"No matter. Look around you, there is so much to learn from my woven make. Answer these three riddles correctly, and you will find what you seek."
+The Fate: No matter. Look around you, there is so much to learn from my woven make. 
+The Fate: Answer these three riddles correctly, and you will find what you seek.
 *[I understand.]->riddle1
 *[What happens if I don't?]->ifyoudont
 ==ifyoudont==
-"You will find out, young one. But first, you must take a leap of fate."
+The Fate: You will find out, young one. But first, you must take a leap of fate.
 *[Okay, I understand.]->riddle1
 ==riddle1==
-"Your first riddle..
-"The myth that surrounds me inspired my make, the marriage of thread, with another name it takes. What am I?"
+Your first riddle...
+The Fate: The myth that surrounds me inspired my make, the marriage of thread, with another name it takes. What am I?
 *[Snake.]->riddle1wrong
 *[String.]->riddle2
 *[Rope.]->riddle1wrong
-*[Hang on... I have the star! (OPEN INVENTORY)] ->foundsilk2
 ==riddle1wrong==
-"That is incorrect. However, I do not wish to leave you with nothing. Hold out your hands."
-(INCOMPLETE SHARD ADDED TO INVENTORY) 
+The Fate: That is incorrect. However, I do not wish to leave you with nothing. Hold out your hands.
 ~get_bad_shard()
-->navigation
+->fate_whereto
 
 ==riddle2==
-"Well done. Your next riddle is...
-"What floats in space created this art, A work that’s a woven, a work of the heart. Who am I?"
+Well done. Your next riddle...
+The Fate: What floats in space created this art, A work that’s a woven, a work of the heart. Who am I?
 *[Sputniko.]->riddle3
 *[Apollon.]->riddle1wrong
 *[Suomi.]->riddle1wrong
 ==riddle3==
-"Correct. Your final riddle...
-"It binds us together, through thick and through thin, this silk has this ruby glow woven in. What am I?"
+Correct. Your final riddle...
+The Fate: It binds us together, through thick and through thin, this silk has this ruby glow woven in. What am I?
 *[Glue.]->riddle1wrong
 *[Love.]->riddlescorrect
 *[Fate.]->riddle1wrong
-===foundsilk2===
-You present the silk square.
-"How... did you find this?" The square floats out of your hands into the air.
-"Nevermind the riddles... You have done me a great service. I will reward you well!"
-~get_good_shard()
 ->fate_whereto
 ==riddlescorrect==
-"You have answered all of my riddles correctly. I keep my word - hold out your hand."
+The Fate: You have answered all of my riddles correctly. I keep my word - hold out your hand.
 You hold out your hands, and with a soft, red glow, a shard appears in your hand. 
 ~get_bad_shard()
 ->fate_whereto
 ===fate_whereto===
-"I still sense some trepidation in you, young traveller."
+The Fate: I still sense some trepidation in you, young traveller.
 That's true, you think to yourself. You feel nervous. 
 *[Yes, you're right.]->yesnervous
 *[I'm fine!]->nonervous
 ===yesnervous===
-"My dear little one, there is so much in this vast galaxy to learn from."
-"But you must trust in yourself, and trust in what you love. Love and care can guide you anywhere."
-"With your shard... protect it at all costs. There is too much destruction, too much greed."
-"Use them wisely, please."
+The Fate: My dear little one, there is so much in this vast galaxy to learn from.
+The Fate: But you must trust in yourself, and trust in what you love. Love and care can guide you anywhere.
+The Fate: With your shard... protect it at all costs. There is too much destruction, too much greed.
+The Fate: Use them wisely, please.
 *[I understand. Thank you.]->finalreturntoship
 ===nonervous===
-"Courageous little one!" The voice chuckles.
-"As long as you remember to trust in yourself, and trust in what you love. Love and care can guide you anywhere."
-"With your shard... protect it at all costs. There is too much destruction, too much greed."
-"Use them wisely, please."
+The Fate: Courageous little one!
+You hear a soft chuckle.
+The Fate: As long as you remember to trust in yourself, and trust in what you love. Love and care can guide you anywhere.
+The Fate: With your shard... protect it at all costs. There is too much destruction, too much greed.
+The Fate: Use them wisely, please.
 *[I understand. Thank you.]->finalreturntoship
 
 ===finalreturntoship===
@@ -201,15 +252,15 @@ When you open your eyes, you are back in your ship.
 ->justenough
 ===justenough===
 The ship glows a faint red.
-"You have taken a long time to return. Where have you been?"
+Ship: You have taken a long time to return. Where have you been?
 The ship's door shuts. 
 You feel the ship shake, ready for takeoff.
 *[Where are you taking me?]->movingtoanewlight
 *[I thought we didn't have enough fuel...]->shush
 ===shush===
-"You know, {name}, you really must shush sometimes. I wish to surprise you!"
-"You've travelled for so long, and have had to make all the hard decisions..."
+Ship: You know, {name}, you really must shush sometimes. I wish to surprise you!
+Ship: You've travelled for so long, and have had to make all the hard decisions...
 ->movingtoanewlight
 ===movingtoanewlight===
-"Let's float around for a little bit, shall we, {name}?"
+Ship: Let's float around for a little bit, shall we, {name}?
 the ship blasts off into the aether.->new_light

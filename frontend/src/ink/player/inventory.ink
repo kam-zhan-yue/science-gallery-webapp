@@ -29,6 +29,9 @@ LIST inventory = (none), artist_item, doctor_item, mechanic_item, book_1, book_2
 //WAYS OF FOLDING SPACE
 -"scroll":
     ~inventory -= scroll
+//NEW MYTHS
+-"star":
+    ~inventory -= star
 }
 
 === function take_ink(x) ===
