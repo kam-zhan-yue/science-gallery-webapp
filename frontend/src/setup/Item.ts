@@ -65,4 +65,9 @@ export const items: { [key: string]: Item } = {
         image: "avocado.png",
         description: "A powerful seed."
     },
+    "star": {
+        name: "Star Silk",
+        image: "bread.png",
+        description: "A silk square with an embroidered star."
+    },
 };
