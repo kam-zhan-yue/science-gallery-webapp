@@ -1,6 +1,5 @@
 ===lastship===
 ~background = ship_navigation
-=======
 ->newmyths
 ===newmyths===
 >>>>>>> Stashed changes
@@ -45,15 +44,10 @@ Ship:Collect more shards on this planet, and bring them to me. I will make sure 
 ===enoughquestions===
 Ship:You ask too many questions. Bring the shards to me.
 The ship's door opens, and you feel a force pushing you out.
-<<<<<<< Updated upstream
-Ship:I cannot wait to hear what adventures you get up to! Enjoy, {name}!
-*[important:Venture into NEW MYTHS]->newmyths
-=== newmyths ==
-~background=new_myths_silk
-=======
 Ship: I cannot wait to hear what adventures you get up to! Enjoy, {name}!
 *[Venture into NEW MYTHS]->newmythsbegin
 === newmythsbegin ==
+~background=new_myths_silk
 You land in what seems to be a planet covered in crimson - as you look around you, all you can see is a dense forest. 
 However, this forest isn't made of the trees or plants you've seen before. As your eyes adjust to the ruby haze, you notice that you are surrounded by streams of fabric. 
 The fabric is beautifully woven, with shimmering embroidery that glints faintly as if glowing. 
@@ -74,7 +68,7 @@ The lady sheds a tear over the torn silk.
 { class == Artist:
     ->artistoption
 -else: 
-    ->artistnotoption
+    ->notartistoption
 }
 ===artistoption===
 *[inventory:I can mend that!]->artistmendsilk
@@ -119,7 +113,8 @@ When you're finished, the thread glows. And the lady faintly smiles.
 Lady: It's not a complete fix, but I feel ready to fix the rest. I cannot thank you enough, friend.
 She reaches into a little bag, and pulls out a small silk square with a gold star embroidered on the front. 
 Lady: Take this - follow the star, and you'll find where you need to be.
-~get(star)
+    ~get(star)
+You place the starry silk in your pocket.
 *[speech:What are all these silks for?]->storyofsilk
 *[speech:Where do I go from here?] ->followthesilk
 ===artistjourneyheart===
