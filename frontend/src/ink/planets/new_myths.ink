@@ -2,7 +2,6 @@
 ~background = ship_navigation
 ->newmyths
 ===newmyths===
->>>>>>> Stashed changes
 Your ship lands. The glass has fogged up a bit, but you see shades of red all around your ship.
 Ship: You've travelled so far, {name}. I wonder what this planet has in store for you!
 *[speech:I'm keen to go!]->notenoughfuel
@@ -114,6 +113,8 @@ Lady: It's not a complete fix, but I feel ready to fix the rest. I cannot thank 
 She reaches into a little bag, and pulls out a small silk square with a gold star embroidered on the front. 
 Lady: Take this - follow the star, and you'll find where you need to be.
     ~get(star)
+    ->receivestar
+===receivestar===
 You place the starry silk in your pocket.
 *[speech:What are all these silks for?]->storyofsilk
 *[speech:Where do I go from here?] ->followthesilk
