@@ -163,7 +163,7 @@ You wonder what this might mean.
 ===starsilk===
 The Fate: If you must ask, I had made this star, preserved on the first silk brought to this planet. It heals the broken hearts of those who seek it.
 The Fate: A lady came here to seek help... she knew its power, and stole it from me.
-{ class == artist:
+{ class == Artist:
     ->artistfateoption
 -else: 
     ->notartistfateoption
