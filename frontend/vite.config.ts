@@ -49,6 +49,16 @@ export default defineConfig({
       plugins: [tailwindcss()],
     },
   },
+
+  resolve: {
+    alias: {
+      'firebase/app': 'firebase/app',
+      'firebase/auth': 'firebase/auth',
+      'firebase/firestore': 'firebase/firestore',
+      'firebase/analytics': 'firebase/analytics',
+    },
+  },
+  
   optimizeDeps: {
     include: ['inkjs']
   },
