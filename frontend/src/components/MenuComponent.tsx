@@ -1,9 +1,10 @@
-import React, {useContext} from "react";
+import React, {useState, useContext} from "react";
 import styled from "styled-components";
 import {motion} from "framer-motion";
 import {NormalText, TextStyle} from "./styled/Text.tsx";
 import {colours} from "./styled/Constants.tsx";
 import {GameContext, GameContextType} from "../contexts/GameContext.tsx";
+import StatisticsComponent from "./StatisticsComponent.tsx";
 
 interface MenuProps {
     startGame: () => void,
@@ -22,6 +23,28 @@ const Overlay = styled(motion.div)`
   
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
+`
+
+const StatisticsButton = styled(TextStyle)`
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 100px;
+    text-align: center;
+
+  border: 1px white solid;
+  padding: 5px 5px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-size: 20px;
+  
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+  
+  &:hover {
+    cursor: pointer;
+    background: #999999;
+  }
 `
 
 const TextContainer = styled(motion.div)`
@@ -165,11 +188,17 @@ const Slider = styled.label`
 
 const MenuComponent: React.FC<MenuProps> = ({startGame}) => {
     const {debug, setDebug} = useContext(GameContext) as GameContextType;
+    const [ statistics, setStatistics] = useState<boolean>(false);
 
     const handleToggle = () => {
         setDebug(!debug);
     };
 
+
+    function toggleStatistics() {
+      setStatistics(prev => prev = !prev);
+    }
+  
     return (
         <>
             <Overlay
@@ -177,6 +206,24 @@ const MenuComponent: React.FC<MenuProps> = ({startGame}) => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0}}
                 transition={{ duration: 0.2 }}>
+
+
+
+            <StatisticsButton onClick={toggleStatistics}>
+                {!statistics && <>Statistics</>}
+                {statistics && <>Game</>}
+            </StatisticsButton>
+
+
+
+            {statistics &&
+                <>
+                    <StatisticsComponent/>
+                </>
+            }
+
+            {!statistics &&
+            <>
                 <TextContainer>
                     <Title>re:COLLECT</Title>
                     <Subtitle>What will you remember?</Subtitle>
@@ -191,6 +238,8 @@ const MenuComponent: React.FC<MenuProps> = ({startGame}) => {
                         </label>
                     </ToggleSwitch>
                 </TextContainer>
+            </>
+            }
                 <Footer>
                     <LogoContainer>
                         <a href="https://melbourne.sciencegallery.com/" target="_blank" rel="noopener noreferrer">
