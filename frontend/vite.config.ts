@@ -50,21 +50,13 @@ export default defineConfig({
     },
   },
 
-  resolve: {
-    alias: {
-      'firebase/app': 'firebase/app',
-      'firebase/auth': 'firebase/auth',
-      'firebase/firestore': 'firebase/firestore',
-      'firebase/analytics': 'firebase/analytics',
-    },
-  },
-  
   optimizeDeps: {
     include: ['inkjs']
   },
   build: {
     rollupOptions: {
-      plugins: [commonjs()]
+      plugins: [commonjs()],
+      external: ['firebase/app', 'firebase/auth', 'firebase/firestore', 'firebase/analytics'],
     },
     commonjsOptions: {
       include: [/inkjs/, /node_modules/]
