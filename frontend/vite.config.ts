@@ -56,7 +56,6 @@ export default defineConfig({
   build: {
     rollupOptions: {
       plugins: [commonjs()],
-      external: ['firebase/app', 'firebase/auth', 'firebase/firestore', 'firebase/analytics'],
     },
     commonjsOptions: {
       include: [/inkjs/, /node_modules/]
