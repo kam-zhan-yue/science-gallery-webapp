@@ -1,6 +1,7 @@
 import Main from "./components/Main.tsx";
+import StatisticsComponent from "./components/StatisticsComponent.tsx";
 import {GameProvider} from "./contexts/GameContext.tsx";
-import '../firebase.js';
+import './firebaseConfig.ts'
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
 
       <GameProvider>
         <Main />
+        <StatisticsComponent />
       </GameProvider>
     </div>
     </>
