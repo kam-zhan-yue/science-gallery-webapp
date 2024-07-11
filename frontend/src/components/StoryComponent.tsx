@@ -19,6 +19,8 @@ import NameSelectComponent from "./NameComponent.tsx";
 import styled from "styled-components";
 import {TextStyle} from "./styled/Text.tsx";
 import EndingComponent from "./EndingComponent.tsx";
+import { achievements } from '../setup/Achievements.ts';
+import { updateDatabase } from './statistics/firestore.tsx';
 
 interface StoryComponentProps {
   universeRef: Universe | null;
@@ -165,10 +167,16 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
             }
             break;
           case 'planet':
-            selectPlanet(value.toString());
+            selectPlanet(valueString);
             break;
           case 'background':
-            setBackground(value.toString());
+            setBackground(valueString);
+            break;
+          case 'achievement':
+            if(valueString in achievements) {
+              EventBus.emit('achievement', valueString);
+              updateDatabase(valueString);
+            }
             break;
         }
       });
@@ -198,7 +206,6 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
   useEffect(() => {
     // Inspecting a planet will trigger the travelling state due to animations
     EventBus.on('inspect', (planet: string) => {
-      console.log(`StoryComponent Inspect ${planet}`);
       setStoryState(StoryState.Travelling);
       universeRef?.inspect(planet);
 
@@ -244,17 +251,13 @@ const StoryComponent: React.FC<StoryComponentProps> = ({universeRef}) => {
     if(!story) return;
     if(!story.canContinue) return;
     story.Continue();
-    console.log(`Start Choices`)
     for(let i: number = 0; i<story.currentChoices.length; ++i) {
       const choice: string = story.currentChoices[i].text;
-      console.log(`Choice: ${choice}`);
       if(debug && choice === 'debug') {
         story.ChooseChoiceIndex(i);
         advance(story);
-        console.log(`Debug`)
         break;
       } else if(!debug && choice === 'game') {
-        console.log(`Game`)
         story.ChooseChoiceIndex(i);
         advance(story);
         break;

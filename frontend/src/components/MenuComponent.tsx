@@ -4,7 +4,7 @@ import {motion} from "framer-motion";
 import {NormalText, TextStyle} from "./styled/Text.tsx";
 import {colours} from "./styled/Constants.tsx";
 import {GameContext, GameContextType} from "../contexts/GameContext.tsx";
-import StatisticsComponent from "./StatisticsComponent.tsx";
+import StatisticsComponent from "./statistics/StatisticsComponent.tsx";
 
 interface MenuProps {
     startGame: () => void,
