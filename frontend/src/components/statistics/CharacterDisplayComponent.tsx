@@ -1,47 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import {motion} from "framer-motion";
-import {characters} from "../../setup/Character.ts";
-import {TextStyle} from "../styled/Text.tsx";
-import {colours} from "../styled/Constants.tsx";
-import {BackButton, SelectButton} from "../styled/Buttons.tsx";
+import { motion } from "framer-motion";
+import { characters } from "../../setup/Character.ts";
+import { TextStyle } from "../styled/Text.tsx";
 import { PlayerData } from "./PlayerData.ts";
 
-interface CharacterSelectProps {
-    character: string,
-    select: (character: string) => void;
-    close: () => void;
-}
-
-const Blocker = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: ${colours.blocker};
-`
-
-const Overlay = styled.div`
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`
-
-
 const Background = styled(motion.div)`
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 80vw;
+  width: 25%;
   max-width: 400px;
   max-height: 800px;
 
@@ -51,41 +16,25 @@ const Background = styled(motion.div)`
   justify-content: center;
   align-items: center;
   text-align: center;
-  
+
   image-rendering: pixelated;
   image-rendering: -moz-crisp-edges;
   image-rendering: crisp-edges;
-  border: 40px solid;
+  border: 10px solid;
   border-image: url("../assets/ui/dialogue-box.png") 15 15 15 15 fill repeat;
-  
+
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
-
-  @media (max-width: 768px) {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border: 35px solid;
-    border-image: url("../assets/ui/dialogue-box.png") 15 15 15 15 fill repeat;
-  }
 `;
 
-const CharacterContainer = styled(motion.div)`
-  width: 100%;
-  border: 35px solid;
-  border-image: url("../assets/ui/button.png") 15 15 15 15 fill repeat;
-  overflow: hidden;
-`
-
-const Character = styled(motion.img)`
-`
+const Character = styled(motion.img)``;
 
 const Title = styled(TextStyle)`
   font-size: 32px;
   font-weight: 800;
   line-height: 1em;
   margin-top: 5px;
-`
+`;
 
 const Description = styled(TextStyle)`
   font-size: 16px;
@@ -93,33 +42,28 @@ const Description = styled(TextStyle)`
   margin-top: 5px;
   margin-bottom: 10px;
   text-align: left;
-`
+`;
 
-const CharacterDisplayComponent: React.FC<{player: PlayerData}> = ({player}) => {
-    const prefix: string = '../assets/ui/';
-    const getImage = (): string => {
-        if(!player) return '';
-        if(player.class in characters) {
-            const char = characters[player.class];
-            if(char.thumbnail)
-                return prefix+char.thumbnail;
-        }
-        return '';
+const CharacterDisplayComponent: React.FC<{ player: PlayerData }> = ({
+  player,
+}) => {
+  const prefix: string = "../assets/ui/";
+  const getImage = (): string => {
+    if (!player) return "";
+    if (player.class in characters) {
+      const char = characters[player.class];
+      if (char.thumbnail) return prefix + char.thumbnail;
     }
-    return (
-        <>
-                <Background
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0}}
-                    transition={{ duration: 0.2 }}>
-                    <CharacterContainer>
-                        <Character src={getImage()} alt={player.name+player.class}/>
-                    </CharacterContainer>
-                    <Title>{player.name}</Title>
-                </Background>
-        </>
-    );
-}
+    return "";
+  };
+  return (
+    <>
+      <Background>
+        <Character src={getImage()} />
+        <Title>{player.name}</Title>
+      </Background>
+    </>
+  );
+};
 
 export default CharacterDisplayComponent;

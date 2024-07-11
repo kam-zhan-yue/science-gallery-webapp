@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { firestore } from '../../firebaseConfig';
-import { doc, onSnapshot, collection, getDocs } from 'firebase/firestore'; // Import updateDoc and increment
-import styled from 'styled-components';
-import { TextStyle } from '../styled/Text';
-import { achievements } from '../../setup/Achievements';
-import { updateDatabase } from './firestore';
-import { PlayerData } from './PlayerData';
-import CharacterDisplayComponent from './CharacterDisplayComponent';
+import React, { useState, useEffect } from "react";
+import { firestore } from "../../firebaseConfig";
+import { doc, onSnapshot, collection, getDocs } from "firebase/firestore"; // Import updateDoc and increment
+import styled from "styled-components";
+import { TextStyle } from "../styled/Text";
+import { achievements } from "../../setup/Achievements";
+import { PlayerData } from "./PlayerData";
+import CharacterDisplayComponent from "./CharacterDisplayComponent";
 
 interface Statistics {
   // Define the structure of your statistics document here
@@ -30,13 +29,16 @@ interface Statistics {
   endingWake: number;
 }
 
-const StatisticsContainer = styled.div`
-display: flex;
-flex-direction: column;
-`
+const StatisticsHeader = styled(TextStyle)`
+  font-size: 28px;
+  text-align: center;
+  align-items: center;
+`;
 
 const GameStat = styled(TextStyle)`
-`
+  text-align: left;
+  font-size: 16px;
+`;
 
 const StatisticsComponent: React.FC = () => {
   const [statistics, setStatistics] = useState<Statistics | null>(null);
@@ -45,39 +47,55 @@ const StatisticsComponent: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const docRef = doc(firestore, 'game', 'statistics');
+    const statisticsDoc = doc(firestore, "game", "statistics");
 
-    const subscribe = onSnapshot(docRef, (docSnap) => {
-      if (docSnap.exists()) {
-        setStatistics(docSnap.data() as Statistics);
-      } else {
-        console.log('No such document!');
-      }
-      setLoading(false);
-    }, (err) => {
-      console.error('Error fetching document:', err);
-      setError('Error fetching document');
-    });
+    const subsribeStatistics = onSnapshot(
+      statisticsDoc,
+      (docSnap) => {
+        if (docSnap.exists()) {
+          setStatistics(docSnap.data() as Statistics);
+        } else {
+          console.log("No such document!");
+        }
+        setLoading(false);
+      },
+      (err) => {
+        console.error("Error fetching document:", err);
+        setError("Error fetching document");
+      },
+    );
 
     return () => {
-      subscribe(); // Unsubscribe from snapshot listener when component unmounts
+      subsribeStatistics(); // Unsubscribe from snapshot listener when component unmounts
     };
   }, []);
 
   useEffect(() => {
-    const fetchCompletedGames = async () => {
-      try {
-        const completedCollection = collection(firestore, 'completed');
-        const completedSnapshot = await getDocs(completedCollection);
-        const completedList = completedSnapshot.docs.map(doc => doc.data() as PlayerData);
-        setCompletes(completedList);
-      } catch (err) {
-        console.error('Error fetching completed games:', err);
-        setError('Error fetching completed games');
-      }
-    };
+    const completedCollection = collection(firestore, "completed");
 
-    fetchCompletedGames();
+    const subsribeCompleted = onSnapshot(
+      completedCollection,
+      (snapshot) => {
+        snapshot.docChanges().forEach((change) => {
+          if (change.type == "added") {
+            console.log(
+              `New Player has completed the game: ${change.doc.data()}`,
+            );
+            setCompletes((prevCompletes) => [
+              ...prevCompletes,
+              change.doc.data() as PlayerData,
+            ]);
+          }
+        });
+      },
+      (err) => {
+        console.log("Error fetching completed games: ", err);
+      },
+    );
+
+    return () => {
+      subsribeCompleted();
+    };
   }, []);
 
   if (loading) {
@@ -87,53 +105,90 @@ const StatisticsComponent: React.FC = () => {
   if (error) {
     return <div>{error}</div>;
   }
-  
+
   return (
     <>
-    <StatisticsContainer>
-        <h1>Game Statistics</h1>
+      <div className="flex justify w-full h-4/5 flex-col justify-items-center items-center bg-black">
+        <StatisticsHeader>Game Statistics</StatisticsHeader>
         {statistics ? (
-            <div>
-                <GameStat>{achievements['gamesStarted'].name}: {statistics.gamesStarted}</GameStat>
-                <GameStat>{achievements['gamesCompleted'].name}: {statistics.gamesCompleted}</GameStat>
-                <GameStat>{achievements['chooseArtist'].name}: {statistics.chooseArtist}</GameStat>
-                <GameStat>{achievements['chooseDoctor'].name}: {statistics.chooseDoctor}</GameStat>
-                <GameStat>{achievements['chooseMechanic'].name}: {statistics.chooseMechanic}</GameStat>
-                <GameStat>{achievements['achievementShangrila'].name}: {statistics.achievementShangrila}</GameStat>
-                <GameStat>{achievements['achievementParadox'].name}: {statistics.achievementParadox}</GameStat>
-                <GameStat>{achievements['achievementNature'].name}: {statistics.achievementNature}</GameStat>
-                <GameStat>{achievements['achievementWords'].name}: {statistics.achievementWords}</GameStat>
-                <GameStat>{achievements['achievementFolding'].name}: {statistics.achievementFolding}</GameStat>
-                <GameStat>{achievements['achievementCrafting'].name}: {statistics.achievementCrafting}</GameStat>
-                <GameStat>{achievements['achievementFeminine'].name}: {statistics.achievementFeminine}</GameStat>
-                <GameStat>{achievements['achievementMyths'].name}: {statistics.achievementMyths}</GameStat>
-                <GameStat>{achievements['endingSheep'].name}: {statistics.endingSheep}</GameStat>
-                <GameStat>{achievements['endingForget'].name}: {statistics.endingForget}</GameStat>
-                <GameStat>{achievements['endingTravel'].name}: {statistics.endingTravel}</GameStat>
-                <GameStat>{achievements['endingMemory'].name}: {statistics.endingMemory}</GameStat>
-                <GameStat>{achievements['endingWake'].name}: {statistics.endingWake}</GameStat>
-                <div>
-                    <button onClick={() => {updateDatabase('gamesStarted')}}>Increment Games Started</button>
-                </div>
-                <div>
-                    <button onClick={() => {updateDatabase('gamesCompleted')}}>Increment Games Completed</button>
-                </div>
-            </div>
+          <div className="columns-2">
+            <GameStat>
+              {achievements["gamesStarted"].name}: {statistics.gamesStarted}
+            </GameStat>
+            <GameStat>
+              {achievements["gamesCompleted"].name}: {statistics.gamesCompleted}
+            </GameStat>
+            <GameStat>
+              {achievements["chooseArtist"].name}: {statistics.chooseArtist}
+            </GameStat>
+            <GameStat>
+              {achievements["chooseDoctor"].name}: {statistics.chooseDoctor}
+            </GameStat>
+            <GameStat>
+              {achievements["chooseMechanic"].name}: {statistics.chooseMechanic}
+            </GameStat>
+            <GameStat>
+              {achievements["achievementShangrila"].name}:{" "}
+              {statistics.achievementShangrila}
+            </GameStat>
+            <GameStat>
+              {achievements["achievementParadox"].name}:{" "}
+              {statistics.achievementParadox}
+            </GameStat>
+            <GameStat>
+              {achievements["achievementNature"].name}:{" "}
+              {statistics.achievementNature}
+            </GameStat>
+            <GameStat>
+              {achievements["achievementWords"].name}:{" "}
+              {statistics.achievementWords}
+            </GameStat>
+            <GameStat>
+              {achievements["achievementFolding"].name}:{" "}
+              {statistics.achievementFolding}
+            </GameStat>
+            <GameStat>
+              {achievements["achievementCrafting"].name}:{" "}
+              {statistics.achievementCrafting}
+            </GameStat>
+            <GameStat>
+              {achievements["achievementFeminine"].name}:{" "}
+              {statistics.achievementFeminine}
+            </GameStat>
+            <GameStat>
+              {achievements["achievementMyths"].name}:{" "}
+              {statistics.achievementMyths}
+            </GameStat>
+            <GameStat>
+              {achievements["endingSheep"].name}: {statistics.endingSheep}
+            </GameStat>
+            <GameStat>
+              {achievements["endingForget"].name}: {statistics.endingForget}
+            </GameStat>
+            <GameStat>
+              {achievements["endingTravel"].name}: {statistics.endingTravel}
+            </GameStat>
+            <GameStat>
+              {achievements["endingMemory"].name}: {statistics.endingMemory}
+            </GameStat>
+            <GameStat>
+              {achievements["endingWake"].name}: {statistics.endingWake}
+            </GameStat>
+          </div>
         ) : (
-            <p>No statistics available</p>
+          <p>No statistics available</p>
         )}
 
-        <h2>Game Completes</h2>
-        {completes.length > 0 &&
-        <>
-          {completes.map((player)=>(
+        <div className="mt-2 w-full flex justify-center items-center bg-blue-100 gap-2">
+          {completes.length > 0 && (
             <>
-              <CharacterDisplayComponent player={player}/>
+              {completes.map((player, index) => (
+                <CharacterDisplayComponent key={index} player={player} />
+              ))}
             </>
-          ))}
-        </>
-        }
-    </StatisticsContainer>
+          )}
+        </div>
+      </div>
     </>
   );
 };
