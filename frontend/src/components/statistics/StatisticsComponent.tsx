@@ -69,32 +69,58 @@ const StatisticsComponent: React.FC = () => {
       subsribeStatistics(); // Unsubscribe from snapshot listener when component unmounts
     };
   }, []);
-
   useEffect(() => {
-    const completedCollection = collection(firestore, "completed");
+    const fetchCompletedGames = async () => {
+      try {
+        const completedCollection = collection(firestore, "completed");
+        const completedSnapshot = await getDocs(completedCollection);
+        const completedList = completedSnapshot.docs.map(
+          (doc) => ({ ...doc.data(), id: doc.id }) as PlayerData,
+        );
+        setCompletes(completedList);
+      } catch (err) {
+        console.error("Error fetching completed games:", err);
+        setError("Error fetching completed games");
+      }
+    };
 
-    const subsribeCompleted = onSnapshot(
-      completedCollection,
-      (snapshot) => {
-        snapshot.docChanges().forEach((change) => {
-          if (change.type == "added") {
-            console.log(
-              `New Player has completed the game: ${change.doc.data()}`,
-            );
-            setCompletes((prevCompletes) => [
-              ...prevCompletes,
-              change.doc.data() as PlayerData,
-            ]);
-          }
-        });
-      },
-      (err) => {
-        console.log("Error fetching completed games: ", err);
-      },
-    );
+    const subscribeToCompletedGames = () => {
+      const completedCollection = collection(firestore, "completed");
+
+      return onSnapshot(
+        completedCollection,
+        (snapshot) => {
+          snapshot.docChanges().forEach((change) => {
+            if (change.type === "added") {
+              const newGame = {
+                ...change.doc.data(),
+                id: change.doc.id,
+              } as PlayerData;
+              setCompletes((prevCompletes) => {
+                const isExisting = prevCompletes.some(
+                  (game) => game.id === newGame.id,
+                );
+                if (!isExisting) {
+                  console.log("New document added: ", newGame);
+                  return [...prevCompletes, newGame];
+                }
+                return prevCompletes;
+              });
+            }
+          });
+        },
+        (err) => {
+          console.error("Error fetching completed games:", err);
+          setError("Error fetching completed games");
+        },
+      );
+    };
+
+    fetchCompletedGames();
+    const unsubscribeCompletedGames = subscribeToCompletedGames();
 
     return () => {
-      subsribeCompleted();
+      unsubscribeCompletedGames(); // Unsubscribe from snapshot listener when component unmounts
     };
   }, []);
 
@@ -108,7 +134,7 @@ const StatisticsComponent: React.FC = () => {
 
   return (
     <>
-      <div className="flex justify w-full h-4/5 flex-col justify-items-center items-center bg-black">
+      <div className="flex justify w-full h-4/5 flex-col justify-items-center items-center">
         <StatisticsHeader>Game Statistics</StatisticsHeader>
         {statistics ? (
           <div className="columns-2">
@@ -179,11 +205,11 @@ const StatisticsComponent: React.FC = () => {
           <p>No statistics available</p>
         )}
 
-        <div className="mt-2 w-full flex justify-center items-center bg-blue-100 gap-2">
+        <div className="mt-2 w-full flex justify-center items-center gap-2">
           {completes.length > 0 && (
             <>
-              {completes.map((player, index) => (
-                <CharacterDisplayComponent key={index} player={player} />
+              {completes.map((player) => (
+                <CharacterDisplayComponent key={player.id} player={player} />
               ))}
             </>
           )}

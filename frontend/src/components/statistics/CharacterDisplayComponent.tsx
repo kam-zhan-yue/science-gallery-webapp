@@ -6,9 +6,8 @@ import { TextStyle } from "../styled/Text.tsx";
 import { PlayerData } from "./PlayerData.ts";
 
 const Background = styled(motion.div)`
-  width: 25%;
-  max-width: 400px;
-  max-height: 800px;
+  width: 20vw;
+  max-width: 200px;
 
   display: flex;
   flex-direction: column;
@@ -30,18 +29,14 @@ const Background = styled(motion.div)`
 const Character = styled(motion.img)``;
 
 const Title = styled(TextStyle)`
-  font-size: 32px;
+  font-size: 2vw;
   font-weight: 800;
   line-height: 1em;
   margin-top: 5px;
-`;
 
-const Description = styled(TextStyle)`
-  font-size: 16px;
-  line-height: 1em;
-  margin-top: 5px;
-  margin-bottom: 10px;
-  text-align: left;
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
 `;
 
 const CharacterDisplayComponent: React.FC<{ player: PlayerData }> = ({
