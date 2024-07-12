@@ -9,6 +9,7 @@ import { Achievement, achievements } from "../setup/Achievements.ts";
 const Notification = styled(motion.div)`
   position: fixed;
   top: 50px;
+  min-width: 200px;
 
   image-rendering: pixelated;
   image-rendering: -moz-crisp-edges;
@@ -25,7 +26,7 @@ const Notification = styled(motion.div)`
 `
 
 const Header = styled(TextStyle)`
-  font-size: 26px;
+  font-size: 20px;
   line-height: 1em;
 `
 
@@ -70,18 +71,20 @@ const NotificationComponent: React.FC = () => {
         })
 
         EventBus.on('achievement', (achievement: string) => {
-            console.log(`Is ${achievement} in achievements? ${achievement in achievements}`)
-            if(achievement in achievements) {
-                const entry: Achievement = achievements[achievement];
-                if(entry.hidden) return;
+          if(achievement in achievements) {
+            const entry: Achievement = achievements[achievement];
+            if(entry.hidden) return;
 
-                const header: string = `Achievement Unlocked! ${entry.name}`;
-                setHeader(header);
-                if(entry.description) {
-                    const message: string = entry.description;
-                    setMessage(message);
-                }
-            }
+            setMessage('Achievement Unlocked!');
+            const timer = setTimeout(() => {
+              setHeader(entry.name);
+              if(entry.description) {
+                  setMessage(entry.description);
+              }
+            }, 2000);
+
+            return () => clearTimeout(timer);
+          }
         })
 
         return () => {
