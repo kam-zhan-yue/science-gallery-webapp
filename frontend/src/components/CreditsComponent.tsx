@@ -30,24 +30,35 @@ const CreditsContainer = styled(motion.div)`
   }
 `;
 
+const Credit = styled(TextStyle)`
+  margin-bottom: 30px;
+  `
+
 const Name = styled(TextStyle)`
-  font-size: 24px;
+  font-size: 36px;
+  line-height: 1em;
 `;
 
 const Role = styled(TextStyle)`
   font-size: 16px;
+  font-style: italic;
+  line-height: 1em;
 `;
 
 const CreditsComponent: React.FC = () => {
   return (
     <>
       <Overlay>
-        <CreditsContainer>
+        <CreditsContainer
+          initial={{ y: "100%" }}
+          animate={{ y: "-100%" }}
+          transition={{ duration: 3, ease: "linear" }}
+        >
           {Object.keys(credits).map((creditKey) => (
-            <div key={creditKey}>
+            <Credit key={creditKey}>
               <Name>{creditKey}</Name>
               <Role>{credits[creditKey].role}</Role>
-            </div>
+            </Credit>
           ))}
         </CreditsContainer>
       </Overlay>

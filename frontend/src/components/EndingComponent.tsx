@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { TextStyle } from "./styled/Text.tsx";
 import { colours } from "./styled/Constants.tsx";
 import { AnimatePresence, motion } from "framer-motion";
 import CreditsComponent from "./CreditsComponent.tsx";
+import { InvisibleBlocker } from "./styled/Blocker.tsx";
+import { GameContext, GameContextType, GameState } from "../contexts/GameContext.tsx";
 
 interface EndingProps {
   ending: string;
@@ -55,15 +57,17 @@ const Restart = styled(TextStyle)`
 
 const EndingComponent: React.FC<EndingProps> = ({ ending, restart }) => {
   const [scrolling, setScrolling] = useState<boolean>(false);
+  const {setState} = useContext(GameContext) as GameContextType;
+
 
   useEffect(() => {
-    if (!scrolling) {
+    if (!scrolling && ending !== 'sheep') {
       const timer = setTimeout(() => {
         setScrolling(true);
-      }, 1000);
+      }, 2000);
       return () => clearTimeout(timer);
     }
-  }, [scrolling]);
+  }, [ending, scrolling]);
 
   return (
     <>
@@ -74,7 +78,7 @@ const EndingComponent: React.FC<EndingProps> = ({ ending, restart }) => {
         exit={{ opacity: 0 }}
         transition={{ duration: 1 }}
       >
-        <AnimatePresence>
+          <AnimatePresence>
           {!scrolling && (
             <motion.div
               key="ending"
@@ -83,28 +87,22 @@ const EndingComponent: React.FC<EndingProps> = ({ ending, restart }) => {
               exit={{ opacity: 0 }}
               transition={{ duration: 1 }}
             >
-              <AnimatePresence>
-                <Title key="gameOver">GAME OVER</Title>
-              </AnimatePresence>
-              {/* {ending === "sheep" && (
-                <>
-                  <Restart onClick={restart}>Restart</Restart>
-                </>
-              )}
-              {ending === "unknown" && (
-                <>
-                  <Title key="thanks">Thanks for Playing!</Title>
-                  <Restart onClick={restart}>Restart</Restart>
-                </>
-              )} */}
+                {ending === "sheep" && <>
+                    <Title key="gameOver">GAME OVER</Title>
+                    <Restart onClick={restart}>Restart</Restart>
+                  </>
+                  }
+                {ending !== "sheep" && <Title key="thanks">Thanks for Playing!</Title>}
             </motion.div>
           )}
-          {scrolling && (
+          </AnimatePresence>
+
+          {scrolling &&
             <>
               <CreditsComponent />
+              <InvisibleBlocker onClick={()=> {setState(GameState.Menu)}}/>
             </>
-          )}
-        </AnimatePresence>
+          }
       </Overlay>
     </>
   );

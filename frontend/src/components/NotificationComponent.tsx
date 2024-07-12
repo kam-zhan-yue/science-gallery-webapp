@@ -9,7 +9,7 @@ import { Achievement, achievements } from "../setup/Achievements.ts";
 const Notification = styled(motion.div)`
   position: fixed;
   top: 50px;
-  
+
   image-rendering: pixelated;
   image-rendering: -moz-crisp-edges;
   image-rendering: crisp-edges;
@@ -18,7 +18,7 @@ const Notification = styled(motion.div)`
 
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
-  
+
   @media (max-width: 768px) {
     top: 120px;
   }
@@ -107,18 +107,17 @@ const NotificationComponent: React.FC = () => {
       <>
           <AnimatePresence>
               {(header || message) &&
-                  <>
-                      <Notification
-                          initial={{ y: -200, opacity: 0 }}
-                          animate={{ y: 0, opacity: 1 }}
-                          exit={{ y: -200, opacity: 0, transition: { duration: 0.2 } }}
-                          transition={{ duration: 0.2}}
-                      >
-                        {header && <Header>{header}</Header>}
-                        {(header && message) && <Separator/>}
-                        {message && <Message>{message}</Message>}
-                      </Notification>
-                  </>
+                <Notification
+                  key='notificationComponent'
+                    initial={{ y: -200, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: -200, opacity: 0, transition: { duration: 0.2 } }}
+                    transition={{ duration: 0.2}}
+                >
+                  {header && <Header>{header}</Header>}
+                  {(header && message) && <Separator/>}
+                  {message && <Message>{message}</Message>}
+                </Notification>
               }
           </AnimatePresence>
       </>

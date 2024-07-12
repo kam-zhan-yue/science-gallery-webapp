@@ -335,12 +335,13 @@ const StoryComponent: React.FC<StoryComponentProps> = ({ universeRef }) => {
   };
 
   const handleChoiceClick = (choiceIndex: number) => {
-    if (story) {
-      // console.log(`choosing ${choiceIndex}`);
-      story.ChooseChoiceIndex(choiceIndex);
-      setShowingChoices(false);
-      advance(story);
-    }
+    if (!story) return;
+    if (!story.currentChoices) return;
+    if (story.currentChoices.length == 0) return;
+    story.ChooseChoiceIndex(choiceIndex);
+    setShowingChoices(false);
+    advance(story);
+
   };
 
   const handleCodeInput = (choiceIndex: number) => {

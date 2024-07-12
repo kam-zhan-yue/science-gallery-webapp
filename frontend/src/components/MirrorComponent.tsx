@@ -109,15 +109,15 @@ const MirrorComponent: React.FC<MirrorProps> = ({selectCharacter}) => {
                     />
             </Overlay>
           {character !== '' && <Blocker onClick={close}/>}
-            <AnimatePresence>
-            {character !== '' &&
-                  <CharacterSelectComponent
-                      character={character}
-                      select={select}
-                      close={close}
-                  />
-            }
-            </AnimatePresence>
+          <AnimatePresence>
+          {character !== '' &&
+                <CharacterSelectComponent
+                    character={character}
+                    select={select}
+                    close={close}
+                />
+          }
+          </AnimatePresence>
         </>
     )
 }
