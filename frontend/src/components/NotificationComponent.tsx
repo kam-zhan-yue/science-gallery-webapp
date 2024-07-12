@@ -19,10 +19,6 @@ const Notification = styled(motion.div)`
 
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
-
-  @media (max-width: 768px) {
-    top: 120px;
-  }
 `
 
 const Header = styled(TextStyle)`
