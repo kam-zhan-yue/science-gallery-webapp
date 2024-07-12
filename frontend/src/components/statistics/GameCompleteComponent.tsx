@@ -25,12 +25,12 @@ const GameCompleteComponent: React.FC<{ completes: PlayerData[] }> = ({
   const max: number = 7;
   const threshold: number = 5;
   const numShowing = completes.length > max ? max : completes.length;
-  const scrollTime: number = 5 * numShowing;
+  const scrollTime: number = 1 * numShowing;
   const shouldScroll = numShowing > threshold;
 
   const firstScroll = {
     animate: {
-      x: shouldScroll ? ["100%", "-100%"] : "0%",
+      x: shouldScroll ? ["200%", "0%"] : "0%",
       transition: {
         ease: "linear",
         duration: scrollTime,
@@ -40,12 +40,12 @@ const GameCompleteComponent: React.FC<{ completes: PlayerData[] }> = ({
   };
   const secondScroll = {
     animate: {
-      x: shouldScroll ? ["0", "-200%"] : "0%",
+      x: shouldScroll ? ["100%", "-100%"] : "0%",
       transition: {
         ease: "linear",
         duration: scrollTime,
         repeat: Infinity,
-        delay: scrollTime,
+        delay: scrollTime * 0.5,
       },
     },
   };
@@ -70,7 +70,7 @@ const GameCompleteComponent: React.FC<{ completes: PlayerData[] }> = ({
               </ScrollingContainer>
               <ScrollingContainer
                 className="flex w-full gap-2 overflow-hidden"
-                variants={firstScroll}
+                variants={secondScroll}
                 animate="animate"
               >
                 {completes.map((player, index) => (
