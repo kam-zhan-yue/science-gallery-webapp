@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import styled from "styled-components";
 import Triangle from "./styled/Triangle.tsx";
 import CharacterSelectComponent from "./CharacterSelectComponent.tsx";
-import {motion} from "framer-motion";
+import {AnimatePresence, motion} from "framer-motion";
 import {colours} from "./styled/Constants.tsx";
 
 const Blocker = styled.div`
@@ -108,15 +108,16 @@ const MirrorComponent: React.FC<MirrorProps> = ({selectCharacter}) => {
                         character='Artist' selectCharacter={viewCharacter}
                     />
             </Overlay>
+          {character !== '' && <Blocker onClick={close}/>}
+            <AnimatePresence>
             {character !== '' &&
-                <>
-                    <CharacterSelectComponent
-                        character={character}
-                        select={select}
-                        close={close}
-                    />
-                </>
+                  <CharacterSelectComponent
+                      character={character}
+                      select={select}
+                      close={close}
+                  />
             }
+            </AnimatePresence>
         </>
     )
 }
