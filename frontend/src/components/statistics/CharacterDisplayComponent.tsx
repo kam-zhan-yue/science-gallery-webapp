@@ -6,8 +6,9 @@ import { TextStyle } from "../styled/Text.tsx";
 import { PlayerData } from "./PlayerData.ts";
 
 const Background = styled(motion.div)`
-  width: 20vw;
-  max-width: 200px;
+  width: 10vw;
+  min-width: 100px;
+  max-width: 150px;
 
   display: flex;
   flex-direction: column;
@@ -19,8 +20,8 @@ const Background = styled(motion.div)`
   image-rendering: pixelated;
   image-rendering: -moz-crisp-edges;
   image-rendering: crisp-edges;
-  border: 10px solid;
-  border-image: url("../assets/ui/dialogue-box.png") 15 15 15 15 fill repeat;
+  // border: 10px solid;
+  // border-image: url("../assets/ui/dialogue-box.png") 15 15 15 15 fill repeat;
 
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
@@ -29,7 +30,7 @@ const Background = styled(motion.div)`
 const Character = styled(motion.img)``;
 
 const Title = styled(TextStyle)`
-  font-size: 2vw;
+  font-size: 24px;
   font-weight: 800;
   line-height: 1em;
   margin-top: 5px;

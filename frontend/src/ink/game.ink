@@ -24,6 +24,7 @@ INCLUDE player/shard.ink
 Welcome, Tester.
 +[Debug]
     ->character_select ->
+    ->name_input ->
     ~ planet = shangrila
     ~get(torch)
     ->debug_navigation

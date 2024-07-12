@@ -69,6 +69,7 @@ const StatisticsComponent: React.FC = () => {
       subsribeStatistics(); // Unsubscribe from snapshot listener when component unmounts
     };
   }, []);
+
   useEffect(() => {
     const fetchCompletedGames = async () => {
       try {
@@ -205,7 +206,42 @@ const StatisticsComponent: React.FC = () => {
           <p>No statistics available</p>
         )}
 
-        <div className="mt-2 w-full flex justify-center items-center gap-2">
+        <div className="mt-2 w-full flex justify-center items-center gap-2 overflow-hidden">
+          {completes.length > 0 && (
+            <>
+              {completes.map((player) => (
+                <CharacterDisplayComponent key={player.id} player={player} />
+              ))}
+            </>
+          )}
+          {completes.length > 0 && (
+            <>
+              {completes.map((player) => (
+                <CharacterDisplayComponent key={player.id} player={player} />
+              ))}
+            </>
+          )}
+          {completes.length > 0 && (
+            <>
+              {completes.map((player) => (
+                <CharacterDisplayComponent key={player.id} player={player} />
+              ))}
+            </>
+          )}
+          {completes.length > 0 && (
+            <>
+              {completes.map((player) => (
+                <CharacterDisplayComponent key={player.id} player={player} />
+              ))}
+            </>
+          )}
+          {completes.length > 0 && (
+            <>
+              {completes.map((player) => (
+                <CharacterDisplayComponent key={player.id} player={player} />
+              ))}
+            </>
+          )}
           {completes.length > 0 && (
             <>
               {completes.map((player) => (
