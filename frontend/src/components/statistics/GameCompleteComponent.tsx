@@ -25,27 +25,16 @@ const GameCompleteComponent: React.FC<{ completes: PlayerData[] }> = ({
   const max: number = 7;
   const threshold: number = 5;
   const numShowing = completes.length > max ? max : completes.length;
-  const scrollTime: number = 1 * numShowing;
+  const scrollTime: number = 2 * numShowing;
   const shouldScroll = numShowing > threshold;
 
-  const firstScroll = {
-    animate: {
-      x: shouldScroll ? ["200%", "0%"] : "0%",
-      transition: {
-        ease: "linear",
-        duration: scrollTime,
-        repeat: Infinity,
-      },
-    },
-  };
-  const secondScroll = {
+  const scroll = {
     animate: {
       x: shouldScroll ? ["100%", "-100%"] : "0%",
       transition: {
         ease: "linear",
         duration: scrollTime,
         repeat: Infinity,
-        delay: scrollTime * 0.5,
       },
     },
   };
@@ -55,32 +44,18 @@ const GameCompleteComponent: React.FC<{ completes: PlayerData[] }> = ({
       <CompleteContainer className="mt-6 w-full">
         {completes.length > 0 && (
           <>
-            <div className="flex w-full">
-              <ScrollingContainer
-                className="flex w-full gap-2 overflow-hidden"
-                variants={firstScroll}
-                animate="animate"
-              >
-                {completes.map((player, index) => (
-                  <CharacterDisplayComponent
-                    key={player.id + "-" + index}
-                    player={player}
-                  />
-                ))}
-              </ScrollingContainer>
-              <ScrollingContainer
-                className="flex w-full gap-2 overflow-hidden"
-                variants={secondScroll}
-                animate="animate"
-              >
-                {completes.map((player, index) => (
-                  <CharacterDisplayComponent
-                    key={player.id + "-duplicate-" + index}
-                    player={player}
-                  />
-                ))}
-              </ScrollingContainer>
-            </div>
+            <ScrollingContainer
+              className="flex w-full gap-2 overflow-visible"
+              variants={scroll}
+              animate="animate"
+            >
+              {completes.map((player, index) => (
+                <CharacterDisplayComponent
+                  key={player.id + "-" + index}
+                  player={player}
+                />
+              ))}
+            </ScrollingContainer>
           </>
         )}{" "}
       </CompleteContainer>
