@@ -3,32 +3,23 @@ import styled from "styled-components";
 import { TextStyle } from "./styled/Text";
 import { credits } from "../setup/Credits";
 
-const Overlay = styled(motion.div)`
-  position: fixed;
-  top: 0;
-  left: 0;
+const ScrollContainer = styled(motion.div)`
+  position: absolute;
   width: 100%;
   height: 100%;
-  display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
-
-  -webkit-transition: 1s all;
-  transition: 1s all;
-`;
-
-const CreditsContainer = styled(motion.div)`
-  width: 100%;
-  padding-right: 100px;
-  display: flex;
-  flex-direction: column;
   text-align: right;
-
-  @media (max-width: 769px) {
-    padding-right: 20px;
-  }
 `;
+
+const CreditContainer = styled(motion.div)`
+  text-align: center;
+
+  @media (max-width: 600px) {
+    text-align: right;
+    margin-right: 20px;
+  }
+  `
 
 const Credit = styled(TextStyle)`
   margin-bottom: 30px;
@@ -45,23 +36,59 @@ const Role = styled(TextStyle)`
   line-height: 1em;
 `;
 
-const CreditsComponent: React.FC = () => {
+const SpecialThanks = styled(TextStyle)`
+  margin-top: 40px;
+  font-size: 34px;
+  line-height: 1em;
+  `
+
+const Thanks = styled(TextStyle)`
+  font-size: 30px;
+  line-height: 1em;
+`
+
+const Subtitle = styled(TextStyle)`
+  font-size: 18px;
+  line-height: 1em;
+  margin-bottom: 10px;
+  `
+
+const CreditLogo = styled(motion.img)`
+height: 75px;
+  `
+
+const CreditsComponent: React.FC<{complete: () => void }> = ({complete}) => {
   return (
     <>
-      <Overlay>
-        <CreditsContainer
-          initial={{ y: "100%" }}
-          animate={{ y: "-100%" }}
-          transition={{ duration: 3, ease: "linear" }}
+      <ScrollContainer
+        // initial={{ y: "100%" }}
+        // animate={{ y: "-100%" }}
+        // transition={{ duration: 30, ease: "linear" }}
+        // onAnimationComplete={complete}
         >
-          {Object.keys(credits).map((creditKey) => (
-            <Credit key={creditKey}>
-              <Name>{creditKey}</Name>
-              <Role>{credits[creditKey].role}</Role>
+        <>
+          <CreditContainer>
+            {Object.keys(credits).map((creditKey) => (
+              <Credit key={creditKey}>
+                <Name>{creditKey}</Name>
+                <Role>{credits[creditKey].role}</Role>
+              </Credit>
+            ))}
+            <Credit>
+              <SpecialThanks>Special Thanks</SpecialThanks>
+              <Thanks>Someone 1</Thanks>
+              <Thanks>Someone 2</Thanks>
             </Credit>
-          ))}
-        </CreditsContainer>
-      </Overlay>
+          </CreditContainer>
+          <div className='flex justify-center flex-col text-center'>
+            <Subtitle>Made for Science Gallery Melbourne</Subtitle>
+            <div className='flex flex-row justify-center gap-4'>
+              <CreditLogo src="../assets/ui/science-gallery-logo-white.png" alt="science-gallery-credits"/>
+              <CreditLogo src="../assets/ui/unimelb-logo-white.png" alt="unimelb-credits"/>
+            </div>
+          </div>
+        </>
+        </ScrollContainer>
     </>
   );
 };

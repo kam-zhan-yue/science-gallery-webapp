@@ -59,12 +59,15 @@ const EndingComponent: React.FC<EndingProps> = ({ ending, restart }) => {
   const [scrolling, setScrolling] = useState<boolean>(false);
   const {setState} = useContext(GameContext) as GameContextType;
 
+  function returnToMenu() {
+    setState(GameState.Menu);
+  }
 
   useEffect(() => {
     if (!scrolling && ending !== 'sheep') {
       const timer = setTimeout(() => {
         setScrolling(true);
-      }, 2000);
+      }, 1000);
       return () => clearTimeout(timer);
     }
   }, [ending, scrolling]);
@@ -99,8 +102,8 @@ const EndingComponent: React.FC<EndingProps> = ({ ending, restart }) => {
 
           {scrolling &&
             <>
-              <CreditsComponent />
-              <InvisibleBlocker onClick={()=> {setState(GameState.Menu)}}/>
+            <CreditsComponent complete={returnToMenu} />
+              <InvisibleBlocker onClick={returnToMenu}/>
             </>
           }
       </Overlay>

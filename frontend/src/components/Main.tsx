@@ -10,7 +10,7 @@ import { AnimatePresence } from 'framer-motion';
 
 const Main: React.FC = () => {
     const universeRef = useRef<Universe>(null);
-    const { started, state, setState, start} = useContext(GameContext) as GameContextType;
+    const { state, setState, start} = useContext(GameContext) as GameContextType;
 
     useEffect(() => {
         if (universeRef.current) {

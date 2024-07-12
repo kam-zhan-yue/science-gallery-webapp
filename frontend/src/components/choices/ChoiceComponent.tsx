@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Choice } from "inkjs/engine/Choice";
 import ChoiceOptionComponent from "./ChoiceOptionComponent.tsx";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 
 const ScreenOverlay = styled.div`
   position: fixed;

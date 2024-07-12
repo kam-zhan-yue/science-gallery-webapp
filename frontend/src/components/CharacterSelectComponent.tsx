@@ -3,7 +3,6 @@ import styled from "styled-components";
 import {motion} from "framer-motion";
 import {characters} from "../setup/Character.ts";
 import {TextStyle} from "./styled/Text.tsx";
-import {colours} from "./styled/Constants.tsx";
 import {BackButton, SelectButton} from "./styled/Buttons.tsx";
 
 interface CharacterSelectProps {
@@ -11,18 +10,6 @@ interface CharacterSelectProps {
     select: (character: string) => void;
     close: () => void;
 }
-
-const Blocker = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: ${colours.blocker};
-`
 
 const Overlay = styled(motion.div)`
   position: fixed;
