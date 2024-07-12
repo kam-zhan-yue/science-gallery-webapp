@@ -6,14 +6,14 @@ export const credits: { [key: string]: Credit } = {
   Nellie: {
     role: "Director, Pixel Artist",
   },
-  'Abi Nicholson': {
-    role: "Writer, Concept Artist",
-  },
   Riya: {
     role: "Pixel Artist, UI Designer",
   },
+  'Abi Nicholson': {
+    role: "Writer, Concept Lead",
+  },
   "Emma Bampton": {
-    role: "Writer, Designer",
+    role: "Writer, Game Designer",
   },
   Bee: {
     role: "Writer, Composer",
@@ -22,7 +22,7 @@ export const credits: { [key: string]: Credit } = {
     role: "Lead Programmer",
   },
   Tim: {
-    role: "UI Programmer",
+    role: "UI Programmer, Inky Writer",
   },
   "Natalia": {
     role: "Concept Designer",

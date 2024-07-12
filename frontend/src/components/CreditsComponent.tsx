@@ -30,7 +30,7 @@ const Role = styled(TextStyle)`
 
 const SpecialThanks = styled(TextStyle)`
   margin-top: 40px;
-  font-size: 30px;
+  font-size: 26px;
   line-height: 1em;
   `
 
