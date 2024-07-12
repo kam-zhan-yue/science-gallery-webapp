@@ -1,5 +1,6 @@
 ===shangri_la===
 ...
+~ unlock_achievement(gamesStarted)
 ~background = black
 Black.
 A cave.
@@ -12,6 +13,7 @@ A long lost memory...
 
 ===Shangrila_intro===
 ~ background = shangrila_main
+~ unlock_achievement(achievementShangrila)
 Welcome to another day in paradise. 
 You wake up in your bed, the warmth of daylight gently hitting your face. 
 Another day in paradise. 

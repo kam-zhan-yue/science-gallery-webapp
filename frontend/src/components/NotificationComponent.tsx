@@ -4,6 +4,7 @@ import styled from "styled-components";
 import {TextStyle} from "./styled/Text.tsx";
 import {AnimatePresence, motion} from "framer-motion";
 import {items} from "../setup/Item.ts";
+import { Achievement, achievements } from "../setup/Achievements.ts";
 
 const Notification = styled(motion.div)`
   position: fixed;
@@ -23,12 +24,24 @@ const Notification = styled(motion.div)`
   }
 `
 
+const Header = styled(TextStyle)`
+  font-size: 26px;
+  line-height: 1em;
+`
+
+const Separator = styled.div`
+  border: none;
+  border-top: 1px solid #ccc; /* Adjust color and style */
+  margin: 2px 0; /* Adjust margin */
+`
+
 const Message = styled(TextStyle)`
-  font-size: 25px;
+  font-size: 20px;
   line-height: 1em;
 `
 
 const NotificationComponent: React.FC = () => {
+    const [header, setHeader] = useState<string>('');
     const [message, setMessage] = useState<string>('');
 
     useEffect(() => {
@@ -56,27 +69,44 @@ const NotificationComponent: React.FC = () => {
             }
         })
 
+        EventBus.on('achievement', (achievement: string) => {
+            console.log(`Is ${achievement} in achievements? ${achievement in achievements}`)
+            if(achievement in achievements) {
+                const entry: Achievement = achievements[achievement];
+                if(entry.hidden) return;
+
+                const header: string = `Achievement Unlocked! ${entry.name}`;
+                setHeader(header);
+                if(entry.description) {
+                    const message: string = entry.description;
+                    setMessage(message);
+                }
+            }
+        })
+
         return () => {
             EventBus.off("get_item");
             EventBus.off("use_item");
             EventBus.off("get_shard");
+            EventBus.off("achievement");
         };
     }, []);
 
     useEffect(() => {
-        if (message) {
+        if (header || message) {
             const timer = setTimeout(() => {
+                setHeader('');
                 setMessage('');
             }, 2000);
 
             return () => clearTimeout(timer);
         }
-    }, [message]);
+    }, [header, message]);
 
     return (
       <>
           <AnimatePresence>
-              {message &&
+              {(header || message) &&
                   <>
                       <Notification
                           initial={{ y: -200, opacity: 0 }}
@@ -84,9 +114,9 @@ const NotificationComponent: React.FC = () => {
                           exit={{ y: -200, opacity: 0, transition: { duration: 0.2 } }}
                           transition={{ duration: 0.2}}
                       >
-                          <Message>
-                              {message}
-                          </Message>
+                        {header && <Header>{header}</Header>}
+                        {(header && message) && <Separator/>}
+                        {message && <Message>{message}</Message>}
                       </Notification>
                   </>
               }

@@ -80,6 +80,8 @@ Debug Navigation Panel.
     ->debug_band_3
 +[New Light]
     ->go_to_planet(in_a_new_light)
++[Ending]
+    ->debug_endings
 
 
 === debug_band_1 ===
@@ -103,6 +105,13 @@ Band 3
 *[New Myths]
     ->go_to_planet(new_myths)
 
-
+=== debug_endings ===
+Endings
+*[Sheep Ending]
+    ~ending = sheep
+    ->DONE
+*[Unknown Ending]
+    ~ending = unknown
+    ->DONE
 
 

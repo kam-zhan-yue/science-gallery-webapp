@@ -33,6 +33,7 @@ VAR intuition = 0
 ~ class = x
 
 { class == Artist:
+    ~unlock_achievement(chooseArtist)
     ~ health = 100
     ~ finesse = 2
     ~ persuasion = 1
@@ -41,6 +42,7 @@ VAR intuition = 0
 }
 
 { class == Doctor:
+    ~unlock_achievement(chooseDoctor)
     ~ health = 100
     ~ finesse = 2
     ~ persuasion = 0
@@ -49,6 +51,7 @@ VAR intuition = 0
 }
 
 { class == Mechanic:
+    ~unlock_achievement(chooseMechanic)
     ~ health = 100
     ~ finesse = 1
     ~ persuasion = 0
@@ -58,3 +61,7 @@ VAR intuition = 0
 
 === function add_health(x) ===
 ~ health = health + x
+
+
+=== function unlock_achievement(x) ===
+~ achievement = x

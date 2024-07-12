@@ -6,4 +6,6 @@ LIST background = (empty), black, ship_navigation, shangrila_main, shangrila_cav
 
 LIST ending = (none), sheep, unknown
 
+LIST achievement = (none), gamesStarted, gamesCompleted, chooseArtist, chooseDoctor, chooseMechanic, achievementShangrila, achievementParadox, achievementNature, achievementWords, achievementFolding, achievementCrafting, achievementFeminine, achievementMyths
+
 VAR progress = 0
