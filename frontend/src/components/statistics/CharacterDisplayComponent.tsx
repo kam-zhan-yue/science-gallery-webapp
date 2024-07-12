@@ -10,11 +10,6 @@ const Background = styled(motion.div)`
   min-width: 100px;
   max-width: 150px;
 
-  display: flex;
-  flex-direction: column;
-  justify-items: center;
-  justify-content: center;
-  align-items: center;
   text-align: center;
 
   image-rendering: pixelated;
