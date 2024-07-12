@@ -7,6 +7,8 @@ import { PlayerData } from "./PlayerData";
 import { Statistics } from "./Statistics";
 import GameStatsComponent from "./GameStatsComponent";
 import GameCompleteComponent from "./GameCompleteComponent";
+import CompleteNotificationComponent from "./CompleteNotificationComponent";
+import { EventBus } from "../../EventBus";
 
 const StatisticsHeader = styled(TextStyle)`
   font-size: 28px;
@@ -77,6 +79,7 @@ const StatisticsComponent: React.FC = () => {
                 );
                 if (!isExisting) {
                   console.log("New document added: ", newGame);
+                  EventBus.emit("game_complete", newGame);
                   return [...prevCompletes, newGame];
                 }
                 return prevCompletes;
@@ -119,6 +122,7 @@ const StatisticsComponent: React.FC = () => {
 
         <GameCompleteComponent completes={completes} />
       </div>
+      <CompleteNotificationComponent />
     </>
   );
 };

@@ -25,7 +25,7 @@ const GameCompleteComponent: React.FC<{ completes: PlayerData[] }> = ({
   const max: number = 7;
   const threshold: number = 5;
   const numShowing = completes.length > max ? max : completes.length;
-  const scrollTime: number = 2 * numShowing;
+  const scrollTime: number = 5 * numShowing;
   const shouldScroll = numShowing > threshold;
 
   const scroll = {
