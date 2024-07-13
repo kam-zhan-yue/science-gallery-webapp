@@ -3,10 +3,10 @@ export type Credit = {
 };
 
 export const credits: { [key: string]: Credit } = {
-  Nellie: {
+  "Nellie Seale": {
     role: "Director, Pixel Artist",
   },
-  Riya: {
+  "Riya Baldawa": {
     role: "Pixel Artist, UI Designer",
   },
   'Abi Nicholson': {
@@ -15,22 +15,22 @@ export const credits: { [key: string]: Credit } = {
   "Emma Bampton": {
     role: "Writer, Game Designer",
   },
-  Bee: {
+  "Bee Montagner": {
     role: "Writer, Composer",
   },
-  "Alexander Kam": {
+  "Alex Kam": {
     role: "Lead Programmer",
   },
-  Tim: {
+  "Timothy Phan": {
     role: "UI Programmer, Inky Writer",
   },
-  "Natalia": {
+  "Natalia Nour": {
     role: "Concept Designer",
   },
-  "Jesus": {
+  "Jesus Silvero Duarte": {
     role: "Concept Designer",
   },
-  "Matthew": {
+  "Matthew Li": {
     role: "Concept Designer",
   },
 };
