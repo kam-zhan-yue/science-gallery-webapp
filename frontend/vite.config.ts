@@ -30,6 +30,10 @@ export default defineConfig({
           dest: 'assets/ui'
         },
         {
+          src: 'src/assets/audio/*.mp3',
+          dest: 'assets/audio'
+        },
+        {
           src: 'src/assets/items/*.png',
           dest: 'assets/items'
         },

@@ -6,10 +6,11 @@ import {GameContext, GameContextType, GameState} from "../contexts/GameContext.t
 import MenuComponent from "./MenuComponent.tsx";
 import {StyleSheetManager} from "styled-components";
 import isPropValid from "@emotion/is-prop-valid";
+import { AnimatePresence } from 'framer-motion';
 
 const Main: React.FC = () => {
     const universeRef = useRef<Universe>(null);
-    const { started, state, setState, start} = useContext(GameContext) as GameContextType;
+    const { state, setState, start} = useContext(GameContext) as GameContextType;
 
     useEffect(() => {
         if (universeRef.current) {
@@ -19,10 +20,8 @@ const Main: React.FC = () => {
 
     const startGame = () => {
         console.log(`start`)
-        if(!started) {
-            start();
-            setState(GameState.Game);
-        }
+        start();
+        setState(GameState.Game);
     };
 
     // This implements the default behavior from styled-components v5
@@ -38,9 +37,11 @@ const Main: React.FC = () => {
     return (
         <>
             <StyleSheetManager shouldForwardProp={shouldForwardProp}>
-            {(state == GameState.Menu || state == GameState.Mirror) &&
-                <MenuComponent startGame={startGame}/>
-            }
+            <AnimatePresence>
+              {(state == GameState.Menu || state == GameState.Mirror) &&
+                  <MenuComponent startGame={startGame}/>
+              }
+            </AnimatePresence>
             <Game ref={universeRef}/>
             {state == GameState.Game &&
                 <>

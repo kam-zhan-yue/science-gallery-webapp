@@ -9,7 +9,8 @@ import { Achievement, achievements } from "../setup/Achievements.ts";
 const Notification = styled(motion.div)`
   position: fixed;
   top: 50px;
-  
+  min-width: 200px;
+
   image-rendering: pixelated;
   image-rendering: -moz-crisp-edges;
   image-rendering: crisp-edges;
@@ -18,14 +19,10 @@ const Notification = styled(motion.div)`
 
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
-  
-  @media (max-width: 768px) {
-    top: 120px;
-  }
 `
 
 const Header = styled(TextStyle)`
-  font-size: 26px;
+  font-size: 20px;
   line-height: 1em;
 `
 
@@ -70,18 +67,20 @@ const NotificationComponent: React.FC = () => {
         })
 
         EventBus.on('achievement', (achievement: string) => {
-            console.log(`Is ${achievement} in achievements? ${achievement in achievements}`)
-            if(achievement in achievements) {
-                const entry: Achievement = achievements[achievement];
-                if(entry.hidden) return;
+          if(achievement in achievements) {
+            const entry: Achievement = achievements[achievement];
+            if(entry.hidden) return;
 
-                const header: string = `Achievement Unlocked! ${entry.name}`;
-                setHeader(header);
-                if(entry.description) {
-                    const message: string = entry.description;
-                    setMessage(message);
-                }
-            }
+            setMessage('Achievement Unlocked!');
+            const timer = setTimeout(() => {
+              setHeader(entry.name);
+              if(entry.description) {
+                  setMessage(entry.description);
+              }
+            }, 2000);
+
+            return () => clearTimeout(timer);
+          }
         })
 
         return () => {
@@ -107,18 +106,17 @@ const NotificationComponent: React.FC = () => {
       <>
           <AnimatePresence>
               {(header || message) &&
-                  <>
-                      <Notification
-                          initial={{ y: -200, opacity: 0 }}
-                          animate={{ y: 0, opacity: 1 }}
-                          exit={{ y: -200, opacity: 0, transition: { duration: 0.2 } }}
-                          transition={{ duration: 0.2}}
-                      >
-                        {header && <Header>{header}</Header>}
-                        {(header && message) && <Separator/>}
-                        {message && <Message>{message}</Message>}
-                      </Notification>
-                  </>
+                <Notification
+                  key='notificationComponent'
+                    initial={{ y: -200, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: -200, opacity: 0, transition: { duration: 0.2 } }}
+                    transition={{ duration: 0.2}}
+                >
+                  {header && <Header>{header}</Header>}
+                  {(header && message) && <Separator/>}
+                  {message && <Message>{message}</Message>}
+                </Notification>
               }
           </AnimatePresence>
       </>

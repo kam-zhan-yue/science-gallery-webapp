@@ -1,29 +1,32 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
-import {TextStyle} from "./styled/Text.tsx";
-import {colours} from "./styled/Constants.tsx";
-import {motion} from "framer-motion";
+import { TextStyle } from "./styled/Text.tsx";
+import { colours } from "./styled/Constants.tsx";
+import { AnimatePresence, motion } from "framer-motion";
+import CreditsComponent from "./CreditsComponent.tsx";
+import { InvisibleBlocker } from "./styled/Blocker.tsx";
+import { GameContext, GameContextType, GameState } from "../contexts/GameContext.tsx";
 
 interface EndingProps {
-    ending: string,
-    restart: () => void,
+  ending: string;
+  restart: () => void;
 }
 
 const Overlay = styled(motion.div)`
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background: rgb(0,0,0,0.7);
-  
+  background: rgb(0, 0, 0, 0.7);
+
   -webkit-transition: 1s all;
   transition: 1s all;
-`
+`;
 
 const Title = styled(TextStyle)`
   font-size: 64px;
@@ -31,7 +34,7 @@ const Title = styled(TextStyle)`
   margin-bottom: 20px;
   line-height: 1em;
   text-align: center;
-`
+`;
 
 const Restart = styled(TextStyle)`
   font-size: 28px;
@@ -50,32 +53,62 @@ const Restart = styled(TextStyle)`
   &:hover {
     cursor: pointer;
   }
+`;
 
-`
+const EndingComponent: React.FC<EndingProps> = ({ ending, restart }) => {
+  const [scrolling, setScrolling] = useState<boolean>(false);
+  const {setState} = useContext(GameContext) as GameContextType;
 
-const EndingComponent: React.FC<EndingProps> = ({ending, restart}) => {
-    return (
-        <>
-            <Overlay
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0}}
-                transition={{ duration: 1 }}>
-                {ending === 'sheep' &&
-                    <>
-                        <Title>GAME OVER</Title>
-                        <Restart onClick={restart}>Restart</Restart>
-                    </>
-                }
-                {ending === 'unknown' &&
-                    <>
-                        <Title>Thanks for Playing!</Title>
-                        <Restart onClick={restart}>Restart</Restart>
-                    </>
-                }
-            </Overlay>
-        </>
-    );
-}
+  function returnToMenu() {
+    setState(GameState.Menu);
+  }
+
+  useEffect(() => {
+    if (!scrolling && ending !== 'sheep') {
+      const timer = setTimeout(() => {
+        setScrolling(true);
+      }, 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [ending, scrolling]);
+
+  return (
+    <>
+      <Overlay
+        key="endingOverlay"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 1 }}
+      >
+          <AnimatePresence>
+          {!scrolling && (
+            <motion.div
+              key="ending"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1 }}
+            >
+                {ending === "sheep" && <>
+                    <Title key="gameOver">GAME OVER</Title>
+                    <Restart onClick={restart}>Restart</Restart>
+                  </>
+                  }
+                {ending !== "sheep" && <Title key="thanks">Thanks for Playing!</Title>}
+            </motion.div>
+          )}
+          </AnimatePresence>
+
+          {scrolling &&
+            <>
+            <CreditsComponent complete={returnToMenu} />
+              <InvisibleBlocker onClick={returnToMenu}/>
+            </>
+          }
+      </Overlay>
+    </>
+  );
+};
 
 export default EndingComponent;

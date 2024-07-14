@@ -23,19 +23,21 @@ export const updateDatabase = async (
 };
 
 export async function reportComplete(player: Player, ending: string) {
-  // Extract the necessary data from the player object
+  if (!player) return;
+  if (player.class === '') return;
+  if (ending === '') return;
+
+
   const playerData: Omit<PlayerData, "id"> = {
-    name: player.name, // Assuming Player has a 'name' property
-    class: player.class, // Assuming Player has a 'class' property
+    name: player.name,
+    class: player.class,
     ending: ending,
-    items: player.inventory, // Assuming Player has an 'items' property
+    items: player.inventory,
   };
 
-  // Call the function to add the player data to Firestore
   await addPlayerData(playerData);
 }
 
-// Function to add a document with auto-generated ID to Firestore
 const addPlayerData = async (playerData: Omit<PlayerData, "id">) => {
   try {
     const playerCollection = collection(firestore, "completed");

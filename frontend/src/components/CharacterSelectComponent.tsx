@@ -3,7 +3,6 @@ import styled from "styled-components";
 import {motion} from "framer-motion";
 import {characters} from "../setup/Character.ts";
 import {TextStyle} from "./styled/Text.tsx";
-import {colours} from "./styled/Constants.tsx";
 import {BackButton, SelectButton} from "./styled/Buttons.tsx";
 
 interface CharacterSelectProps {
@@ -12,19 +11,7 @@ interface CharacterSelectProps {
     close: () => void;
 }
 
-const Blocker = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: ${colours.blocker};
-`
-
-const Overlay = styled.div`
+const Overlay = styled(motion.div)`
   position: fixed;
   top: 50%;
   left: 50%;
@@ -50,13 +37,13 @@ const Background = styled(motion.div)`
   justify-content: center;
   align-items: center;
   text-align: center;
-  
+
   image-rendering: pixelated;
   image-rendering: -moz-crisp-edges;
   image-rendering: crisp-edges;
   border: 40px solid;
   border-image: url("../assets/ui/dialogue-box.png") 15 15 15 15 fill repeat;
-  
+
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
 
@@ -106,14 +93,13 @@ const CharacterSelectComponent: React.FC<CharacterSelectProps> = ({character, se
         return '';
     }
     return (
-        <>
-            <Blocker onClick={close}/>
-            <Overlay>
-                <Background
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0}}
-                    transition={{ duration: 0.2 }}>
+            <Overlay
+              key='characterSelectComponent'
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0}}
+              transition={{ duration: 0.2 }}>
+                <Background>
                     <CharacterContainer>
                         <Character src={getImage()} alt={character}/>
                     </CharacterContainer>
@@ -123,7 +109,6 @@ const CharacterSelectComponent: React.FC<CharacterSelectProps> = ({character, se
                     <BackButton onClick={close}>Back</BackButton>
                 </Background>
             </Overlay>
-        </>
     );
 }
 

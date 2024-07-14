@@ -23,6 +23,8 @@ import { TextStyle } from "./styled/Text.tsx";
 import EndingComponent from "./EndingComponent.tsx";
 import { achievements } from "../setup/Achievements.ts";
 import { reportComplete, updateDatabase } from "./statistics/firestore.tsx";
+import { AnimatePresence } from "framer-motion";
+import { Blocker } from "./styled/Blocker.tsx";
 
 interface StoryComponentProps {
   universeRef: Universe | null;
@@ -333,12 +335,13 @@ const StoryComponent: React.FC<StoryComponentProps> = ({ universeRef }) => {
   };
 
   const handleChoiceClick = (choiceIndex: number) => {
-    if (story) {
-      // console.log(`choosing ${choiceIndex}`);
-      story.ChooseChoiceIndex(choiceIndex);
-      setShowingChoices(false);
-      advance(story);
-    }
+    if (!story) return;
+    if (!story.currentChoices) return;
+    if (story.currentChoices.length == 0) return;
+    story.ChooseChoiceIndex(choiceIndex);
+    setShowingChoices(false);
+    advance(story);
+
   };
 
   const handleCodeInput = (choiceIndex: number) => {
@@ -438,29 +441,40 @@ const StoryComponent: React.FC<StoryComponentProps> = ({ universeRef }) => {
             </>
           )}
 
-          {storyState === StoryState.Keypad && (
-            <>
-              <KeypadComponent
-                choices={choices}
-                handleCodeInput={handleCodeInput}
-                handleBackClicked={keypadBack}
-                planet={planet}
-              />
-            </>
-          )}
 
-          {inkState !== "planet_selection" &&
-            inkState !== "take_item" &&
-            inkState !== "name_select" &&
-            storyState !== StoryState.Travelling &&
-            showingChoices && (
-              <>
+          <AnimatePresence>
+          {storyState == StoryState.Keypad && (
+            <Blocker
+              key="keypadBlocker"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0, transition: { duration: 0.3 } }}
+              transition={{ duration: 0.3 }}
+              onClick={keypadBack}/>
+          )}
+          </AnimatePresence>
+          <AnimatePresence>
+          {storyState === StoryState.Keypad && (
+            <KeypadComponent
+              choices={choices}
+              handleCodeInput={handleCodeInput}
+              planet={planet}
+            />
+          )}
+          </AnimatePresence>
+
+          <AnimatePresence>
+            {inkState !== "planet_selection" &&
+              inkState !== "take_item" &&
+              inkState !== "name_select" &&
+              storyState !== StoryState.Travelling &&
+              showingChoices && (
                 <ChoiceComponent
                   choices={choices}
                   handleChoiceClick={handleChoiceClick}
                 />
-              </>
-            )}
+              )}
+          </AnimatePresence>
 
           {storyState !== StoryState.Travelling &&
             storyState !== StoryState.Inspecting &&

@@ -14,17 +14,21 @@ interface PlanetComponentProps {
 const PromptContainer = styled.div`
   position: fixed;
   top: 70%;
-  
+
   display: flex;
   flex-direction: column;
   width: 90%;
-  
-  font-size: 48px;
+
+  font-size: 36px;
   font-family: "VT323", monospace;
   font-weight: 400;
   font-style: normal;
   line-height: 1em;
   text-align: center;
+
+  @media (max-width: 600px) {
+    font-size: 30px;
+  }
 `
 
 const ChoiceContainer = styled.div`
@@ -33,7 +37,7 @@ const ChoiceContainer = styled.div`
 
 const Text = styled(TextStyle)`
   text-align: center;
-  font-size: 40px;
+  font-size: 36px;
   font-weight: 400;
   font-style: normal;
   line-height: 1em;

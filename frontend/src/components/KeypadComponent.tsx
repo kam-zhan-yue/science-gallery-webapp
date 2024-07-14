@@ -5,20 +5,6 @@ import KeypadButtonComponent, { KeypadType } from './KeypadButtonComponent';
 import Planet from '../classes/Planet';
 import {motion} from "framer-motion";
 import {TextStyle} from "./styled/Text.tsx";
-import {colours} from "./styled/Constants.tsx";
-
-
-const Blocker = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: ${colours.blocker};
-`;
 
 const KeypadOverlay = styled(motion.div)`
   position: fixed;
@@ -88,11 +74,10 @@ const Error = styled(TextStyle)`
 interface KeypadComponentProps {
     choices: Choice[];
     handleCodeInput: (code: number) => void;
-    handleBackClicked: () => void;
     planet: Planet;
 }
 
-const KeypadComponent: React.FC<KeypadComponentProps> = ({planet, handleCodeInput, handleBackClicked,}) => {
+const KeypadComponent: React.FC<KeypadComponentProps> = ({planet, handleCodeInput}) => {
     const [inputValue, setInputValue] = useState<string>('');
     const [showError, setShowError] = useState<boolean>(false);
 
@@ -118,38 +103,34 @@ const KeypadComponent: React.FC<KeypadComponentProps> = ({planet, handleCodeInpu
     };
 
     return (
-        <>
-            <Blocker onClick={handleBackClicked}/>
-
-            <KeypadOverlay
-                initial={{ top: '100%', opacity: 0 }}
-                animate={{ top: '50%', opacity: 1 }}
-                exit={{ top: '100%', opacity: 0, transition: { duration: 1 } }}
-                transition={{ duration: 0.3 }}>
-                <KeypadContainer>
-                    <CodeBackground>
-                        <CodeText>{inputValue}</CodeText>
-                    </CodeBackground>
-                    {showError && <Error>INCORRECT CODE</Error>}
-                    {!showError && <Error></Error>}
-                    <div className="grid grid-cols-3 gap-3">
-                        <KeypadButtonComponent code={'1'} type={KeypadType.Code} onClick={handleKeypadClick} />
-                        <KeypadButtonComponent code={'2'} type={KeypadType.Code} onClick={handleKeypadClick} />
-                        <KeypadButtonComponent code={'3'} type={KeypadType.Code} onClick={handleKeypadClick} />
-                        <KeypadButtonComponent code={'4'} type={KeypadType.Code} onClick={handleKeypadClick} />
-                        <KeypadButtonComponent code={'5'} type={KeypadType.Code} onClick={handleKeypadClick} />
-                        <KeypadButtonComponent code={'6'} type={KeypadType.Code} onClick={handleKeypadClick} />
-                        <KeypadButtonComponent code={'7'} type={KeypadType.Code} onClick={handleKeypadClick} />
-                        <KeypadButtonComponent code={'8'} type={KeypadType.Code} onClick={handleKeypadClick} />
-                        <KeypadButtonComponent code={'9'} type={KeypadType.Code} onClick={handleKeypadClick} />
-                        <KeypadButtonComponent type={KeypadType.Delete} onClick={handleKeypadClick} />
-                        <KeypadButtonComponent code={'0'} type={KeypadType.Code} onClick={handleKeypadClick} />
-                        <KeypadButtonComponent type={KeypadType.Submit} onClick={handleKeypadClick} />
-                    </div>
-                </KeypadContainer>
-                {/*<BackButton onClick={handleBackClicked}>X</BackButton>*/}
-            </KeypadOverlay>
-        </>
+          <KeypadOverlay
+              key="keypadComponent"
+              initial={{ top: '100%', opacity: 0 }}
+              animate={{ top: '50%', opacity: 1 }}
+              exit={{ top: '100%', opacity: 0, transition: { duration: 0.3 } }}
+              transition={{ duration: 0.3 }}>
+              <KeypadContainer>
+                  <CodeBackground>
+                      <CodeText>{inputValue}</CodeText>
+                  </CodeBackground>
+                  {showError && <Error>INCORRECT CODE</Error>}
+                  {!showError && <Error></Error>}
+                  <div className="grid grid-cols-3 gap-3">
+                      <KeypadButtonComponent code={'1'} type={KeypadType.Code} onClick={handleKeypadClick} />
+                      <KeypadButtonComponent code={'2'} type={KeypadType.Code} onClick={handleKeypadClick} />
+                      <KeypadButtonComponent code={'3'} type={KeypadType.Code} onClick={handleKeypadClick} />
+                      <KeypadButtonComponent code={'4'} type={KeypadType.Code} onClick={handleKeypadClick} />
+                      <KeypadButtonComponent code={'5'} type={KeypadType.Code} onClick={handleKeypadClick} />
+                      <KeypadButtonComponent code={'6'} type={KeypadType.Code} onClick={handleKeypadClick} />
+                      <KeypadButtonComponent code={'7'} type={KeypadType.Code} onClick={handleKeypadClick} />
+                      <KeypadButtonComponent code={'8'} type={KeypadType.Code} onClick={handleKeypadClick} />
+                      <KeypadButtonComponent code={'9'} type={KeypadType.Code} onClick={handleKeypadClick} />
+                      <KeypadButtonComponent type={KeypadType.Delete} onClick={handleKeypadClick} />
+                      <KeypadButtonComponent code={'0'} type={KeypadType.Code} onClick={handleKeypadClick} />
+                      <KeypadButtonComponent type={KeypadType.Submit} onClick={handleKeypadClick} />
+                  </div>
+              </KeypadContainer>
+          </KeypadOverlay>
     );
 };
 

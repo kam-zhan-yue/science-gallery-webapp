@@ -77,21 +77,24 @@ const BackgroundComponent: React.FC<BackgroundComponentProps> = ({ backgroundKey
     return (
         <>
             {backgroundKey === "empty" && <></>}
+            <AnimatePresence>
             {backgroundKey === "black" && (
                 <Black
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0, transition: { duration: 1 } }}
-                    transition={{ duration: 1 }}
+                  key='blackComponent'
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0, transition: { duration: 1 } }}
+                  transition={{ duration: 1 }}
                 />
             )}
+            </AnimatePresence>
             {backgroundKey in backgrounds && (
                 <Overlay>
                     <BackgroundBorder
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0, transition: { duration: 1 } }}
-                        transition={{ duration: 1 }}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0, transition: { duration: 1 } }}
+                      transition={{ duration: 1 }}
                     >
                         <AnimatePresence>
                             {visible && (
