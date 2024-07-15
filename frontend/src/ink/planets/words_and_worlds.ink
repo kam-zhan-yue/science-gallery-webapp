@@ -136,7 +136,26 @@ You look at the library card she’s given you and realise it somehow correctly 
 ->words_occupation
 
 === words_occupation ===
-That’s strange. It also lists your occupation, [mechanic/doctor/artist], and says #Librarian
+That’s strange. It also lists your occupation, and has a sentence that fills you with a wash of baffled achievement. ->read_library_card
+===read_library_card===
+*[Read the library card] -> library_card_names
+===library_card_names===
+{ class == Doctor: 
+-> doctor_name
+}
+===doctor_name===
+Doctor, and says
+{ class == Mechanic:
+-> mechanic_name
+}
+===mechanic_name===
+Mechanic, and says
+{ class == Artist:
+-> artist_name
+}
+===artist_name===
+Artist, and says
+ #Librarian
 { class == Doctor:
 -> library_card_doctor
 }
