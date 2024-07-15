@@ -1,12 +1,26 @@
 ~temp look_book_1 = false
 
 === words ===
-You breathe a sigh of relief as you approach this planet, everything seems normal, and not too dangerous.
-
+You breathe a sigh of relief as you approach this planet, everything seems normal, and not too dangerous. -> ai_words_and_worlds_introduction
+===ai_words_and_worlds_introduction===
+~background = ship_navigation
+AI: "Here we are! People call this place Words and Worlds. It holds collected knowledge, as much as it can find. A real 'Library of Alexandria' type."
+*[What's the Library of Alexandria?] -> library_of_alexandria
+===library_of_alexandria===
+AI: "Oh, it was one of the wonders of a long-forgotten society. It was a library containing half a million histories, inventions, and stories."
+You hear sadness in the AI's mechanical tone.
+AI: "All that, and destroyed by something as ruinously common as fire. Hundreds of thousands of texts, lost. Never to be recovered. The place you're about to visit is an homage to, and direct descendant of, that library."
+The ship's lights brighten.
+AI: "But anyway, you don't want to hear all that, you want to get your feet on solid ground!"
+AI: "Remember, you're looking to get the shard that's on this planet. It's a maze out there, but hopefully your navigational skills will prevent you from getting too lost."
+AI: "However, if you do find yourself wandering, I believe there is a protector of this place you may be willing to help you."
+AI: "Good luck!" 
+->words_and_worlds_intro
+===words_and_worlds_intro===
 As you step out of your ship you are greeted by seemingly endless shelves of books. The stacks reach as far up and back as you can see, and contain books of every size, shape, and colour you can imagine.
 
 You breathe in the smell of old and new books. Do you pick one up?
-+[Pick up a book?]
++[Pick up a book]
     ->words_book
 +[You don't like reading. Leave the book]
     ->words_librarian
@@ -122,7 +136,23 @@ You look at the library card she’s given you and realise it somehow correctly 
 ->words_occupation
 
 === words_occupation ===
-That’s strange. It also lists your occupation, [mechanic/doctor/artist], and says ??? #Librarian
+That’s strange. It also lists your occupation, [mechanic/doctor/artist], and says #Librarian
+{ class == Doctor:
+-> library_card_doctor
+}
+{ class == Mechanic:
+-> library_card_mechanic
+}
+{class == Artist:
+-> library_card_artist
+}
+===library_card_doctor===
+'Just as this library outlived its predecessor, your patients will remember and cherish your work as long as they live.' -> words_after_library_card
+===library_card_mechanic===
+'Just as this library outlived its predecessor, your mechanisms will keep your memory alive.' ->words_after_library_card
+===library_card_artist===
+'Just as this library outlived its predecessor, your creativity will be remembered throughout the ages.' -> words_after_library_card
+===words_after_library_card===
 You shake off the strange feeling of not being able to remember exactly who you are, and place the card and book in your bag. #Librarian
 You are once again drawn to the glowing shard in the distance. This time the librarian notices your interest. #Librarian
 ->words_enquire
@@ -203,8 +233,18 @@ She hands you the shard. #Librarian:neutral
 ~get_bad_shard()
 It feels … wrong. It’s so cold it stings your skin. You tuck it into your bag as you sense it’s time for you to leave.
 You walk down the halls, trying to find your ship, and stumble upon a long timeline. You wonder if you can learn something from this, maybe where to go next.
-You pause, looking at the Science Fiction Timeline, until you know where to go next.
+You pause, looking at the Science Fiction Timeline, until you glean enough information to know where to go next.
 You return to your ship, hopeful that your next journey will be better.
+AI: "Welcome back! Did you get what you came for?"
+*[I did. Kind of. But I don't feel good about it.] ->ai_what_did_you_do
+===ai_what_did_you_do===
+AI: "Why? What did you do?"
+*[I just tried to persuade the librarian to give me the shard! It seems I wasn't- She didn't- It didn't work.] ->corrupted_shard
+===corrupted_shard===
+You take out the corrupted shard. 
+*[I may have tried to distract her with books that I wasn't entirely interested in.] ->ai_words_end
+===ai_words_end===
+AI: "Well. You tried to talk it through, and for that I commend you. The way you went about it may not have been the smartest, but she's right. You didn't leave with nothing, and you got what you deserve. We'll continue on to another place, hopefully you'll be more successful there."
 ->words_end
 
 === words_persuasion_success_ending ===
@@ -219,6 +259,11 @@ You take advantage of the respite of this cosy room. Your eyes close, and when t
 The librarian seems to know things, so you should take her up on the suggestion and look at the Sci-Fi timeline next door.
 Perhaps it contains a clue for where you should go next. 
 Once you have had your fill of the library, and have a sense of where to go next, you return to your ship.
+AI: "Welcome back! Did you get what you came for?"
+*[I did. The librarian showed me true comfort among the books, and I traded her: my knowledge for her shard] -> words_ai_pleased
+===words_ai_pleased===
+AI: "Oh well done you! It sounds like that went, well- the best it could possibly have gone! Are you ready to continue on?"
+*[Yes, let's go.]
 ->words_end
     
 === words_fight ===
@@ -262,13 +307,23 @@ Undeterred, you snatch it up.
 It feels … wrong. It’s so cold it stings your skin. You tuck it into your bag as you sense it’s time for you to leave.
 - You start walking away, when suddenly a fire breaks out. You don’t know when it started, but it is consuming the library.
     +[Try to fight the fire]
-        It's use. The blaze is out of control.
+        You try to extinguish the fire, but your efforts are ineffectual. The blaze is out of control.
         ++[Run to the safety of your ship]
     +[Run to the safety of your ship]
+    - AI: "The library! What happened, why is it burning?!"
+    *[I- fought the librarian. I took the shard and ran, and the place just- set itself alight.]
+    - AI: "We have to go, now. We'll discuss this when you and your poor decision-making skills are safely away from the fire, against my better judgement. I think, after destroying the knowledge of a thousand worlds, the universe might be safer if I left you here to burn."
+    *[Stay silent.] -> wait_for_fire
+    *[It wasn't my fault!  How was I supposed to know the librarian was- inextricably tied to this place?] ->ai_angry_worlds
+    ===ai_angry_worlds===
+    - AI: "I told you that she was a protector of this place! She harboured the knowledge of a thousand civilisations: if she dies, they die with her!"
+    *[I- I didn't know.]
+    - The AI is silent. The first time it seems to be unable to say anything to you.->wait_for_fire
+    ===wait_for_fire===
     - You wait out the fire from space. You don't know where else to go.
     +[Wait]
         After some time, the blaze has died down. All that is left is a burned out metal book.
-        You look at Untitled (Heat Book) until you know where to go next.
+        You look at Untitled (Heat Book) until you know where to go next. You return to the ship. The AI is still silent.
         ->words_end
 
 === words_fight_failure ===
@@ -286,7 +341,17 @@ Maybe it will have a clue for where you could go next.
 You stay looking at Untitled (Heat Book) until you know where to go next.
 ~get(book_2)
 ~background = ship_navigation
-You return to your ship, feeling a mix of emotions.
+You return to your ship, feeling a mix of emotions. Stepping inside, you hear the AI's voice reverberate around the ship.
+AI: "Welcome back! Did you get what you came for?"
+*[I- fought the librarian. I lost, badly. But she gave me the shard anyway?] -> ai_laugh
+===ai_laugh===
+The AI makes a sound that rings like laughter.
+AI: "Well what did you expect? She has protected the information from hundreds of civilisations for aeons, and you thought you could best her? You really do make poor decisions sometimes, you know that?"
+*[Why did she give me the shard? And- it's still pure?] ->second_chance
+===second_chance===
+AI: "It looks like the librarian took pity on you. Gave you a second chance. I'd take it without further questioning, if I were you."
+You feel strange. Guilty, at having tried to fight your way through the sanctity of the library. Embarrassed at how badly you did. Ashamed at how you feel, how the librarian really was the bigger person in your encounter. 
+Inamongst all this, you look at the shard in your hands, pure and clean. A wash of gratefulness pierces through the embarrassment and guilt. You've been given a second chance. Use it wisely.
 ->words_end
 
 === words_end ===
