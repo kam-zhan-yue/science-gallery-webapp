@@ -20,7 +20,8 @@ Another day in paradise.
 You get out of bed and begin your day as you always do - check in your morning card, make your breakfast, and time for your morning walk. 
 As you leave your cosy apartment and close the door behind you, standing in front of you is the glorious city of Shangri La. 
 Another day...
-They call it 'The City of Mirrors' for its towering architecture that reflects daylight across the city. The street in front of you is already bustling with people travelling, walking, talking, enjoying the pleasure of living...
+They call it 'The City of Mirrors' for its towering architecture that reflects daylight across the city. 
+The street in front of you is already bustling with people travelling, walking, talking, enjoying the pleasure of living...
 ... in paradise.
 You take your usual route, and enjoy the smiling passers-by as you wave to them one by one. You have always thought it should be called "The Tranquil City." 
 You look at your hand, and see your code etched in beautiful neon blue. You remember your time in school, and what your teachers used to say. 
