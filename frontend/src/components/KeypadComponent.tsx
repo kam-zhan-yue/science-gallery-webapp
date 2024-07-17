@@ -5,6 +5,7 @@ import KeypadButtonComponent, { KeypadType } from './KeypadButtonComponent';
 import Planet from '../classes/Planet';
 import {motion} from "framer-motion";
 import {TextStyle} from "./styled/Text.tsx";
+import { EventBus } from '../EventBus.tsx';
 
 const KeypadOverlay = styled(motion.div)`
   position: fixed;
@@ -85,9 +86,11 @@ const KeypadComponent: React.FC<KeypadComponentProps> = ({planet, handleCodeInpu
         if (inputValue === planet.code) {
             setShowError(false);
             handleCodeInput(planet.choice);
+            EventBus.emit('correct')
         } else {
             // Incorrect code: trigger shake animation
             setShowError(true);
+            EventBus.emit('incorrect')
         }
     };
 

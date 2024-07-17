@@ -7,6 +7,7 @@ import MenuComponent from "./MenuComponent.tsx";
 import {StyleSheetManager} from "styled-components";
 import isPropValid from "@emotion/is-prop-valid";
 import { AnimatePresence } from 'framer-motion';
+import AudioComponent from './AudioComponent.tsx';
 
 const Main: React.FC = () => {
     const universeRef = useRef<Universe>(null);
@@ -50,6 +51,7 @@ const Main: React.FC = () => {
                     />
                 </>
             }
+            <AudioComponent/>
             </StyleSheetManager>
         </>
     );
