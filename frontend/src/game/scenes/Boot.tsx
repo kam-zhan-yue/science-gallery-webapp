@@ -6,6 +6,9 @@ export class Boot extends Scene {
     }
 
     preload() {
+        this.load.audio('new_nature', 'audio/new_nature.mp3')
+        this.load.audio('words_and_worlds', 'audio/words_and_worlds.mp3')
+
         this.load.bitmapFont('pixelFont', 'fonts/pixelFont.png', 'fonts/pixelFont.fnt');
 
         this.load.spritesheet('earth', 'atlas/earth.png', {

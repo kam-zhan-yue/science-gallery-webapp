@@ -7,7 +7,6 @@ import Planet from "../classes/Planet.ts";
 import KeypadComponent from "./KeypadComponent.tsx";
 import { Universe, UniverseState } from "../game/scenes/Universe.tsx";
 import { EventBus } from "../EventBus.tsx";
-import main from "../assets/audio/main.mp3";
 import { GameContext, GameContextType } from "../contexts/GameContext.tsx";
 import PlanetComponent from "./PlanetComponent.tsx";
 import GuideComponent from "./GuideComponent.tsx";
@@ -65,24 +64,6 @@ const StoryComponent: React.FC<StoryComponentProps> = ({ universeRef }) => {
     GameContext,
   ) as GameContextType;
   const playerComponentRef = useRef<PlayerComponentHandle>(null);
-
-  // Playing audio
-  useEffect(() => {
-    if (!debug) {
-      const audio = new Audio(main);
-      audio.loop = true;
-      audio
-        .play()
-        .then(() => {
-          // Audio started successfully
-          console.log("Audio is playing");
-        })
-        .catch((error) => {
-          // Handle the error
-          console.error("Error playing audio:", error);
-        });
-    }
-  }, []);
 
   const loadStory = async () => {
     setBackground("");
@@ -350,13 +331,13 @@ const StoryComponent: React.FC<StoryComponentProps> = ({ universeRef }) => {
       setStoryState(StoryState.Dialogue);
       story.ChooseChoiceIndex(choiceIndex);
       setShowingChoices(false);
-      // don't advance, wait for planet to change
       advance(story);
     }
   };
 
-  const selectPlanet = (_planet: string) => {
-    universeRef?.init(_planet);
+  const selectPlanet = (planet: string) => {
+    universeRef?.init(planet);
+    console.log(`selected ${planet}`)
     setStoryState(StoryState.Dialogue);
   };
 

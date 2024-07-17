@@ -1,6 +1,8 @@
 import {Scene} from 'phaser';
 import SolarSystem from "../classes/SolarSystem.ts";
 import {EventBus} from "../../EventBus.tsx";
+import AudioPlayer from '../classes/AudioPlayer.ts';
+import { planets } from '../../setup/PlanetData.ts';
 
 export enum UniverseState {
     Navigation = 0,
@@ -14,11 +16,13 @@ export class Universe extends Scene {
     private centreY: number | undefined;
     public state: UniverseState;
     private centre: string;
+    private audioPlayer: AudioPlayer;
 
     constructor() {
         super({ key: 'Universe' });
         this.state = UniverseState.Story;
         this.centre = '';
+        this.audioPlayer = new AudioPlayer(this);
     }
 
     preload() {
@@ -27,6 +31,13 @@ export class Universe extends Scene {
 
     init(centre: string) {
         this.centre = centre;
+        console.log(`${centre} in planets: ${centre in planets}`)
+        if(centre in planets) {
+          const bgm: string | undefined = planets[centre].bgm;
+          if(bgm !== undefined) {
+            this.audioPlayer.playBGM(bgm);
+          }
+        }
     }
 
     updateOrbits(orbits: string[]) {

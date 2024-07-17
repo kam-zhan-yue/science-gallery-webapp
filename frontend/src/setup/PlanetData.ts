@@ -6,6 +6,8 @@ export type PlanetData = {
     orbitalRadius: number,
     orbitalPeriod: number,
     clockwiseOrbit: boolean,
+    // soundtrack
+    bgm?: string,
 }
 
 export const planets: { [key: string]: PlanetData } = {
@@ -29,6 +31,7 @@ export const planets: { [key: string]: PlanetData } = {
         orbitalRadius: 80,
         orbitalPeriod: 30,
         clockwiseOrbit: false,
+        bgm: "words_and_worlds"
     },
     "new_nature": {
         name: "New Nature",
@@ -36,6 +39,7 @@ export const planets: { [key: string]: PlanetData } = {
         orbitalRadius: 40,
         orbitalPeriod: 20,
         clockwiseOrbit: false,
+        bgm: 'new_nature'
     },
     "ways_of_folding_space": {
         name: "Ways of Folding Space",
