@@ -31,11 +31,10 @@ export class Universe extends Scene {
 
     init(centre: string) {
         this.centre = centre;
-        console.log(`${centre} in planets: ${centre in planets}`)
         if(centre in planets) {
           const bgm: string | undefined = planets[centre].bgm;
           if(bgm !== undefined) {
-            this.audioPlayer.playBGM(bgm);
+            this.audioPlayer.playBgm(bgm);
           }
         }
     }
@@ -84,6 +83,7 @@ export class Universe extends Scene {
     }
 
     create() {
+      this.audioPlayer.playBgm('main')
         this.cameras.main.zoom = 2.5;
         this.centreX = this.cameras.main.centerX;
         this.centreY = this.cameras.main.centerY;

@@ -9,7 +9,8 @@ export default class AudioPlayer {
     this.scene = scene;
   }
 
-  public playBGM(bgmKey: string) {
+  public playBgm(bgmKey: string) {
+    console.log(`play ${bgmKey}`)
     // If the requested BGM is already playing, do nothing
     if (this.currentBgmKey === bgmKey && this.bgm && this.bgm.isPlaying) {
       return;
@@ -17,24 +18,42 @@ export default class AudioPlayer {
 
     // Stop the current BGM if it's playing
     if (this.bgm && this.bgm.isPlaying) {
-      this.bgm.stop();
+      this.crossfade(bgmKey);
+    } else {
+      this.fade(bgmKey);
     }
+  }
+  private crossfade(newKey: string) {
+    console.log('crossfade');
+    const oldBgm = this.bgm;
+    if (!oldBgm) return;
 
-    // Add and play the new BGM
-    this.bgm = this.scene.sound.add(bgmKey, { loop: true });
-    this.bgm.play();
-    this.currentBgmKey = bgmKey;
+    // Fade out the old BGM
+    this.scene.tweens.add({
+      targets: oldBgm,
+      volume: 0,
+      duration: 2000,
+      onComplete: () => {
+        console.log('fade in the new key');
+        oldBgm.stop();
+        this.fade(newKey);
+      }
+    });
   }
 
-  public playSFX(sfxKey: string) {
-    const sfx = this.scene.sound.add(sfxKey);
-    sfx.play();
+  private fade(bgm: string) {
+    const newBgm = this.scene.sound.add(bgm, { loop: true, volume: 0 });
+    newBgm.play();
+
+    // Fade in the new BGM
+    this.scene.tweens.add({
+      targets: newBgm,
+      volume: 1,
+      duration: 2000,
+    });
+
+    this.bgm = newBgm;
+    this.currentBgmKey = bgm;
   }
 
-  public stopBGM() {
-    if (this.bgm && this.bgm.isPlaying) {
-      this.bgm.stop();
-    }
-    this.currentBgmKey = null;
-  }
 }
