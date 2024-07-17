@@ -25,7 +25,7 @@ const CharacterContainer = styled(motion.div)`
   position: fixed;
   bottom: 150px;
   height: 60%;
-  
+
   display: flex;
   flex-wrap: nowrap;
 
@@ -114,8 +114,8 @@ const DialogueComponent: React.FC<DialogueComponentProps> = ({ text, tags, next 
     };
 
     const animations = (): string[] => {
-        let anims: string[] = [];
-        for (let tag of tags) {
+        const anims: string[] = [];
+        for (const tag of tags) {
             const animation = getAnimationFromTag(tag);
             if (animation) {
                 anims.push(prefix + animation);

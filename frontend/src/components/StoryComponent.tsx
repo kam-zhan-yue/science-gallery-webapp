@@ -24,6 +24,7 @@ import { achievements } from "../setup/Achievements.ts";
 import { reportComplete, updateDatabase } from "./statistics/firestore.tsx";
 import { AnimatePresence } from "framer-motion";
 import { Blocker } from "./styled/Blocker.tsx";
+import InputComponent from "./InputComponent.tsx";
 
 interface StoryComponentProps {
   universeRef: Universe | null;
@@ -298,6 +299,10 @@ const StoryComponent: React.FC<StoryComponentProps> = ({ universeRef }) => {
     chooseChoice("done");
   }
 
+  function inputSubmitted() {
+    chooseChoice("done");
+  }
+
   const chooseChoice = (choice: string) => {
     if (story && choices) {
       for (let i: number = 0; i < story.currentChoices.length; ++i) {
@@ -396,8 +401,9 @@ const StoryComponent: React.FC<StoryComponentProps> = ({ universeRef }) => {
           )}
 
           {storyState === StoryState.Dialogue &&
-            inkState != "character_selection" &&
-            inkState != "name_select" && (
+            inkState !== "character_selection" &&
+            inkState !== 'input_field' &&
+            inkState !== "name_select" && (
               <>
                 <DialogueComponent
                   text={storyText}
@@ -406,6 +412,12 @@ const StoryComponent: React.FC<StoryComponentProps> = ({ universeRef }) => {
                 ></DialogueComponent>
               </>
             )}
+
+          {inkState === 'input_field' &&
+            <>
+            <InputComponent text={storyText} submit={inputSubmitted} />
+            </>
+          }
 
           {storyState === StoryState.Choosing && (
             <>

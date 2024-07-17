@@ -1,5 +1,12 @@
 ===monstrous_feminine_start===
-~background=ship_navigation
+~background = ship_navigation
+Namahage: Answer my question.
+~game_state = input_field
+Namahage: Why is it so important to you, to know who you are?
+*[done] ->input_next_example
+
+=== input_next_example ===
+~game_state = exploring
 Your ship lands. The glass has fogged up a bit, but you see shades of red all around your ship.
 Ship:You've travelled so far, {name}. I wonder what this planet has in store for you!
 *[speech:I'm keen to go!]->notenoughfuel1
