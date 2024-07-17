@@ -54,8 +54,8 @@ AI: I can't wait to hear what adventures you get up to! Enjoy, {name}!
 }
 {class = artist: -> artist_class_monstrous_feminine
 }
-
-
+Doctor: Balud/Manananggal
+Mechanic: Huma
 ===doctor_class_monstrous_feminine===
 You step outside, into a world bristling with forest. A gleaming city rises from the dense maroon vegetation. #Planet overview
 You disembark into a cold clearing. The foliage seeths as the wind whips around you. #A forest of trees with eyes everywhere - birch trees?
@@ -64,7 +64,8 @@ No... Seen eyes.
 Panic overtakes you and you break into a sprint towards the city, as you try to wipe the memory of those haunting eyes from your mind. 
 Finding the outer wall, you make your way around its perimeter until you come upon an open gate, cold and metallic. 
 As you pass through the gate, a beam scans you. A metal detector. #City streets (inspired by modern-day Japan)
-It chimes twice, satisfied that you carry nothing dangerous, and you are allowed to enter the city. 
+It chimes twice, satisfied that you carry nothing dangerous, and you are allowed to enter the city.
+You walk inside, wondering at the sheer amount of 
 ===mechanic_class_monstrous_feminine===
 You step outside, into a world bristling with forest. A gleaming city rises from the dense maroon vegetation. #Planet overview
 You disembark into a cold clearing. The foliage seeths as the wind whips around you. #A forest of trees with eyes everywhere - birch trees?
@@ -206,9 +207,11 @@ NAMAHAGE: "Tell me, {name}. What do you hope for? What is your greatest desire f
 *[Those who took my memories deserve nothing but the worst. I'm happy to deliver that to them.] -> revenge
 *[I just want to go home.] -> go_home
 ===who_are_you===
-#Input function: typed answer to the question: 
+~game_state = input_field 
 NAMAHAGE: "Why is it so important to you, to know who you are?" 
-#After they answer this question and press Submit, their answer won't change any dialogue options or be displayed anywhere. The dialogue stream continues:
+*[done] -> input_next_example
+===input_next_example===
+~game_state = exploring
 NAMAHAGE: "Some people go their entire lives without truly knowing who they are. I don't believe you will be one of those people."
 NAMAHAGE: "Be prepared, young one, that with knowledge comes power. And with power comes pain. Be careful with your knowledge, should you choose to receive it when the time comes."
 *[I will.] -> namahage_trust
