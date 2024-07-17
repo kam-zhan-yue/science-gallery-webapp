@@ -319,6 +319,7 @@ const StoryComponent: React.FC<StoryComponentProps> = ({ universeRef }) => {
     if (!story) return;
     if (!story.currentChoices) return;
     if (story.currentChoices.length == 0) return;
+    EventBus.emit('button')
     story.ChooseChoiceIndex(choiceIndex);
     setShowingChoices(false);
     advance(story);
