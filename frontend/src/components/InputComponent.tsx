@@ -3,12 +3,7 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 import { TextStyle } from "./styled/Text.tsx";
 import {colours} from "./styled/Constants.tsx";
-import {BackButton, SelectButton} from "./styled/Buttons.tsx";
-
-interface NameSelectProps {
-    select: (name: string) => void;
-    skip: () => void;
-}
+import {SelectButton} from "./styled/Buttons.tsx";
 
 const Blocker = styled.div`
   position: fixed;
@@ -103,9 +98,8 @@ const InputComponent: React.FC<{text: string, submit: ()=>void}> = ({ text, subm
     const invalid = name.length <= 0;
     const disabled = name.length > 100;
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      console.log(`is valid is: ${!disabled}`)
-        setName(e.target.value);
+    const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+      setName(e.target.value);
     };
 
     const handleSubmit = () => {
@@ -125,7 +119,7 @@ const InputComponent: React.FC<{text: string, submit: ()=>void}> = ({ text, subm
                   transition={{ duration: 0.2 }}
               >
               <Title>{text}</Title>
-              <NameInput type='text' value={name} onChange={handleInputChange} isValid={!disabled} />
+              <NameInput value={name} onChange={handleInputChange} isValid={!disabled} />
                 <Submit onClick={handleSubmit} disabled={invalid || disabled}>Submit</Submit>
               </Background>
           </Overlay>
