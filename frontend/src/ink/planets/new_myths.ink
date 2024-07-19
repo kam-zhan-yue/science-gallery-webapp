@@ -95,13 +95,15 @@ Lady: Each silk that hangs above you was made from a connection between two peop
 Lady: It may be two souls finding love, it may be a new friendship, it may be finding your family...
 Lady: ... but every silk is forged by love and learning.
 Lady: Let me show you my journey.
-She waves her hand to the sky.->heartbreakandkindness
+She waves her hand to the sky.
+->heartbreakandkindness
 
 ===canthelplady===
 The lady sniffles. 
 Lady: I understand. I don't know what I can do either.
 Lady: This place teaches us so many things, and sometimes the lesson is to feel our fears and be uncomfortable.
-She invites you to sit with her, and she waves her hand to the sky. ->heartbreakandkindness
+She invites you to sit with her, and she waves her hand to the sky. 
+->heartbreakandkindness
 ===heartbreakandkindness===
 Suddenly, the world around you shifts, a soft, hazy veil covers your surroundings, showing you memories. 
 The lady tells you a story - the story of her memories, her world, and the lessons she has learnt.
@@ -117,6 +119,12 @@ Lady: Oh, could you? I would be so eternally grateful!
 ~game_state = take_item
 *[{artist_item}]
     ~game_state = exploring
+    -> artist_mend_silk_2
+*[other]
+    ~game_state = exploring
+    -> artist_mend_silk_2
+    
+=== artist_mend_silk_2 ===
 You pull out your red thread and needle. The red is a perfect match to the silk.
 You get to work - the lady watches you in your mastery as you seamlessly make the silk whole again.
 When you're finished, the thread glows. And the lady faintly smiles.
@@ -157,12 +165,14 @@ You touch the silk, and the warmth you have felt grows. What felt like a warm hu
 The red glow suddenly starts to lift you off the ground, and takes you high above the red forest. As you are taken up into the sky, you look down to see the light show, and the crowd cheering along. 
 Things feel small from up here. You feel calm. You gently land through the thickest part of the forest.
 As you look around, you notice you're in a cave, the walls made of the dense silk forestry you saw before. 
-You have made it to the heart of the planet - the Fate.->theheart
+You have made it to the heart of the planet - the Fate.
+->theheart
 ==followsilk2==
 You follow the glowing silk - it takes you through a labyrinthine chase - the glow seems to move across the silk as if inviting you to a chase.
 You pick up speed, pushing away wades of silk as you do. It fills you with pure joy, you almost forget that you're running. Eventually, your chase slows down as you near the thickest part of the forest.
 As you look around, you notice you're in a cave, the walls made of the dense silk forestry you saw before. 
-You have made it to the heart of the planet - the Fate.->theheart
+You have made it to the heart of the planet - the Fate.
+->theheart
 ==theheart==
 The Fate: I have been waiting for you, young one.
 You're taken by surprise, and the voice laughs.
@@ -217,11 +227,14 @@ The Fate: We may never rid of grief and heartbreak, but we can learn and grow fr
 The Fate: Thank you for your kind words, young one. But... do you live true to your heart?->riddleintro
 ===foundsilk1===
 You reach into your pocket and produce the glowing silk.
-->foundsilk2
-===foundsilk2===
 ~game_state = take_item
-*[{artist_item}]
+*[{star}]
+    ~game_state = exploring 
+    -> foundsilk2
+*[other]
     ~game_state = exploring
+    -> foundsilk2
+===foundsilk2===
 You present the starry silk.
 The Fate: My love... you have returned her to me!
 The room glows brightly, and the star floats out in front of you. 
