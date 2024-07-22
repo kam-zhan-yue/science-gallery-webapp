@@ -2,26 +2,20 @@ VAR puzzle_success = false
 
 === folding_space ===
 ~background = folding_space_main
-You come upon a world covered entirely in ocean. Its deep blue seas glisten in the light of distant stars, making the planet look like a perfect sphere, made entirely of water.  
+You come upon a world covered entirely in ocean. Its deep blue seas glisten in the light of distant stars, making the planet look like a perfect sphere, made entirely of water.  ->ai_folding_space
 
-Your ship glides around the planet, searching for a place to land. After a few minutes, your ship chimes
+===ai_folding_space===
+AI: We're here! This planet is unsuitable for landing, so you'll have to bring me along for your little adventure this time!
+You glides around the planet, scanning for any signs of interesting phenomena. After a while, your ship chimes.
 
-Ship: Planet unsuitable for landing. Please stay inside the ship for your comfort and safety.
-
-You continue to fly around the planet, scanning for any signs of interesting phenomena. After a while, your ship chimes again
-
-Ship: Unidentified structures detected. Entering proximity to scan.
-
+AI: I've detected an unidentified structure. I'm moving closer to scan it.
 // Twin obelisks in the sea
-
 Your ship flies further down to the planet’s surface, revealing two black stone obelisks protruding from the waves. They have strange markings etched into the hard stone. 
-
 ->explanations
 
 === explanations ===
-
-Your ship buzzes, having finished identifying the strange markings. 
-Ship: The words on these structures are written in an ancient language. The left one loosely translates to ‘Folding Space’, and the right describes ‘Flight’.
+Your console buzzes, having finished identifying the strange markings. 
+AI: The words on these structures are written in an ancient language. The left one loosely translates to ‘Folding Space’, and the right describes ‘Flight’.
 *[speech:What does ‘Folding Space’ signify?]
     ->folding_space_explanation
 *[speech:What does ‘Flight’ signify?]
@@ -29,25 +23,27 @@ Ship: The words on these structures are written in an ancient language. The left
 *   ->continue_folding
 
 === folding_space_explanation ===
-Ship: My records show ‘Folding Space’, chukjibeop in the original, to be a theoretical method of travelling great distances instantaneously. An intriguing concept, highly respected at the time of these monuments’ creation.
+AI: My records show ‘Folding Space’, chukjibeop in the original, to be a theoretical method of travelling great distances instantaneously. An intriguing concept, highly regarded at the time of these monuments’ creation.
     ->explanations
 
 === flight_explanation ===
-Ship: My records show the significance of ‘Flight’, bihaengsul in the original, as a power that, in the time these were crafted, seemed unattainable.
+AI: My records show the significance of ‘Flight’, bihaengsul in the original, as a power that, in the time these were crafted, seemed unattainable.
     ->explanations
     
 === continue_folding ===
 
 As the ship nears the obelisks, the symbols glow a bright green-blue.
 
-Ship: Readings unclear. The structures seem to be emitting a strange energy force from an unknown source. Approaching cautiously.
+AI: I can't quite make out what's going on here. Rather unsettling, really. The structures seem to be emitting a strange energy force, source unknown.
+AI: I'm going to approach cautiously, brace yourself just in case! -> deafening_sound
 
+===deafening_sound===
 Suddenly, a deafening sound emits from the two obelisks.
 
 ChooseChooseChooseChooseChooseChooseChooseChooseChooseChooseChooseChooseChooseChooseChooseChooseChooseChooseChooseChooseChooseChooseChooseChooseChooseChooseChooseChooseChooseChoose
 
-Ship: It would appear the structures intend for you to select one, for an unknown purpose.
-
+AI: It would appear the structures intend for you to select one...
+AI: Honestly, I have no idea what's happening. No harm in doing what they want, I suppose?
 +[Select ‘Folding Space’.]
     ->folding_space_door
 +[Select ‘Flight’.]
@@ -57,7 +53,8 @@ Ship: It would appear the structures intend for you to select one, for an unknow
 
 // Zoom in on left obelisk
 
-The ‘Folding Space’ statue glows brighter, illuminating a small door on the base of the statue. You move closer to the door, revealing a locked panel.
+The ‘Folding Space’ statue glows brighter, illuminating a small door on the base of the statue. You move closer to the door, revealing a panel.
+AI: Hmm, that looks locked. Let's try to find out how to open it. 
 { class == Mechanic:
     +[important:Use toolbox?]
     ->folding_toolbox
@@ -73,6 +70,7 @@ The ‘Folding Space’ statue glows brighter, illuminating a small door on the 
 // Zoom in on right obelisk
 
 The ‘Flight’ statue glows brighter, illuminating a small door on the top of the statue. You move closer to the door, revealing a locked panel.
+AI: Hmm, that looks locked. Let's try and figure out how to open it. 
 { class == Mechanic:
     +[important:Use toolbox?]
     ->flight_toolbox
@@ -94,7 +92,9 @@ Success or failure
 -> flight_open
 
 === folding_open  ===
-After several minutes of careful deliberation, you solve the puzzle and the panel slides to the side, revealing a small hole in the obelisk. You peer inside cautiously. 
+After several minutes of careful deliberation, you solve the puzzle and the panel slides to the side.
+AI: Oh well done, you! What's inside?
+You look closer, and see a small indent behind the now-open panel. You peer inside cautiously. 
 
 //  Panel is open, shard and scroll inside. 
 
@@ -112,8 +112,8 @@ After several minutes of careful deliberation, you solve the puzzle and the pane
 
 === folding_toolbox ===
 You peer at the puzzle, then turn and reach into your toolbox. You pull out a small prybar, and carefully pull it left. Right. Excruciatingly slowly, you extricate the panel from the sides, revealing a space within. 
-
-Inside the hole, you see a glass shard, glowing a deep blue-green, and a carefully rolled-up piece of parchment. You pick them both up.  
+AI: Oh, look how clever you are! What's inside?
+Inside the indent, you see a glass shard, glowing a deep blue-green, and a carefully rolled-up piece of parchment. You pick them both up.  
 ~get_good_shard()
 ~get(scroll)
 
@@ -121,8 +121,9 @@ Inside the hole, you see a glass shard, glowing a deep blue-green, and a careful
 
 === flight_open ===
 
-After several minutes of careful deliberation, you solve the puzzle and the panel slides to the side, revealing a small hole in the obelisk. You peer inside cautiously. 
-
+After several minutes of careful deliberation, you solve the puzzle and the panel slides to the side.
+AI: Oh well done, you! What's inside?
+You look closer, and see a small indent behind the now-open panel. You peer inside cautiously. 
 //  Panel is open, shard and scroll inside. 
 
 {   puzzle_success:
@@ -140,7 +141,7 @@ After several minutes of careful deliberation, you solve the puzzle and the pane
 === flight_toolbox ===
 
 You peer at the puzzle, then turn and reach into your toolbox. You pull out a small prybar, and carefully pull it left. Right. Excruciatingly slowly, you extricate the panel from the sides, revealing a space within. 
-
+AI: Oh, look how clever you are! What's inside?
 Inside the hole, you see a glass shard, glowing a deep blue-green, and a carefully rolled-up piece of parchment. You pick them both up.  
 ~get_good_shard()
 ~get(scroll)
@@ -152,7 +153,7 @@ Inside the hole, you see a glass shard, glowing a deep blue-green, and a careful
 You pocket the shard, and unroll the parchment.  
 “Time and distance are no constraints to the imaginative mind. The inspiration precedes the means. Without creativity, what do any of us have?” 
 You feel these words burn deep in your soul.  
-
+AI: Oh, what beautiful prose!  I'll add it to my records. This is a fascinating find!
 -> folding_space_end
 
 === flight_words ===
@@ -161,7 +162,7 @@ You unfurl the parchment. It has a simple but beautiful illustration of a soarin
 
 “For flight is freedom, and freedom is life. We may never be truly free until we can see our world from the eyes of the birds.” 
 You feel these words burn deep in your soul. 
-
+AI: How inspiring! I'll add this to my records, this is such an exciting discovery!
 -> folding_space_end
 
 === folding_space_end ===
@@ -172,8 +173,8 @@ You retreat back into the cockpit of your ship as you watch both obelisks, with 
 
 // Ocean, ship sprite
 
-Ship: The obelisks have submerged.
-You roll your eyes, irritated partly by the stating of the obvious, partly because you’ll never discover what was in the second obelisk.  
+AI: Hmm. I hope you didn't have plans to open the other one. 
+You roll your eyes, irritated not a small amount because you’ll never discover what was in the second obelisk. 
+AI: Well, we got a shard!  That was a little strange, but I'll do some digging and see what was on this planet originally. We might have just found a brand new discovery!
 You fly away from the planet, wondering what might have been.  
-
 -> navigation
