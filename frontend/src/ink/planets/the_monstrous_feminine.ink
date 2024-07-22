@@ -48,12 +48,12 @@ AI: I can't wait to hear what adventures you get up to! Enjoy, {name}!
 *[important:Venture into THE MONSTROUS FEMININE]->monstrous
 
 === monstrous ===
-{class = doctor: -> doctor_class_monstrous_feminine
-}
-{class = mechanic: -> mechanic_class_monstrous_feminine
-}
-{class = artist: -> artist_class_monstrous_feminine
-}
+{class == doctor: -> doctor_class_monstrous_feminine}
+
+{class == mechanic: -> mechanic_class_monstrous_feminine}
+
+{class == artist: -> artist_class_monstrous_feminine}
+
 Doctor: Balud/Manananggal
 Mechanic: Huma
 ===doctor_class_monstrous_feminine===
@@ -65,7 +65,7 @@ Panic overtakes you and you break into a sprint towards the city, as you try to 
 Finding the outer wall, you make your way around its perimeter until you come upon an open gate, cold and metallic. 
 As you pass through the gate, a beam scans you. A metal detector. #City streets (inspired by modern-day Japan)
 It chimes twice, satisfied that you carry nothing dangerous, and you are allowed to enter the city.
-You walk inside, wondering at the sheer amount of 
+You walk inside, wondering at the sheer number of people. The hustle and bustle of the city astounds you, despite your upbringing in a large city. 
 ===mechanic_class_monstrous_feminine===
 You step outside, into a world bristling with forest. A gleaming city rises from the dense maroon vegetation. #Planet overview
 You disembark into a cold clearing. The foliage seeths as the wind whips around you. #A forest of trees with eyes everywhere - birch trees?
@@ -94,9 +94,10 @@ Guard: "I'm sorry, but we're going to have to take you in for further examinatio
 ===run_from_guards===
 You make to run away from the guards. Jumping over the scanner which is now near your legs, you start sprinting further into the city.
 You look back for a split second as they shout after you. Just long enough to miss the hovering scanner that originally detected the needle. 
-You slam into it face-first. Falling to the ground, you groan as the guards haul you up, and take you with them. #Black
+You slam into it face-first. Falling to the ground, you groan as the guards haul you up, and take you with them. ->enter_barracks
 ===go_with_guards===
-"Alright, I'll go with you." #Black
+"Alright, I'll go with you." -> enter_barracks 
+===enter_barracks===
 You walk with the guards on either side of you, into the building they came from. 
 They open a series of doors and gesture you through, ending up in an industrial-looking room with a singular chair and table. A questioning room. #Questioning room - grey cube room, one table one chair, one security camera.
 The guards gesture you to sit. -> interview
@@ -200,12 +201,15 @@ NAMAHAGE: "I also see that you are... missing something. Something you seek to r
 *[My memories. I need to know who I am.] -> memories
 ===how_could_you_tell===
 NAMAHAGE: "Your ship is a part of the network, just like any other. It has been waiting for you."
-NAMAHAGE: "You will have to choose. One of four. It will not be easy: In every scenario, you lose something. But, if you choose wisely, you will be able to gain another."
+NAMAHAGE: "You will have to choose. One of four. It will not be easy: In every scenario, you lose something. But, if you choose wisely, you will be able to gain another." ->what_do_you_hope_for
+===what_do_you_hope_for===
 NAMAHAGE: "Tell me, {name}. What do you hope for? What is your greatest desire for your own future?"
 *[I need to discover who I am.] -> who_are_you
 *[I want to save the world.] -> save_the_world
 *[Those who took my memories deserve nothing but the worst. I'm happy to deliver that to them.] -> revenge
 *[I just want to go home.] -> go_home
+===memories===
+NAMAHAGE: You will find them, child. If you really and truly want to discover who you are, you will. -> what_do_you_hope_for
 ===who_are_you===
 ~game_state = input_field 
 NAMAHAGE: "Why is it so important to you, to know who you are?" 
@@ -252,12 +256,11 @@ NAMAHAGE: "Before you leave, however, I want to give you something that I believ
 The being extends its arm, and you see a surprisingly human-like hand emerge from the sleeve. 
 It is holding a shard, just like the one you saw reflected so many times. Your stomach drops at its colouration: a deep red. The NAMAHAGE offers it to you. 
 NAMAHAGE: "Remember. Knowledge is power, and power is pain. Do with this what you believe is wisest."
-You take the shard. As soon as it is in your hand, you are in the busy street again. The people bustle around you, you hastily move out of the way as a group of people pass you by.
-
+You take the shard. As soon as it is in your hand, you are in the busy street again. The people bustle around you, you hastily move out of the way as a group of people pass you by. ->leave_namahage
 ===leave_namahage===
 Looking around, you see no sign of the NAMAHAGE. No sign of the data layer that you were in but a moment before. 
 You look at the shard in your pocket, dazed. That was an experience that you're sure you will never have again.
-You leave the city, encountering no resistance as you pass through the gates. Still in a haze, trying to remember everything you were told, you walk back to your ship. ->just_enough
+You leave the city, encountering no resistance as you pass through the gates. Still in a haze, trying to remember everything you were told, you walk back to your ship. ->justenough1
 ->justenough1
 ===justenough1===
 You get back to your ship. It glows a faint red as you enter it.
