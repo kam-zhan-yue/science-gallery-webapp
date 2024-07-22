@@ -50,7 +50,7 @@ AI: I can't wait to hear what adventures you get up to! Enjoy, {name}!
 === monstrous ===
 {class = doctor: -> doctor_class_monstrous_feminine
 }
-{class - mechanic: -> mechanic_class_monstrous_feminine
+{class = mechanic: -> mechanic_class_monstrous_feminine
 }
 {class = artist: -> artist_class_monstrous_feminine
 }
