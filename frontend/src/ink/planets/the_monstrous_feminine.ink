@@ -65,7 +65,8 @@ Panic overtakes you and you break into a sprint towards the city, as you try to 
 Finding the outer wall, you make your way around its perimeter until you come upon an open gate, cold and metallic. 
 As you pass through the gate, a beam scans you. A metal detector. #City streets (inspired by modern-day Japan)
 It chimes twice, satisfied that you carry nothing dangerous, and you are allowed to enter the city.
-You walk inside, wondering at the sheer number of people. The hustle and bustle of the city astounds you, despite your upbringing in a large city. 
+You walk inside, wondering at the sheer number of people. The hustle and bustle of the city astounds you, despite your upbringing in a large city.
+-> justenough1
 ===mechanic_class_monstrous_feminine===
 You step outside, into a world bristling with forest. A gleaming city rises from the dense maroon vegetation. #Planet overview
 You disembark into a cold clearing. The foliage seeths as the wind whips around you. #A forest of trees with eyes everywhere - birch trees?
@@ -75,6 +76,7 @@ Panic overtakes you and you break into a sprint towards the city, as you try to 
 Finding the outer wall, you make your way around its perimeter until you come upon an open gate, cold and metallic.
 As you pass through the gate, a beam scans you. A metal detector. #City streets (inspired by modern-day Japan) 
 It chimes twice, satisfied that you carry nothing dangerous, and you are allowed to enter the city. 
+-> justenough1
 ===artist_class_monstrous_feminine===
 You step outside, into a world bristling with forest. A gleaming city rises from the dense maroon vegetation. #Planet overview
 You disembark into a cold clearing. The foliage seeths as the wind whips around you. #A forest of trees with eyes everywhere - birch trees?
