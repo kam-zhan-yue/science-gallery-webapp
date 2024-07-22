@@ -22,9 +22,9 @@ As you leave your cosy apartment and close the door behind you, standing in fron
 Another day...
 They call it 'The City of Mirrors' for its towering architecture that reflects daylight across the city. The street in front of you is already bustling with people travelling, walking, talking, enjoying the pleasure of living...
 ... in paradise.
-You take your usual route, and enjoy the smiling passers-by as you wave to them one by one. You have always thought it should be called "The Tranquil City." 
+You take your usual route, and enjoy the smiling passers-by as you wave to them one by one. You have always thought it should be called 'The Tranquil City.' 
 You look at your hand, and see your code etched in beautiful neon blue. You remember your time in school, and what your teachers used to say. 
-"Every morning, look at your code and remind yourself of who you are."
+'Every morning, look at your code and remind yourself of who you are.'
 And you sure feel wonderful. Your teachers always tried to teach you how to stay happy. 
 It wasn't hard to anyway...
 Truly another day in...
@@ -114,7 +114,8 @@ A door appears. The shard glows in your hand with pulsating light. You feel it c
 *[Turn around and leave. This is too dangerous.]->sheeplink
 ===sheeplink===
 You walk out of the cave. As you turn around to see the light outside. You see a silhouette. A suited figure. 
-"I'm sorry you had to see this, you aren't allowed here." The suited figure speaks as it echoes through the cave. 
+Suited Figure: I'm sorry you had to see this, you aren't allowed here.
+The figure's voice echoes throughout the cave. 
 You go to sleep. 
 ~ending = sheep
 ->DONE
@@ -129,50 +130,50 @@ As the light turns on, you see a small shuttle ship. It looks a little rusted, a
 ~background = ship_navigation
 ~get(torch)
 The shuttle's interior lights up, and you can hear a little voice emanating from it. Though tinny and mechanical, you detect a hint of excitement in its tone. 
-AI: "Hello. I can't begin to tell you how happy I am that you found me."
+AI: Hello. I can't begin to tell you how happy I am that you found me.
 *[Why?] -> aicontinue
 ===aicontinue===
-AI: "Well because I've been calling you, silly! Haven't you heard me?"
+AI: Well because I've been calling you, silly! Haven't you heard me?
 Half-recalled memories flood your head. 
 A bright light that you assumed was just the sun's reflection, even though it was blinking with suspicious regularity.
 A strange humming, a buzzing noise that you discarded as being a strange animal that you'd never encountered before. 
 *[Oh...] -> aicontinue2
 ===aicontinue2===
-AI: "Look, don't feel too bad. It took the others waaay longer to find me! It doesn't matter now, you're here and that's what's important!"
+AI: Look, don't feel too bad. It took the others waaay longer to find me! It doesn't matter now, you're here and that's what's important!
 *[Why did you want me to come here?] -> shardintroduction
 *[Who are you?] -> shipintroduction
 ===shipintroduction===
-AI: "We've only got time for a short introduction, but I'm the ship's AI. You can call me- Well, really, you can call me whatever you want. I've never had a name before." 
-AI: Anyway, all of these niceties are pointless. What I really wanted to show you is this." -> shardintroduction
+AI: We've only got time for a short introduction, but I'm the ship's AI. You can call me- Well, really, you can call me whatever you want. I've never had a name before.
+AI: Anyway, all of these niceties are pointless. What I really wanted to show you is this. -> shardintroduction
 ===shardintroduction===
 The ship's AI interface changes to display two shards, similar to the one you found in the cave. One of them is glowing a white-blue, the other a dull red. 
-AI: "These are memory shards. They contain a memory; Good, bad, happy, sad, you name it. Do you notice a difference between the two?"
+AI: These are memory shards. They contain a memory; Good, bad, happy, sad, you name it. Do you notice a difference between the two?
 *[...One's red, the other's blue...?] -> shardintroductioncontinued
 ===shardintroductioncontinued===
-AI: "Oh you smart cookie you, well done! Yes, you'll notice they are different colours. 
-AI: "The blue one is a pure shard. It hasn't come in contact with any negativity."
-AI: "The red one is a corrupted shard. It has come into contact with negativity, in some way. I'll explain it a little later."
+AI: Oh you smart cookie you, well done! Yes, you'll notice they are different colours. 
+AI: The blue one is a pure shard. It hasn't come in contact with any negativity.
+AI: The red one is a corrupted shard. It has come into contact with negativity, in some way. I'll explain it a little later.
 *[So... What does this have to do with me?] -> playerpurpose
 ===playerpurpose===
-AI: "Oh, right! I need you to go collect shards. This ship has enough charge for journeys to three planets, you should be able to find a shard on each of them."
+AI: Oh, right! I need you to go collect shards. This ship has enough charge for journeys to three planets, you should be able to find a shard on each of them.
 *[Planets?] -> playerpurposecontinued
 ===playerpurposecontinued===
-AI: "Yes planets, silly! You didn't think you were the only one in this solar system, did you? No no no! You need to go get as many shards as possible. Pure is preferred, but corrupted is... acceptable as well."
+AI: Yes planets, silly! You didn't think you were the only one in this solar system, did you? No no no! You need to go get as many shards as possible. Pure is preferred, but corrupted is... acceptable as well.
 *[How do I get a pure shard?] -> pureshardinstructions
 ===pureshardinstructions===
-AI: "Well, you'll have to find them! Every shard you find should start pure. As long as you don't expose it to negativity, it should stay that way!"
+AI: Well, you'll have to find them! Every shard you find should start pure. As long as you don't expose it to negativity, it should stay that way!
 *[What happens if it turns corrupt?] -> corruptshardpossibility
 ===corruptshardpossibility===
-AI: "I'm sorry, but we're out of time! Quick quick, get ready, we need to leave!"
+AI: I'm sorry, but we're out of time! Quick quick, get ready, we need to leave!
 -> screenlayoutintroduction
 ===screenlayoutintroduction===
 //I'm not sure where the artwork names are, but we could highlight the parts of the menu that the player is being shown here.
-AI: "Oh, I almost forgot! This display can be a little confusing, but this is your menu! I can display your physical statistics, as well as any items you pick up and planets you've visited from here. Feel free to check it if you need!"
-AI: "Now, we need to go!" -> inputcodeinitial
+AI: Oh, I almost forgot! This display can be a little confusing, but this is your menu! I can display your physical statistics, as well as any items you pick up and planets you've visited from here. Feel free to check it if you need!
+AI: Now, we need to go! -> inputcodeinitial
 ===inputcodeinitial===
-"Please input launch code!"
+Navigation: Please input launch code!
 You look at it... puzzled.
-"We don't have much time!"
+AI: We don't have much time!
 ->navigation
 
 NOTE - YOU WILL FIND TWO CODES SOMEWHERE IN SHANGRILA AROUND YOU. LOOK AROUND THE ARTWORK TO FIND THEM.
@@ -180,7 +181,7 @@ NOTE - YOU WILL FIND TWO CODES SOMEWHERE IN SHANGRILA AROUND YOU. LOOK AROUND TH
 *[Player inputs code 2]->liftoff1
 
 ===liftoff1===
-"Ah, great job, traveller! Welcome aboard, and... hold on!"
+AI: Ah, great job! Welcome aboard, and... hold on!
 Your shuttle shakes. It whirrs. It clanks.
 Your shard's light is growing and pulsing.
 The shuttle shakes and starts to move. 
