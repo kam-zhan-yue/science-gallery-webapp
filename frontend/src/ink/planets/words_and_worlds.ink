@@ -197,7 +197,7 @@ You: It is certainly a wonder. Is there any way I might be able to take it with 
 You: I have extensive knowledge of medical practices and procedures.” You see her eyes light with joy at the mention of knowledge #Librarian
 You: I could spend some time talking with you, and add the knowledge I have to this library? #Librarian
 She looks thoughtfully at the shard. #Librarian
-Librarian: Yes, I think that sounds about right. Come over here." #Librarian:happy
+Librarian: Yes, I think that sounds about right. Come over here. #Librarian:happy
 ->words_persuasion_success_ending
 
 === words_convince_normal ===
