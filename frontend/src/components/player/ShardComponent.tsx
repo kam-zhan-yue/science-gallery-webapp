@@ -61,7 +61,7 @@ const ShardTitle = styled.div`
 
 const ShardDescription = styled.div`
   font-size: 18px;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
 `
 
 const DoneButton = styled.div`
@@ -80,6 +80,20 @@ const DoneButton = styled.div`
     cursor: pointer;
   }
 `
+
+const InfoContainer = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  `
 
 const ShardComponent: React.FC<StatsComponentProps> = ({player, onCloseButton}) => {
   const [info, setInfo] = useState<string>('');
@@ -148,8 +162,8 @@ const ShardComponent: React.FC<StatsComponentProps> = ({player, onCloseButton}) 
                 </ShardContainer>
             }
             {info !== '' &&
-              <div className="flex w-full text-center items-center justify-center flex-col">
-                  <img className="w-28 mb-4"
+              <InfoContainer>
+                  <img className="w-28 -mt-10 mb-4"
                     src={getShard(info)}
                     alt='shard-display'
                     />
@@ -174,14 +188,8 @@ const ShardComponent: React.FC<StatsComponentProps> = ({player, onCloseButton}) 
                           </>}
                     </ShardDescription>
                     <DoneButton onClick={()=>{setInfo('')}}>Done</DoneButton>
-              </div>
+              </InfoContainer>
             }
-                {/*{player.secondShard &&*/}
-                {/*    <Shard>{player.secondShard}</Shard>*/}
-                {/*}*/}
-                {/*{player.thirdShard &&*/}
-                {/*    <Shard>{player.thirdShard}</Shard>*/}
-                {/*}*/}
             </SubPopup>
         </>
     );
