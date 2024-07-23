@@ -52,6 +52,14 @@ Welcome, Tester.
     Press one more time to end.
     ~ending = ending_forget
     ->DONE
++[Travel Ending]
+    Press one more time to end.
+    ~ending = ending_travel
+    ->DONE
++[Wake Shangrila Ending]
+    Press one more time to end.
+    ~ending = ending_wake
+    ->DONE
 +[From Beginning]
     ->start
     
