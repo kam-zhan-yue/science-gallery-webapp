@@ -17,7 +17,7 @@ import MirrorComponent from "./MirrorComponent.tsx";
 import NameSelectComponent from "./NameComponent.tsx";
 import styled from "styled-components";
 import { TextStyle } from "./styled/Text.tsx";
-import EndingComponent from "./EndingComponent.tsx";
+import EndingComponent from "./ending/EndingComponent.tsx";
 import { achievements } from "../setup/Achievements.ts";
 import { reportComplete, updateDatabase } from "./statistics/firestore.tsx";
 import { AnimatePresence } from "framer-motion";
