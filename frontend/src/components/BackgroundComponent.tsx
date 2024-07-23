@@ -105,9 +105,9 @@ const BackgroundComponent: React.FC<BackgroundComponentProps> = ({ backgroundKey
                       exit={{ opacity: 0, transition: { duration: 1 } }}
                       transition={{ duration: 1 }}
                     >
-                    <Border>
                         <AnimatePresence>
                             {visible && (
+                              <Border>
                                 <Background
                                     key={currentKey}
                                     src={getBackground()}
@@ -117,9 +117,9 @@ const BackgroundComponent: React.FC<BackgroundComponentProps> = ({ backgroundKey
                                     exit={{ opacity: 0 }}
                                     transition={{ duration: 0.5}}
                                 />
+                                </Border>
                             )}
                         </AnimatePresence>
-                        </Border>
                     </BackgroundContainer>
                 </Overlay>
             )}
