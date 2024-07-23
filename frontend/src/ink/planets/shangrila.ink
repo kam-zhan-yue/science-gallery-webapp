@@ -117,7 +117,7 @@ A door appears. The shard glows in your hand with pulsating light. You feel it c
 You walk out of the cave. As you turn around to see the light outside. You see a silhouette. A suited figure. 
 "I'm sorry you had to see this, you aren't allowed here." The suited figure speaks as it echoes through the cave. 
 You go to sleep. 
-~ending = sheep
+~ending = ending_sheep
 ->DONE
 ===opendoor===
 You open the door and walk through...

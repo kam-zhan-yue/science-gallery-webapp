@@ -167,7 +167,11 @@ const DialogueComponent: React.FC<DialogueComponentProps> = ({ text, tags, next 
                         <Separator />
                     </>
                 }
-                <Typewriter ref={typewriterRef} text={dialogueBody} delay={15} next={next}/>
+                <Typewriter ref={typewriterRef}
+                  text={dialogueBody}
+                  fontSize={22}
+                  delay={15}
+                  next={next}/>
             </DialogueBox>
         </>
     );

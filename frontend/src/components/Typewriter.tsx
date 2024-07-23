@@ -5,6 +5,7 @@ import {TextStyle} from "./styled/Text.tsx";
 interface TypewriterProps {
     text: string;
     delay: number;
+    fontSize: number;
     next?: () => void;
 }
 
@@ -18,8 +19,8 @@ const fadeIn = keyframes`
   }
 `;
 
-const DialogueText = styled(TextStyle)`
-  font-size: 22px;
+const DialogueText = styled(TextStyle) < { size: number }>`
+  font-size: ${props => (props.size)}px;
   font-weight: 400;
   font-style: normal;
   line-height: 1em;
@@ -40,7 +41,7 @@ export interface TypewriterHandle {
     handleClick: () => void;
 }
 
-const Typewriter = forwardRef<TypewriterHandle, TypewriterProps>(({ text, delay, next }, ref) => {
+const Typewriter = forwardRef<TypewriterHandle, TypewriterProps>(({ text, delay, fontSize, next }, ref) => {
     const [currentText, setCurrentText] = useState<string[]>([]);
     const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -93,7 +94,7 @@ const Typewriter = forwardRef<TypewriterHandle, TypewriterProps>(({ text, delay,
 
     return (
         <>
-            {<DialogueText>{fade ? animatedText() : currentText}</DialogueText>}
+            {<DialogueText size={fontSize}>{fade ? animatedText() : currentText}</DialogueText>}
         </>
         );
 });

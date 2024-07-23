@@ -3,10 +3,10 @@ import styled from "styled-components";
 import { TextStyle } from "../styled/Text.tsx";
 import { colours } from "../styled/Constants.tsx";
 import { AnimatePresence, motion } from "framer-motion";
-import CreditsComponent from "../CreditsComponent.tsx";
+import CreditsComponent from "./CreditsComponent.tsx";
 import { InvisibleBlocker } from "../styled/Blocker.tsx";
 import { GameContext, GameContextType, GameState } from "../../contexts/GameContext.tsx";
-import { endings } from "../../setup/Endings.ts";
+import BlurbComponent from "./BlurbComponent.tsx";
 
 interface EndingProps {
   ending: string;
@@ -71,15 +71,6 @@ const EndingComponent: React.FC<EndingProps> = ({ ending, restart }) => {
     setState(GameState.Menu);
   }
 
-  // useEffect(() => {
-  //   if (!scrolling && ending !== 'sheep') {
-  //     const timer = setTimeout(() => {
-  //       setScrolling(true);
-  //     }, 1000);
-  //     return () => clearTimeout(timer);
-  //   }
-  // }, [ending, scrolling]);
-  //
   function endGame(){
     if(ending === 'sheep') {
       setEndState(EndingState.GameOver);
@@ -87,7 +78,7 @@ const EndingComponent: React.FC<EndingProps> = ({ ending, restart }) => {
       setEndState(EndingState.Thanks);
       const timer = setTimeout(() => {
         setEndState(EndingState.Credits);
-      }, 2000);
+      }, 3000);
       return () => clearTimeout(timer);
     }
   }
@@ -109,7 +100,7 @@ const EndingComponent: React.FC<EndingProps> = ({ ending, restart }) => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 1 }}>
-              <div className="absolute" onClick={endGame}>{endings['sheep'].title}</div>
+                <BlurbComponent ending={ending} complete={endGame}/>
             </motion.div>
           }
           {endState === EndingState.GameOver && (

@@ -108,10 +108,10 @@ Band 3
 === debug_endings ===
 Endings
 *[Sheep Ending]
-    ~ending = sheep
+    ~ending = ending_sheep
     ->DONE
-*[Unknown Ending]
-    ~ending = unknown
+*[Forget Ending]
+    ~ending = ending_forget
     ->DONE
 
 

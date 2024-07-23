@@ -46,11 +46,11 @@ Welcome, Tester.
 === test_endings ===
 +[Sheep Ending]
     Press one more time to end.
-    ~ending = sheep
+    ~ending = ending_sheep
     ->DONE
-+[Unknown Ending]
++[Forget Ending]
     Press one more time to end.
-    ~ending = unknown
+    ~ending = ending_forget
     ->DONE
 +[From Beginning]
     ->start
