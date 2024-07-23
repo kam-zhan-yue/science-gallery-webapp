@@ -13,6 +13,7 @@ const backgrounds: { [key: string]: string } = {
     "new_nature_main": "new-nature-main.png",
     "folding_space_main": "folding-main.png",
     "crafting_main": "crafting-main.png",
+    "new_myths_main": "new-myths-overview.png",
     "new_myths_silk": "new-myths-main.png",
     "new_myths_silk_voice": "new-myths-main-light.png",
     "new_light_main": "new-light-main.png",
