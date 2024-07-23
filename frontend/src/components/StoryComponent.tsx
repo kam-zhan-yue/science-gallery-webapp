@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 // @ts-ignore
 import { Choice, InkObject, Story, EvaluateFunction } from "inkjs";
 import DialogueComponent from "./DialogueComponent.tsx";
@@ -12,9 +12,7 @@ import PlanetComponent from "./PlanetComponent.tsx";
 import GuideComponent from "./GuideComponent.tsx";
 import BackgroundComponent from "./BackgroundComponent.tsx";
 import NotificationComponent from "./NotificationComponent.tsx";
-import PlayerComponent, {
-  PlayerComponentHandle,
-} from "./player/PlayerComponent.tsx";
+import PlayerComponent from "./player/PlayerComponent.tsx";
 import MirrorComponent from "./MirrorComponent.tsx";
 import NameSelectComponent from "./NameComponent.tsx";
 import styled from "styled-components";
@@ -64,7 +62,6 @@ const StoryComponent: React.FC<StoryComponentProps> = ({ universeRef }) => {
   const { debug, inkState, setInkState, player, setPlayer } = useContext(
     GameContext,
   ) as GameContextType;
-  const playerComponentRef = useRef<PlayerComponentHandle>(null);
 
   const loadStory = async () => {
     setBackground("");
@@ -150,10 +147,11 @@ const StoryComponent: React.FC<StoryComponentProps> = ({ universeRef }) => {
               if (valueString === "planet_selection") {
                 choosePlanets(story);
               }
-              if (valueString === "take_item") {
-                if (playerComponentRef.current) {
-                  playerComponentRef.current.openInventory();
-                }
+              else if (valueString === "take_item") {
+                EventBus.emit("take_item");
+              }
+              else if (valueString === "tutorial_menu") {
+                EventBus.emit('tutorial_menu');
               }
               break;
             case "planet":
@@ -477,7 +475,6 @@ const StoryComponent: React.FC<StoryComponentProps> = ({ universeRef }) => {
             inkState != "name_select" && (
               <>
                 <PlayerComponent
-                  ref={playerComponentRef}
                   player={player}
                   onUseItem={onUseItem}
                 ></PlayerComponent>

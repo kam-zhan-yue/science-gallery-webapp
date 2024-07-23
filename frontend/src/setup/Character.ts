@@ -42,4 +42,9 @@ export const characters: { [key: string]: Character } = {
             "sad": "npc_librarian_sad.png",
         }
     },
+    "AI": {
+      name: "AI",
+      fullBody: "npc_ai.png",
+      animations: {},
+    },
 };

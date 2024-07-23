@@ -18,7 +18,7 @@ const ItemHeader = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  min-height: 80px;
+  min-height: 90px;
   @media (max-width: 600px) {
     border: 12px solid;
     border-image: url("../../assets/ui/slot-active.png") 15 15 15 15 fill repeat;
@@ -26,7 +26,7 @@ const ItemHeader = styled.div`
 `
 
 const ItemView = styled.div`
-    
+
 `
 
 const ItemImage = styled.img`

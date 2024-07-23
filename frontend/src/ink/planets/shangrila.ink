@@ -166,9 +166,12 @@ AI: "Well, you'll have to find them! Every shard you find should start pure. As 
 ===corruptshardpossibility===
 AI: "I'm sorry, but we're out of time! Quick quick, get ready, we need to leave!"
 -> screenlayoutintroduction
+
 ===screenlayoutintroduction===
 //I'm not sure where the artwork names are, but we could highlight the parts of the menu that the player is being shown here.
+~game_state = tutorial_menu
 AI: "Oh, I almost forgot! This display can be a little confusing, but this is your menu! I can display your physical statistics, as well as any items you pick up and planets you've visited from here. Feel free to check it if you need!"
+~game_state = exploring
 AI: "Now, we need to go!" -> inputcodeinitial
 ===inputcodeinitial===
 "Please input launch code!"

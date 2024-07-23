@@ -1,8 +1,19 @@
-import { useState, useImperativeHandle, forwardRef } from "react";
+import { useState, useEffect } from "react";
 import styled, { css, keyframes } from "styled-components";
 import Player from "../../classes/Player.ts";
 import SubPopupComponent from "../SubPopupComponent.tsx";
 import {characters} from "../../setup/Character.ts";
+import { EventBus } from "../../EventBus.tsx";
+
+// Styled component for the Overlay
+const TutorialBlocker = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+`;
 
 const StatHolder = styled.div`
   position: fixed;
@@ -76,6 +87,14 @@ const ProgressBar = styled.img`
   image-rendering: crisp-edges;
 `
 
+const Arrow = styled.img`
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  width: 64px;
+
+`
+
 // Define the fade-in keyframes
 const fadeIn = keyframes`
   from {
@@ -105,31 +124,38 @@ const Tab = styled.img<{ delay: number }>`
   }
 `;
 
-interface PlayerComponentProps {
-    player: Player;
-    onUseItem: (key: string) => void;
-}
-
 export interface PlayerComponentHandle {
     openInventory: () => void;
 }
 
-const PlayerComponent = forwardRef<PlayerComponentHandle, PlayerComponentProps>(({ player, onUseItem }, ref) => {
-    const [show, setShow] = useState<boolean>(false);
-    const [tab, setTab] = useState<string>("");
+const PlayerComponent: React.FC<{player: Player, onUseItem: (key: string) => void}> = ({
+  player,
+  onUseItem
+})=> {
+  const [show, setShow] = useState<boolean>(false);
+  const [tab, setTab] = useState<string>("");
+  const [blocker, setBlocker] = useState<boolean>(false);
 
-    const openInventory = () => {
-        setShow(true);
-        setTab("inventory");
+  useEffect(() => {
+    EventBus.on("take_item", () => {
+      setShow(true);
+      setTab("inventory");
+    });
+
+    EventBus.on("tutorial_menu", () => {
+      setBlocker(true)
+    });
+
+    return () => {
+      EventBus.off("take_item");
+      EventBus.off("tutorial_menu");
     };
-
-    useImperativeHandle(ref, () => ({
-        openInventory,
-    }));
+  }, []);
 
     const handlePlayerClicked = () => {
         console.log(`player clicked ${player.class}`);
         setShow(!show);
+      setBlocker(false);
         if (!show) {
             setTab("");
         }
@@ -166,7 +192,7 @@ const PlayerComponent = forwardRef<PlayerComponentHandle, PlayerComponentProps>(
     }
 
     const progressUrl = (): string => {
-        let index = Math.min(Math.max(player.progress, 0), 5);
+        const index = Math.min(Math.max(player.progress, 0), 5);
         return prefix + `progress-${index}.png`;
     }
 
@@ -174,6 +200,7 @@ const PlayerComponent = forwardRef<PlayerComponentHandle, PlayerComponentProps>(
         <>
             {player.class !== "" && (
                 <>
+                  {blocker && <TutorialBlocker/>}
                     <StatHolder>
                         <CharacterContainer
                             onClick={handlePlayerClicked}>
@@ -211,7 +238,13 @@ const PlayerComponent = forwardRef<PlayerComponentHandle, PlayerComponentProps>(
                                 src={progressUrl()}
                             />
                         </CharacterContainer>
-
+              {blocker &&
+                <Arrow
+                  key={'arrow'}
+                  id={'arrow'}
+                  alt={'arrow'}
+                  src={"../assets/ui/arrow.png"}
+                  />}
                         {show && (
                             <>
                                 {["inventory", "stats", "shard"].map((tabId, index) => (
@@ -243,6 +276,6 @@ const PlayerComponent = forwardRef<PlayerComponentHandle, PlayerComponentProps>(
             )}
         </>
     );
-});
+};
 
 export default PlayerComponent;

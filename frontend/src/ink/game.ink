@@ -34,6 +34,16 @@ Welcome, Tester.
     ~planet = shangrila
     ~get(torch)
     ->navigation
++[Tutorial]
+    ->character_select ->
+    ~ planet = shangrila
+    ~ get(torch)
+    Open the tutorial.
+    ->screenlayoutintroduction
++[Endings]
+    ->test_endings
+    
+=== test_endings ===
 +[Sheep Ending]
     Press one more time to end.
     ~ending = sheep
@@ -44,3 +54,4 @@ Welcome, Tester.
     ->DONE
 +[From Beginning]
     ->start
+    
