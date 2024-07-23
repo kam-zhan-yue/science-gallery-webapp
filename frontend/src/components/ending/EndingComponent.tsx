@@ -72,7 +72,7 @@ const EndingComponent: React.FC<EndingProps> = ({ ending, restart }) => {
   }
 
   function endGame(){
-    if(ending === 'sheep') {
+    if(ending === 'ending_sheep' || ending === 'ending_death') {
       setEndState(EndingState.GameOver);
     } else {
       setEndState(EndingState.Thanks);

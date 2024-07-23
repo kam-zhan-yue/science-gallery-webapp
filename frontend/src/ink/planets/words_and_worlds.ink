@@ -1,7 +1,8 @@
 ~temp look_book_1 = false
 
 === words ===
-You breathe a sigh of relief as you approach this planet, everything seems normal, and not too dangerous. -> ai_words_and_worlds_introduction
+You breathe a sigh of relief as you approach this planet, everything seems normal, and not too dangerous. 
+-> ai_words_and_worlds_introduction
 ===ai_words_and_worlds_introduction===
 ~background = ship_navigation
 AI: "Here we are! People call this place Words and Worlds. It holds collected knowledge, as much as it can find. A real 'Library of Alexandria' type."

@@ -4,6 +4,10 @@ export type Ending = {
 };
 
 export const endings: { [key: string]: Ending } = {
+  "ending_death": {
+      title: "DEATH",
+      description: "Your health has been completely depleted.",
+    },
   "ending_sheep": {
     title: "SHEEP",
     description: "You are a silly little sheep",

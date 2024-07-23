@@ -7,7 +7,7 @@ import Planet from "../classes/Planet.ts";
 import KeypadComponent from "./KeypadComponent.tsx";
 import { Universe, UniverseState } from "../game/scenes/Universe.tsx";
 import { EventBus } from "../EventBus.tsx";
-import { GameContext, GameContextType } from "../contexts/GameContext.tsx";
+import { GameContext, GameContextType, GameState } from "../contexts/GameContext.tsx";
 import PlanetComponent from "./PlanetComponent.tsx";
 import GuideComponent from "./GuideComponent.tsx";
 import BackgroundComponent from "./BackgroundComponent.tsx";
@@ -23,6 +23,7 @@ import { reportComplete, updateDatabase } from "./statistics/firestore.tsx";
 import { AnimatePresence } from "framer-motion";
 import { Blocker } from "./styled/Blocker.tsx";
 import InputComponent from "./InputComponent.tsx";
+import Player from "../classes/Player.ts";
 
 interface StoryComponentProps {
   universeRef: Universe | null;
@@ -59,13 +60,14 @@ const StoryComponent: React.FC<StoryComponentProps> = ({ universeRef }) => {
   const [planet, setPlanet] = useState<Planet>(new Planet());
   const [storyState, setStoryState] = useState<StoryState>(StoryState.Dialogue);
   const [ending, setEnding] = useState<string>("unknown");
-  const { debug, inkState, setInkState, player, setPlayer } = useContext(
+  const { debug, inkState, setInkState, setState, player, setPlayer } = useContext(
     GameContext,
   ) as GameContextType;
 
   const loadStory = async () => {
     setBackground("");
     setStoryState(StoryState.Dialogue);
+    setPlayer(new Player());
     const response: Response = await fetch("/ink/game.json");
     const storyContent: string = await response.text();
     const inkStory = new Story(storyContent);
@@ -115,7 +117,11 @@ const StoryComponent: React.FC<StoryComponentProps> = ({ universeRef }) => {
               setPlayer(player);
               break;
             case "health":
+            console.log(`setting health to ${valueString}`)
               player.health = Number(valueString);
+              if(player.health <= 0){
+                end();
+              }
               setPlayer(player);
               break;
             case "inventory":
@@ -385,7 +391,8 @@ const StoryComponent: React.FC<StoryComponentProps> = ({ universeRef }) => {
   };
 
   function restart() {
-    loadStory();
+    universeRef?.end();
+    setState(GameState.Menu);
   }
 
   return (

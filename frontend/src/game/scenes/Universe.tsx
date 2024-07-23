@@ -39,6 +39,10 @@ export class Universe extends Scene {
         }
     }
 
+    end() {
+      this.solarSystem?.fadeOut(1000);
+    }
+
     updateOrbits(orbits: string[]) {
         if(this.centreX && this.centreY) {
             if(this.solarSystem && this.started) {

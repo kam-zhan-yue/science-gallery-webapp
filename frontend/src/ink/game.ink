@@ -60,6 +60,10 @@ Welcome, Tester.
     Press one more time to end.
     ~ending = ending_wake
     ->DONE
++[Die]
+    Press one more time to die.
+    ~take_damage(8)
+    ->DONE
 +[From Beginning]
     ->start
     

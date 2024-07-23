@@ -111,7 +111,7 @@ const fadeIn = keyframes`
 const Tab = styled.img<{ delay: number }>`
   width: 80px;
   height: 80px;
-  margin-top: 6px;
+  margin-bottom: 10px;
   image-rendering: pixelated;
   image-rendering: -moz-crisp-edges;
   image-rendering: crisp-edges;
@@ -196,6 +196,11 @@ const PlayerComponent: React.FC<{player: Player, onUseItem: (key: string) => voi
         return prefix + `progress-${index}.png`;
     }
 
+    function getHealth(): integer {
+      console.log(`health is ${player.health}`)
+      return Math.min(Math.max(player.health, 1), 8);
+    }
+
     return (
         <>
             {player.class !== "" && (
@@ -225,12 +230,14 @@ const PlayerComponent: React.FC<{player: Player, onUseItem: (key: string) => voi
                                 src={profileUrl()}
                             />
 
-                            <HealthBar
-                                key={"health"}
-                                id={"health"}
-                                alt={"health"}
-                                src={"../assets/ui/health-8.png"}
-                            />
+                            {player.health >= 0 &&
+                              <HealthBar
+                                  key={"health"}
+                                  id={"health"}
+                                  alt={"health"}
+                                  src={`../assets/ui/health-${getHealth()}.png`}
+                              />
+                            }
                             <ProgressBar
                                 key={"progress"}
                                 id={"progress"}
