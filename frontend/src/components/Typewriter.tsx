@@ -7,6 +7,7 @@ interface TypewriterProps {
     delay: number;
     fontSize: number;
     next?: () => void;
+    completed?: () => void;
 }
 
 // Define the keyframes for the fade-in animation
@@ -41,7 +42,7 @@ export interface TypewriterHandle {
     handleClick: () => void;
 }
 
-const Typewriter = forwardRef<TypewriterHandle, TypewriterProps>(({ text, delay, fontSize, next }, ref) => {
+const Typewriter = forwardRef<TypewriterHandle, TypewriterProps>(({ text, delay, fontSize, next, completed }, ref) => {
     const [currentText, setCurrentText] = useState<string[]>([]);
     const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -68,8 +69,10 @@ const Typewriter = forwardRef<TypewriterHandle, TypewriterProps>(({ text, delay,
                 setCurrentIndex((prevIndex) => prevIndex + 1);
             }, delay);
             return () => clearTimeout(timeout);
+        } else if(completed) {
+          completed();
         }
-    }, [currentIndex, text, delay]);
+    }, [currentIndex, text, delay, completed]);
 
     const handleClick = () => {
         if (currentText.length !== text.length) {
