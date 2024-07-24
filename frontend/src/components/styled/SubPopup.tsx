@@ -74,7 +74,7 @@ const CloseButton = styled.div`
   width: 50px;
   height: 50px;
   background: rgb(200,50,50,0.9);
-  
+
   border-radius: 10px;
   justify-content: center;
   font-size: 32px;
@@ -93,12 +93,12 @@ const BackgroundContent = styled(motion.div)`
 `
 
 interface OverlayProps {
-    title: string;
-    children: React.ReactNode;
-    onCloseButton: () => void;
+  title: string;
+  children: React.ReactNode;
+  onCloseButton: () => void;
 }
 
-const SubPopup: React.FC<OverlayProps> = ({ title, children,  onCloseButton}) => {
+const SubPopup: React.FC<OverlayProps> = ({ title, children, onCloseButton}) => {
     return (
         <>
             <Blocker onClick={onCloseButton}/>

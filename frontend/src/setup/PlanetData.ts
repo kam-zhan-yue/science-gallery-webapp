@@ -6,6 +6,8 @@ export type PlanetData = {
     orbitalRadius: number,
     orbitalPeriod: number,
     clockwiseOrbit: boolean,
+    // soundtrack
+    bgm?: string,
 }
 
 export const planets: { [key: string]: PlanetData } = {
@@ -29,6 +31,7 @@ export const planets: { [key: string]: PlanetData } = {
         orbitalRadius: 80,
         orbitalPeriod: 30,
         clockwiseOrbit: false,
+        bgm: "band_1"
     },
     "new_nature": {
         name: "New Nature",
@@ -36,6 +39,7 @@ export const planets: { [key: string]: PlanetData } = {
         orbitalRadius: 40,
         orbitalPeriod: 20,
         clockwiseOrbit: false,
+        bgm: 'band_1'
     },
     "ways_of_folding_space": {
         name: "Ways of Folding Space",
@@ -43,6 +47,7 @@ export const planets: { [key: string]: PlanetData } = {
         orbitalRadius: 40,
         orbitalPeriod: 20,
         clockwiseOrbit: false,
+        bgm: 'band_2'
     },
     "crafting_new_worlds": {
         name: "Crafting New Worlds",
@@ -50,6 +55,7 @@ export const planets: { [key: string]: PlanetData } = {
         orbitalRadius: 80,
         orbitalPeriod: 30,
         clockwiseOrbit: false,
+        bgm: 'band_2'
     },
     "the_monstrous_feminine": {
         name: "The Monstrous Feminine",
@@ -57,6 +63,7 @@ export const planets: { [key: string]: PlanetData } = {
         orbitalRadius: 40,
         orbitalPeriod: 20,
         clockwiseOrbit: false,
+        bgm: 'band_3'
     },
     "new_myths": {
         name: "New Myths",
@@ -64,6 +71,7 @@ export const planets: { [key: string]: PlanetData } = {
         orbitalRadius: 80,
         orbitalPeriod: 30,
         clockwiseOrbit: false,
+        bgm: 'band_3'
     },
     "in_a_new_light": {
         name: "In A New Light",

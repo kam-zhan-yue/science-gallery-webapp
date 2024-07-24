@@ -43,8 +43,8 @@ export default class SolarSystem {
 
     updateOrbits(orbits: string[]) {
         this.orbits = {};
-        for(let orbit of orbits) {
-            if(planets.hasOwnProperty(orbit)) {
+        for(const orbit of orbits) {
+            if(orbit in planets) {
                 this.orbits[orbit] = new Planet(orbit, planets[orbit], this.physics, this.graphics, this.x, this.y);
             }
         }
@@ -65,20 +65,16 @@ export default class SolarSystem {
         this.drawNames = draw;
         this.sun.setNameVisible(draw);
         for(const key in this.orbits) {
-            if(this.orbits.hasOwnProperty(key)) {
-                this.orbits[key].setNameVisible(draw);
-            }
+            this.orbits[key].setNameVisible(draw);
         }
     }
 
     setInteractive(planets: string[]) {
         for(const key in this.orbits) {
-            if(this.orbits.hasOwnProperty(key)) {
-                this.orbits[key].setInteractive(false);
-            }
+          this.orbits[key].setInteractive(false);
         }
         for(const planet of planets) {
-            if(this.orbits.hasOwnProperty(planet)) {
+            if(planet in this.orbits) {
                 this.orbits[planet].setInteractive(true);
             }
         }
@@ -86,16 +82,12 @@ export default class SolarSystem {
 
     public simulate(time: number, delta: number) {
         for(const key in this.orbits) {
-            if(this.orbits.hasOwnProperty(key)) {
-                this.orbits[key].simulate(time, delta);
-            }
+          this.orbits[key].simulate(time, delta);
         }
         if(this.drawNames) {
             this.sun.drawName();
             for(const key in this.orbits) {
-                if(this.orbits.hasOwnProperty(key)) {
-                    this.orbits[key].drawName();
-                }
+                this.orbits[key].drawName();
             }
         }
     }
@@ -103,27 +95,21 @@ export default class SolarSystem {
     public setVisible(visible: boolean) {
         this.sun.setVisible(visible);
         for(const key in this.orbits) {
-            if(this.orbits.hasOwnProperty(key)) {
-                this.orbits[key].setVisible(visible);
-            }
+            this.orbits[key].setVisible(visible);
         }
     }
 
     public fadeIn(duration: number) {
         this.sun.fadeIn(duration);
         for(const key in this.orbits) {
-            if(this.orbits.hasOwnProperty(key)) {
-                this.orbits[key].fadeIn(duration);
-            }
+            this.orbits[key].fadeIn(duration);
         }
     }
 
     public fadeOut(duration: number) {
         this.sun.fadeOut(duration);
         for(const key in this.orbits) {
-            if(this.orbits.hasOwnProperty(key)) {
-                this.orbits[key].fadeOut(duration);
-            }
+            this.orbits[key].fadeOut(duration);
         }
     }
 }

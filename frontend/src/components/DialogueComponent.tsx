@@ -25,7 +25,7 @@ const CharacterContainer = styled(motion.div)`
   position: fixed;
   bottom: 150px;
   height: 60%;
-  
+
   display: flex;
   flex-wrap: nowrap;
 
@@ -84,7 +84,7 @@ const DialogueComponent: React.FC<DialogueComponentProps> = ({ text, tags, next 
 
     const prefix: string = '../assets/characters/';
     const getCharacterFullBody = (): string => {
-        if(characterName === "Ship" || characterName == "You") {
+        if(characterName == "You") {
             return prefix + characters[player.class].fullBody;
         } else if(characterName in characters) {
             return prefix + characters[characterName].fullBody;
@@ -114,8 +114,8 @@ const DialogueComponent: React.FC<DialogueComponentProps> = ({ text, tags, next 
     };
 
     const animations = (): string[] => {
-        let anims: string[] = [];
-        for (let tag of tags) {
+        const anims: string[] = [];
+        for (const tag of tags) {
             const animation = getAnimationFromTag(tag);
             if (animation) {
                 anims.push(prefix + animation);
@@ -167,7 +167,11 @@ const DialogueComponent: React.FC<DialogueComponentProps> = ({ text, tags, next 
                         <Separator />
                     </>
                 }
-                <Typewriter ref={typewriterRef} text={dialogueBody} delay={15} next={next}/>
+                <Typewriter ref={typewriterRef}
+                  text={dialogueBody}
+                  fontSize={22}
+                  delay={15}
+                  next={next}/>
             </DialogueBox>
         </>
     );

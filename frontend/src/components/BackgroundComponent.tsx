@@ -13,6 +13,7 @@ const backgrounds: { [key: string]: string } = {
     "new_nature_main": "new-nature-main.png",
     "folding_space_main": "folding-main.png",
     "crafting_main": "crafting-main.png",
+    "new_myths_main": "new-myths-overview.png",
     "new_myths_silk": "new-myths-main.png",
     "new_myths_silk_voice": "new-myths-main-light.png",
     "new_light_main": "new-light-main.png",
@@ -31,13 +32,17 @@ const Black = styled(Overlay)`
   background: rgb(0, 0, 0, 0.8);
 `;
 
-const BackgroundBorder = styled(motion.div)`
+const BackgroundContainer = styled(motion.div)`
   position: fixed;
   bottom: 200px;
   top: 120px;
   left: 20px;
   right: 20px;
-  border: 5px white solid;
+  // border: 5px white solid;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 5px;
 
   @media (max-width: 600px) {
@@ -45,16 +50,20 @@ const BackgroundBorder = styled(motion.div)`
   }
 `;
 
+const Border = styled(motion.div)`
+  border: 5px white solid;
+  height: 100%;
+`
+
 const Background = styled(motion.img)`
   image-rendering: pixelated;
   image-rendering: -moz-crisp-edges;
   image-rendering: crisp-edges;
   top: 0;
   left: 0;
-  width: 100%;
   height: 100%;
-  object-fit: cover; // Ensures the image covers the area while maintaining aspect ratio
-  z-index: -1;      // Make sure it is behind the overlay
+  object-fit: cover;
+  z-index: -1;
 `;
 
 const BackgroundComponent: React.FC<BackgroundComponentProps> = ({ backgroundKey }) => {
@@ -90,7 +99,7 @@ const BackgroundComponent: React.FC<BackgroundComponentProps> = ({ backgroundKey
             </AnimatePresence>
             {backgroundKey in backgrounds && (
                 <Overlay>
-                    <BackgroundBorder
+                    <BackgroundContainer
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0, transition: { duration: 1 } }}
@@ -98,6 +107,7 @@ const BackgroundComponent: React.FC<BackgroundComponentProps> = ({ backgroundKey
                     >
                         <AnimatePresence>
                             {visible && (
+                              <Border>
                                 <Background
                                     key={currentKey}
                                     src={getBackground()}
@@ -107,9 +117,10 @@ const BackgroundComponent: React.FC<BackgroundComponentProps> = ({ backgroundKey
                                     exit={{ opacity: 0 }}
                                     transition={{ duration: 0.5}}
                                 />
+                                </Border>
                             )}
                         </AnimatePresence>
-                    </BackgroundBorder>
+                    </BackgroundContainer>
                 </Overlay>
             )}
         </>

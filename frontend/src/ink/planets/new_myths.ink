@@ -46,7 +46,7 @@ The ship's door opens, and you feel a force pushing you out.
 Ship: I cannot wait to hear what adventures you get up to! Enjoy, {name}!
 *[Venture into NEW MYTHS]->newmythsbegin
 === newmythsbegin ==
-~background=new_myths_silk
+~background = new_myths_main
 You land in what seems to be a planet covered in crimson - as you look around you, all you can see is a dense forest. 
 However, this forest isn't made of the trees or plants you've seen before. As your eyes adjust to the ruby haze, you notice that you are surrounded by streams of fabric. 
 The fabric is beautifully woven, with shimmering embroidery that glints faintly as if glowing. 
@@ -95,19 +95,22 @@ Lady: Each silk that hangs above you was made from a connection between two peop
 Lady: It may be two souls finding love, it may be a new friendship, it may be finding your family...
 Lady: ... but every silk is forged by love and learning.
 Lady: Let me show you my journey.
-She waves her hand to the sky.
-Suddenly, the world around you shifts, a soft, hazy veil covers your surroundings, showing you memories. 
-The lady tells you a story - the story of her memories, her world, and the lessons she has learnt.
-You are invited to sit and view 'Refabricated Realities'. You may stay here at any time.
-*[speech:Where do I go from here?]->followthesilk
+She waves her hand to the sky.->heartbreakandkindness
+
 ===canthelplady===
 The lady sniffles. 
 Lady: I understand. I don't know what I can do either.
 Lady: This place teaches us so many things, and sometimes the lesson is to feel our fears and be uncomfortable.
-She invites you to sit with her, and she waves her hand to the sky. 
+She invites you to sit with her, and she waves her hand to the sky. ->heartbreakandkindness
+===heartbreakandkindness===
 Suddenly, the world around you shifts, a soft, hazy veil covers your surroundings, showing you memories. 
 The lady tells you a story - the story of her memories, her world, and the lessons she has learnt.
-You are invited to sit and view 'Refabricated Realities'. You may stay here at any time.
+Lady: This planet holds heartbreak, and it holds kindness. My mother used to say that the planet was once purely love...
+Lady:... but someone tried to steal something from the planet spirit, and that's when heartbreak was created.
+Lady: Come, I want to show you something. 
+She takes you by the hand and walks you through canopies with lights that dance around them.
+As your eyes adjust, you see images form... refabricated realities interwoven into the silk, moving across and telling many stories. 
+YOU ARE INVITED TO VIEW "REFABRICATED REALITIES". YOU MAY STAY HERE AS LONG AS YOU WISH.
 *[speech:Where do I go from here?] ->followthesilk
 ===artistmendsilk===
 Lady: Oh, could you? I would be so eternally grateful!
@@ -133,7 +136,7 @@ As you look around, you notice you're in a cave, the walls made of the dense sil
 You have made it to the heart of the planet - the Fate. ->theheart
 ==followthesilk==
 Lady: The best adivce I can give you is to follow the silk - they all really do lead to the heart.
-Lady: We call it The Fate - they will challenge you, but they are kind.
+Lady: We call her The Fate - she will challenge you, but she is kind.
 Lady: I wish you luck, friend. It was lovely to meet you. 
 *[important:I'm ready - Red Silk of Fate]->traveltotheheart
 ===wandertosilk===
@@ -142,14 +145,14 @@ A faint glow of different coloured lights start to appear in your vision.
 You head toward it, and you find what seems to be a light show, in all its brilliance and spectacle. 
 The lights start to condense, and wash over one of the lines of silk, lighting up the pathway for a brief moment, and travels along the path into the distance. 
 You feel called to the silk.
-*[I touch the silk.]->touchthesilk
-*[I follow the silk.]->followsilk2
+*[Touch the silk.]->touchthesilk
+*[Follow the silk.]->followsilk2
 ==traveltotheheart==
 You leave the light show, and make your way through the forest of silk. As you walk through, one particular silk catches your eye - it glows brighter than the others, and you can hear a soft hum, as if it calls to you. 
-*[I touch the silk.]->touchthesilk
-*[I follow the silk.]->followsilk2
+*[Touch the silk.]->touchthesilk
+*[Follow the silk.]->followsilk2
 ==touchthesilk==
-~background = new_myths_silk_voice
+~background = new_myths_silk
 You touch the silk, and the warmth you have felt grows. What felt like a warm hug becomes a thick blanket of visible red glow, which covers you. 
 The red glow suddenly starts to lift you off the ground, and takes you high above the red forest. As you are taken up into the sky, you look down to see the light show, and the crowd cheering along. 
 Things feel small from up here. You feel calm. You gently land through the thickest part of the forest.
@@ -161,38 +164,77 @@ You pick up speed, pushing away wades of silk as you do. It fills you with pure 
 As you look around, you notice you're in a cave, the walls made of the dense silk forestry you saw before. 
 You have made it to the heart of the planet - the Fate.->theheart
 ==theheart==
+~background = new_myths_silk_voice
 The Fate: I have been waiting for you, young one.
 You're taken by surprise, and the voice laughs.
-The Fate: I know what you seek. You have been collecting many pieces of a past memory, and I wish to help you.
-The Fate: But I will not give this away for free - The last time I let someone through, they stole my beloved star from me.
-You wonder what this might mean.
+The Fate: I know what you seek. You have been collecting many pieces of a past memory, and I wish to help you. Memories, stories, histories... 
+*[speech:Yes, may I have some of those memories?]->notsoeasy
+*[speech:I want to know about the memories of this place.]->silkplanetstory
+===silkplanetstory===
+The Fate: I see you are a curious one! Look around you.
+The voice beckons you towards the draping silk around you. 
+As you near the silk, you see images flash before you:
+A thick, red fog, slowly morphing, compacting. You see fibres begin to weave themselves among each other. 
+And you witness the birth of a small square piece of silk. It glows from its centre, embellishing the silk with a golden star. 
+Suddenly, the image changes - now the dense forest of silk you're familiar with. 
+You see a person, teary-eyed, running towards the starry silk, and with force, ripping it from the fabric of the planet. 
+You hear a cry, and you feel the planet rumble under your feet ever so slightly. 
+*[speech:Hang on... what was that star?]->starsilk
+*[speech:Hang on... who was that person?]->thief
+===notsoeasy===
+The Fate: You may, but only if you answer three questions that prove you are kind of heart. 
+The Fate: I grieve enough for my lost star... I cannot endure more. 
 *[speech:Hang on... what is the star?]->starsilk
 *[speech:I'm sorry to hear.] ->riddleintro
 ===starsilk===
-The Fate: If you must ask, I had made this star, preserved on the first silk brought to this planet. It heals the broken hearts of those who seek it.
-The Fate: A lady came here to seek help... she knew its power, and stole it from me.
+The Fate: The birth of this planet. The first act of love. 
+The Fate: I began with nothing, and so I took a part of my being to create her. 
+The Fate: She was what brought this planet to life. These silks around you are here because of her. 
+The Fate: In an act of heartbreak, my star was stolen from me.
+*[speech:Who would do this?] ->thief
+===thief===
+The Fate: A person with a heart filled up with grief. The first person to have their silk broken. They came to me for help.
+The Fate: I could not help them, but they did not know how to resolve their sadness. 
+The Fate: They took my star and wished for their love back. 
+The Fate: In turn, my star cursed the planet for their actions, and since then I have not seen her. 
+The Fate: I see more heartbreak, I see it in myself. Neither of them deserved this. So now I try to do what I can to help my citizens.
 { class == Artist:
     ->artistfateoption
 -else: 
     ->notartistfateoption
 }
 ===artistfateoption===
-*[inventory:I think I have it!] ->foundsilk1
-*[speech:I see.] ->riddleintro
+*[inventory:I have found her!] ->foundsilk1
 ===notartistfateoption===
-*[speech:I see.] ->riddleintro
+*[speech:Have you tried to look for your star?] ->lookforstar
+*[speech:Sometimes all we can do is move forward.]->movingforward
+===lookforstar===
+The Fate: I am bound to this space, I have had to accept that I may never find her again. 
+The Fate: I don't know if I may ever lose my grief. 
+*[speech:Sometimes all we can do is move forward.]->movingforward
+===movingforward===
+The Fate: You are wise, young one. And you are right. I may never see her again, but I do what I can. 
+The Fate: We may never rid of grief and heartbreak, but we can learn and grow from it. 
+The Fate: Thank you for your kind words, young one. But... do you live true to your heart?->riddleintro
 ===foundsilk1===
 You reach into your pocket and produce the glowing silk.
 ->foundsilk2
 ===foundsilk2===
-You present the starry silk to The Fate.
-The Fate: Where... where did you find it?
-The silk in your hand floats in the air.
-The Fate: Thank you for returning it to me... you will be greatly rewarded!
+~game_state = take_item
+*[{artist_item}]
+    ~game_state = exploring
+You present the starry silk.
+The Fate: My love... you have returned her to me!
+The room glows brightly, and the star floats out in front of you. 
+You cannot quite understand how, but you feel The Fate embrace the star and you. 
+The Fate: My darling... you're home! You're home at last! 
+The Fate: My dear {name}, you have shown that you are kind of heart. You have done this planet a great service. 
+The Fate: There is so much to be done, but now I feel whole again! Thank you!
+The Fate: I am a spirit of my word - hold out your hand. 
 ~get_good_shard()
 ->fate_whereto
 ===riddleintro===
-The Fate: No matter. Look around you, there is so much to learn from my woven make. 
+The Fate: Look around you, there is so much to learn from my woven make. 
 The Fate: Answer these three riddles correctly, and you will find what you seek.
 *[speech:I understand.]->riddle1
 *[speech:What happens if I don't?]->ifyoudont
@@ -206,16 +248,16 @@ The Fate: The myth that surrounds me inspired my make, the marriage of thread, w
 *[String.]->riddle2
 *[Rope.]->riddle1wrong
 ==riddle1wrong==
-The Fate: That is incorrect. However, I do not wish to leave you with nothing. Hold out your hands.
+The Fate: That is incorrect. However, I do not wish to leave you with nothing. Hold out your hand.
 ~get_bad_shard()
 ->fate_whereto
 
 ==riddle2==
 Well done. Your next riddle...
-The Fate: What floats in space created this art, A work that’s a woven, a work of the heart. Who am I?
-*[Sputniko.]->riddle3
-*[Apollon.]->riddle1wrong
-*[Suomi.]->riddle1wrong
+The Fate: A flower blooming in the night, upon my silk brings glowing light. What am I?
+*[Cereus.]->riddle3
+*[Rose.]->riddle1wrong
+*[Heliotrope.]->riddle1wrong
 ==riddle3==
 Correct. Your final riddle...
 The Fate: It binds us together, through thick and through thin, this silk has this ruby glow woven in. What am I?
@@ -224,9 +266,9 @@ The Fate: It binds us together, through thick and through thin, this silk has th
 *[Fate.]->riddle1wrong
 ->fate_whereto
 ==riddlescorrect==
-The Fate: You have answered all of my riddles correctly. I keep my word - hold out your hand.
-You hold out your hands, and with a soft, red glow, a shard appears in your hand. 
-~get_bad_shard()
+The Fate: You have answered all of my riddles correctly. You have proven you are kind of heart.
+The Fate: I keep my word - hold out your hand.
+~get_good_shard()
 ->fate_whereto
 ===fate_whereto===
 The Fate: I still sense some trepidation in you, young traveller.
@@ -246,7 +288,6 @@ The Fate: As long as you remember to trust in yourself, and trust in what you lo
 The Fate: With your shard... protect it at all costs. There is too much destruction, too much greed.
 The Fate: Use them wisely, please.
 *[speech:I understand. Thank you.]->finalreturntoship
-
 ===finalreturntoship===
 With all its warmth and welcome, you close your eyes to enjoy it.
 When you open your eyes, you are back in your ship.

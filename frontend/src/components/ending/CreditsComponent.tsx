@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import styled from "styled-components";
-import { TextStyle } from "./styled/Text";
-import { credits } from "../setup/Credits";
+import { TextStyle } from "../styled/Text";
+import { credits } from "../../setup/Credits";
 
 const ScrollContainer = styled(motion.div)`
   position: absolute;

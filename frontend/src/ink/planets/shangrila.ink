@@ -20,7 +20,8 @@ Another day in paradise.
 You get out of bed and begin your day as you always do - check in your morning card, make your breakfast, and time for your morning walk. 
 As you leave your cosy apartment and close the door behind you, standing in front of you is the glorious city of Shangri La. 
 Another day...
-They call it 'The City of Mirrors' for its towering architecture that reflects daylight across the city. The street in front of you is already bustling with people travelling, walking, talking, enjoying the pleasure of living...
+They call it 'The City of Mirrors' for its towering architecture that reflects daylight across the city. 
+The street in front of you is already bustling with people travelling, walking, talking, enjoying the pleasure of living...
 ... in paradise.
 You take your usual route, and enjoy the smiling passers-by as you wave to them one by one. You have always thought it should be called 'The Tranquil City.' 
 You look at your hand, and see your code etched in beautiful neon blue. You remember your time in school, and what your teachers used to say. 
@@ -117,7 +118,7 @@ You walk out of the cave. As you turn around to see the light outside. You see a
 Suited Figure: I'm sorry you had to see this, you aren't allowed here.
 The figure's voice echoes throughout the cave. 
 You go to sleep. 
-~ending = sheep
+~ending = ending_sheep
 ->DONE
 ===opendoor===
 You open the door and walk through...
@@ -166,10 +167,18 @@ AI: Well, you'll have to find them! Every shard you find should start pure. As l
 ===corruptshardpossibility===
 AI: I'm sorry, but we're out of time! Quick quick, get ready, we need to leave!
 -> screenlayoutintroduction
+
 ===screenlayoutintroduction===
 //I'm not sure where the artwork names are, but we could highlight the parts of the menu that the player is being shown here.
+<<<<<<< HEAD
 AI: Oh, I almost forgot! This display can be a little confusing, but this is your menu! I can display your physical statistics, as well as any items you pick up and planets you've visited from here. Feel free to check it if you need!
 AI: Now, we need to go! -> inputcodeinitial
+------
+~game_state = tutorial_menu
+AI: "Oh, I almost forgot! This display can be a little confusing, but this is your menu! I can display your physical statistics, as well as any items you pick up and planets you've visited from here. Feel free to check it if you need!"
+~game_state = exploring
+AI: "Now, we need to go!" -> inputcodeinitial
+>>>>>>> 894044a7cca9ffdd184d544d995052eddb9b2d2c
 ===inputcodeinitial===
 Navigation: Please input launch code!
 You look at it... puzzled.

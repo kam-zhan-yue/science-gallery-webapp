@@ -7,7 +7,7 @@ class Player {
     private _finesse: number = 0;
     private _intuition: number = 0;
     private _persuasion: number = 0;
-    private _health: number = 0;
+    private _health: number = 8;
     private _inventory: string[] = [];
     private _inkProgress: number = 0;
     private _gameProgress: number = 0;

@@ -16,6 +16,17 @@
     }
   ],
   "hosting": {
+    "headers": [
+      {
+        "source": "**/*.@(mp3|ogg|wav)",
+        "headers": [
+          {
+            "key": "Content-Type",
+            "value": "audio/mpeg"
+          }
+        ]
+      }
+    ],
     "public": "dist",
     "ignore": [
       "firebase.json",

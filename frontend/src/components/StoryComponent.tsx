@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 // @ts-ignore
 import { Choice, InkObject, Story, EvaluateFunction } from "inkjs";
 import DialogueComponent from "./DialogueComponent.tsx";
@@ -7,24 +7,23 @@ import Planet from "../classes/Planet.ts";
 import KeypadComponent from "./KeypadComponent.tsx";
 import { Universe, UniverseState } from "../game/scenes/Universe.tsx";
 import { EventBus } from "../EventBus.tsx";
-import main from "../assets/audio/main.mp3";
-import { GameContext, GameContextType } from "../contexts/GameContext.tsx";
+import { GameContext, GameContextType, GameState } from "../contexts/GameContext.tsx";
 import PlanetComponent from "./PlanetComponent.tsx";
 import GuideComponent from "./GuideComponent.tsx";
 import BackgroundComponent from "./BackgroundComponent.tsx";
 import NotificationComponent from "./NotificationComponent.tsx";
-import PlayerComponent, {
-  PlayerComponentHandle,
-} from "./player/PlayerComponent.tsx";
+import PlayerComponent from "./player/PlayerComponent.tsx";
 import MirrorComponent from "./MirrorComponent.tsx";
 import NameSelectComponent from "./NameComponent.tsx";
 import styled from "styled-components";
 import { TextStyle } from "./styled/Text.tsx";
-import EndingComponent from "./EndingComponent.tsx";
+import EndingComponent from "./ending/EndingComponent.tsx";
 import { achievements } from "../setup/Achievements.ts";
 import { reportComplete, updateDatabase } from "./statistics/firestore.tsx";
 import { AnimatePresence } from "framer-motion";
 import { Blocker } from "./styled/Blocker.tsx";
+import InputComponent from "./InputComponent.tsx";
+import Player from "../classes/Player.ts";
 
 interface StoryComponentProps {
   universeRef: Universe | null;
@@ -61,32 +60,14 @@ const StoryComponent: React.FC<StoryComponentProps> = ({ universeRef }) => {
   const [planet, setPlanet] = useState<Planet>(new Planet());
   const [storyState, setStoryState] = useState<StoryState>(StoryState.Dialogue);
   const [ending, setEnding] = useState<string>("unknown");
-  const { debug, inkState, setInkState, player, setPlayer } = useContext(
+  const { debug, inkState, setInkState, setState, player, setPlayer } = useContext(
     GameContext,
   ) as GameContextType;
-  const playerComponentRef = useRef<PlayerComponentHandle>(null);
-
-  // Playing audio
-  useEffect(() => {
-    if (!debug) {
-      const audio = new Audio(main);
-      audio.loop = true;
-      audio
-        .play()
-        .then(() => {
-          // Audio started successfully
-          console.log("Audio is playing");
-        })
-        .catch((error) => {
-          // Handle the error
-          console.error("Error playing audio:", error);
-        });
-    }
-  }, []);
 
   const loadStory = async () => {
     setBackground("");
     setStoryState(StoryState.Dialogue);
+    setPlayer(new Player());
     const response: Response = await fetch("/ink/game.json");
     const storyContent: string = await response.text();
     const inkStory = new Story(storyContent);
@@ -136,7 +117,11 @@ const StoryComponent: React.FC<StoryComponentProps> = ({ universeRef }) => {
               setPlayer(player);
               break;
             case "health":
+            console.log(`setting health to ${valueString}`)
               player.health = Number(valueString);
+              if(player.health <= 0){
+                end();
+              }
               setPlayer(player);
               break;
             case "inventory":
@@ -168,10 +153,11 @@ const StoryComponent: React.FC<StoryComponentProps> = ({ universeRef }) => {
               if (valueString === "planet_selection") {
                 choosePlanets(story);
               }
-              if (valueString === "take_item") {
-                if (playerComponentRef.current) {
-                  playerComponentRef.current.openInventory();
-                }
+              else if (valueString === "take_item") {
+                EventBus.emit("take_item");
+              }
+              else if (valueString === "tutorial_menu") {
+                EventBus.emit('tutorial_menu');
               }
               break;
             case "planet":
@@ -317,6 +303,10 @@ const StoryComponent: React.FC<StoryComponentProps> = ({ universeRef }) => {
     chooseChoice("done");
   }
 
+  function inputSubmitted() {
+    chooseChoice("done");
+  }
+
   const chooseChoice = (choice: string) => {
     if (story && choices) {
       for (let i: number = 0; i < story.currentChoices.length; ++i) {
@@ -338,6 +328,7 @@ const StoryComponent: React.FC<StoryComponentProps> = ({ universeRef }) => {
     if (!story) return;
     if (!story.currentChoices) return;
     if (story.currentChoices.length == 0) return;
+    EventBus.emit('button')
     story.ChooseChoiceIndex(choiceIndex);
     setShowingChoices(false);
     advance(story);
@@ -350,13 +341,13 @@ const StoryComponent: React.FC<StoryComponentProps> = ({ universeRef }) => {
       setStoryState(StoryState.Dialogue);
       story.ChooseChoiceIndex(choiceIndex);
       setShowingChoices(false);
-      // don't advance, wait for planet to change
       advance(story);
     }
   };
 
-  const selectPlanet = (_planet: string) => {
-    universeRef?.init(_planet);
+  const selectPlanet = (planet: string) => {
+    universeRef?.init(planet);
+    console.log(`selected ${planet}`)
     setStoryState(StoryState.Dialogue);
   };
 
@@ -400,7 +391,8 @@ const StoryComponent: React.FC<StoryComponentProps> = ({ universeRef }) => {
   };
 
   function restart() {
-    loadStory();
+    universeRef?.end();
+    setState(GameState.Menu);
   }
 
   return (
@@ -414,8 +406,9 @@ const StoryComponent: React.FC<StoryComponentProps> = ({ universeRef }) => {
           )}
 
           {storyState === StoryState.Dialogue &&
-            inkState != "character_selection" &&
-            inkState != "name_select" && (
+            inkState !== "character_selection" &&
+            inkState !== 'input_field' &&
+            inkState !== "name_select" && (
               <>
                 <DialogueComponent
                   text={storyText}
@@ -424,6 +417,12 @@ const StoryComponent: React.FC<StoryComponentProps> = ({ universeRef }) => {
                 ></DialogueComponent>
               </>
             )}
+
+          {inkState === 'input_field' &&
+            <>
+            <InputComponent text={storyText} submit={inputSubmitted} />
+            </>
+          }
 
           {storyState === StoryState.Choosing && (
             <>
@@ -483,7 +482,6 @@ const StoryComponent: React.FC<StoryComponentProps> = ({ universeRef }) => {
             inkState != "name_select" && (
               <>
                 <PlayerComponent
-                  ref={playerComponentRef}
                   player={player}
                   onUseItem={onUseItem}
                 ></PlayerComponent>
