@@ -10,18 +10,6 @@ import GameCompleteComponent from "./GameCompleteComponent";
 import CompleteNotificationComponent from "./CompleteNotificationComponent";
 import { EventBus } from "../../EventBus";
 
-const Overlay = styled.div`
-  position: fixed;
-  top: 20px;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-
-  -webkit-transition: all 0.2s;
-  transition: all 0.2s;
-`;
-
 const StatisticsHeader = styled(TextStyle)`
   font-size: 28px;
   text-align: center;
