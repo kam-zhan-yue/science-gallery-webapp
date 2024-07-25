@@ -9,13 +9,13 @@ const Background = styled(motion.div)`
   display: flex;
   flex-direction: column;
 
+  width: 80%;
   aspect-ratio: 1;
   text-align: center;
 
   image-rendering: pixelated;
   image-rendering: -moz-crisp-edges;
   image-rendering: crisp-edges;
-  background: black;
 
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
@@ -24,8 +24,7 @@ const Background = styled(motion.div)`
 const Character = styled(motion.img)``;
 
 const Title = styled(TextStyle)`
-  background: white;
-  font-size: 24px;
+  font-size: 48px;
   font-weight: 800;
   line-height: 1em;
   margin-top: 5px;

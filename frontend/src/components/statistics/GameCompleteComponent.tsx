@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { PlayerData } from "./PlayerData";
 import CharacterDisplayComponent from "./CharacterDisplayComponent";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 const Border = styled(motion.div)`
   image-rendering: pixelated;
@@ -9,71 +10,50 @@ const Border = styled(motion.div)`
   image-rendering: crisp-edges;
 
   height: 100%;
-  width: 100%;
-  border: 20px solid;
-  border-image: url("../assets/ui/corners.png") 6 6 6 6 fill repeat;
+  width: 99%;
+  border: 10px solid;
+  border-image: url("../assets/ui/dialogue-box.png") 6 6 6 6 fill repeat;
   `
 const CompleteContainer = styled(motion.div)`
-  -webkit-mask-image: linear-gradient(
-    to right,
-    rgba(0, 0, 0, 0),
-    rgba(0, 0, 0, 0) 10%,
-    rgba(0, 0, 0, 1) 40%,
-    rgba(0, 0, 0, 1) 60%,
-    rgba(0, 0, 0, 0) 90%,
-    rgba(0, 0, 0, 0)
-  );
-  margin-left: -15%;
-  width: 130%;
-  height: 100%;
-`;
-
-const ScrollingContainer = styled(motion.div)`
-  will-change: transform;
-  height: 100%;
+  // -webkit-mask-image: linear-gradient(
+  //   to right,
+  //   rgba(0, 0, 0, 0),
+  //   rgba(0, 0, 0, 0) 10%,
+  //   rgba(0, 0, 0, 1) 40%,
+  //   rgba(0, 0, 0, 1) 60%,
+  //   rgba(0, 0, 0, 0) 90%,
+  //   rgba(0, 0, 0, 0)
+  // );
 `;
 
 const GameCompleteComponent: React.FC<{ completes: PlayerData[] }> = ({
   completes,
 }) => {
-  const max: number = 7;
-  const threshold: number = 5;
-  const numShowing = completes.length > max ? max : completes.length;
-  const scrollTime: number = 5 * numShowing;
-  const shouldScroll = numShowing > threshold;
+  const [index, setIndex] = useState<integer>(0);
+  const delay: number = 100;
 
-  const scroll = {
-    animate: {
-      x: shouldScroll ? [`0`, `-${numShowing*100}%`] : "0%",
-      transition: {
-        ease: "linear",
-        duration: scrollTime,
-        repeat: Infinity,
-      },
-    },
-  };
+  useEffect(() => {
+    if(index < completes.length-1) {
+      const timeout = setTimeout(() => {
+        setIndex((prev) => prev + 1);
+      }, delay);
+      return () => clearTimeout(timeout);
+    } else {
+      const timeout = setTimeout(() => {
+        setIndex(0);
+        }, delay);
+        return () => clearTimeout(timeout);
+    }
+  }, [index, completes]);
 
   return (
     <>
     <Border>
-        <CompleteContainer className='flex justify-left items-center'>
-          {completes.length > 0 && (
-            <>
-              <ScrollingContainer
-                className="flex w-full gap-2"
-                variants={scroll}
-                animate="animate"
-              >
-                {completes.map((player, index) => (
-                  <CharacterDisplayComponent
-                    key={player.id + "-" + index}
-                    player={player}
-                  />
-                ))}
-              </ScrollingContainer>
-            </>
-          )}{" "}
-        </CompleteContainer>
+      <CompleteContainer className='flex w-full h-full justify-center items-center'>
+        <CharacterDisplayComponent
+            player={completes[index]}
+          />
+      </CompleteContainer>
     </Border>
     </>
   );
