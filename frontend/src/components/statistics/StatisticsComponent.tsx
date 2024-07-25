@@ -130,7 +130,7 @@ const StatisticsComponent: React.FC = () => {
           <StatisticsHeader>Game Statistics</StatisticsHeader>
         </div>
           <div className="flex justify w-full h-full flex-row justify-items-center items-center text-center">
-          <div className='w-1/3 h-full bg-gray-500'>
+          <div className='w-1/3 h-full'>
             <GameCompleteComponent completes={completes} />
           </div>
           <div className='w-2/3 h-full'>

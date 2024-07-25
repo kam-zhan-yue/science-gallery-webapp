@@ -6,19 +6,16 @@ import { TextStyle } from "../styled/Text.tsx";
 import { PlayerData } from "./PlayerData.ts";
 
 const Background = styled(motion.div)`
-  width: 20vw;
-  min-width: 100%;
-  // width: 100%;
-  // height: 100%;
-  aspect-ratio: 1/1;
-  background: black;
+  display: flex;
+  flex-direction: column;
+
+  aspect-ratio: 1;
   text-align: center;
 
   image-rendering: pixelated;
   image-rendering: -moz-crisp-edges;
   image-rendering: crisp-edges;
-  // border: 10px solid;
-  // border-image: url("../assets/ui/dialogue-box.png") 15 15 15 15 fill repeat;
+  background: black;
 
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
@@ -27,6 +24,7 @@ const Background = styled(motion.div)`
 const Character = styled(motion.img)``;
 
 const Title = styled(TextStyle)`
+  background: white;
   font-size: 24px;
   font-weight: 800;
   line-height: 1em;

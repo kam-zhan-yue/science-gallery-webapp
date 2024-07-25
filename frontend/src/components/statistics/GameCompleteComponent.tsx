@@ -3,6 +3,16 @@ import { PlayerData } from "./PlayerData";
 import CharacterDisplayComponent from "./CharacterDisplayComponent";
 import { motion } from "framer-motion";
 
+const Border = styled(motion.div)`
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+
+  height: 100%;
+  width: 100%;
+  border: 20px solid;
+  border-image: url("../assets/ui/corners.png") 6 6 6 6 fill repeat;
+  `
 const CompleteContainer = styled(motion.div)`
   -webkit-mask-image: linear-gradient(
     to right,
@@ -13,7 +23,8 @@ const CompleteContainer = styled(motion.div)`
     rgba(0, 0, 0, 0) 90%,
     rgba(0, 0, 0, 0)
   );
-  width: 100%;
+  margin-left: -15%;
+  width: 130%;
   height: 100%;
 `;
 
@@ -33,7 +44,7 @@ const GameCompleteComponent: React.FC<{ completes: PlayerData[] }> = ({
 
   const scroll = {
     animate: {
-      x: shouldScroll ? [`${numShowing*100}%`, `-${numShowing*100}%`] : "0%",
+      x: shouldScroll ? [`0`, `-${numShowing*100}%`] : "0%",
       transition: {
         ease: "linear",
         duration: scrollTime,
@@ -44,24 +55,26 @@ const GameCompleteComponent: React.FC<{ completes: PlayerData[] }> = ({
 
   return (
     <>
-      <CompleteContainer>
-        {completes.length > 0 && (
-          <>
-            <ScrollingContainer
-              className="flex w-full overflow-visible"
-              variants={scroll}
-              animate="animate"
-            >
-              {completes.map((player, index) => (
-                <CharacterDisplayComponent
-                  key={player.id + "-" + index}
-                  player={player}
-                />
-              ))}
-            </ScrollingContainer>
-          </>
-        )}{" "}
-      </CompleteContainer>
+    <Border>
+        <CompleteContainer className='flex justify-left items-center'>
+          {completes.length > 0 && (
+            <>
+              <ScrollingContainer
+                className="flex w-full gap-2"
+                variants={scroll}
+                animate="animate"
+              >
+                {completes.map((player, index) => (
+                  <CharacterDisplayComponent
+                    key={player.id + "-" + index}
+                    player={player}
+                  />
+                ))}
+              </ScrollingContainer>
+            </>
+          )}{" "}
+        </CompleteContainer>
+    </Border>
     </>
   );
 };
