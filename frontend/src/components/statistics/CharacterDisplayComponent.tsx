@@ -6,12 +6,12 @@ import { TextStyle } from "../styled/Text.tsx";
 import { PlayerData } from "./PlayerData.ts";
 
 const Background = styled(motion.div)`
-  display: flex;
-  flex-direction: column;
+  position: fixed;
+  transform: translate(-50%, -50%);
 
-  width: 80%;
   aspect-ratio: 1;
   text-align: center;
+  width: 30%;
 
   image-rendering: pixelated;
   image-rendering: -moz-crisp-edges;
@@ -46,7 +46,7 @@ const CharacterDisplayComponent: React.FC<{ player: PlayerData }> = ({
     }
     return "";
   };
-  return (
+return (
     <>
       <Background>
         <Character src={getImage()} />
