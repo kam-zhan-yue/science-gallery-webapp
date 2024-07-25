@@ -2,7 +2,6 @@ import {Scene} from 'phaser';
 import SolarSystem from "../classes/SolarSystem.ts";
 import {EventBus} from "../../EventBus.tsx";
 import AudioPlayer from '../classes/AudioPlayer.ts';
-import { planets } from '../../setup/PlanetData.ts';
 
 export enum UniverseState {
     Navigation = 0,
