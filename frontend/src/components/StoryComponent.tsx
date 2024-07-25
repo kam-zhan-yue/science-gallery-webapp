@@ -53,6 +53,7 @@ const DebugPanel = styled(TextStyle)`
 const StoryComponent: React.FC<StoryComponentProps> = ({ universeRef }) => {
   const [story, setStory] = useState<Story | null>(null);
   const [background, setBackground] = useState<string>("");
+  const [requiredItem, setRequiredItem] = useState<string>("none");
   const [storyText, setStoryText] = useState<string>("");
   const [tags, setTags] = useState<string[]>([]);
   const [showingChoices, setShowingChoices] = useState<boolean>(false);
@@ -127,6 +128,10 @@ const StoryComponent: React.FC<StoryComponentProps> = ({ universeRef }) => {
             case "inventory":
               player.inventory = valueString;
               setPlayer(player);
+              break;
+            case "required_item":
+            console.log('setting required item to  ', valueString)
+              setRequiredItem(valueString);
               break;
             case "progress":
               player.inkProgress = Number(valueString);
@@ -284,7 +289,7 @@ const StoryComponent: React.FC<StoryComponentProps> = ({ universeRef }) => {
         setShowingChoices(true);
       } else {
         // If there are no choices, and we are not showing the choices, then the story has ended
-        // console.log('story has ended!');
+        console.log('story has ended!');
         end();
       }
     }
@@ -492,6 +497,7 @@ const StoryComponent: React.FC<StoryComponentProps> = ({ universeRef }) => {
               <>
                 <PlayerComponent
                   player={player}
+                  requiredItem={requiredItem}
                   onUseItem={onUseItem}
                 ></PlayerComponent>
               </>

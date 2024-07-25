@@ -128,8 +128,9 @@ export interface PlayerComponentHandle {
     openInventory: () => void;
 }
 
-const PlayerComponent: React.FC<{player: Player, onUseItem: (key: string) => void}> = ({
+const PlayerComponent: React.FC<{player: Player, requiredItem: string, onUseItem: (key: string) => void}> = ({
   player,
+  requiredItem,
   onUseItem
 })=> {
   const [show, setShow] = useState<boolean>(false);
@@ -153,8 +154,7 @@ const PlayerComponent: React.FC<{player: Player, onUseItem: (key: string) => voi
   }, []);
 
     const handlePlayerClicked = () => {
-        console.log(`player clicked ${player.class}`);
-        setShow(!show);
+      setShow(!show);
       setBlocker(false);
         if (!show) {
             setTab("");
@@ -271,6 +271,7 @@ const PlayerComponent: React.FC<{player: Player, onUseItem: (key: string) => voi
                                     <SubPopupComponent
                                         tab={tab}
                                         player={player}
+                                        requiredItem={requiredItem}
                                         onUseItem={onUseItem}
                                         onCloseButton={closeTab}
                                     />

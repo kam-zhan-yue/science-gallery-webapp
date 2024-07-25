@@ -1,5 +1,6 @@
 === debug_mechanics === 
 Debug Mechanics.
+->character_select ->
 +[Animations]
     ->test_animations
 +[Buttons]
@@ -39,7 +40,8 @@ Testing responsive buttons.
 === test_required_item ===
 Get a torch.
 ~get(torch)
-{- inventory ? torch:
+Give me the torch.
+{inventory ? (torch):
     ->test_take_torch
 -else:
     ->debug_mechanics
@@ -49,7 +51,7 @@ Get a torch.
 Give me your torch.
 ~ required_item = torch
 ~ game_state = take_item
-*[{torch}]
++[{torch}]
     ~ required_item = none
     ~game_state = exploring
     ->debug_mechanics
@@ -57,12 +59,12 @@ Give me your torch.
 === test_take_item ===
 Testing open inventory.
 ~ game_state = take_item
-    *[{artist_item}]
+    +[{artist_item}]
         ~take_ink(artist_item)
         A fine specimen. You are now King of Camelot.
         ~ game_state = exploring
         ->debug_mechanics
-    *[{doctor_item},{mechanic_item}]
+    +[{doctor_item},{mechanic_item}]
         // take is called outside of the story
         Hmmm. I will find some use of this.
         ~ game_state = exploring

@@ -7,22 +7,22 @@ VAR intuition = 0
 
 === character_select ===
 ~ game_state = character_selection
-*[Artist]
++[Artist]
     ~ set_class(Artist)
     ~game_state = exploring
     ->->
-*[Doctor]
++[Doctor]
     ~ set_class(Doctor)
     ~game_state = exploring
     ->->
-*[Mechanic]
++[Mechanic]
     ~ set_class(Mechanic)
     ~game_state = exploring
     ->->
     
 === name_input ===
 ~ game_state = name_select
-*[done]
++[done]
     ~game_state = exploring
     ->->
     
