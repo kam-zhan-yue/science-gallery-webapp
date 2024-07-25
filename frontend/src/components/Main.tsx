@@ -49,9 +49,9 @@ const Main: React.FC = () => {
                     <StoryComponent
                         universeRef={universeRef.current}
                     />
+                    <AudioComponent/>
                 </>
             }
-            <AudioComponent/>
             </StyleSheetManager>
         </>
     );

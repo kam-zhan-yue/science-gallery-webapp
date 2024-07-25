@@ -197,7 +197,6 @@ const PlayerComponent: React.FC<{player: Player, onUseItem: (key: string) => voi
     }
 
     function getHealth(): integer {
-      console.log(`health is ${player.health}`)
       return Math.min(Math.max(player.health, 1), 8);
     }
 

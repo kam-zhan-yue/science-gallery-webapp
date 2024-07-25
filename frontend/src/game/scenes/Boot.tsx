@@ -6,9 +6,6 @@ export class Boot extends Scene {
     }
 
     preload() {
-      this.load.audio('button', 'audio/button.ogg')
-      this.load.audio('correct', 'audio/correct.ogg')
-      this.load.audio('incorrect', 'audio/incorrect.ogg')
       this.load.audio('main', 'audio/main.mp3')
       this.load.audio('band_1', 'audio/band_1.mp3')
       this.load.audio('band_2', 'audio/band_2.mp3')
