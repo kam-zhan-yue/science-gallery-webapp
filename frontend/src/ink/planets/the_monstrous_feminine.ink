@@ -1,4 +1,3 @@
-#When the hashtag changes, the background changes. 
 ===monstrous_feminine_start===
 ~background=ship_navigation
 ~ music = bgm_band_3

@@ -42,6 +42,8 @@ Welcome, Tester.
     ->screenlayoutintroduction
 +[Endings]
     ->test_endings
++[Mechanics]
+    ->debug_mechanics
     
 === test_endings ===
 +[Sheep Ending]

@@ -1,6 +1,6 @@
 VAR name = "Hero"
 VAR health = 0
-LIST class = (none), Artist, Doctor, Mechanic
+LIST class = Artist, Doctor, Mechanic
 VAR finesse = 0
 VAR persuasion = 0
 VAR intuition = 0
