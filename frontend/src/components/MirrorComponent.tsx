@@ -80,11 +80,11 @@ const MirrorComponent: React.FC<MirrorProps> = ({selectCharacter}) => {
                         bbottom={200} rotate={63}
                         background={debug ? "purple" : colors.secondary}/>
                     <Triangle
-                        top={50} left={-155}
-                        bleft={120} bright={120}
+                        top={50} left={-180}
+                        bleft={130} bright={130}
                         bbottom={350} rotate={12}
                         background={debug ? "pink" : colors.primary}
-                        character='Mechanic' selectCharacter={viewCharacter}/>
+                        character='Artist' selectCharacter={viewCharacter}/>
                     <Triangle
                         top={190} left={50}
                         bleft={50} bright={20}
@@ -105,7 +105,7 @@ const MirrorComponent: React.FC<MirrorProps> = ({selectCharacter}) => {
                         bleft={100} bright={100}
                         bbottom={300} rotate={-150}
                         background={debug ? "fuchsia" : colors.primary}
-                        character='Artist' selectCharacter={viewCharacter}
+                        character='Mechanic' selectCharacter={viewCharacter}
                     />
             </Overlay>
           {character !== '' && <Blocker onClick={close}/>}

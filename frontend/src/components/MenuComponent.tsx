@@ -47,6 +47,10 @@ const StatisticsButton = styled(TextStyle)`
       background: #999999;
     }
   }
+
+  @media(max-width: 768px) {
+    display: none;
+  }
 `;
 
 const TextContainer = styled(motion.div)`

@@ -18,4 +18,6 @@ export interface Statistics {
   endingTravel: number;
   endingMemory: number;
   endingWake: number;
+  pureShards: number;
+  corruptedShards: number;
 }

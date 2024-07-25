@@ -6,10 +6,12 @@ import { TextStyle } from "../styled/Text.tsx";
 import { PlayerData } from "./PlayerData.ts";
 
 const Background = styled(motion.div)`
-  width: 10vw;
-  min-width: 100px;
-  max-width: 150px;
-
+  width: 20vw;
+  min-width: 100%;
+  // width: 100%;
+  // height: 100%;
+  aspect-ratio: 1/1;
+  background: black;
   text-align: center;
 
   image-rendering: pixelated;
@@ -38,12 +40,12 @@ const Title = styled(TextStyle)`
 const CharacterDisplayComponent: React.FC<{ player: PlayerData }> = ({
   player,
 }) => {
-  const prefix: string = "../assets/ui/";
+  const prefix: string = "../assets/characters/";
   const getImage = (): string => {
     if (!player) return "";
     if (player.class in characters) {
       const char = characters[player.class];
-      if (char.thumbnail) return prefix + char.thumbnail;
+      if (char.fullBody) return prefix + char.fullBody;
     }
     return "";
   };

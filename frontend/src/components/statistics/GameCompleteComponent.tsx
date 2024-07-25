@@ -13,10 +13,13 @@ const CompleteContainer = styled(motion.div)`
     rgba(0, 0, 0, 0) 90%,
     rgba(0, 0, 0, 0)
   );
+  width: 100%;
+  height: 100%;
 `;
 
 const ScrollingContainer = styled(motion.div)`
   will-change: transform;
+  height: 100%;
 `;
 
 const GameCompleteComponent: React.FC<{ completes: PlayerData[] }> = ({
@@ -30,7 +33,7 @@ const GameCompleteComponent: React.FC<{ completes: PlayerData[] }> = ({
 
   const scroll = {
     animate: {
-      x: shouldScroll ? ["100%", "-100%"] : "0%",
+      x: shouldScroll ? [`${numShowing*100}%`, `-${numShowing*100}%`] : "0%",
       transition: {
         ease: "linear",
         duration: scrollTime,
@@ -41,11 +44,11 @@ const GameCompleteComponent: React.FC<{ completes: PlayerData[] }> = ({
 
   return (
     <>
-      <CompleteContainer className="mt-6 w-full">
+      <CompleteContainer>
         {completes.length > 0 && (
           <>
             <ScrollingContainer
-              className="flex w-full gap-2 overflow-visible"
+              className="flex w-full overflow-visible"
               variants={scroll}
               animate="animate"
             >
