@@ -5,8 +5,11 @@ You breathe a sigh of relief as you approach this planet, everything seems norma
 -> ai_words_and_worlds_introduction
 ===ai_words_and_worlds_introduction===
 ~background = ship_navigation
+~ music = bgm_band_1
 AI: Here we are! People call this place Words and Worlds. It holds collected knowledge, as much as it can find. A real 'Library of Alexandria' type.
-*[What's the Library of Alexandria?] -> library_of_alexandria
+*[What's the Library of Alexandria?] 
+-> library_of_alexandria
+
 ===library_of_alexandria===
 AI: Oh, it was one of the wonders of a long-forgotten society. It was a library containing half a million histories, inventions, and stories.
 You hear sadness in the AI's mechanical tone.

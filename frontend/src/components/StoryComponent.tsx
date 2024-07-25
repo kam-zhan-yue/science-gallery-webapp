@@ -164,6 +164,7 @@ const StoryComponent: React.FC<StoryComponentProps> = ({ universeRef }) => {
               selectPlanet(valueString);
               break;
             case "background":
+            console.log('try background ' + valueString)
               setBackground(valueString);
               break;
             case "achievement":
@@ -171,6 +172,10 @@ const StoryComponent: React.FC<StoryComponentProps> = ({ universeRef }) => {
                 EventBus.emit("achievement", valueString);
                 updateDatabase(valueString);
               }
+              break;
+            case "music":
+              console.log('try play ' + valueString)
+              playMusic(valueString);
               break;
           }
         },
@@ -389,6 +394,10 @@ const StoryComponent: React.FC<StoryComponentProps> = ({ universeRef }) => {
       }
     }
   };
+
+  function playMusic(track: string) {
+    universeRef?.play(track);
+  }
 
   function restart() {
     universeRef?.end();

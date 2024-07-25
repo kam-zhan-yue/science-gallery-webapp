@@ -2,6 +2,7 @@ VAR puzzle_success = false
 
 === folding_space ===
 ~background = folding_space_main
+~ music = bgm_band_2
 You come upon a world covered entirely in ocean. Its deep blue seas glisten in the light of distant stars, making the planet look like a perfect sphere, made entirely of water.  ->ai_folding_space
 
 ===ai_folding_space===

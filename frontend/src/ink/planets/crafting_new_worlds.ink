@@ -10,6 +10,7 @@ Ship, can you find a safe place to land?
 Ship: I have located a suitable area. Planet’s atmosphere is non-hostile. Touching down in 5.
 
 ~background = crafting_main
+~ music = bgm_band_2
 // Path background
 
 You step out of your ship, and despite the AI’s assurances are surprised when the air is breathable.

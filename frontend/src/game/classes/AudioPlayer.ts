@@ -23,6 +23,22 @@ export default class AudioPlayer {
       this.fade(bgmKey);
     }
   }
+
+  public stop() {
+    const bgm = this.bgm
+    if (!bgm) return;
+    this.scene.tweens.add({
+      targets: bgm,
+      volume: 0,
+      duration: 2000,
+      onComplete: () => {
+        bgm.stop();
+        this.bgm = null;
+        this.currentBgmKey = null;
+      }
+    });
+  }
+
   private crossfade(newKey: string) {
     console.log('crossfade');
     const oldBgm = this.bgm;

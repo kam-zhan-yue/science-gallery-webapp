@@ -4,6 +4,7 @@
 
 === navigation ===
 ~ background = empty
+~ music = silent
 ~ progress = progress + 1
 ~ game_state = planet_selection
 

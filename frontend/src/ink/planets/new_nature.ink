@@ -1,4 +1,4 @@
-===ai_new_nature_introduction===
+===nature===
 ~ background = ship_navigation
 AI: Well, here we are! This is a gorgeous planet, covered in greenery!  The nice clean oxygen should be good for your lungs, you funny little biological organsim!
 You try to unlatch the cockpit, and find that it won't open. 
@@ -9,9 +9,11 @@ The cockpit swings open, and you breathe deeply. The air smells of petrichor and
 *[Thanks, see you when I get back!] -> ai_new_nature_end
 ===ai_new_nature_end===
 AI: Don't forget to bring back that shard now! Good luck, have fun!
-*[Step outside] -> nature
-=== nature ===
+*[Step outside] -> enter_new_nature
+
+=== enter_new_nature ===
 ~ background = new_nature_main
+~ music = bgm_band_1
 You step out of your spacecraft and into a beautiful forest glade with a winding path, leading away.
 
 You encounter what looks to be an ancient town, buildings overgrown by vines and trees. It seems nature has reclaimed this planet.
