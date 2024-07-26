@@ -2,7 +2,6 @@ import {Scene} from 'phaser';
 import SolarSystem from "../classes/SolarSystem.ts";
 import {EventBus} from "../../EventBus.tsx";
 import AudioPlayer from '../classes/AudioPlayer.ts';
-import { planets } from '../../setup/PlanetData.ts';
 
 export enum UniverseState {
     Navigation = 0,
@@ -31,12 +30,18 @@ export class Universe extends Scene {
 
     init(centre: string) {
         this.centre = centre;
-        if(centre in planets) {
-          const bgm: string | undefined = planets[centre].bgm;
-          if(bgm !== undefined) {
-            this.audioPlayer.playBgm(bgm);
-          }
-        }
+    }
+
+    play(track: string) {
+      if(track === 'silent') {
+        this.audioPlayer.stop();
+      } else {
+        this.audioPlayer.playBgm(track)
+      }
+    }
+
+    end() {
+      this.solarSystem?.fadeOut(1000);
     }
 
     updateOrbits(orbits: string[]) {
@@ -83,7 +88,6 @@ export class Universe extends Scene {
     }
 
     create() {
-      this.audioPlayer.playBgm('main')
         this.cameras.main.zoom = 2.5;
         this.centreX = this.cameras.main.centerX;
         this.centreY = this.cameras.main.centerY;

@@ -4,6 +4,7 @@
 
 === navigation ===
 ~ background = empty
+~ music = silent
 ~ progress = progress + 1
 ~ game_state = planet_selection
 
@@ -70,8 +71,6 @@
 ~ game_state = exploring
 ~get_good_shard()
 Debug Navigation Panel.
-+[Normal Route]
-    ->navigation
 +[Band 1]
     ->debug_band_1
 +[Band 2]
@@ -80,8 +79,6 @@ Debug Navigation Panel.
     ->debug_band_3
 +[New Light]
     ->go_to_planet(in_a_new_light)
-+[Ending]
-    ->debug_endings
 
 
 === debug_band_1 ===
@@ -104,14 +101,4 @@ Band 3
     ->go_to_planet(the_monstrous_feminine)
 *[New Myths]
     ->go_to_planet(new_myths)
-
-=== debug_endings ===
-Endings
-*[Sheep Ending]
-    ~ending = sheep
-    ->DONE
-*[Unknown Ending]
-    ~ending = unknown
-    ->DONE
-
 

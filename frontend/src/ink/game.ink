@@ -34,13 +34,38 @@ Welcome, Tester.
     ~planet = shangrila
     ~get(torch)
     ->navigation
++[Tutorial]
+    ->character_select ->
+    ~ planet = shangrila
+    ~ get(torch)
+    Open the tutorial.
+    ->screenlayoutintroduction
++[Endings]
+    ->test_endings
++[Mechanics]
+    ->debug_mechanics
+    
+=== test_endings ===
 +[Sheep Ending]
     Press one more time to end.
-    ~ending = sheep
+    ~ending = ending_sheep
     ->DONE
-+[Unknown Ending]
++[Forget Ending]
     Press one more time to end.
-    ~ending = unknown
+    ~ending = ending_forget
+    ->DONE
++[Travel Ending]
+    Press one more time to end.
+    ~ending = ending_travel
+    ->DONE
++[Wake Shangrila Ending]
+    Press one more time to end.
+    ~ending = ending_wake
+    ->DONE
++[Die]
+    Press one more time to die.
+    ~take_damage(8)
     ->DONE
 +[From Beginning]
     ->start
+    

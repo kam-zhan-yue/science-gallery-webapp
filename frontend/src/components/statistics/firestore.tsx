@@ -27,7 +27,6 @@ export async function reportComplete(player: Player, ending: string) {
   if (player.class === '') return;
   if (ending === '') return;
 
-
   const playerData: Omit<PlayerData, "id"> = {
     name: player.name,
     class: player.class,

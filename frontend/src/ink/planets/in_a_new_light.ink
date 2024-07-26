@@ -315,5 +315,5 @@ You are excited for what the future holds.
 ->final
 
 === final ===
-~ending = unknown
+~ending = ending_wake
 ->DONE

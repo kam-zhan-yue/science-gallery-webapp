@@ -40,6 +40,7 @@ const Message = styled(TextStyle)`
 const NotificationComponent: React.FC = () => {
     const [header, setHeader] = useState<string>('');
     const [message, setMessage] = useState<string>('');
+    const showAchievements: boolean = false;
 
     useEffect(() => {
         EventBus.on("get_item", (item: string) =>  {
@@ -67,6 +68,7 @@ const NotificationComponent: React.FC = () => {
         })
 
         EventBus.on('achievement', (achievement: string) => {
+          if (!showAchievements) return;
           if(achievement in achievements) {
             const entry: Achievement = achievements[achievement];
             if(entry.hidden) return;

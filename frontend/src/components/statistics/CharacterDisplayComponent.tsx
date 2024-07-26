@@ -6,17 +6,16 @@ import { TextStyle } from "../styled/Text.tsx";
 import { PlayerData } from "./PlayerData.ts";
 
 const Background = styled(motion.div)`
-  width: 10vw;
-  min-width: 100px;
-  max-width: 150px;
+  position: fixed;
+  transform: translate(-50%, -50%);
 
+  aspect-ratio: 1;
   text-align: center;
+  width: 30%;
 
   image-rendering: pixelated;
   image-rendering: -moz-crisp-edges;
   image-rendering: crisp-edges;
-  // border: 10px solid;
-  // border-image: url("../assets/ui/dialogue-box.png") 15 15 15 15 fill repeat;
 
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
@@ -25,7 +24,7 @@ const Background = styled(motion.div)`
 const Character = styled(motion.img)``;
 
 const Title = styled(TextStyle)`
-  font-size: 24px;
+  font-size: 48px;
   font-weight: 800;
   line-height: 1em;
   margin-top: 5px;
@@ -38,16 +37,16 @@ const Title = styled(TextStyle)`
 const CharacterDisplayComponent: React.FC<{ player: PlayerData }> = ({
   player,
 }) => {
-  const prefix: string = "../assets/ui/";
+  const prefix: string = "../assets/characters/";
   const getImage = (): string => {
     if (!player) return "";
     if (player.class in characters) {
       const char = characters[player.class];
-      if (char.thumbnail) return prefix + char.thumbnail;
+      if (char.fullBody) return prefix + char.fullBody;
     }
     return "";
   };
-  return (
+return (
     <>
       <Background>
         <Character src={getImage()} />

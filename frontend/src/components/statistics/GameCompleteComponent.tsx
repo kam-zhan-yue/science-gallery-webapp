@@ -1,65 +1,56 @@
 import styled from "styled-components";
 import { PlayerData } from "./PlayerData";
 import CharacterDisplayComponent from "./CharacterDisplayComponent";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
 
-const CompleteContainer = styled(motion.div)`
-  -webkit-mask-image: linear-gradient(
-    to right,
-    rgba(0, 0, 0, 0),
-    rgba(0, 0, 0, 0) 10%,
-    rgba(0, 0, 0, 1) 40%,
-    rgba(0, 0, 0, 1) 60%,
-    rgba(0, 0, 0, 0) 90%,
-    rgba(0, 0, 0, 0)
-  );
-`;
+const Border = styled(motion.div)`
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
 
-const ScrollingContainer = styled(motion.div)`
-  will-change: transform;
+  height: 100%;
+  width: 99%;
+  border: 10px solid;
+  border-image: url("../assets/ui/dialogue-box.png") 6 6 6 6 fill repeat;
 `;
 
 const GameCompleteComponent: React.FC<{ completes: PlayerData[] }> = ({
   completes,
 }) => {
-  const max: number = 7;
-  const threshold: number = 5;
-  const numShowing = completes.length > max ? max : completes.length;
-  const scrollTime: number = 5 * numShowing;
-  const shouldScroll = numShowing > threshold;
+  const [index, setIndex] = useState<number>(0);
+  const delay: number = 2000; // Increased delay for better visibility of the animation
 
-  const scroll = {
-    animate: {
-      x: shouldScroll ? ["100%", "-100%"] : "0%",
-      transition: {
-        ease: "linear",
-        duration: scrollTime,
-        repeat: Infinity,
-      },
-    },
-  };
+  useEffect(() => {
+    if (index < completes.length - 1) {
+      const timeout = setTimeout(() => {
+        setIndex((prev) => prev + 1);
+      }, delay);
+      return () => clearTimeout(timeout);
+    } else {
+      const timeout = setTimeout(() => {
+        setIndex(0);
+      }, delay);
+      return () => clearTimeout(timeout);
+    }
+  }, [index, completes]);
 
   return (
-    <>
-      <CompleteContainer className="mt-6 w-full">
-        {completes.length > 0 && (
-          <>
-            <ScrollingContainer
-              className="flex w-full gap-2 overflow-visible"
-              variants={scroll}
-              animate="animate"
-            >
-              {completes.map((player, index) => (
-                <CharacterDisplayComponent
-                  key={player.id + "-" + index}
-                  player={player}
-                />
-              ))}
-            </ScrollingContainer>
-          </>
-        )}{" "}
-      </CompleteContainer>
-    </>
+    <Border>
+      <div className='flex w-full h-full justify-center items-center'>
+        <AnimatePresence>
+          <motion.div
+            key={index}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5}}
+          >
+            <CharacterDisplayComponent player={completes[index]} />
+          </motion.div>
+        </AnimatePresence>
+      </div>
+    </Border>
   );
 };
 

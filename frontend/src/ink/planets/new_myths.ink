@@ -46,7 +46,8 @@ The ship's door opens, and you feel a force pushing you out.
 Ship: I cannot wait to hear what adventures you get up to! Enjoy, {name}!
 *[Venture into NEW MYTHS]->newmythsbegin
 === newmythsbegin ==
-~background=new_myths_silk
+~background = new_myths_main
+~ music = bgm_band_3
 You land in what seems to be a planet covered in crimson - as you look around you, all you can see is a dense forest. 
 However, this forest isn't made of the trees or plants you've seen before. As your eyes adjust to the ruby haze, you notice that you are surrounded by streams of fabric. 
 The fabric is beautifully woven, with shimmering embroidery that glints faintly as if glowing. 
@@ -160,7 +161,7 @@ You leave the light show, and make your way through the forest of silk. As you w
 *[Touch the silk.]->touchthesilk
 *[Follow the silk.]->followsilk2
 ==touchthesilk==
-~background = new_myths_silk_voice
+~background = new_myths_silk
 You touch the silk, and the warmth you have felt grows. What felt like a warm hug becomes a thick blanket of visible red glow, which covers you. 
 The red glow suddenly starts to lift you off the ground, and takes you high above the red forest. As you are taken up into the sky, you look down to see the light show, and the crowd cheering along. 
 Things feel small from up here. You feel calm. You gently land through the thickest part of the forest.
@@ -174,6 +175,7 @@ As you look around, you notice you're in a cave, the walls made of the dense sil
 You have made it to the heart of the planet - the Fate.
 ->theheart
 ==theheart==
+~background = new_myths_silk_voice
 The Fate: I have been waiting for you, young one.
 You're taken by surprise, and the voice laughs.
 The Fate: I know what you seek. You have been collecting many pieces of a past memory, and I wish to help you. Memories, stories, histories... 

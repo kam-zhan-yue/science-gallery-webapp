@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 // @ts-ignore
 import { Choice, InkObject, Story, EvaluateFunction } from "inkjs";
 import DialogueComponent from "./DialogueComponent.tsx";
@@ -7,24 +7,23 @@ import Planet from "../classes/Planet.ts";
 import KeypadComponent from "./KeypadComponent.tsx";
 import { Universe, UniverseState } from "../game/scenes/Universe.tsx";
 import { EventBus } from "../EventBus.tsx";
-import { GameContext, GameContextType } from "../contexts/GameContext.tsx";
+import { GameContext, GameContextType, GameState } from "../contexts/GameContext.tsx";
 import PlanetComponent from "./PlanetComponent.tsx";
 import GuideComponent from "./GuideComponent.tsx";
 import BackgroundComponent from "./BackgroundComponent.tsx";
 import NotificationComponent from "./NotificationComponent.tsx";
-import PlayerComponent, {
-  PlayerComponentHandle,
-} from "./player/PlayerComponent.tsx";
+import PlayerComponent from "./player/PlayerComponent.tsx";
 import MirrorComponent from "./MirrorComponent.tsx";
 import NameSelectComponent from "./NameComponent.tsx";
 import styled from "styled-components";
 import { TextStyle } from "./styled/Text.tsx";
-import EndingComponent from "./EndingComponent.tsx";
+import EndingComponent from "./ending/EndingComponent.tsx";
 import { achievements } from "../setup/Achievements.ts";
 import { reportComplete, updateDatabase } from "./statistics/firestore.tsx";
 import { AnimatePresence } from "framer-motion";
 import { Blocker } from "./styled/Blocker.tsx";
 import InputComponent from "./InputComponent.tsx";
+import Player from "../classes/Player.ts";
 
 interface StoryComponentProps {
   universeRef: Universe | null;
@@ -54,6 +53,7 @@ const DebugPanel = styled(TextStyle)`
 const StoryComponent: React.FC<StoryComponentProps> = ({ universeRef }) => {
   const [story, setStory] = useState<Story | null>(null);
   const [background, setBackground] = useState<string>("");
+  const [requiredItem, setRequiredItem] = useState<string>("none");
   const [storyText, setStoryText] = useState<string>("");
   const [tags, setTags] = useState<string[]>([]);
   const [showingChoices, setShowingChoices] = useState<boolean>(false);
@@ -61,14 +61,14 @@ const StoryComponent: React.FC<StoryComponentProps> = ({ universeRef }) => {
   const [planet, setPlanet] = useState<Planet>(new Planet());
   const [storyState, setStoryState] = useState<StoryState>(StoryState.Dialogue);
   const [ending, setEnding] = useState<string>("unknown");
-  const { debug, inkState, setInkState, player, setPlayer } = useContext(
+  const { debug, inkState, setInkState, setState, player, setPlayer } = useContext(
     GameContext,
   ) as GameContextType;
-  const playerComponentRef = useRef<PlayerComponentHandle>(null);
 
   const loadStory = async () => {
     setBackground("");
     setStoryState(StoryState.Dialogue);
+    setPlayer(new Player());
     const response: Response = await fetch("/ink/game.json");
     const storyContent: string = await response.text();
     const inkStory = new Story(storyContent);
@@ -118,12 +118,20 @@ const StoryComponent: React.FC<StoryComponentProps> = ({ universeRef }) => {
               setPlayer(player);
               break;
             case "health":
+            console.log(`setting health to ${valueString}`)
               player.health = Number(valueString);
+              if(player.health <= 0){
+                end();
+              }
               setPlayer(player);
               break;
             case "inventory":
               player.inventory = valueString;
               setPlayer(player);
+              break;
+            case "required_item":
+            console.log('setting required item to  ', valueString)
+              setRequiredItem(valueString);
               break;
             case "progress":
               player.inkProgress = Number(valueString);
@@ -150,16 +158,18 @@ const StoryComponent: React.FC<StoryComponentProps> = ({ universeRef }) => {
               if (valueString === "planet_selection") {
                 choosePlanets(story);
               }
-              if (valueString === "take_item") {
-                if (playerComponentRef.current) {
-                  playerComponentRef.current.openInventory();
-                }
+              else if (valueString === "take_item") {
+                EventBus.emit("take_item");
+              }
+              else if (valueString === "tutorial_menu") {
+                EventBus.emit('tutorial_menu');
               }
               break;
             case "planet":
               selectPlanet(valueString);
               break;
             case "background":
+            console.log('try background ' + valueString)
               setBackground(valueString);
               break;
             case "achievement":
@@ -167,6 +177,10 @@ const StoryComponent: React.FC<StoryComponentProps> = ({ universeRef }) => {
                 EventBus.emit("achievement", valueString);
                 updateDatabase(valueString);
               }
+              break;
+            case "music":
+              console.log('try play ' + valueString)
+              playMusic(valueString);
               break;
           }
         },
@@ -275,7 +289,7 @@ const StoryComponent: React.FC<StoryComponentProps> = ({ universeRef }) => {
         setShowingChoices(true);
       } else {
         // If there are no choices, and we are not showing the choices, then the story has ended
-        // console.log('story has ended!');
+        console.log('story has ended!');
         end();
       }
     }
@@ -386,8 +400,13 @@ const StoryComponent: React.FC<StoryComponentProps> = ({ universeRef }) => {
     }
   };
 
+  function playMusic(track: string) {
+    universeRef?.play(track);
+  }
+
   function restart() {
-    loadStory();
+    universeRef?.end();
+    setState(GameState.Menu);
   }
 
   return (
@@ -477,8 +496,8 @@ const StoryComponent: React.FC<StoryComponentProps> = ({ universeRef }) => {
             inkState != "name_select" && (
               <>
                 <PlayerComponent
-                  ref={playerComponentRef}
                   player={player}
+                  requiredItem={requiredItem}
                   onUseItem={onUseItem}
                 ></PlayerComponent>
               </>

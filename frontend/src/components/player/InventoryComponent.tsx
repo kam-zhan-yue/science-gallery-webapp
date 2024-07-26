@@ -8,6 +8,7 @@ import {GameContext, GameContextType} from "../../contexts/GameContext.tsx";
 
 interface InventoryComponentProps {
     player: Player,
+    requiredItem: string,
     onUseItem: (key: string) => void;
     onCloseButton: () => void;
 }
@@ -18,7 +19,7 @@ const ItemHeader = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  min-height: 80px;
+  min-height: 90px;
   @media (max-width: 600px) {
     border: 12px solid;
     border-image: url("../../assets/ui/slot-active.png") 15 15 15 15 fill repeat;
@@ -26,7 +27,7 @@ const ItemHeader = styled.div`
 `
 
 const ItemView = styled.div`
-    
+
 `
 
 const ItemImage = styled.img`
@@ -83,9 +84,28 @@ const UseButton = styled.div<{isActive: boolean}>`
   }
 `
 
-const InventoryComponent: React.FC<InventoryComponentProps> = ({player, onUseItem, onCloseButton}) => {
-    const [selected, setSelected] = useState<string>('');
-    const {inkState} = useContext(GameContext) as GameContextType;
+const WarningContainer = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  `
+const WarningDescription = styled.div`
+  font-size: 22px;
+  margin-bottom: 30px;
+`
+
+const InventoryComponent: React.FC<InventoryComponentProps> = ({player, requiredItem, onUseItem, onCloseButton}) => {
+  const [selected, setSelected] = useState<string>('');
+  const [warning, setWarning] = useState<boolean>(false);
+  const {inkState} = useContext(GameContext) as GameContextType;
 
     const selectItem = (item: string) => {
         if(selected === item) {
@@ -96,10 +116,14 @@ const InventoryComponent: React.FC<InventoryComponentProps> = ({player, onUseIte
     }
 
     const useItem = () => {
-        if(selected && active()) {
-            onUseItem(selected);
-            close();
-        }
+      if(requiredItem !== 'none' && selected !== requiredItem) {
+        //the player is not allowed to use this item
+        console.log('not allowed')
+        setWarning(true);
+      } else if (selected && active()) {
+        onUseItem(selected);
+        close();
+      }
     }
 
     const close = () => {
@@ -114,6 +138,10 @@ const InventoryComponent: React.FC<InventoryComponentProps> = ({player, onUseIte
         return selected === item;
     }
 
+    function warningClicked() {
+      setWarning(false)
+    }
+
     // Convert inventory object to an array for rendering
     const inventoryArray = Object.values(player.inventory);
 
@@ -125,6 +153,8 @@ const InventoryComponent: React.FC<InventoryComponentProps> = ({player, onUseIte
     return (
         <>
             <SubPopup title={"Inventory"} onCloseButton={close}>
+            {!warning &&
+              <>
                 <ItemHeader>
                     {selected &&
                         <>
@@ -170,6 +200,18 @@ const InventoryComponent: React.FC<InventoryComponentProps> = ({player, onUseIte
                         </UseContainer>
                     </>
                 }
+                </>
+            }
+            {warning &&
+              <WarningContainer>
+              <WarningDescription>
+                {items[selected].name} feels like it is not meant to be used here. How about the {items[requiredItem].name}?
+              </WarningDescription>
+                <UseButton isActive={true} onClick={warningClicked}>
+                  Okay
+                </UseButton>
+              </WarningContainer>
+            }
             </SubPopup>
         </>
     );

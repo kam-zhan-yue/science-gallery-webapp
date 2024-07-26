@@ -85,4 +85,14 @@ export const achievements: { [key: string]: Achievement } = {
         description: "It is awoken.",
         hidden: false,
     },
+    "pureShards": {
+        name: "Pure Shards Collected",
+        description: "",
+        hidden: false,
+    },
+    "corruptedShards": {
+        name: "Corrupted Shards Collected",
+        description: "",
+        hidden: false,
+    },
 };

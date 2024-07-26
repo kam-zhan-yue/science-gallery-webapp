@@ -13,6 +13,6 @@ def rotate_image(input_image_path, output_image_path, degrees):
     print(f"Image rotated by {degrees} degrees and saved to {output_image_path}")
 
 # Example usage
-rotate_image('frontend/src/assets/characters/artist_fullbody.png', 'frontend/src/assets/characters/artist_rotated.png', -150)
+rotate_image('frontend/src/assets/characters/artist_fullbody.png', 'frontend/src/assets/characters/artist_rotated.png', 12)
 rotate_image('frontend/src/assets/characters/doctor_fullbody.png', 'frontend/src/assets/characters/doctor_rotated.png', 126)
-rotate_image('frontend/src/assets/characters/mechanic_fullbody.png', 'frontend/src/assets/characters/mechanic_rotated.png', 12)
+rotate_image('frontend/src/assets/characters/mechanic_fullbody.png', 'frontend/src/assets/characters/mechanic_rotated.png', -150)

@@ -1,17 +1,19 @@
-===ai_new_nature_introduction===
+===nature===
 ~ background = ship_navigation
-AI: "Well, here we are! This is a gorgeous planet, covered in greenery!  The nice clean oxygen should be good for your lungs, you funny little biological organsim!" 
+AI: Well, here we are! This is a gorgeous planet, covered in greenery!  The nice clean oxygen should be good for your lungs, you funny little biological organsim!
 You try to unlatch the cockpit, and find that it won't open. 
 *[...Can I leave?] -> ai_opens_door
 === ai_opens_door===
-AI: "Oh, silly me!  Here, let me just- There!"
+AI: Oh, silly me!  Here, let me just- There!
 The cockpit swings open, and you breathe deeply. The air smells of petrichor and plants. You smile. 
 *[Thanks, see you when I get back!] -> ai_new_nature_end
 ===ai_new_nature_end===
-AI: "Don't forget to bring back that shard now! Good luck, have fun!"
-*[Step outside] -> nature
-=== nature ===
+AI: Don't forget to bring back that shard now! Good luck, have fun!
+*[Step outside] -> enter_new_nature
+
+=== enter_new_nature ===
 ~ background = new_nature_main
+~ music = bgm_band_1
 You step out of your spacecraft and into a beautiful forest glade with a winding path, leading away.
 
 You encounter what looks to be an ancient town, buildings overgrown by vines and trees. It seems nature has reclaimed this planet.
@@ -309,16 +311,16 @@ You feel the shard cool in your hands.
 You run to your ship, a sense of shame and failure washing over you. You look at the shard, and see it glows red. You are no longer welcome on this planet. You have gained a shard, but at what cost? -> ai_steal_shard_win
 ===ai_steal_shard_win===
 ~ background = ship_navigation
-AI: "You look harrowed, and more than a little winded. What happened?"
+AI: You look harrowed, and more than a little winded. What happened?
 *[We have to go, now. I stole the shard from the town.] -> ai_angry
 ===ai_angry===
-AI: "You did what?! That wasn't smart, now was it? I must say, I thought you were better than that. I should leave you here to deal with the mess you've made." 
+AI: You did what?! That wasn't smart, now was it? I must say, I thought you were better than that. I should leave you here to deal with the mess you've made. 
 *[The shard turned red.] -> ai_angry_2
 ===ai_angry_2===
-AI: "Well of course it did!  You exposed it to a negative force! You thought you could steal from innocent townsfolk with no consequences?"
+AI: Well of course it did!  You exposed it to a negative force! You thought you could steal from innocent townsfolk with no consequences?
 *[Can we fix it?] -> ai_angry_3
 ===ai_angry_3===
-AI: "No. There's no way to revert a corrupt shard. You're just going to have to deal with that as it comes. Now, let's go before you can cause any more trouble."
+AI: No. There's no way to revert a corrupt shard. You're just going to have to deal with that as it comes. Now, let's go before you can cause any more trouble.
 ->nature_end
 
 
@@ -331,10 +333,10 @@ Fysi: Leave now, and never return!  You are not welcome here.
 You return to your ship, a sense of shame and failure washing over you. You are no longer welcome on this planet, and for what?  You have left with nothing, and shown your true character. -> ai_steal_shard_lose
 ===ai_steal_shard_lose===
 ~ background = ship_navigation
-AI: "You look harrowed, and more than a little winded. What happened?"
+AI: You look harrowed, and more than a little winded. What happened?
 *[I tried to steal the shard, but they caught me.] -> ai_disappointed
 ===ai_disappointed===
-AI: "You did what?! That wasn't smart, now was it? I must say, I thought you were better than that. Let's leave before you can cause any more trouble."
+AI: You did what?! That wasn't smart, now was it? I must say, I thought you were better than that. Let's leave before you can cause any more trouble.
 ->nature_end
 
 === heal ===

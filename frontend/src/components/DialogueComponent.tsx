@@ -84,7 +84,7 @@ const DialogueComponent: React.FC<DialogueComponentProps> = ({ text, tags, next 
 
     const prefix: string = '../assets/characters/';
     const getCharacterFullBody = (): string => {
-        if(characterName === "Ship" || characterName == "You") {
+        if(characterName == "You") {
             return prefix + characters[player.class].fullBody;
         } else if(characterName in characters) {
             return prefix + characters[characterName].fullBody;
@@ -167,7 +167,11 @@ const DialogueComponent: React.FC<DialogueComponentProps> = ({ text, tags, next 
                         <Separator />
                     </>
                 }
-                <Typewriter ref={typewriterRef} text={dialogueBody} delay={15} next={next}/>
+                <Typewriter ref={typewriterRef}
+                  text={dialogueBody}
+                  fontSize={22}
+                  delay={15}
+                  next={next}/>
             </DialogueBox>
         </>
     );
