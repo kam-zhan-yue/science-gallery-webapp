@@ -73,7 +73,7 @@ Lady:I... had an argument with my partner. And it didn't go well.
 Lady:When they left, I felt my silk tear. It's all my fault!
 Lady:I don't know what to do...
 The lady sheds a tear over the torn silk.
-{ class == Artist:
+{ inventory ? (artist_item):
     ->artistoption
 -else: 
     ->notartistoption
@@ -117,11 +117,10 @@ YOU ARE INVITED TO VIEW "REFABRICATED REALITIES". YOU MAY STAY HERE AS LONG AS Y
 *[speech:Where do I go from here?] ->followthesilk
 ===artistmendsilk===
 Lady: Oh, could you? I would be so eternally grateful!
+~required_item = artist_item
 ~game_state = take_item
 *[{artist_item}]
-    ~game_state = exploring
-    -> artist_mend_silk_2
-*[other]
+    ~required_item = none
     ~game_state = exploring
     -> artist_mend_silk_2
     
@@ -229,13 +228,13 @@ The Fate: We may never rid of grief and heartbreak, but we can learn and grow fr
 The Fate: Thank you for your kind words, young one. But... do you live true to your heart?->riddleintro
 ===foundsilk1===
 You reach into your pocket and produce the glowing silk.
+~required_item = star
 ~game_state = take_item
 *[{star}]
+    ~required_item = none
     ~game_state = exploring 
     -> foundsilk2
-*[other]
-    ~game_state = exploring
-    -> foundsilk2
+    
 ===foundsilk2===
 You present the starry silk.
 The Fate: My love... you have returned her to me!

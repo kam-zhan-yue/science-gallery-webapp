@@ -340,7 +340,12 @@ AI: You did what?! That wasn't smart, now was it? I must say, I thought you were
 ->nature_end
 
 === heal ===
-->nature_end
+    ~required_item = doctor_item
+    ~game_state = take_item
+    *[{doctor_item}]
+        ~required_item = none
+        ~game_state = exploring
+        -> nature_end
 
 === nature_good_end ===
 ->nature_good_end_1
