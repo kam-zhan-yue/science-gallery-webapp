@@ -7,11 +7,11 @@ import { PlayerData } from "./PlayerData.ts";
 
 const Background = styled(motion.div)`
   position: fixed;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -80%);
 
-  aspect-ratio: 1;
   text-align: center;
-  width: 30%;
+  height: 40%;
+  aspect-ratio: 1;
 
   image-rendering: pixelated;
   image-rendering: -moz-crisp-edges;

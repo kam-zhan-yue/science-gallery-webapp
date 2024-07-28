@@ -82,13 +82,16 @@ const Description = styled(TextStyle)`
 `
 
 const CharacterSelectComponent: React.FC<CharacterSelectProps> = ({character, select, close}) => {
-    const prefix: string = '../assets/ui/';
     const getImage = (): string => {
         if(!character) return '';
         if(character in characters) {
             const char = characters[character];
-            if(char.thumbnail)
-                return prefix+char.thumbnail;
+            if (char.closeUp) {
+              console.log('return '+char.closeUp)
+              return '../assets/characters/' + char.closeUp;
+            } else if(char.thumbnail) {
+              return '../assets/ui/'+char.thumbnail;
+            }
         }
         return '';
     }

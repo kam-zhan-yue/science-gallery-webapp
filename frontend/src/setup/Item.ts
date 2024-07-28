@@ -27,17 +27,17 @@ export const items: { [key: string]: Item } = {
     },
     "book_1": {
         name: "'I, Robot'",
-        image: "apple.png",
+        image: "book_1.png",
         description: "A pen."
     },
     "book_2": {
         name: "'(Untitled) Heat Book'",
-        image: "cookie.png",
+        image: "book_2.png",
         description: "A red shard."
     },
     "library_card": {
         name: "Library Card",
-        image: "cookie.png",
+        image: "library_card.png",
         description: "A blue shard.",
     },
     "spear": {
