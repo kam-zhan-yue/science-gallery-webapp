@@ -287,6 +287,7 @@ You need this shard, and the librarian is in your way. You brace yourself. #Libr
     ->words_fight_item
 
 === words_fight_fists ===
+~take_damage(1)
 You unleash the force of your fists upon the librarian. #Librarian:angry
 {class == Mechanic:
     Your sentient toolbox also gets in a hit or two. #Librarian:angry
@@ -342,6 +343,7 @@ It feels … wrong. It’s so cold it stings your skin. You tuck it into your ba
         ->words_end
 
 === words_fight_failure ===
+~take_damage(1)
 It’s no use. Every time you try to strike, you are blocked by a tentacle. #Librarian:angry
 Eventually it is clear that it is not worth fighting anymore. You have been defeated. #Librarian:angry
 The librarian looks down at you. It seems like she pities you. #Librarian:sad
