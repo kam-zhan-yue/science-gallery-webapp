@@ -48,11 +48,11 @@ AI: I can't wait to hear what adventures you get up to! Enjoy, {name}!
 *[important:Venture into THE MONSTROUS FEMININE]->monstrous
 
 === monstrous ===
-{class == doctor: -> doctor_class_monstrous_feminine}
+{class == Doctor: -> doctor_class_monstrous_feminine}
 
-{class == mechanic: -> mechanic_class_monstrous_feminine}
+{class == Mechanic: -> mechanic_class_monstrous_feminine}
 
-{class == artist: -> artist_class_monstrous_feminine}
+{class == Artist: -> artist_class_monstrous_feminine}
 
 Doctor: Balud/Manananggal
 Mechanic: Huma
@@ -322,5 +322,4 @@ AI: You've had to travel so far, and make all the tough decisions... I thought y
 ===movingtoanewlight1===
 AI: Let's float around for a little bit, shall we, {name}?
 The ship blasts off into the aether.
-->test_get_shard->
 ->navigation

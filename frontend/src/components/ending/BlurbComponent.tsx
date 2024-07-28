@@ -19,9 +19,9 @@ const BlurbContainer = styled(motion.div)`
 `;
 
 const Congratulations = styled(TextStyle)`
-  position: absolute;
+  margin-bottom: 10px;
   top: 50px;
-  font-size: 64px;
+  font-size: 48px;
   line-height: 1em;
   `
 

@@ -9,6 +9,7 @@ const AudioComponent: React.FC = () => {
     const badShard = new Audio('/audio/bad_shard.mp3');
     const goodShard = new Audio('/audio/good_shard.mp3');
     const item = new Audio('/audio/item.mp3');
+    const takeDamage = new Audio('/audio/take_damage.mp3');
 
       EventBus.on("button", () => {
         buttonAudio.currentTime = 0; // Reset to the start
@@ -34,11 +35,15 @@ const AudioComponent: React.FC = () => {
         }
       });
 
-      EventBus.on("get_item", () =>  {
-        console.log('play item audio')
-        item.currentTime = 0;
-        item.play();
-      })
+    EventBus.on("get_item", () => {
+      item.currentTime = 0;
+      item.play();
+    });
+
+    EventBus.on("on_damage", () =>  {
+      takeDamage.currentTime = 0;
+      takeDamage.play();
+    })
 
       return () => {
         EventBus.removeListener("button");
@@ -46,6 +51,7 @@ const AudioComponent: React.FC = () => {
         EventBus.removeListener("correct");
         EventBus.removeListener("get_shard");
         EventBus.removeListener("get_item");
+        EventBus.removeListener("on_damage");
       };
   }, []);
     return (

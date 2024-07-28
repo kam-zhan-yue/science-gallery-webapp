@@ -117,8 +117,8 @@ A door appears. The shard glows in your hand with pulsating light. You feel it c
 ===sheeplink===
 You walk out of the cave. As you turn around to see the light outside. You see a silhouette. A suited figure. 
 Suited Figure: I'm sorry you had to see this, you aren't allowed here.
-The figure's voice echoes throughout the cave. 
-You go to sleep. 
+The figure's voice echoes throughout the cave. #Suited Figure
+You go to sleep. #Suited Figure
 ~ending = ending_sheep
 ->DONE
 ===opendoor===

@@ -76,6 +76,7 @@ class Player {
     }
 
     set health(stat: number) {
+      EventBus.emit('on_damage');
         this._health = stat;
     }
 

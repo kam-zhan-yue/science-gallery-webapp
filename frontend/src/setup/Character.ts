@@ -50,6 +50,14 @@ export const characters: { [key: string]: Character } = {
             "sad": "npc_librarian_sad.png",
         }
     },
+    "Suited Figure": {
+        name: "Suited Figure",
+        fullBody: "npc_suitguy_1.png",
+        animations: {
+            "alt1": "npc_suitguy_2.png",
+            "alt2": "npc_suitguy_3.png",
+        }
+    },
     "AI": {
       name: "AI",
       fullBody: "npc_ai.png",
