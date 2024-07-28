@@ -171,31 +171,14 @@ AI: I'm sorry, but we're out of time! Quick quick, get ready, we need to leave!
 
 ===screenlayoutintroduction===
 //I'm not sure where the artwork names are, but we could highlight the parts of the menu that the player is being shown here.
-<<<<<<< HEAD
-AI: Oh, I almost forgot! This display can be a little confusing, but this is your menu! I can display your physical statistics, as well as any items you pick up and planets you've visited from here. Feel free to check it if you need!
-AI: Now, we need to go! -> inputcodeinitial
-------
 ~game_state = tutorial_menu
 AI: "Oh, I almost forgot! This display can be a little confusing, but this is your menu! I can display your physical statistics, as well as any items you pick up and planets you've visited from here. Feel free to check it if you need!"
+AI: Now, we need to go!
 ~game_state = exploring
-AI: "Now, we need to go!" -> inputcodeinitial
->>>>>>> 894044a7cca9ffdd184d544d995052eddb9b2d2c
+-> inputcodeinitial
+
 ===inputcodeinitial===
 Navigation: Please input launch code!
 You look at it... puzzled.
 AI: We don't have much time!
 ->navigation
-
-NOTE - YOU WILL FIND TWO CODES SOMEWHERE IN SHANGRILA AROUND YOU. LOOK AROUND THE ARTWORK TO FIND THEM.
-*[Player inputs code 1]->liftoff1
-*[Player inputs code 2]->liftoff1
-
-===liftoff1===
-AI: Ah, great job! Welcome aboard, and... hold on!
-Your shuttle shakes. It whirrs. It clanks.
-Your shard's light is growing and pulsing.
-The shuttle shakes and starts to move. 
-Where will it go? at lies in store for you?
-Only one way to find out...
-and... LIFTOFF!
-->DONE
