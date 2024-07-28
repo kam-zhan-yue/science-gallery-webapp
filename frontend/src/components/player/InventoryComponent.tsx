@@ -34,8 +34,9 @@ const ItemImage = styled.img`
   image-rendering: pixelated;
   image-rendering: -moz-crisp-edges;
   image-rendering: crisp-edges;
-  min-height: 50px;
-  min-width: 50px;
+  height: 50px;
+  width: 50px;
+  aspect-ratio: 1;
 `
 const Separator = styled.div`
   border: none;
