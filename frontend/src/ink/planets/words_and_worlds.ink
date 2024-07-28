@@ -140,26 +140,11 @@ You look at the library card she’s given you and realise it somehow correctly 
 ->words_occupation
 
 === words_occupation ===
-That’s strange. It also lists your occupation, and has a sentence that fills you with a wash of baffled achievement. ->read_library_card
-===read_library_card===
-*[Read the library card] -> library_card_names
+That’s strange. It also lists your occupation, and has a sentence that fills you with a wash of baffled achievement.
++[Read the library card]
+    -> library_card_names
+
 ===library_card_names===
-{ class == Doctor: 
--> doctor_name
-}
-===doctor_name===
-Doctor, and says
-{ class == Mechanic:
--> mechanic_name
-}
-===mechanic_name===
-Mechanic, and says
-{ class == Artist:
--> artist_name
-}
-===artist_name===
-Artist, and says
- #Librarian
 { class == Doctor:
 -> library_card_doctor
 }
@@ -169,11 +154,16 @@ Artist, and says
 {class == Artist:
 -> library_card_artist
 }
+
 ===library_card_doctor===
+Doctor, and says
 'Just as this library outlived its predecessor, your patients will remember and cherish your work as long as they live.' -> words_after_library_card
+
 ===library_card_mechanic===
+Mechanic, and says
 'Just as this library outlived its predecessor, your mechanisms will keep your memory alive.' ->words_after_library_card
 ===library_card_artist===
+Artist, and says
 'Just as this library outlived its predecessor, your creativity will be remembered throughout the ages.' -> words_after_library_card
 ===words_after_library_card===
 You shake off the strange feeling of not being able to remember exactly who you are, and place the card and book in your bag. #Librarian
@@ -318,8 +308,10 @@ Use an item to fight the Librarian. #Librarian:angry
 ~game_state = take_item
 //TODO fill this in
 *[{book_1}]
+    ~game_state = exploring
     ->words_fight_success
 *[other]
+    ~game_state = exploring
     ->words_fight_failure
 
 === words_fight_success ===
