@@ -17,6 +17,9 @@ const backgrounds: { [key: string]: string } = {
     "new_myths_silk": "new-myths-main.png",
     "new_myths_silk_voice": "new-myths-main-light.png",
     "new_light_main": "new-light-main.png",
+    "obelisks_left": "obelisks-left.png",
+    "obelisks_right": "obelisks-right.png",
+    "obelisks": "obelisks.png",
 };
 
 const Overlay = styled(motion.div)`

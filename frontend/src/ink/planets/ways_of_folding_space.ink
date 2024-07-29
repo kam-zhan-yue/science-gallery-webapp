@@ -10,7 +10,9 @@ AI: We're here! This planet is unsuitable for landing, so you'll have to bring m
 You glides around the planet, scanning for any signs of interesting phenomena. After a while, your ship chimes.
 
 AI: I've detected an unidentified structure. I'm moving closer to scan it.
-// Twin obelisks in the sea
+
+~background = obelisks
+
 Your ship flies further down to the planet’s surface, revealing two black stone obelisks protruding from the waves. They have strange markings etched into the hard stone. 
 ->explanations
 
@@ -52,7 +54,7 @@ AI: Honestly, I have no idea what's happening. No harm in doing what they want, 
 
 === folding_space_door ===
 
-// Zoom in on left obelisk
+~background = obelisks_left
 
 The ‘Folding Space’ statue glows brighter, illuminating a small door on the base of the statue. You move closer to the door, revealing a panel.
 AI: Hmm, that looks locked. Let's try to find out how to open it. 
@@ -68,7 +70,7 @@ AI: Hmm, that looks locked. Let's try to find out how to open it.
 
 === flight_door ===
 
-// Zoom in on right obelisk
+~background = obelisks_right
 
 The ‘Flight’ statue glows brighter, illuminating a small door on the top of the statue. You move closer to the door, revealing a locked panel.
 AI: Hmm, that looks locked. Let's try and figure out how to open it. 
@@ -168,11 +170,11 @@ AI: How inspiring! I'll add this to my records, this is such an exciting discove
 
 === folding_space_end ===
 
-// Twin obelisks
+~background = obelisks
 
 You retreat back into the cockpit of your ship as you watch both obelisks, with a faint grating sound, retreat into the waves. With a click, they submerge deep underneath the waves. 
 
-// Ocean, ship sprite
+~background = folding_space_main
 
 AI: Hmm. I hope you didn't have plans to open the other one. 
 You roll your eyes, irritated not a small amount because you’ll never discover what was in the second obelisk. 

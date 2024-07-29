@@ -14,35 +14,35 @@ const StatName = styled.div`
     display: flex;
     justify-content: space-between;
     background-color: #7F00FF;
-`
+`;
 const StatTitle = styled.div`
   font-style: bold;
   font-size: 250%;
   margin-top: 10%;
-`
+`;
 
 const StatName2 = styled.div`
     padding: 10px;
     background-color: green;
     display: flex;
     justify-content: space-between;
-`
+`;
 
 
 const Seperator = styled.div`
   border: none;
   border-top: 3px solid #ccc; /* Adjust color and style */
   margin: 15px 0; /* Adjust margin */
-`
+`;
 const Descriptor = styled.div`
     margin-bottom: 30px;
-`
+`;
 
 const Stat = styled.div`
-`
+`;
 
 const ClassName = styled.div`
-`
+`;
 
 const StatsComponent: React.FC<StatsComponentProps> = ({player, onCloseButton}) => {
     const close = () => {

@@ -11,7 +11,7 @@ import CompleteNotificationComponent from "./CompleteNotificationComponent";
 import { EventBus } from "../../EventBus";
 
 const StatisticsHeader = styled(TextStyle)`
-  font-size: 28px;
+  font-size: 45px;
   text-align: center;
   align-items: center;
 `;

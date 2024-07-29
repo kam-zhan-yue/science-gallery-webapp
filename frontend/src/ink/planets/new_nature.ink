@@ -110,24 +110,48 @@ Fysi: Well... The thing is, we have two very severe problems, and only one solut
 ->fysi_shard_explain
 +[Stay silent and let Fysi talk]
 ->fysi_shard_explain
+*[speech:Can I see the shard?]
+    ->see_shard
++[speech:I wasn't listening. Give me the run down again]
+    ->fysi_backstory_end
+
 
 === fysi_shard_explain ===
 Fysi: Sorry, I’m rambling.  Now that I’ve explained our situation, we need you to decide. You’re an unbiased third party, you can see this problem from an objective perspective. Who would you give the shard to?
+
+-> new_nature_choices
+
+=== new_nature_choices ===
+
+{ inventory ? (artist_item):
+    ->doctor_choices
+-else: 
+    ->not_doctor_choices
+}
+
+=== doctor_choices ===
 
 *[important:Give the shard to the Gardeners - the town needs food.]
     ->shard_gardeners
 *[important:Give the shard to the Guards - they need to protect the town.]
     ->shard_guards
-*[important:I have a torch on my ship, I can give it to the Guards and the Gardeners can have the shard.]
+*[important:I have a torch, I can give it to the Guards and the Gardeners can have the shard.]
     ->torch_appease
-*[important:I have a torch on my ship, I can give it to you, in return for the shard]
+*[important:I have a torch, I can give it to you, in return for the shard]
     ->torch_swap
-*[speech:Take me to see the shard]
-    ->see_shard
 *[speech:I can heal your scouts. I'll give the Gardeners the torch, and I'll take the shard]
     ->heal
-+[speech:I wasn't listening. Give me the run down again]
-    ->fysi_backstory_end
+    
+=== not_doctor_choices ===
+
+*[important:Give the shard to the Gardeners - the town needs food.]
+    ->shard_gardeners
+*[important:Give the shard to the Guards - they need to protect the town.]
+    ->shard_guards
+*[important:I have a torch, I can give it to the Guards and the Gardeners can have the shard.]
+    ->torch_appease
+*[important:I have a torch, I can give it to you, in return for the shard]
+    ->torch_swap
 
 // GARDENER PATH
 === shard_gardeners ===
