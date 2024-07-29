@@ -92,7 +92,7 @@ You hear the scream again, even louder now that you're inside. Coming from the w
 ===mechanic_class_monstrous_feminine===
 You step outside, into a world bristling with forest. A gleaming city rises from the dense maroon vegetation. #Planet overview
 You disembark into a cold clearing. The foliage seeths as the wind whips around you. #A forest of trees with eyes everywhere - birch trees?
-The hairs on the back of your neck stand on end as a realisation washes over you: The entire forest is watching, and audience of countless unseen eyes.
+The hairs on the back of your neck stand on end as a realisation washes over you - The entire forest is watching, and audience of countless unseen eyes.
 No... Seen eyes. You can see the eyes.
 Panic overtakes you and you break into a sprint towards the city, as you try to wipe the memory of those haunting eyes from your mind.
 Finding the outer wall, you make your way around its perimeter until you come upon an open gate, cold and metallic.
@@ -280,7 +280,7 @@ You hear a sound from the being. A sigh.
 NAMAHAGE: I can't stop you. As much as I am a powerful being, I am but a bystander in the lives of those who choose their own paths. Do what you will.
 NAMAHAGE: Before you leave, however, I want to give you something that I believe will aid you in your journey.
 The being extends its arm, and you see a surprisingly human-like hand emerge from the sleeve. 
-It is holding a shard, just like the one you saw reflected so many times. Your stomach drops at its colouration: a deep red. The NAMAHAGE offers it to you. 
+It is holding a shard, just like the one you saw reflected so many times. Your stomach drops at its colouration - a deep red. The NAMAHAGE offers it to you. 
 NAMAHAGE: Remember. Knowledge is power, and power is pain. Do with this what you believe is wisest.
 You take the shard. As soon as it is in your hand, you are in the busy street again. The people bustle around you, you hastily move out of the way as a group of people pass you by. ->leave_namahage
 ===leave_namahage===

@@ -41,7 +41,7 @@ const Background = styled(motion.div)`
   image-rendering: pixelated;
   image-rendering: -moz-crisp-edges;
   image-rendering: crisp-edges;
-  border: 40px solid;
+  border: 30px solid;
   border-image: url("../assets/ui/dialogue-box.png") 15 15 15 15 fill repeat;
 
   -webkit-transition: all 0.2s;
@@ -51,14 +51,14 @@ const Background = styled(motion.div)`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    border: 35px solid;
+    border: 20px solid;
     border-image: url("../assets/ui/dialogue-box.png") 15 15 15 15 fill repeat;
   }
 `;
 
 const CharacterContainer = styled(motion.div)`
   width: 100%;
-  border: 35px solid;
+  border: 25px solid;
   border-image: url("../assets/ui/button.png") 15 15 15 15 fill repeat;
   overflow: hidden;
 `
