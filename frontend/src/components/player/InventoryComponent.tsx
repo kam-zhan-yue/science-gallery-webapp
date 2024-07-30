@@ -19,7 +19,7 @@ const ItemHeader = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  min-height: 90px;
+  min-height: 100px;
   @media (max-width: 600px) {
     border: 12px solid;
     border-image: url("../../assets/ui/slot-active.png") 15 15 15 15 fill repeat;
@@ -27,15 +27,13 @@ const ItemHeader = styled.div`
 `
 
 const ItemView = styled.div`
-
 `
 
 const ItemImage = styled.img`
   image-rendering: pixelated;
   image-rendering: -moz-crisp-edges;
   image-rendering: crisp-edges;
-  height: 50px;
-  width: 50px;
+  width: 100%;
   aspect-ratio: 1;
 `
 const Separator = styled.div`
@@ -160,10 +158,10 @@ const InventoryComponent: React.FC<InventoryComponentProps> = ({player, required
                     {selected &&
                         <>
                             {/*Super dangerous code haha*/}
-                            <ItemView>
+                            <ItemView className='w-1/5 md:w-1/6'>
                                 <ItemImage src={getImage(items[selected])} alt={items[selected].name}/>
                             </ItemView>
-                            <div className="ml-2">
+                            <div className="w-4/5 md:w-5/6 ml-2">
                                 <ItemTitle>{items[selected].name}</ItemTitle>
                                 <Separator/>
                                 <ItemDescription>{items[selected].description}</ItemDescription>

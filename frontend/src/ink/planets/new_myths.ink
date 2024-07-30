@@ -3,47 +3,47 @@
 ->newmyths
 ===newmyths===
 Your ship lands. The glass has fogged up a bit, but you see shades of red all around your ship.
-Ship: You've travelled so far, {name}. I wonder what this planet has in store for you!
+AI: You've travelled so far, {name}. I wonder what this planet has in store for you!
 *[speech:I'm keen to go!]->notenoughfuel
 *[speech:I'm a bit nervous...]->dontbenervous
 ===dontbenervous===
-Ship: Oh... that's fair. I don't know what that feels like, but I've heard it's not a nice feeling.
+AI: Oh... that's fair. I don't know what that feels like, but I've heard it's not a nice feeling.
 *[speech:No, it isn't. It sucks.]->nervoussucks
 *[speech:It's not that bad, it can be helpful.]->nervoushelpful
 ===nervoushelpful===
-Ship: Well then, I hope you are feeling incredibly nervous. You will need it.
+AI: Well then, I hope you are feeling incredibly nervous. You will need it.
 *[speech:Thanks...?]->notenoughfuel
 *[speech:That's kind of rude.]->kindarudeofyou
 ===nervoussucks===
-Ship:Gee, that certainly sounds bad. I guess this is a feeling you will have to live with. Good luck!
+AI:Gee, that certainly sounds bad. I guess this is a feeling you will have to live with. Good luck!
 *[speech:Thanks...?]->notenoughfuel
 *[speech:That's kind of rude.]->kindarudeofyou
 ===kindarudeofyou===
-Ship:I will not tolerate statements of this kind, {name}. Do not question me. Or there will be consequences.
-Ship:I hope you enjoy your time on this planet!
+AI:I will not tolerate statements of this kind, {name}. Do not question me. Or there will be consequences.
+AI:I hope you enjoy your time on this planet!
 *[speech:Okay.] ->notenoughfuel
 ===notenoughfuel===
-Ship:Actually, before you go, I must inform you that I do not have sufficient fuel to take you to another planet.
+AI:Actually, before you go, I must inform you that I do not have sufficient fuel to take you to another planet.
 *[speech:What do you mean?]->fuelexplain
 *[speech:Well, I guess we're stuck here then.]->notstuck
 ===notstuck===
-Ship:We may not be stuck, if you give over your shards. I can use your shards to be converted into fuel.
+AI:We may not be stuck, if you give over your shards. I can use your shards to be converted into fuel.
 *[speech:Oh, that's good to know!]->goodluck1
 *[speech:Wait... how do you use the shards?]->enoughquestions
 ===fuelexplain===
-Ship:You did not ask, so I did not inform you. However fuel levels are critically low.
-Ship:This can be somewhat mitigated by using your shards. Your shards can be converted to fuel.
+AI:You did not ask, so I did not inform you. However fuel levels are critically low.
+AI:This can be somewhat mitigated by using your shards. Your shards can be converted to fuel.
 *[speech:Oh, that's good to know!]->goodluck1
 *[speech:Wait... how do you use the shards?]->enoughquestions
 ===goodluck1===
-Ship:Collect more shards on this planet, and bring them to me. I will make sure you will get to where you need to.
+AI:Collect more shards on this planet, and bring them to me. I will make sure you will get to where you need to.
 *[speech:Which planets will I be able to visit?]->enoughquestions
 *[speech:Where will you take me?]->enoughquestions
 *[speech:Can I stay here?]->enoughquestions
 ===enoughquestions===
-Ship:You ask too many questions. Bring the shards to me.
+AI:You ask too many questions. Bring the shards to me.
 The ship's door opens, and you feel a force pushing you out.
-Ship: I cannot wait to hear what adventures you get up to! Enjoy, {name}!
+AI: I cannot wait to hear what adventures you get up to! Enjoy, {name}!
 *[Venture into NEW MYTHS]->newmythsbegin
 === newmythsbegin ==
 ~background = new_myths_main
@@ -113,7 +113,7 @@ Lady:... but someone tried to steal something from the planet spirit, and that's
 Lady: Come, I want to show you something. 
 She takes you by the hand and walks you through canopies with lights that dance around them.
 As your eyes adjust, you see images form... refabricated realities interwoven into the silk, moving across and telling many stories. 
-YOU ARE INVITED TO VIEW "REFABRICATED REALITIES". YOU MAY STAY HERE AS LONG AS YOU WISH.
+Note: YOU ARE INVITED TO WATCH 'REFABRICATED REALITIES'. YOU CAN STAY HERE AS LONG AS YOU LIKE. 
 *[speech:Where do I go from here?] ->followthesilk
 ===artistmendsilk===
 Lady: Oh, could you? I would be so eternally grateful!
@@ -165,16 +165,15 @@ You touch the silk, and the warmth you have felt grows. What felt like a warm hu
 The red glow suddenly starts to lift you off the ground, and takes you high above the red forest. As you are taken up into the sky, you look down to see the light show, and the crowd cheering along. 
 Things feel small from up here. You feel calm. You gently land through the thickest part of the forest.
 As you look around, you notice you're in a cave, the walls made of the dense silk forestry you saw before. 
-You have made it to the heart of the planet - the Fate.
 ->theheart
 ==followsilk2==
 You follow the glowing silk - it takes you through a labyrinthine chase - the glow seems to move across the silk as if inviting you to a chase.
 You pick up speed, pushing away wades of silk as you do. It fills you with pure joy, you almost forget that you're running. Eventually, your chase slows down as you near the thickest part of the forest.
 As you look around, you notice you're in a cave, the walls made of the dense silk forestry you saw before. 
-You have made it to the heart of the planet - the Fate.
 ->theheart
 ==theheart==
 ~background = new_myths_silk_voice
+You have made it to the heart of the planet - the Fate.
 The Fate: I have been waiting for you, young one.
 You're taken by surprise, and the voice laughs.
 The Fate: I know what you seek. You have been collecting many pieces of a past memory, and I wish to help you. Memories, stories, histories... 
@@ -304,18 +303,20 @@ The Fate: Use them wisely, please.
 ===finalreturntoship===
 With all its warmth and welcome, you close your eyes to enjoy it.
 When you open your eyes, you are back in your ship.
+
 ->justenough
 ===justenough===
+~background = ship_navigation
 The ship glows a faint red.
-Ship: You have taken a long time to return. Where have you been?
+AI: You have taken a long time to return. Where have you been?
 The ship's door shuts. 
 You feel the ship shake, ready for takeoff.
 *[speech:Where are you taking me?]->movingtoanewlight
 *[speech:I thought we didn't have enough fuel...]->shush
 ===shush===
-Ship: You know, {name}, you really must shush sometimes. I wish to surprise you!
-Ship: You've travelled for so long, and have had to make all the hard decisions...
+AI: You know, {name}, you really must shush sometimes. I wish to surprise you!
+AI: You've travelled for so long, and have had to make all the hard decisions...
 ->movingtoanewlight
 ===movingtoanewlight===
-Ship: Let's float around for a little bit, shall we, {name}?
+AI: Let's float around for a little bit, shall we, {name}?
 the ship blasts off into the aether.->new_light

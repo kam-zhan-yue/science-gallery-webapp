@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import { achievements } from "../../setup/Achievements";
 import { Statistics } from "./Statistics";
 import { TextStyle } from "../styled/Text";

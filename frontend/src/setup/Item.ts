@@ -13,57 +13,57 @@ export const items: { [key: string]: Item } = {
     "artist_item": {
         name: "Needle and Thread",
         image: "apple.png",
-        description: "Red thread thingy."
+        description: "A needle and thread. It seems extremely important for something."
     },
     "mechanic_item": {
         name: "The Sentient Toolbox",
         image: "apple.png",
-        description: "A syringe."
+        description: "A sentient toolbox. It seems extremely important for something."
     },
     "doctor_item": {
         name: "A Syringe",
         image: "apple.png",
-        description: "A wrench."
+        description: "A syringe. It seems extremely important for something."
     },
     "book_1": {
         name: "'I, Robot'",
         image: "book_1.png",
-        description: "A pen."
+        description: "A really, really heavy book. Good for smacking things. Oh, and maybe reading."
     },
     "book_2": {
         name: "'(Untitled) Heat Book'",
         image: "book_2.png",
-        description: "A red shard."
+        description: "An untitled book about the secrets of the Universe. Unfortunately, it's unreadable."
     },
     "library_card": {
         name: "Library Card",
         image: "library_card.png",
-        description: "A blue shard.",
+        description: "A card to borrow books with.",
     },
     "spear": {
         name: "Spear",
-        image: "apple.png",
-        description: "The sword of legend."
+        image: "spear.png",
+        description: "A long sharp spear."
     },
     "flower": {
         name: "Flower",
-        image: "bread.png",
-        description: "Cuddly and snuggly."
+        image: "flower.png",
+        description: "A beautiful flower."
     },
     "pendant": {
         name: "Anna's Pendant",
-        image: "bread.png",
-        description: "Cuddly and snuggly."
+        image: "pendant.png",
+        description: "An antique pendant. It looks like it's been loved and cared for deeply."
     },
     "torch": {
         name: "Torch",
-        image: "bread.png",
-        description: "A torch."
+        image: "torch.png",
+        description: "A torch capable of lighting up the deepest, darkest corners of the Universe."
     },
     "scroll": {
         name: "Scroll",
-        image: "avocado.png",
-        description: "A powerful seed."
+        image: "large_scroll.png",
+        description: "A long scroll filled with ancient text. The text is indecipherable."
     },
     "star": {
         name: "Star Silk",
