@@ -3,7 +3,8 @@ VAR puzzle_success = false
 === folding_space ===
 ~background = folding_space_main
 ~ music = bgm_band_2
-You come upon a world covered entirely in ocean. Its deep blue seas glisten in the light of distant stars, making the planet look like a perfect sphere, made entirely of water.  ->ai_folding_space
+You come upon a world covered entirely in ocean. Its deep blue seas glisten in the light of distant stars, making the planet look like a perfect sphere, made entirely of water.  
+->ai_folding_space
 
 ===ai_folding_space===
 AI: We're here! This planet is unsuitable for landing, so you'll have to bring me along for your little adventure this time!
@@ -161,8 +162,7 @@ AI: Oh, what beautiful prose!  I'll add it to my records. This is a fascinating 
 
 === flight_words ===
 
-You unfurl the parchment. It has a simple but beautiful illustration of a soaring sparrow. The text around the drawing reads:  
-
+You unfurl the parchment. It has a simple but beautiful illustration of a soaring sparrow. The text around the drawing reads -
 “For flight is freedom, and freedom is life. We may never be truly free until we can see our world from the eyes of the birds.” 
 You feel these words burn deep in your soul. 
 AI: How inspiring! I'll add this to my records, this is such an exciting discovery!
