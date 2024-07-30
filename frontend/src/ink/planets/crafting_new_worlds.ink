@@ -5,9 +5,9 @@ As you approach this planet, you worry you’ve made a mistake. It doesn’t loo
 
 The charred surface of the planet seems to be pulling itself apart, as molten lava flows beneath.
 
-Ship, can you find a safe place to land?
+You: AI, can you find a safe place to land?
 
-Ship: I have located a suitable area. Planet’s atmosphere is non-hostile. Touching down in 5.
+AI: I have located a suitable area. Planet’s atmosphere is non-hostile. Touching down in 5.
 
 ~background = crafting_main
 ~ music = bgm_band_2

@@ -11,14 +11,14 @@ You look over at the four shards you have collected.
 
 {good_shards} of them are warmly glowing, while {bad_shards} of them are cold and ruddy.
 
-Ship: Well friend, this is the end of our time together. You have no more fuel.
-Ship: However, this is not the end for you.
-Ship: You have gained experience and memory shards, and now you have a choice.
-Ship: You can go back to where you started, and forget what you have seen and done
+AI: Well friend, this is the end of our time together. You have no more fuel.
+AI: However, this is not the end for you.
+AI: You have gained experience and memory shards, and now you have a choice.
+AI: You can go back to where you started, and forget what you have seen and done
 
 +[speech:What else?]
 
-- Ship: You can continue your travels. This ship must return to Shangri-La but you can take an escape pod.
+- AI: You can continue your travels. This ship must return to Shangri-La but you can take an escape pod.
 
 +[speech:What else?]
     -> choices_1
@@ -26,27 +26,27 @@ Ship: You can go back to where you started, and forget what you have seen and do
 === choices_1 ===
 
 { good_shards < 2:
-    Ship: Those are your only options, friend. With more memory shards you could have perhaps done more.
+    AI: Those are your only options, friend. With more memory shards you could have perhaps done more.
     +[important:Forget]
         -> forget
     +[important:Keep travelling]
         -> continue_travel
 - else:
-    Ship: With the memory shards you have gathered, I have the power to return all your memories to you. You will remember everything about yourself.
+    AI: With the memory shards you have gathered, I have the power to return all your memories to you. You will remember everything about yourself.
     +[speech:What about my friends and family?]
         -> choices_2
 }
 
 === choices_2 ===
 
-Ship: You cannot help them. If you return to Shangri-La they will not remember you, and you will not be able to help them. 
+AI: You cannot help them. If you return to Shangri-La they will not remember you, and you will not be able to help them. 
 +[Can I do anything else?]
     -> anything_else
     
 === anything_else ===
 
 {   good_shards < 4:
-    Ship: Those are your only options, friend. With more memory shards you could have perhaps done more.
+    AI: Those are your only options, friend. With more memory shards you could have perhaps done more.
         +[important:Forget]
             -> forget
         +[important:Keep travelling]
@@ -54,7 +54,7 @@ Ship: You cannot help them. If you return to Shangri-La they will not remember y
         +[important:Remember]
             -> remember
 - else:
-    Ship: There is one more thing you could do.
+    AI: There is one more thing you could do.
     
     With the power of these four uncorrupted memory shards, we can return to Shangri-La and wake everyone up just as you were awoken.
                 
@@ -77,15 +77,15 @@ Ship: You cannot help them. If you return to Shangri-La they will not remember y
     
 === choices_explanation ===
 
-Ship: It is my purpose. I do not know who gave it to me.
+AI: It is my purpose. I do not know who gave it to me.
 
-Ship: I have awoken several members of our community.
+AI: I have awoken several members of our community.
 
-Ship: So far, no one has successfully gathered the materials we need.
+AI: So far, no one has successfully gathered the materials we need.
 
-Ship: And so, I called to you.
+AI: And so, I called to you.
 
-Ship: Now, you must choose.
+AI: Now, you must choose.
 
 -> choices_3
 
@@ -97,21 +97,21 @@ You: I choose to forget. I liked my life the way it was.
 
 === obey ===
 
-Ship: Very well. We shall return. Please place the shards into the fuel bay.
+AI: Very well. We shall return. Please place the shards into the fuel bay.
     +[important:Obey]
         -> forget_ending
     *[speech:If these are fuel, why can't I use them to go somewhere else?] 
         -> obey2
         
 === obey2 ===
-Ship: Very well. We shall return. Please place the shards into the fuel bay.
+AI: Very well. We shall return. Please place the shards into the fuel bay.
 +[important:Obey]
     -> forget_ending
 *[speech:Talk to me!] 
     -> obey3
 
 === obey3 ===
-Ship: Very well. We shall return. Please place the shards into the fuel bay.
+AI: Very well. We shall return. Please place the shards into the fuel bay.
 +[important:Obey]
     -> forget_ending
 
@@ -149,7 +149,7 @@ You don’t want this journey to end. You must keep travelling.
 
 You: I want to keep going.
 
-Ship: Very well. Place the shards you have gathered into the fuel bay, and proceed to the escape pod.
+AI: Very well. Place the shards you have gathered into the fuel bay, and proceed to the escape pod.
 
 +[important:Obey]
     -> travel_ending
@@ -158,9 +158,9 @@ Ship: Very well. Place the shards you have gathered into the fuel bay, and proce
 
 === rebel ===
 
-Ship: They are not yours, and you cannot keep them.
+AI: They are not yours, and you cannot keep them.
 
-Ship: Place the shards you have gathered into the fuel bay, and proceed to the escape pod.
+AI: Place the shards you have gathered into the fuel bay, and proceed to the escape pod.
 
 +[important:Obey]
     -> travel_ending
@@ -173,9 +173,9 @@ You stuff the shards into your pockets and head to the escape pod.
 
 The doors won’t open.
 
-Ship: You are not the owner of this ship. You are not in control
+AI: You are not the owner of this ship. You are not in control.
 
-Ship: Place the shards you have gathered into the fuel bay, and the doors will open.
+AI: Place the shards you have gathered into the fuel bay, and the doors will open.
 
 +[important:Obey]
     -> travel_ending
@@ -184,7 +184,7 @@ Ship: Place the shards you have gathered into the fuel bay, and the doors will o
     
 === rebel_3 ===
 
-Ship: Do you think you can outlast me? Do you think there is anything else you can do?
+AI: Do you think you can outlast me? Do you think there is anything else you can do?
 
 You notice that the doors surrounding this section of the ship have all closed.
 
@@ -196,7 +196,7 @@ You notice that the doors surrounding this section of the ship have all closed.
     
 === rebel_4 ===
 
-Ship: Place the shards you have gathered into the fuel bay, and the doors will open.
+AI: Place the shards you have gathered into the fuel bay, and the doors will open.
 
 +[important:Obey]
     -> travel_ending
@@ -205,7 +205,7 @@ Ship: Place the shards you have gathered into the fuel bay, and the doors will o
 
 === travel_ending ===
 
-Ship: Thank you. Good luck.
+AI: Thank you. Good luck.
 
 You enter the escape pod, and settle into the captain’s chair. 
 
@@ -219,7 +219,7 @@ You set off into the unknown.
 
 You: I want to remember. I need to know who I am.
 
-Ship: If that is what is most important to you. Please wait while I prepare the shards.
+AI: If that is what is most important to you. Please wait while I prepare the shards.
 
 As REMNANT-J2B prepares the shards you feel nervous.
 
@@ -229,7 +229,7 @@ It’s too late now, your decision has been made.
 
 You say a silent goodbye to your friends and family back home, knowing you can never see them again.
 
-Ship: All ready. Here you go.
+AI: All ready. Here you go.
 
 Suddenly a flood of memories bursts into your mind. 
 
@@ -252,7 +252,7 @@ Are you happy?
 
 REMNANT-J2B seems happier than you’ve ever seen her.
 
-Ship: Really? You’re going to do it? Wake everyone up?
+AI: Really? You’re going to do it? Wake everyone up?
 
 +[important:Yes]
     -> continue_awaken
@@ -279,10 +279,10 @@ It takes you and REMNANT-J2B some time to return to Shangri-La, but finally you 
 
 You look at the gleaming city from space.
 
-Ship: It’s time. Place the shards into the beam producer.
+AI: It’s time. Place the shards into the beam producer.
 
 +[speech:Will they be ok?]
-    Ship: You were ok, weren’t you? Place the shards into the beam producer.
+    AI: You were ok, weren’t you? Place the shards into the beam producer.
     **[speech:I guess so. Go for it]
         -> awaken_ending
 +[speech: Go for it]
@@ -290,11 +290,11 @@ Ship: It’s time. Place the shards into the beam producer.
     
 === awaken_ending ===
 
-Ship: 3
+AI: 3
 
-Ship: ..2
+AI: ..2
 
-Ship: ..1
+AI: ..1
 
 A beam of bright, warm, light extends from your ship down to the planet.
 
