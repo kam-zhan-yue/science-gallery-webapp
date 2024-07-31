@@ -4,7 +4,6 @@ import { TextStyle } from "../styled/Text.tsx";
 import { colours } from "../styled/Constants.tsx";
 import { AnimatePresence, motion } from "framer-motion";
 import CreditsComponent from "./CreditsComponent.tsx";
-import { InvisibleBlocker } from "../styled/Blocker.tsx";
 import { GameContext, GameContextType, GameState } from "../../contexts/GameContext.tsx";
 import BlurbComponent from "./BlurbComponent.tsx";
 
@@ -133,7 +132,6 @@ const EndingComponent: React.FC<EndingProps> = ({ ending, restart }) => {
           {endState === EndingState.Credits &&
             <>
             <CreditsComponent complete={returnToMenu} />
-              <InvisibleBlocker onClick={returnToMenu}/>
             </>
           }
       </Overlay>

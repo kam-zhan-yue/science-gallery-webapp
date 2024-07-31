@@ -439,9 +439,9 @@ const StoryComponent: React.FC<StoryComponentProps> = ({ universeRef }) => {
           }
 
           {storyState === StoryState.Choosing && (
-            <>
+            <div className="absolute bottom-6">
               <GuideComponent />
-            </>
+            </div>
           )}
 
           {storyState === StoryState.Inspecting && (
@@ -475,6 +475,11 @@ const StoryComponent: React.FC<StoryComponentProps> = ({ universeRef }) => {
             />
           )}
           </AnimatePresence>
+          {storyState === StoryState.Keypad &&
+            <div className="absolute bottom-6">
+              <GuideComponent prompt="AI: Look around the artwork for a secret code!"/>
+            </div>
+          }
 
           <AnimatePresence>
             {inkState !== "planet_selection" &&

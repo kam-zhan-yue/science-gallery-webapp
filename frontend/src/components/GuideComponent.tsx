@@ -2,19 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Typewriter from "./Typewriter.tsx";
 
-const InputBlocker = styled.div`
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  touch-action: none;
-`
-
 const Text = styled.div`
-  position: absolute;
-  bottom: 20px;
-  font-size: 36px;
   font-family: "VT323", monospace;
   font-weight: 400;
   font-style: normal;
@@ -29,7 +17,7 @@ const prompts = [
   "AI: Let's see where life takes us."
 ]
 
-const GuideComponent: React.FC = () => {
+const GuideComponent: React.FC<{prompt?: string}> = ({prompt}) => {
   function getRandomInt(max: integer) {
     return Math.floor(Math.random() * max);
   }
@@ -39,12 +27,19 @@ const GuideComponent: React.FC = () => {
   }
   return (
       <>
-          <InputBlocker/>
           <Text>
-            <Typewriter
-              text={getRandomPrompt()}
-              fontSize={32}
-              delay={30}/>
+            {prompt &&
+              <Typewriter
+                text={prompt}
+                fontSize={26}
+                delay={30}/>
+            }
+            {!prompt &&
+                <Typewriter
+                  text={getRandomPrompt()}
+                  fontSize={26}
+                  delay={30}/>
+              }
           </Text>
       </>
   );

@@ -101,30 +101,29 @@ const BackgroundComponent: React.FC<BackgroundComponentProps> = ({ backgroundKey
             )}
             </AnimatePresence>
             {backgroundKey in backgrounds && (
-                <Overlay>
-                    <BackgroundContainer
+                <AnimatePresence>
+                {visible &&
+                    <Overlay
                       initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0, transition: { duration: 1 } }}
-                      transition={{ duration: 1 }}
-                    >
-                        <AnimatePresence>
-                            {visible && (
-                              <Border>
-                                <Background
-                                    key={currentKey}
-                                    src={getBackground()}
-                                    alt="background"
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    exit={{ opacity: 0 }}
-                                    transition={{ duration: 0.5}}
-                                />
-                                </Border>
-                            )}
-                        </AnimatePresence>
-                    </BackgroundContainer>
-                </Overlay>
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0, transition: { duration: 1 } }}
+                        transition={{ duration: 1 }}>
+                        <BackgroundContainer>
+                          <Border>
+                            <Background
+                                key={currentKey}
+                                src={getBackground()}
+                                alt="background"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                transition={{ duration: 0.5}}
+                            />
+                            </Border>
+                        </BackgroundContainer>
+                    </Overlay>
+                  }
+                </AnimatePresence>
             )}
         </>
     );
