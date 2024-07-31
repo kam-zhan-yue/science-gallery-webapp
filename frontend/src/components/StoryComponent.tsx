@@ -475,6 +475,9 @@ const StoryComponent: React.FC<StoryComponentProps> = ({ universeRef }) => {
             />
           )}
           </AnimatePresence>
+          {storyState === StoryState.Keypad &&
+            <GuideComponent prompt="AI: Look around the artwork for a secret code!"/>
+          }
 
           <AnimatePresence>
             {inkState !== "planet_selection" &&

@@ -6,6 +6,7 @@ import Planet from '../classes/Planet';
 import {motion} from "framer-motion";
 import {TextStyle} from "./styled/Text.tsx";
 import { EventBus } from '../EventBus.tsx';
+import GuideComponent from './GuideComponent.tsx';
 
 const KeypadOverlay = styled(motion.div)`
   position: fixed;
