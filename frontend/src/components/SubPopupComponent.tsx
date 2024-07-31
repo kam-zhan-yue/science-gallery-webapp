@@ -20,19 +20,13 @@ const SubPopupComponent: React.FC<SubPopupProps> = ({tab, player, requiredItem, 
     return (
         <>
             {tab === "inventory" &&
-                <>
-                    <InventoryComponent player={player} requiredItem={requiredItem} onUseItem={onUseItem} onCloseButton={close}/>
-                </>
+              <InventoryComponent player={player} requiredItem={requiredItem} onUseItem={onUseItem} onCloseButton={close}/>
             }
             {tab === "stats" &&
-                <>
-                    <StatsComponent player={player} onCloseButton={close}/>
-                </>
+              <StatsComponent player={player} onCloseButton={close}/>
             }
             {tab === "shard" &&
-                <>
-                    <ShardComponent player={player} onCloseButton={close}/>
-                </>
+              <ShardComponent player={player} onCloseButton={close}/>
             }
         </>
     );

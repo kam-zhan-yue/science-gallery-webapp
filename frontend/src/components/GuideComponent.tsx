@@ -3,8 +3,6 @@ import styled from "styled-components";
 import Typewriter from "./Typewriter.tsx";
 
 const Text = styled.div`
-  position: absolute;
-  bottom: 20px;
   font-family: "VT323", monospace;
   font-weight: 400;
   font-style: normal;

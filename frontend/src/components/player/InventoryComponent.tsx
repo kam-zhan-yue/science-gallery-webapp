@@ -5,6 +5,8 @@ import {getImage, items} from "../../setup/Item.ts";
 import InventoryItemComponent from "./InventoryItemComponent.tsx";
 import styled from "styled-components";
 import {GameContext, GameContextType} from "../../contexts/GameContext.tsx";
+import { TextStyle } from "../styled/Text.tsx";
+import GuideComponent from "../GuideComponent.tsx";
 
 interface InventoryComponentProps {
     player: Player,
@@ -49,6 +51,11 @@ const ItemTitle = styled.div`
 const ItemDescription = styled.div`
   text-overflow: ellipsis;
 `
+
+const ItemPrompt = styled(TextStyle)`
+  font-size: 20px;
+  font-weight:
+  `
 
 const ItemSlots = styled.div`
   overflow: hidden;
@@ -168,6 +175,19 @@ const InventoryComponent: React.FC<InventoryComponentProps> = ({player, required
                             </div>
                         </>
                     }
+                    {!selected &&
+                      <>
+                          {/*Super dangerous code haha*/}
+                          <div className='justify items-center jutify-center text-center w-full'>
+                            {active() &&
+                              <GuideComponent prompt="AI: Select an item to use it!"/>
+                            }
+                            {!active() &&
+                              <GuideComponent prompt="AI: Select an item to inspect it."/>
+                            }
+                          </div>
+                      </>
+                    }
                 </ItemHeader>
                 <ItemSlots>
                     <div className="grid grid-cols-4 md:grid-cols-5 gap-2 w-full">
@@ -190,7 +210,7 @@ const InventoryComponent: React.FC<InventoryComponentProps> = ({player, required
                         ))}
                     </div>
                 </ItemSlots>
-                {selected &&
+                {selected && active() &&
                     <>
                         <UseContainer>
                             <UseButton isActive={active()} onClick={useItem}>
