@@ -1,5 +1,5 @@
 ===shangri_la===
-...
+(Click anywhere on the screen to continue)
 ~ unlock_achievement(gamesStarted)
 ~background = black
 Black.
