@@ -141,7 +141,7 @@ Nothing will ever change here.
 
 Another day in paradise.
 
-->final
+->ending_forget_everything
 
 === continue_travel ===
 
@@ -213,7 +213,7 @@ You may not have your memories, or your shards, but you have a future.
 
 You set off into the unknown.
 
--> final
+-> ending_keep_travelling
 
 === remember ===
 
@@ -243,7 +243,7 @@ Are you happy?
 
 +[important:Yes]
     You are {name}
-    -> final
+    -> ending_remember_everything
 +[important:No]
     ~progress = 0
     -> navigation
@@ -312,8 +312,26 @@ You relax as you realise even the enforcers were being kept prisoner here.
 
 You are excited for what the future holds.
 
-->final
+->ending_wake_shangrila
 
-=== final ===
+
+=== ending_keep_travelling ===
+~ending = ending_travel
+->DONE
+
+
+=== ending_remember_everything ===
+~ending = ending_memory
+->DONE
+
+=== ending_forget_everything ===
+~ending = ending_forget
+->DONE
+
+=== ending_remember ===
+~ending = ending_remember
+->DONE
+
+=== ending_wake_shangrila ===
 ~ending = ending_wake
 ->DONE

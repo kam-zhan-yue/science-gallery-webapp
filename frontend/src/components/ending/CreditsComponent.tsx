@@ -100,6 +100,8 @@ const CreditsComponent: React.FC<{complete: () => void }> = ({complete}) => {
                 <Playtester>Sunny Sirabas</Playtester>
                 <Playtester>Tara Stoney</Playtester>
                 <Playtester>Anthony Takyi</Playtester>
+                <Playtester>Maisa Derav</Playtester>
+                <Playtester>Victoria Bai</Playtester>
               </Credit>
             </div>
           </div>
