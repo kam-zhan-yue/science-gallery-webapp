@@ -5,7 +5,6 @@ import {getImage, items} from "../../setup/Item.ts";
 import InventoryItemComponent from "./InventoryItemComponent.tsx";
 import styled from "styled-components";
 import {GameContext, GameContextType} from "../../contexts/GameContext.tsx";
-import { TextStyle } from "../styled/Text.tsx";
 import GuideComponent from "../GuideComponent.tsx";
 
 interface InventoryComponentProps {
