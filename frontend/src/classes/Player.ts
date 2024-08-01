@@ -76,8 +76,10 @@ class Player {
     }
 
     set health(stat: number) {
-      EventBus.emit('on_damage');
-        this._health = stat;
+      if(stat < this.health) {
+        EventBus.emit('on_damage');
+      }
+      this._health = stat;
     }
 
     set firstShard(value: string) {
