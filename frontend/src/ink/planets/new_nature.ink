@@ -123,7 +123,7 @@ Fysi: Sorry, I’m rambling.  Now that I’ve explained our situation, we need y
 
 === new_nature_choices ===
 
-{ inventory ? (artist_item):
+{ inventory ? (doctor_item):
     ->doctor_choices
 -else: 
     ->not_doctor_choices
