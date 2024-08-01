@@ -1,3 +1,5 @@
+import Vector2 = Phaser.Math.Vector2;
+
 export type PlanetData = {
     // used to display the name
     name: string,
@@ -8,6 +10,7 @@ export type PlanetData = {
     clockwiseOrbit: boolean,
     // soundtrack
     bgm?: string,
+    offset: Vector2,
 }
 
 export const planets: { [key: string]: PlanetData } = {
@@ -17,6 +20,7 @@ export const planets: { [key: string]: PlanetData } = {
         orbitalRadius: 0,
         orbitalPeriod: 0,
         clockwiseOrbit: false,
+        offset: new Vector2(-3, -3),
     },
     "paradox_of_paradise": {
         name: "Paradox Of Paradise",
@@ -24,14 +28,16 @@ export const planets: { [key: string]: PlanetData } = {
         orbitalRadius: 40,
         orbitalPeriod: 20,
         clockwiseOrbit: false,
+        offset: new Vector2(-3, -3),
     },
     "words_and_worlds": {
         name: "Words and Worlds",
-        key: "earth",
+        key: "words_and_worlds",
         orbitalRadius: 80,
         orbitalPeriod: 30,
         clockwiseOrbit: false,
-        bgm: "band_1"
+        bgm: "band_1",
+        offset: new Vector2(-25, -25),
     },
     "new_nature": {
         name: "New Nature",
@@ -39,7 +45,8 @@ export const planets: { [key: string]: PlanetData } = {
         orbitalRadius: 40,
         orbitalPeriod: 20,
         clockwiseOrbit: false,
-        bgm: 'band_1'
+        bgm: 'band_1',
+        offset: new Vector2(-3, -3),
     },
     "ways_of_folding_space": {
         name: "Ways of Folding Space",
@@ -47,7 +54,8 @@ export const planets: { [key: string]: PlanetData } = {
         orbitalRadius: 40,
         orbitalPeriod: 20,
         clockwiseOrbit: false,
-        bgm: 'band_2'
+        bgm: 'band_2',
+        offset: new Vector2(-3, -3),
     },
     "crafting_new_worlds": {
         name: "Crafting New Worlds",
@@ -55,7 +63,8 @@ export const planets: { [key: string]: PlanetData } = {
         orbitalRadius: 80,
         orbitalPeriod: 30,
         clockwiseOrbit: false,
-        bgm: 'band_2'
+        bgm: 'band_2',
+        offset: new Vector2(-3, -3),
     },
     "the_monstrous_feminine": {
         name: "The Monstrous Feminine",
@@ -63,7 +72,8 @@ export const planets: { [key: string]: PlanetData } = {
         orbitalRadius: 40,
         orbitalPeriod: 20,
         clockwiseOrbit: false,
-        bgm: 'band_3'
+        bgm: 'band_3',
+        offset: new Vector2(-3, -3),
     },
     "new_myths": {
         name: "New Myths",
@@ -71,7 +81,8 @@ export const planets: { [key: string]: PlanetData } = {
         orbitalRadius: 80,
         orbitalPeriod: 30,
         clockwiseOrbit: false,
-        bgm: 'band_3'
+        bgm: 'band_3',
+        offset: new Vector2(-3, -3),
     },
     "in_a_new_light": {
         name: "In A New Light",
@@ -79,6 +90,7 @@ export const planets: { [key: string]: PlanetData } = {
         orbitalRadius: 40,
         orbitalPeriod: 20,
         clockwiseOrbit: false,
+        offset: new Vector2(-3, -3),
     },
     "debug": {
         name: "Debug",
@@ -86,5 +98,6 @@ export const planets: { [key: string]: PlanetData } = {
         orbitalRadius: 80,
         orbitalPeriod: 30,
         clockwiseOrbit: true,
+        offset: new Vector2(-3, -3),
     }
 }

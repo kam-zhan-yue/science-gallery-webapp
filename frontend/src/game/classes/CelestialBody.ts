@@ -15,8 +15,9 @@ export default class CelestialBody {
     private orbitalRing: Phaser.GameObjects.Graphics;
     private nameText: Phaser.GameObjects.BitmapText;
     private graphics: Graphics;
+    private offset: Vector2;
 
-    constructor(id: string, data: PlanetData, physics: ArcadePhysics, graphics: Graphics, x: number, y: number) {
+    constructor(id: string, data: PlanetData, physics: ArcadePhysics, graphics: Graphics, x: number, y: number, offset: Vector2) {
         this.id = id;
         this.data = data;
         this.parentPosition = new Vector2(x, y);
@@ -28,6 +29,7 @@ export default class CelestialBody {
         this.orbitalRing = this.graphics.strokeCircle(x, y, this.data.orbitalRadius);
         // Initialize the name text
         this.nameText = this.body.scene.add.bitmapText(0, 0, 'pixelFont', this.data.name, 16);
+        this.offset = offset;
     }
 
     public clean() {
@@ -143,8 +145,8 @@ export default class CelestialBody {
 
     public drawName() {
         const position = this.body.getBottomRight();
-        const x = position.x-3;
-        const y = position.y-3;
+        const x = position.x + this.offset.x;
+        const y = position.y + this.offset.y;
         this.nameText.setPosition(x, y);
     }
 }

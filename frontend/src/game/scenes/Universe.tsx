@@ -100,6 +100,19 @@ export class Universe extends Scene {
             repeat: -1
         });
 
+        this.anims.create({
+            key: 'words_and_worlds_spin',
+            frames: this.anims.generateFrameNumbers('planets', {frames:[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]}),
+            frameRate: 12,
+            repeat: -1
+        });
+
+        this.anims.create({
+            key: 'crafting_new_worlds_spin',
+            frames: this.anims.generateFrameNumbers('planets', {frames:[18,19,20,21,22,23]}),
+            frameRate: 12,
+            repeat: -1
+        });
 
         this.anims.create({
             key: 'shangrila_spin',

@@ -25,17 +25,17 @@ export default class SolarSystem {
         this.y = y;
         this.drawNames = true;
         // Instantiate Planets
-        if(planets.hasOwnProperty(centre)) {
-            this.sun = new Sun(centre, planets[centre], this.physics, this.graphics, this.x, this.y);
+        if(centre in planets) {
+            this.sun = new Sun(centre, planets[centre], this.physics, this.graphics, this.x, this.y, planets[centre].offset);
         } else {
-            this.sun = new Sun("shangrila", planets["shangrila"], this.physics, this.graphics, this.x, this.y);
+            this.sun = new Sun("shangrila", planets["shangrila"], this.physics, this.graphics, this.x, this.y, planets['shangrila'].offset);
         }
     }
 
     clean() {
         this.sun.clean();
         for(const key in this.orbits) {
-            if(this.orbits.hasOwnProperty(key)) {
+            if(key in this.orbits) {
                 this.orbits[key].clean();
             }
         }
@@ -45,7 +45,7 @@ export default class SolarSystem {
         this.orbits = {};
         for(const orbit of orbits) {
             if(orbit in planets) {
-                this.orbits[orbit] = new Planet(orbit, planets[orbit], this.physics, this.graphics, this.x, this.y);
+                this.orbits[orbit] = new Planet(orbit, planets[orbit], this.physics, this.graphics, this.x, this.y, planets[orbit].offset);
             }
         }
     }
