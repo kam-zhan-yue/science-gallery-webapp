@@ -37,7 +37,7 @@ export const planets: { [key: string]: PlanetData } = {
         orbitalPeriod: 30,
         clockwiseOrbit: true,
         bgm: "band_1",
-        offset: new Vector2(-25, -25),
+        offset: new Vector2(-30, -30),
     },
     "new_nature": {
         name: "New Nature",
@@ -55,7 +55,7 @@ export const planets: { [key: string]: PlanetData } = {
         orbitalPeriod: 20,
         clockwiseOrbit: false,
         bgm: 'band_2',
-        offset: new Vector2(-25, -25),
+        offset: new Vector2(-35, -35),
     },
     "crafting_new_worlds": {
         name: "Crafting New Worlds",
@@ -64,7 +64,7 @@ export const planets: { [key: string]: PlanetData } = {
         orbitalPeriod: 30,
         clockwiseOrbit: false,
         bgm: 'band_2',
-        offset: new Vector2(-25, -25),
+        offset: new Vector2(-35, -35),
     },
     "the_monstrous_feminine": {
         name: "The Monstrous Feminine",
@@ -73,7 +73,7 @@ export const planets: { [key: string]: PlanetData } = {
         orbitalPeriod: 20,
         clockwiseOrbit: false,
         bgm: 'band_3',
-        offset: new Vector2(-25, -25),
+        offset: new Vector2(-35, -35),
     },
     "new_myths": {
         name: "New Myths",
@@ -82,7 +82,7 @@ export const planets: { [key: string]: PlanetData } = {
         orbitalPeriod: 30,
         clockwiseOrbit: false,
         bgm: 'band_3',
-        offset: new Vector2(-3, -3),
+        offset: new Vector2(-35, -35),
     },
     "in_a_new_light": {
         name: "In A New Light",
