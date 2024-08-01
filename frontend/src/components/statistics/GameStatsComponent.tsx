@@ -28,7 +28,6 @@ const StatName = styled(TextStyle)`
   `
 const StatNumber = styled(TextStyle)`
   text-align: right;
-  margin-right: 5px;
   `
 
 const Box = styled(TextStyle)`
@@ -122,22 +121,42 @@ const GameStatsComponent: React.FC<{ statistics: Statistics }> = ({
       </div>
       <div className='flex'>
         <div className='flex justify flex-col w-1/2'>
-        <Stat>{achievements["achievementShangrila"].name}:{" "}{statistics.achievementShangrila}</Stat>
+          <Stat>
+            <StatName>{achievements["achievementShangrila"].name}:</StatName>
+            <StatNumber className='mr-10'>{statistics.achievementShangrila}</StatNumber>
+          </Stat>
           <Separator/>
-          <Stat>{achievements["achievementParadox"].name}:{" "}{statistics.achievementParadox}</Stat>
+          <Stat>
+            <StatName>{achievements["achievementNature"].name}:</StatName>
+            <StatNumber className='mr-10'>{statistics.achievementNature}</StatNumber>
+          </Stat>
           <Separator/>
-          <Stat>{achievements["achievementNature"].name}:{" "}{statistics.achievementNature}</Stat>
+          <Stat>
+            <StatName>{achievements["achievementWords"].name}:</StatName>
+            <StatNumber className='mr-10'>{statistics.achievementWords}</StatNumber>
+          </Stat>
           <Separator/>
-          <Stat>{achievements["achievementWords"].name}: {statistics.achievementWords}</Stat>
+          <Stat>
+            <StatName>{achievements["achievementFolding"].name}:</StatName>
+            <StatNumber className='mr-10'>{statistics.achievementFolding}</StatNumber>
+          </Stat>
         </div>
         <div className='flex justify flex-col w-1/2'>
-          <Stat>{achievements["achievementFolding"].name}:{" "}{statistics.achievementFolding}</Stat>
+          <Stat>
+            <StatName>{achievements["achievementCrafting"].name}:</StatName>
+            <StatNumber className='mr-10'>{statistics.achievementCrafting}</StatNumber>
+          </Stat>
           <Separator/>
-          <Stat>{achievements["achievementCrafting"].name}:{" "}{statistics.achievementCrafting}</Stat>
+          <Stat>
+            <StatName>{achievements["achievementFeminine"].name}:</StatName>
+            <StatNumber className='mr-10'>{statistics.achievementFeminine}</StatNumber>
+          </Stat>
           <Separator/>
-          <Stat>{achievements["achievementFeminine"].name}:{" "}{statistics.achievementFeminine}</Stat>
+          <Stat>
+            <StatName>{achievements["achievementMyths"].name}:</StatName>
+            <StatNumber className='mr-10'>{statistics.achievementMyths}</StatNumber>
+          </Stat>
           <Separator/>
-          <Stat>{achievements["achievementMyths"].name}: {statistics.achievementMyths}</Stat>
         </div>
       </div>
       </Box>
