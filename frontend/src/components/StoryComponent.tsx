@@ -4,7 +4,7 @@ import { Choice, InkObject, Story, EvaluateFunction } from "inkjs";
 import DialogueComponent from "./DialogueComponent.tsx";
 import ChoiceComponent from "./choices/ChoiceComponent.tsx";
 import Planet from "../classes/Planet.ts";
-import KeypadComponent from "./KeypadComponent.tsx";
+import KeypadComponent from "./input/KeypadComponent.tsx";
 import { Universe, UniverseState } from "../game/scenes/Universe.tsx";
 import { EventBus } from "../EventBus.tsx";
 import { GameContext, GameContextType, GameState } from "../contexts/GameContext.tsx";
@@ -13,8 +13,8 @@ import GuideComponent from "./GuideComponent.tsx";
 import BackgroundComponent from "./BackgroundComponent.tsx";
 import NotificationComponent from "./NotificationComponent.tsx";
 import PlayerComponent from "./player/PlayerComponent.tsx";
-import MirrorComponent from "./MirrorComponent.tsx";
-import NameSelectComponent from "./NameComponent.tsx";
+import MirrorComponent from "./input/MirrorComponent.tsx";
+import NameSelectComponent from "./input/NameComponent.tsx";
 import styled from "styled-components";
 import { TextStyle } from "./styled/Text.tsx";
 import EndingComponent from "./ending/EndingComponent.tsx";
@@ -22,7 +22,7 @@ import { achievements } from "../setup/Achievements.ts";
 import { reportComplete, updateDatabase } from "./statistics/firestore.tsx";
 import { AnimatePresence } from "framer-motion";
 import { Blocker } from "./styled/Blocker.tsx";
-import InputComponent from "./InputComponent.tsx";
+import InputComponent from "./input/InputComponent.tsx";
 import Player from "../classes/Player.ts";
 
 interface StoryComponentProps {

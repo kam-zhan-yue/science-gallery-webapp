@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import { TextStyle } from "./styled/Text.tsx";
-import {colours} from "./styled/Constants.tsx";
-import {SelectButton} from "./styled/Buttons.tsx";
+import { TextStyle } from "../styled/Text.tsx";
+import {colours} from "../styled/Constants.tsx";
+import {BackButton, SelectButton} from "../styled/Buttons.tsx";
+import badWords from './bad_words.json';
+
+interface NameSelectProps {
+    select: (name: string) => void;
+    skip: () => void;
+}
 
 const Blocker = styled.div`
   position: fixed;
@@ -67,7 +73,7 @@ const Title = styled(TextStyle)`
   margin-bottom: 20px;
 `;
 
-const NameInput = styled.textarea<{ isValid: boolean }>`
+const NameInput = styled.input<{ isValid: boolean }>`
   padding: 10px;
   margin-bottom: 20px;
   background: black;
@@ -81,7 +87,7 @@ const NameInput = styled.textarea<{ isValid: boolean }>`
   text-align: center;
 `;
 
-const Submit = styled(SelectButton)<{ disabled: boolean}>`
+const Select = styled(SelectButton)<{ disabled: boolean}>`
   width: 100%;
   border-image: url("../assets/ui/button-submit.png") 6 fill repeat;
   background-color: ${props => (props.disabled ? 'grey' : 'initial')};
@@ -93,38 +99,39 @@ const Submit = styled(SelectButton)<{ disabled: boolean}>`
   }
 `;
 
-const InputComponent: React.FC<{text: string, submit: ()=>void}> = ({ text, submit}) => {
+const NameSelectComponent: React.FC<NameSelectProps> = ({ select, skip }) => {
     const [name, setName] = useState("");
     const invalid = name.length <= 0;
-    const disabled = name.length > 100;
+    const disabled = name.length > 20 || badWords.words.some(word => name.includes(word));
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-      setName(e.target.value);
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setName(e.target.value);
     };
 
     const handleSubmit = () => {
         if (!invalid && !disabled) {
-          submit();
+            select(name);
         }
     };
 
     return (
         <>
-          <Blocker/>
-          <Overlay>
-              <Background
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-              >
-              <Title>{text}</Title>
-              <NameInput value={name} onChange={handleInputChange} isValid={!disabled} />
-                <Submit onClick={handleSubmit} disabled={invalid || disabled}>Submit</Submit>
-              </Background>
-          </Overlay>
+            <Blocker/>
+            <Overlay>
+                <Background
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                >
+                    <Title>Choose a Name</Title>
+                    <NameInput type='text' value={name} onChange={handleInputChange} isValid={!disabled} />
+                    <Select onClick={handleSubmit} disabled={invalid || disabled}>Submit</Select>
+                    <BackButton onClick={skip}>Skip</BackButton>
+                </Background>
+            </Overlay>
         </>
     );
 };
 
-export default InputComponent;
+export default NameSelectComponent;

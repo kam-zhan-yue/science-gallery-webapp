@@ -1,9 +1,9 @@
 import React, {useState} from "react";
 import styled from "styled-components";
-import Triangle from "./styled/Triangle.tsx";
-import CharacterSelectComponent from "./CharacterSelectComponent.tsx";
+import Triangle from "../styled/Triangle.tsx";
+import CharacterSelectComponent from "../CharacterSelectComponent.tsx";
 import {AnimatePresence, motion} from "framer-motion";
-import {colours} from "./styled/Constants.tsx";
+import {colours} from "../styled/Constants.tsx";
 
 const Blocker = styled.div`
   position: fixed;

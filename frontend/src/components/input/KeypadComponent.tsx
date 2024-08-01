@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Choice } from 'inkjs/engine/Choice';
-import KeypadButtonComponent, { KeypadType } from './KeypadButtonComponent';
-import Planet from '../classes/Planet';
+import KeypadButtonComponent, { KeypadType } from '../KeypadButtonComponent';
+import Planet from '../../classes/Planet';
 import {motion} from "framer-motion";
-import {TextStyle} from "./styled/Text.tsx";
-import { EventBus } from '../EventBus.tsx';
+import {TextStyle} from "../styled/Text.tsx";
+import { EventBus } from '../../EventBus.tsx';
 
 const KeypadOverlay = styled(motion.div)`
   position: fixed;
