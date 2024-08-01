@@ -1,20 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { firestore } from "../../firebaseConfig";
-import { doc, onSnapshot, collection, getDocs } from "firebase/firestore"; // Import updateDoc and increment
-import styled from "styled-components";
-import { TextStyle } from "../styled/Text";
+import { doc, onSnapshot, collection, getDocs } from "firebase/firestore";
 import { PlayerData } from "./PlayerData";
 import { Statistics } from "./Statistics";
 import GameStatsComponent from "./GameStatsComponent";
 import GameCompleteComponent from "./GameCompleteComponent";
 import CompleteNotificationComponent from "./CompleteNotificationComponent";
 import { EventBus } from "../../EventBus";
-
-const StatisticsHeader = styled(TextStyle)`
-  font-size: 45px;
-  text-align: center;
-  align-items: center;
-`;
 
 const StatisticsComponent: React.FC = () => {
   const [statistics, setStatistics] = useState<Statistics | null>(null);
@@ -114,9 +106,6 @@ const StatisticsComponent: React.FC = () => {
     <>
     <div className='fixed top-20 bottom-32 w-full justify-center items-center pr-5 pl-5'>
       <div className='flex w-full h-full flex-col items-center'>
-        <div className='flex justify-items-center items-center'>
-          <StatisticsHeader>Game Statistics</StatisticsHeader>
-        </div>
           <div className="flex justify w-full h-full flex-row justify-items-center items-center text-center">
           <div className='w-1/3 h-full'>
             <GameCompleteComponent completes={completes} />

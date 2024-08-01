@@ -1,23 +1,23 @@
 export interface Statistics {
   // Define the structure of your statistics document here
-  gamesStarted: number;
-  gamesCompleted: number;
-  chooseArtist: number;
-  chooseDoctor: number;
-  chooseMechanic: number;
-  achievementShangrila: number;
-  achievementParadox: number;
-  achievementNature: number;
-  achievementWords: number;
-  achievementFolding: number;
-  achievementCrafting: number;
-  achievementFeminine: number;
-  achievementMyths: number;
-  endingSheep: number;
-  endingForget: number;
-  endingTravel: number;
-  endingMemory: number;
-  endingWake: number;
-  pureShards: number;
-  corruptedShards: number;
+  gamesStarted: integer;
+  gamesCompleted: integer;
+  chooseArtist: integer;
+  chooseDoctor: integer;
+  chooseMechanic: integer;
+  achievementShangrila: integer;
+  achievementParadox: integer;
+  achievementNature: integer;
+  achievementWords: integer;
+  achievementFolding: integer;
+  achievementCrafting: integer;
+  achievementFeminine: integer;
+  achievementMyths: integer;
+  endingSheep: integer;
+  endingForget: integer;
+  endingTravel: integer;
+  endingMemory: integer;
+  endingWake: integer;
+  pureShards: integer;
+  corruptedShards: integer;
 }

@@ -14,11 +14,10 @@ Debug Mechanics.
 
 
 === test_animations ===
-Librarian Normal #Librarian
-Librarian Angry #Librarian:angry
-Librarian Sad #Librarian:sad
-Double Librarian #Librarian #Librarian
-Ship: Try to break #Librarian #Librarian:nothing
+AI Normal #AI
+AI Happy #AI:happy
+AI Sad #AI:sad
+AI Very Happy #AI:veryhappy
 ->debug_mechanics
 
 === test_responsive_buttons ===

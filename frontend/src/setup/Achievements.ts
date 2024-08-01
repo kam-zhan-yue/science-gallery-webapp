@@ -29,7 +29,7 @@ export const achievements: { [key: string]: Achievement } = {
         hidden: false,
     },
     "achievementShangrila": {
-        name: "Paradise",
+        name: "Shangri-La",
         description: 'Wake up in Shangrila',
         hidden: false,
     },
@@ -86,12 +86,12 @@ export const achievements: { [key: string]: Achievement } = {
         hidden: false,
     },
     "pureShards": {
-        name: "Pure Shards Collected",
+        name: "Pure Shards",
         description: "",
         hidden: false,
     },
     "corruptedShards": {
-        name: "Corrupted Shards Collected",
+        name: "Corrupted Shards",
         description: "",
         hidden: false,
     },

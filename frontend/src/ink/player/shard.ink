@@ -24,6 +24,7 @@ Shards: {shards()}
     ->->
     
 === function get_good_shard() ===
+~ achievement = pureShards
 ~ good_shards = good_shards + 1
 {
 - shards() == 1:
@@ -35,6 +36,7 @@ Shards: {shards()}
 }
 
 === function get_bad_shard() ===
+~ achievement = corruptedShards
 ~ bad_shards = bad_shards + 1
 {
 - shards() == 1:
