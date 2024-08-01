@@ -6,17 +6,17 @@ export type Achievement = {
 
 export const achievements: { [key: string]: Achievement } = {
     "chooseDoctor": {
-        name: "Doctor",
+        name: "Doctors",
         description: "You have chosen the doctor",
         hidden: true,
     },
     "chooseArtist": {
-        name: "Artist",
+        name: "Artists",
         description: "You have chosen the artist",
         hidden: true,
     },
     "chooseMechanic": {
-        name: "Mechanic",
+        name: "Mechanics",
         description: "You have chosen the mechanic",
         hidden: true,
     },
@@ -86,12 +86,12 @@ export const achievements: { [key: string]: Achievement } = {
         hidden: false,
     },
     "pureShards": {
-        name: "Pure Shards",
+        name: "Pure Shards Collected",
         description: "",
         hidden: false,
     },
     "corruptedShards": {
-        name: "Corrupted Shards",
+        name: "Corrupted Shards Collected",
         description: "",
         hidden: false,
     },

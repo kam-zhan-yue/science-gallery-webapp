@@ -15,9 +15,21 @@ const Header = styled(TextStyle)`
 `
 
 const Stat = styled(TextStyle)`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   font-size: 24px;
   text-align: left;
+  width: 100%;
 `
+
+const StatName = styled(TextStyle)`
+  text-align: left;
+  `
+const StatNumber = styled(TextStyle)`
+  text-align: right;
+  margin-right: 5px;
+  `
 
 const Box = styled(TextStyle)`
   border: 1px solid ${colours.primary};
@@ -35,40 +47,73 @@ const GameStatsComponent: React.FC<{ statistics: Statistics }> = ({
       <div className='flex justify flex-row w-full h-3/5 gap-5'>
         <div className='flex justify flex-col w-1/2 h-full gap-5'>
           <Box className='flex justify flex-col w-full'>
-            <Stat>{achievements["pureShards"].name}: {statistics.pureShards}</Stat>
+            <Stat>
+              <StatName>{achievements["pureShards"].name}:</StatName>
+              <StatNumber>{statistics.pureShards}</StatNumber>
+            </Stat>
             <Separator/>
-            <Stat>{achievements["corruptedShards"].name}: {statistics.corruptedShards}</Stat>
-              <Separator/>
-            <Stat>{achievements["gamesCompleted"].name}: {statistics.gamesCompleted}</Stat>
+            <Stat>
+              <StatName>{achievements["corruptedShards"].name}:</StatName>
+              <StatNumber>{statistics.corruptedShards}</StatNumber>
+            </Stat>
+            <Separator/>
+            <Stat>
+              <StatName>{achievements["gamesCompleted"].name}:</StatName>
+              <StatNumber>{statistics.gamesCompleted}</StatNumber>
+            </Stat>
           </Box>
           <Box className='flex justify flex-col w-full items-center justify-center'>
             <div className='flex justify w-full items-center mb-2'>
               <div className='w-1/4'><img className='h-20' src="../../assets/ui/thumbnail-artist.png"/></div>
-              <Stat className='w-3/4'>{achievements["chooseArtist"].name}: {statistics.chooseArtist}</Stat>
+              <Stat className='w-3/4 ml-5'>
+                <StatName>{achievements["chooseArtist"].name}:</StatName>
+                <StatNumber>{statistics.chooseArtist}</StatNumber>
+              </Stat>
             </div>
             <Separator/>
             <div className='flex justify w-full items-center mb-2'>
             <Separator/>
               <div className='w-1/4'><img className='h-20' src="../../assets/ui/thumbnail-doctor.png"/></div>
-              <Stat className='w-3/4'>{achievements["chooseDoctor"].name}: {statistics.chooseDoctor}</Stat>
+              <Stat className='w-3/4 ml-5'>
+                <StatName>{achievements["chooseDoctor"].name}:</StatName>
+                <StatNumber>{statistics.chooseDoctor}</StatNumber>
+              </Stat>
             </div>
             <div className='flex justify w-full items-center mb-2'>
               <div className='w-1/4'><img className='h-20' src="../../assets/ui/thumbnail-mechanic.png"/></div>
-              <Stat className='w-3/4'>{achievements["chooseMechanic"].name}: {statistics.chooseMechanic}</Stat>
+              <Stat className='w-3/4 ml-5'>
+                <StatName>{achievements["chooseMechanic"].name}:</StatName>
+                <StatNumber>{statistics.chooseMechanic}</StatNumber>
+              </Stat>
             </div>
             </Box>
         </div>
         <Box className='flex justify flex-col w-1/2'>
           <Header>Endings Reached</Header>
-          <Stat>{achievements["endingSheep"].name}: {statistics.endingSheep}</Stat>
+          <Stat>
+            <StatName>{achievements["endingSheep"].name}:</StatName>
+            <StatNumber>{statistics.endingSheep}</StatNumber>
+          </Stat>
           <Separator/>
-          <Stat>{achievements["endingForget"].name}: {statistics.endingForget}</Stat>
+          <Stat>
+            <StatName>{achievements["endingForget"].name}:</StatName>
+            <StatNumber>{statistics.endingForget}</StatNumber>
+          </Stat>
           <Separator/>
-          <Stat>{achievements["endingTravel"].name}: {statistics.endingTravel}</Stat>
+          <Stat>
+            <StatName>{achievements["endingTravel"].name}:</StatName>
+            <StatNumber>{statistics.endingTravel}</StatNumber>
+          </Stat>
           <Separator/>
-          <Stat>{achievements["endingMemory"].name}: {statistics.endingMemory}</Stat>
+          <Stat>
+            <StatName>{achievements["endingMemory"].name}:</StatName>
+            <StatNumber>{statistics.endingMemory}</StatNumber>
+          </Stat>
           <Separator/>
-          <Stat>{achievements["endingWake"].name}: {statistics.endingWake}</Stat>
+          <Stat>
+            <StatName>{achievements["endingWake"].name}:</StatName>
+            <StatNumber>{statistics.endingWake}</StatNumber>
+          </Stat>
         </Box>
       </div>
       <Box className='flex flex-col h-2/5'>
@@ -77,7 +122,7 @@ const GameStatsComponent: React.FC<{ statistics: Statistics }> = ({
       </div>
       <div className='flex'>
         <div className='flex justify flex-col w-1/2'>
-          <Stat>{achievements["achievementShangrila"].name}:{" "}{statistics.achievementShangrila}</Stat>
+        <Stat>{achievements["achievementShangrila"].name}:{" "}{statistics.achievementShangrila}</Stat>
           <Separator/>
           <Stat>{achievements["achievementParadox"].name}:{" "}{statistics.achievementParadox}</Stat>
           <Separator/>
