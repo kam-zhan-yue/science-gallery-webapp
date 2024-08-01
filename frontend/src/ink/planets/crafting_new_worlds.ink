@@ -10,6 +10,7 @@ You: AI, can you find a safe place to land?
 AI: I have located a suitable area. Planet’s atmosphere is non-hostile. Touching down in 5.
 
 ~background = crafting_main
+~ achievement = achievementCrafting
 ~ music = bgm_band_2
 // Path background
 

@@ -267,7 +267,7 @@ const MenuComponent: React.FC<MenuProps> = ({ startGame }) => {
           </LogoContainer>
           <SubHeading>Made for Science Gallery Melbourne</SubHeading>
           <Warning>
-            Experimental Build: <b>Progress will be lost if page is reloaded</b>
+            <b>Progress will be lost if page is reloaded</b>
           </Warning>
         </Footer>
       </Overlay>

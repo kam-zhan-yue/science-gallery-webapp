@@ -1,5 +1,6 @@
 ===monstrous_feminine_start===
 ~background=ship_navigation
+~ achievement = achievementFeminine
 ~ music = bgm_band_3
 Your ship lands. The glass has fogged up a bit, but you see shades of red all around your ship. #Ship navigation
 AI: You've travelled so far, {name}. I wonder what this planet has in store for you!

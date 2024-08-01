@@ -8,7 +8,7 @@ LIST music = (silent), bgm_main, bgm_band_1, bgm_band_2, bgm_band_3, bgm_end
 
 LIST ending = ending_sheep, ending_forget, ending_travel, ending_memory, ending_wake, ending_death
 
-LIST achievement = gamesStarted, gamesCompleted, chooseArtist, chooseDoctor, chooseMechanic, achievementShangrila, achievementParadox, achievementNature, achievementWords, achievementFolding, achievementCrafting, achievementFeminine, achievementMyths, corruptedShards, pureShards
+LIST achievement = gamesStarted, gamesCompleted, chooseArtist, chooseDoctor, chooseMechanic, achievementShangrila, achievementParadox, achievementNature, achievementWords, achievementFolding, achievementCrafting, achievementFeminine, achievementMyths, corruptedShards, pureShards, endingSheep,endingForget,endingTravel,endingWake,endingMemory
 
 VAR progress = 0
 

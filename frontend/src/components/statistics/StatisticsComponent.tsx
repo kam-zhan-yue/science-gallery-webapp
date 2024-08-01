@@ -106,7 +106,7 @@ const StatisticsComponent: React.FC = () => {
     <>
     <div className='fixed top-20 bottom-32 w-full justify-center items-center pr-5 pl-5'>
       <div className='flex w-full h-full flex-col items-center'>
-          <div className="flex justify w-full h-full flex-row justify-items-center items-center text-center">
+          <div className="flex justify w-full h-full flex-row justify-items-center items-center text-center gap-3">
           <div className='w-1/3 h-full'>
             <GameCompleteComponent completes={completes} />
           </div>

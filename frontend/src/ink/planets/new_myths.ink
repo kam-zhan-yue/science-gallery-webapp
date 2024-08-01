@@ -1,5 +1,6 @@
 ===lastship===
 ~background = ship_navigation
+~ achievement = achievementMyths
 ->newmyths
 ===newmyths===
 Your ship lands. The glass has fogged up a bit, but you see shades of red all around your ship.

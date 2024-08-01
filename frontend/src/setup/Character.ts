@@ -4,6 +4,7 @@ export type Character = {
     closeUp?: string,
     pixel?: string,
     thumbnail?: string,
+    portrait?: string,
     title?: string,
     description?: string,
     animations: {[id: string]: string},
@@ -13,6 +14,7 @@ export const characters: { [key: string]: Character } = {
     "Doctor": {
         name: "Doctor",
         fullBody: "doctor_fullbody.png",
+        portrait: "doctor_portrait.png",
         pixel: "doctor_pixel.png",
         closeUp: "doctor_closeup.png",
         thumbnail: "thumbnail-doctor.png",
@@ -23,6 +25,7 @@ export const characters: { [key: string]: Character } = {
     "Mechanic": {
         name: "Mechanic",
         fullBody: "mechanic_fullbody.png",
+        portrait: "mechanic_portrait.png",
         pixel: "mechanic_pixel.png",
         closeUp: "mechanic_closeup.png",
         thumbnail: "thumbnail-mechanic.png",
@@ -33,6 +36,7 @@ export const characters: { [key: string]: Character } = {
     "Artist": {
         name: "Artist",
         fullBody: "artist_fullbody.png",
+        portrait: "artist_portrait.png",
         pixel: "artist_pixel.png",
         closeUp: "artist_closeup.png",
         thumbnail: "thumbnail-artist.png",

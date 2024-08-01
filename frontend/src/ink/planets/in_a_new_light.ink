@@ -317,19 +317,18 @@ You are excited for what the future holds.
 
 === ending_keep_travelling ===
 ~ending = ending_travel
+~achievement = endingTravel
 ->DONE
 
 
 === ending_remember_everything ===
 ~ending = ending_memory
+~achievement = endingMemory
 ->DONE
 
 === ending_forget_everything ===
 ~ending = ending_forget
-->DONE
-
-=== ending_remember ===
-~ending = ending_remember
+~achievement = endingForget
 ->DONE
 
 === ending_wake_shangrila ===

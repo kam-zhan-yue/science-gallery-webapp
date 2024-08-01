@@ -66,17 +66,17 @@ export const achievements: { [key: string]: Achievement } = {
         hidden: false,
     },
     "endingForget": {
-        name: "Forget Ending",
+        name: "Forget Everything",
         description: "Forget yourself",
         hidden: false,
     },
     "endingTravel": {
-        name: "Keep Travelling Ending",
+        name: "Keep Travelling",
         description: "Onwards to the deep unknowns of space.",
         hidden: false,
     },
-    "endingMemory": {
-        name: "Regain Memories Ending",
+  "endingMemory": {
+        name: "Regain Memories",
         description: "You remember everything.",
         hidden: false,
     },

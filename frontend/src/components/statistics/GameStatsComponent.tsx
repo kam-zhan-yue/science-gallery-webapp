@@ -59,7 +59,7 @@ const GameStatsComponent: React.FC<{ statistics: Statistics }> = ({
             </Box>
         </div>
         <Box className='flex justify flex-col w-1/2'>
-          <Header>Worlds Explored</Header>
+          <Header>Endings Reached</Header>
           <Stat>{achievements["endingSheep"].name}: {statistics.endingSheep}</Stat>
           <Separator/>
           <Stat>{achievements["endingForget"].name}: {statistics.endingForget}</Stat>

@@ -120,6 +120,7 @@ Suited Figure: I'm sorry you had to see this, you aren't allowed here.
 The figure's voice echoes throughout the cave. #Suited Figure
 You go to sleep. #Suited Figure
 ~ending = ending_sheep
+~achievement = endingSheep
 ->DONE
 ===opendoor===
 You open the door and walk through...
