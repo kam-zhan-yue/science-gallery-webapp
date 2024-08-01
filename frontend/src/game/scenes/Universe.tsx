@@ -108,10 +108,31 @@ export class Universe extends Scene {
         });
 
         this.anims.create({
-            key: 'crafting_new_worlds_spin',
+            key: 'crafting_spin',
             frames: this.anims.generateFrameNumbers('planets', {frames:[18,19,20,21,22,23]}),
             frameRate: 12,
             repeat: -1
+        });
+
+        this.anims.create({
+            key: 'folding_spin',
+            frames: this.anims.generateFrameNumbers('planets', {frames:[36,37,38,39,40,41]}),
+            frameRate: 12,
+            repeat: -1
+        });
+
+        this.anims.create({
+            key: 'feminine_spin',
+            frames: this.anims.generateFrameNumbers('planets', {frames:[54,55,56,57,58,59,60,61,62,63,64,65]}),
+            frameRate: 12,
+            repeat: -1
+        });
+
+        this.anims.create({
+          key: 'new_myths_spin',
+          frames: this.anims.generateFrameNumbers('planets', {frames:[72,73,74,75,76,77]}),
+          frameRate: 12,
+          repeat: -1
         });
 
         this.anims.create({
