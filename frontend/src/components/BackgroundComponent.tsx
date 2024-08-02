@@ -1,12 +1,22 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
-import { backgrounds } from "../setup/Background";
-import { Blurhash } from "react-blurhash";
 
 interface BackgroundComponentProps {
     backgroundKey: string;
 }
+
+const backgrounds: { [key: string]: string } = {
+    "ship_navigation": "ship-navigation.png",
+    "shangrila_main": "shangrila-main.png",
+    "shangrila_cave": "shangrila-cave.png",
+    "new_nature_main": "new-nature-main.png",
+    "folding_space_main": "folding-main.png",
+    "crafting_main": "crafting-main.png",
+    "new_myths_silk": "new-myths-main.png",
+    "new_myths_silk_voice": "new-myths-main-light.png",
+    "new_light_main": "new-light-main.png",
+};
 
 const Overlay = styled(motion.div)`
   position: fixed;
@@ -39,10 +49,6 @@ const BackgroundContainer = styled(motion.div)`
   }
 `;
 
-const Blur = styled(Blurhash)`
-  border: 5px white solid;
-`
-
 const Border = styled(motion.div)`
   border: 5px white solid;
   height: 100%;
@@ -62,11 +68,9 @@ const Background = styled(motion.img)`
 const BackgroundComponent: React.FC<BackgroundComponentProps> = ({ backgroundKey }) => {
     const [currentKey, setCurrentKey] = useState(backgroundKey);
     const [visible, setVisible] = useState(true);
-    const [imageLoaded, setImageLoaded] = useState(false);
 
     useEffect(() => {
         setVisible(false);
-        setImageLoaded(false);
         const timeout = setTimeout(() => {
             setCurrentKey(backgroundKey);
             setVisible(true);
@@ -74,18 +78,9 @@ const BackgroundComponent: React.FC<BackgroundComponentProps> = ({ backgroundKey
         return () => clearTimeout(timeout);
     }, [backgroundKey]);
 
-    const handleImageLoad = () => {
-      console.log('set image loaded to true')
-        setImageLoaded(true);
-    };
-
     const getBackground = () => {
-        return `../assets/backgrounds/${backgrounds[currentKey].src}`;
+        return `../assets/backgrounds/${backgrounds[currentKey]}`;
     };
-
-    function getBlur(): string {
-      return backgrounds[currentKey].blur;
-    }
 
     return (
         <>
@@ -101,30 +96,31 @@ const BackgroundComponent: React.FC<BackgroundComponentProps> = ({ backgroundKey
                 />
             )}
             </AnimatePresence>
-            {backgroundKey !== 'empty' && currentKey in backgrounds && (
-                <AnimatePresence>
-                {visible &&
-                    <Overlay>
-                        <BackgroundContainer>
-                        {!imageLoaded &&
-                          <Blur
-                            hash={getBlur()}
-                            width="100%"
-                            height="100%"
-                          />
-                        }
-                        <Border>
-                          <Background
-                              key={currentKey}
-                              src={getBackground()}
-                              alt="background"
-                              onLoad={handleImageLoad}
-                          />
+            {backgroundKey in backgrounds && (
+                <Overlay>
+                    <BackgroundContainer
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0, transition: { duration: 1 } }}
+                      transition={{ duration: 1 }}
+                    >
+                    <Border>
+                        <AnimatePresence>
+                            {visible && (
+                                <Background
+                                    key={currentKey}
+                                    src={getBackground()}
+                                    alt="background"
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                    transition={{ duration: 0.5}}
+                                />
+                            )}
+                        </AnimatePresence>
                         </Border>
-                        </BackgroundContainer>
-                    </Overlay>
-                  }
-                </AnimatePresence>
+                    </BackgroundContainer>
+                </Overlay>
             )}
         </>
     );

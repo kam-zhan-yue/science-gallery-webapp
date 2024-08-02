@@ -9,7 +9,7 @@ import { Universe, UniverseState } from "../game/scenes/Universe.tsx";
 import { EventBus } from "../EventBus.tsx";
 import { GameContext, GameContextType, GameState } from "../contexts/GameContext.tsx";
 import PlanetComponent from "./PlanetComponent.tsx";
-import GuideComponent from "./GuideComponent.tsx";
+// import GuideComponent from "./GuideComponent.tsx";
 import BackgroundComponent from "./BackgroundComponent.tsx";
 import NotificationComponent from "./NotificationComponent.tsx";
 import PlayerComponent from "./player/PlayerComponent.tsx";
@@ -438,11 +438,11 @@ const StoryComponent: React.FC<StoryComponentProps> = ({ universeRef }) => {
             </>
           }
 
-          {storyState === StoryState.Choosing && (
+          {/* {storyState === StoryState.Choosing && (
             <div className="absolute bottom-6">
               <GuideComponent />
             </div>
-          )}
+          )} */}
 
           {storyState === StoryState.Inspecting && (
             <>
