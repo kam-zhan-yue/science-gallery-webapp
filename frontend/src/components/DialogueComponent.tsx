@@ -64,14 +64,14 @@ const Blocker = styled(motion.div)`
   display: block; /* Initially hidden */
 `;
 
-const InteractionOverlay = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  touch-action: none; /* Disable touch events */
-`
+// const InteractionOverlay = styled.div`
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   height: 100%;
+//   touch-action: none; /* Disable touch events */
+// `
 
 const DialogueComponent: React.FC<DialogueComponentProps> = ({ text, tags, next }) => {
     // Splitting the text into character name and dialogue body if a colon exists
