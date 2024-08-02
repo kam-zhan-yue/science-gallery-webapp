@@ -455,7 +455,4 @@ You return to your ship, a sense of purpose and happiness washing over you. You 
 ->nature_end
 
 === nature_end ===
-+[Replay]
-->nature
-+[End]
 ->navigation
