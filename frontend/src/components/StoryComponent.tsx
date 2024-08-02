@@ -475,11 +475,11 @@ const StoryComponent: React.FC<StoryComponentProps> = ({ universeRef }) => {
             />
           )}
           </AnimatePresence>
-          {storyState === StoryState.Keypad &&
+          {/* {storyState === StoryState.Keypad &&
             <div className="absolute bottom-6">
               <GuideComponent prompt="AI: Look around the artwork for a secret code!"/>
             </div>
-          }
+          } */}
 
           <AnimatePresence>
             {inkState !== "planet_selection" &&

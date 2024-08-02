@@ -206,12 +206,7 @@ const MenuComponent: React.FC<MenuProps> = ({ startGame }) => {
 
   return (
       <Overlay
-        key="menuComponent"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.5 }}
-      >
+        key="menuComponent">
         <StatisticsButton onClick={toggleStatistics}>
           {!statistics && <>Statistics</>}
           {statistics && <>Game</>}
