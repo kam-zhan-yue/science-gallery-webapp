@@ -3,7 +3,6 @@ import {useEffect, useRef, forwardRef } from 'react';
 import Phaser from 'phaser';
 import { Boot } from './scenes/Boot.tsx';
 import { Universe } from './scenes/Universe.tsx';
-import React from 'react';
 
 type GameProps = {};
 
