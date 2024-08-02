@@ -112,14 +112,9 @@ const InputComponent: React.FC<{text: string, submit: ()=>void}> = ({ text, subm
         <>
           <Blocker/>
           <Overlay>
-              <Background
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-              >
-              <Title>{text}</Title>
-              <NameInput value={name} onChange={handleInputChange} isValid={!disabled} />
+              <Background>
+                <Title>{text}</Title>
+                <NameInput value={name} onChange={handleInputChange} isValid={!disabled} />
                 <Submit onClick={handleSubmit} disabled={invalid || disabled}>Submit</Submit>
               </Background>
           </Overlay>

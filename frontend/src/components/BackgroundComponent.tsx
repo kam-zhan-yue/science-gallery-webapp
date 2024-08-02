@@ -101,7 +101,7 @@ const BackgroundComponent: React.FC<BackgroundComponentProps> = ({ backgroundKey
                 />
             )}
             </AnimatePresence>
-            {currentKey in backgrounds && (
+            {backgroundKey !== 'empty' && currentKey in backgrounds && (
                 <AnimatePresence>
                 {visible &&
                     <Overlay
