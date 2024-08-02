@@ -423,13 +423,11 @@ const StoryComponent: React.FC<StoryComponentProps> = ({ universeRef }) => {
             inkState !== "character_selection" &&
             inkState !== 'input_field' &&
             inkState !== "name_select" && (
-              <>
                 <DialogueComponent
                   text={storyText}
                   tags={tags}
                   next={next}
                 ></DialogueComponent>
-              </>
             )}
 
           {inkState === 'input_field' &&

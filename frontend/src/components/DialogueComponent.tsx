@@ -158,7 +158,7 @@ const DialogueComponent: React.FC<DialogueComponentProps> = ({ text, tags, next 
                 </>
             }
 
-            <InteractionOverlay onClick={touch}/>
+            {/* <InteractionOverlay onClick={touch}/> */}
             <DialogueBox handleClick={touch}>
                 {/* Render character name, separator, and dialogue body separately if character name exists */}
                 {characterName &&
