@@ -77,10 +77,10 @@ Fysi: We have two town factions, the Guards and the Gardeners. They both improve
 ->fysi_backstory_gardeners
 *[What's happening with the Guards?]
 ->fysi_backstory_guards
-*[I only asked out of politeness, I'm not interested...]
-->fysi_backstory_skip
-
+*{fysi_backstory_gardeners && fysi_backstory_guards} [Ok, so what else?]
 ->fysi_backstory_end
+*{not(fysi_backstory_gardeners && fysi_backstory_guards)}[I only asked out of politeness, I'm not interested...]
+-> fysi_backstory_skip
 
 === fysi_backstory_gardeners ===
 Fysi: Our crops are failing. We’ve only had small, wizened produce, the plants are dying, and we’re not sure why. We have enough food stored for a short while, but if we don’t fix it soon, the town will starve.
@@ -365,12 +365,81 @@ AI: You did what?! That wasn't smart, now was it? I must say, I thought you were
 ->nature_end
 
 === heal ===
+Lyanne: Really? Are you a healer of some sort? Thank you so much, I’ll take you to the scouts immediately!
+
+Fysi leads you to the healer’s building, where you see seven guards, lying on beds. They have various injuries, which look to have been tended to. They look to be deep in sleep. 
+
+*[inventory:Heal the scouts with your Doctor’s training.]
+    -> heal_take_item
+    
+
+=== heal_take_item ===
     ~required_item = doctor_item
     ~game_state = take_item
     *[{doctor_item}]
         ~required_item = none
         ~game_state = exploring
-        -> nature_end
+        -> heal_end
+
+=== heal_end ===
+
+You spend the night in the healer’s building. After a long and difficult night, you are able to wake one of the scouts.
+
+*[speech:Ask the scout what happened to them]
+
+- Scout: It- it was horrible. A monster that I could barely see in the darkness, seemed to be made entirely of vines! It released a spore that exhausted me. I tried to fight it off, but I fell unconscious.
+
+*[Turn to Fysi]
+
+- Fysi: This sounds like a creature that I’ve heard of, but didn’t think really existed. An Ampelos, a creature of myth. Now that we know what it is, given enough time, we could devise a countertoxin for its spores!
+
+*[speech:Offer to help devise a countertoxin.]
+    -> heal_end_2
+
+=== heal_end_2 ===
+
+After another night of research and development, you and Fysi develop a powder that will nullify the Ampelos’ sleep spores. You give it to Bellatos, the leader of the Guards, and explain its purpose. 
+
+Bellatos: This is incredibly impressive! It’s a vital step in preventing any more attacks!  We shall prepare for its use, and put it to the test tonight! Thank you both for your efforts.
+
+You spend the rest of the day sleeping, finally getting some rest after two long days of work. 
+
+You are woken by Fysi, jostling your shoulder.  
+
+Fysi: Bellatos and the Guards are about to fight the Ampelos!
+
+*[Get up and follow Fysi]
+    -> heal_end_3
+
+=== heal_end_3 ===
+
+The sounds of fighting, clanging swords and swishing vines emanate from outside the town walls. The townspeople gather behind the gates, trying to gain a glance at the combat.  
+
+After what feels like forever, Bellatos enters through the gate. He has a large cut on his forehead, but looks happy. 
+
+Bellatos: The Ampelos is dead!
+
+The townspeople cheer, and celebrations start.
+
+During the celebrations, you find Lyanne, the leader of the Gardeners, and approach her. 
+You hand her the torch.
+
+She smiles at you, and takes the torch. 
+Lyanne: Thank you for all that you have done.
+She reaches into her robes and retrieves the shard, putting it into your hands. 
+Lyanne: You have done us a great service.
+
+*[important:Accept the shard.]
+    -> heal_end_4
+
+=== heal_end_4 ===
+
+~get_good_shard()
+
+Lyanne gestures to the surrounding celebrations. 
+Lyanne: Feel free to stay in the town for as long as you want. You are always welcome here
+She smiles at you and walks away.
+-> nature_good_end
 
 === nature_good_end ===
 ->nature_good_end_1
@@ -386,7 +455,6 @@ You return to your ship, a sense of purpose and happiness washing over you. You 
 ->nature_end
 
 === nature_end ===
-->test_get_shard->
 +[Replay]
 ->nature
 +[End]
