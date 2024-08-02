@@ -5,6 +5,7 @@ import DialogueBox from "./DialogueBox.tsx";
 import {motion} from "framer-motion";
 import {characters} from "../setup/Character.ts";
 import {GameContext, GameContextType} from "../contexts/GameContext.tsx";
+import { InteractionOverlay } from './styled/Blocker.tsx';
 
 const TitleText = styled.div`
   font-size: 32px;
@@ -63,15 +64,6 @@ const Blocker = styled(motion.div)`
   background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
   display: block; /* Initially hidden */
 `;
-
-// const InteractionOverlay = styled.div`
-//   position: absolute;
-//   top: 0;
-//   left: 0;
-//   width: 100%;
-//   height: 100%;
-//   touch-action: none; /* Disable touch events */
-// `
 
 const DialogueComponent: React.FC<DialogueComponentProps> = ({ text, tags, next }) => {
     // Splitting the text into character name and dialogue body if a colon exists
@@ -158,7 +150,7 @@ const DialogueComponent: React.FC<DialogueComponentProps> = ({ text, tags, next 
                 </>
             }
 
-            {/* <InteractionOverlay onClick={touch}/> */}
+            <InteractionOverlay onClick={touch}/>
             <DialogueBox handleClick={touch}>
                 {/* Render character name, separator, and dialogue body separately if character name exists */}
                 {characterName &&

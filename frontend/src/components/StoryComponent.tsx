@@ -21,9 +21,10 @@ import EndingComponent from "./ending/EndingComponent.tsx";
 import { achievements } from "../setup/Achievements.ts";
 import { reportComplete, updateDatabase } from "./statistics/firestore.tsx";
 import { AnimatePresence } from "framer-motion";
-import { Blocker } from "./styled/Blocker.tsx";
+import { Blocker, InteractionOverlay } from "./styled/Blocker.tsx";
 import InputComponent from "./input/InputComponent.tsx";
 import Player from "../classes/Player.ts";
+import GuideComponent from "./GuideComponent.tsx";
 
 interface StoryComponentProps {
   universeRef: Universe | null;
@@ -419,7 +420,7 @@ const StoryComponent: React.FC<StoryComponentProps> = ({ universeRef }) => {
             </>
           )}
 
-          {(storyState === StoryState.Dialogue || storyState === StoryState.Choosing) &&
+          {(storyState === StoryState.Dialogue)&&
             inkState !== "character_selection" &&
             inkState !== 'input_field' &&
             inkState !== "name_select" && (
@@ -436,11 +437,14 @@ const StoryComponent: React.FC<StoryComponentProps> = ({ universeRef }) => {
             </>
           }
 
-          {/* {storyState === StoryState.Choosing && (
-            <div className="absolute bottom-6">
-              <GuideComponent />
-            </div>
-          )} */}
+          {storyState === StoryState.Choosing && (
+            <>
+              <InteractionOverlay/>
+              <div className="absolute bottom-6">
+                <GuideComponent />
+              </div>
+            </>
+          )}
 
           {storyState === StoryState.Inspecting && (
             <>

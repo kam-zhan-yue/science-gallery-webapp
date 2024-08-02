@@ -18,3 +18,12 @@ export const InvisibleBlocker = styled(motion.div)`
     width: 100%;
     height: 100%;
   `
+
+export const InteractionOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  touch-action: none; /* Disable touch events */
+`
