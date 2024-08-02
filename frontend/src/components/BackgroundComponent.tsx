@@ -104,11 +104,7 @@ const BackgroundComponent: React.FC<BackgroundComponentProps> = ({ backgroundKey
             {backgroundKey !== 'empty' && currentKey in backgrounds && (
                 <AnimatePresence>
                 {visible &&
-                    <Overlay
-                      initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0, transition: { duration: 1 } }}
-                        transition={{ duration: 1 }}>
+                    <Overlay>
                         <BackgroundContainer>
                         {!imageLoaded &&
                           <Blur
