@@ -85,6 +85,10 @@ const CreditsComponent: React.FC<{complete: () => void }> = ({complete}) => {
                 <SpecialThanks>Special Thanks</SpecialThanks>
                 <Thanks>Ethel Villafranca</Thanks>
                 <Thanks>Wato Kadowaki</Thanks>
+                <Thanks>JuiceGoose</Thanks>
+                <Thanks>Natalia Nour</Thanks>
+                <Thanks>Jesus Silvero Duarte</Thanks>
+                <Thanks>Matthew Li</Thanks>
               </Credit>
               <Credit>
                 <SpecialThanks>Playtesters</SpecialThanks>

@@ -24,13 +24,4 @@ export const credits: { [key: string]: Credit } = {
   "Timothy Phan": {
     role: "UI Programmer, Inky Writer",
   },
-  "Natalia Nour": {
-    role: "Concept Designer",
-  },
-  "Jesus Silvero Duarte": {
-    role: "Concept Designer",
-  },
-  "Matthew Li": {
-    role: "Concept Designer",
-  },
 };
