@@ -419,7 +419,7 @@ const StoryComponent: React.FC<StoryComponentProps> = ({ universeRef }) => {
             </>
           )}
 
-          {storyState === StoryState.Dialogue &&
+          {(storyState === StoryState.Dialogue || storyState === StoryState.Choosing) &&
             inkState !== "character_selection" &&
             inkState !== 'input_field' &&
             inkState !== "name_select" && (
