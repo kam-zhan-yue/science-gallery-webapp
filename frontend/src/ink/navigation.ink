@@ -21,13 +21,13 @@
 ->DONE
 
 === band_1 ===
-*[words_and_worlds:5]
+*[words_and_worlds:0110]
     ->go_to_planet(words_and_worlds)
 *[new_nature:5]
     ->go_to_planet(new_nature)
     
 === band_2 ===
-*[ways_of_folding_space:5]
+*[ways_of_folding_space:1407]
     ->go_to_planet(ways_of_folding_space)
 *[crafting_new_worlds:5]
     ->go_to_planet(crafting_new_worlds)
@@ -35,7 +35,7 @@
 === band_3 ===
 *[the_monstrous_feminine:5]
     ->go_to_planet(the_monstrous_feminine)
-*[new_myths:5]
+*[new_myths:0608]
     ->go_to_planet(new_myths)
 
 === final_stage ===
