@@ -44,14 +44,14 @@ Fysi: We have a problem that we seem to be struggling to solve ourselves. I hate
 
 
 === fysi_uninterested ===
-Fysi: Oh, that’s alright. Thank you anyway, enjoy your time in Trutina.” Fysi smiles at you, and walks to a market stall near you
+Fysi: Oh, that’s alright. Thank you anyway, enjoy your time in Trutina.” Fysi smiles at you, and walks to a market stall near you #Lyanne:happy
 *[Continue walking around town]
 ->fysi_walk_around_town
 
 
 === fysi_walk_around_town ===
 Fysi: Oh, that’s alright. Thank you anyway, enjoy your time in Trutina.
-Fysi smiles at you, and walks to a market stall near you
+Fysi smiles at you, and walks to a market stall near you #Lyanne:happy
     ->fysi_walk_away
 
 
@@ -83,7 +83,7 @@ Fysi: We have two town factions, the Guards and the Gardeners. They both improve
 -> fysi_backstory_skip
 
 === fysi_backstory_gardeners ===
-Fysi: Our crops are failing. We’ve only had small, wizened produce, the plants are dying, and we’re not sure why. We have enough food stored for a short while, but if we don’t fix it soon, the town will starve.
+Fysi: Our crops are failing. We’ve only had small, wizened produce, the plants are dying, and we’re not sure why. We have enough food stored for a short while, but if we don’t fix it soon, the town will starve. #Fysi:sad
 ->fysi_backstory_choices
 
 === fysi_backstory_guards ===
@@ -100,7 +100,7 @@ Fysi: Well... At least let me request...
 Fysi: I was walking through the forest looking for mushrooms, and I came across a strange pool. It was filled with what looked like bioluminescent algae, with a glass shard lying at the bottom.
 Fysi: The shard was glowing a bright green-blue, the same colour as the algae. I picked it up and it kept glowing, even outside of the water. It intrigued me, so I took it back to the town.
 Fysi: When I brought the shard back to town, both factions immediately found a use for it.
-Fysi: The guards could use it to protect themselves at night. Whatever was attacking them didn’t approach when they had the shard. The one night that the scout held the shard was the one night that they came back, well- conscious.
+Fysi: The guards could use it to protect themselves at night. Whatever was attacking them didn’t approach when they had the shard. The one night that the scout held the shard was the one night that they came back, well- conscious.#Fysi:sad
 Fysi: The Gardeners brought the shard to their crops. When the shard was in a greenhouse, the plants grew to twice their normal size! Something about the light that the shard emits greatly improves crop yield.
 +[So... what do you need from me?]
 ->fysi_shard
@@ -165,7 +165,7 @@ Lyanne: Hello! My name is Lyanne, I am the head of the Gardener faction. I would
 ->shard_gardeners_2
 
 === shard_gardeners_2 ===
-Lyanne: I would like to show you something, as a reward for your kindness. Please, come with me.
+Lyanne: I would like to show you something, as a reward for your kindness. Please, come with me. #Lyanne:happy
 Lyanne walks away.
 +[Follow Lyanne]
 ->shard_gardeners_3
@@ -182,7 +182,7 @@ The structure looks like hanging flowers, with spiralling wire hanging down from
 ->shard_gardeners_5
 
 === shard_gardeners_5 ===
-Lyanne: This is the Gardeners’ most prized possession. This plant is what keeps morale up when times are tough. It is our proverbial shining beacon of hope. You have given us another hope. I thank you.
+Lyanne: This is the Gardeners’ most prized possession. This plant is what keeps morale up when times are tough. It is our proverbial shining beacon of hope. You have given us another hope. I thank you. #Lyanne:happy
 Lyanne takes a flower from the structure, and gives it to you with an air of reverence. It warms your hands, and you feel a sense of calm purpose flow through you. 
 
 *[Oh, thank you so much! (Pocket the flower)]
@@ -193,7 +193,7 @@ Lyanne takes a flower from the structure, and gives it to you with an air of rev
 === shard_gardeners_flower_accept ===
 ~get(flower)
 Lyanne: Feel free to stay in the town for as long as you want. 
-Lyanne smiles at you, and walks away.
+Lyanne smiles at you, and walks away. #Lyanne:veryhappy
 +[Walk out of the building]
 ->nature_good_end_1
 
@@ -205,16 +205,16 @@ Lyanne: No please. You have given us a gift, and I want to repay the favour.
 
 //GUARD PATH
 === shard_guards ===
-Fysi: Alright, we shall respect your decision. The shard will go to the Guards. The faction’s leader will want to thank you for this.
+Fysi: Alright, we shall respect your decision. The shard will go to the Guards. The faction’s leader will want to thank you for this. #Fysi:veryhappy
 ->shard_guards_1
 
 === shard_guards_1 ===
-Bellator: Hello! My name is Bellator, I am the head of the Guard faction. I would like to thank you, on behalf of the town, for giving the shard to the Guards.
+Bellator: Hello! My name is Bellator, I am the head of the Guard faction. I would like to thank you, on behalf of the town, for giving the shard to the Guards. #Bellator:happy
 +[You're very welcome]
 ->shard_guards_2
 
 === shard_guards_2 ===
-Bellator: I would like to show you something, as a reward for your kindness. Please, come with me.
+Bellator: I would like to show you something, as a reward for your kindness. Please, come with me. #Bellator:urgent
 Bellator walks away.
 +[Follow Bellator]
 ->shard_guards_3
@@ -228,7 +228,7 @@ Bellator leads you to the guard barracks, and walks through a set of corridors. 
 You walk inside and see a room with strange green objects, spinning in the middle of the room. The walls are adorned with images of unfamiliar figures. 
 Bellator: This is where my guards come to train. The room gives them confidence to continue, even when the going gets tough.
 Bellator: It is the boost to morale that the hardworking guards need in these trying times, especially now that doing their job involves them risking themselves.
-Bellator walks to a weapons rack, and picks up an ornate spear. He hands it to you, smiling. It feels powerful in your hands. 
+Bellator walks to a weapons rack, and picks up an ornate spear. He hands it to you, smiling. It feels powerful in your hands. #Bellator:veryhappy
 +[Oh, thank you so much! (Pocket the spear)]
 ->spear_accept
 +[Oh, I couldn’t possibly take such an important item from you! (Refuse the spear)]
@@ -237,21 +237,21 @@ Bellator walks to a weapons rack, and picks up an ornate spear. He hands it to y
 === spear_accept ===
 ~get(spear)
 Bellator: Feel free to stay in the town for as long as you want.
-Bellator smiles at you, and walks away.
+Bellator smiles at you, and walks away.#Bellator:veryhappy
 +[Walk out of the building.]
 ->nature_good_end
 
 === spear_decline ===
-Bellator: No please. You have given us a gift, and I want to repay the favour.
+Bellator: No please. You have given us a gift, and I want to repay the favour.#Bellator:happy
 +[Thank you so much, I appreciate your gratitude.]
 ->spear_accept
 
 // TORCH TO GUARDS, SHARD TO GARDENERS
 === torch_appease ===
-Fysi: Really? Thank you so much, you’re incredibly generous!  The leaders of both factions will want to thank you for this.
+Fysi: Really? Thank you so much, you’re incredibly generous!  The leaders of both factions will want to thank you for this.#Fysi:veryhappy
 Lyanne, leader of the Farmers, and Bellator, leader of the Guards approach you.
-Lyanne: Thank you for entrusting us with your light, and the shard. You have helped our village greatly.
-Bellator: We would like to give you a reward for your troubles. We can’t describe how much you have helped both factions. Please follow us.
+Lyanne: Thank you for entrusting us with your light, and the shard. You have helped our village greatly. #Lyanne:happy #Bellator:happy
+Bellator: We would like to give you a reward for your troubles. We can’t describe how much you have helped both factions. Please follow us. #Lyanne:happy #Bellator:happy
 They walk away
 ->torch_appease_1
 
@@ -260,11 +260,9 @@ Lyanne and Bellator lead you to a small glass cottage, where they introduce you 
 Anna gives you a pendant made of multicoloured glass, red and white, green and yellow. You put it on, and feel that the universe smiles on you. 
 
 ~get(pendant)
-Congratulations!  You helped both factions, and have gained a pendant that gives you +1 Knack!
-//TODO: ADD KNACK HERE!!!
-Bellator and Lyanne lead you outside. 
-Lyanne: Thank you again. Feel free to stay in the town for as long as you want.
-They smile at you, and walk away.
+Bellator and Lyanne lead you outside. #Lyanne:neutral #Bellator:neutral
+Lyanne: Thank you again. Feel free to stay in the town for as long as you want. #Lyanne:neutral #Bellator:neutral
+They smile at you, and walk away. #Lyanne:veryhappy #Bellator:veryhappy
 ->nature_good_end
 
 
@@ -274,26 +272,26 @@ Fysi: Alright, that seems fair. I’ll let the leaders know, and they can decide
 ->torch_swap_1
 
 === torch_swap_1 ===
-Lyanne, leader of the Farmers, and Bellator, leader of the Guards approach you.
-Lyanne: Thank you for giving us the torch. We will decide how to use it to its fullest extent.
+Lyanne, leader of the Farmers, and Bellator, leader of the Guards approach you. #Lyanne:neutral #Bellator:neutral
+Lyanne: Thank you for giving us the torch. We will decide how to use it to its fullest extent. #Lyanne:neutral #Bellator:neutral
 +[You're very welcome]
 ->torch_swap_2
 
 === torch_swap_2 ===
-Bellator: We will take you to the shard. Please follow us.
+Bellator: We will take you to the shard. Please follow us. #Bellator:urgent
 They walk away.
 +[Follow Lyanne and Bellator]
 ->torch_swap_3
 
 === torch_swap_3 ===
-Lyanne and Bellator lead you to a locked glass building. They unlock it and motion you inside.
+Lyanne and Bellator lead you to a locked glass building. They unlock it and motion you inside. #Lyanne:neutral #Bellator:neutral
 +[Enter the buliding]
 ->torch_swap_4
 
 
 === torch_swap_4 ===
 ~background = shard_good
-The leaders move towards a chest in the room’s centre, and unlock it. Bellator reaches inside, and takes out a glowing glass shard. He motions you forward, and places it in your hands. 
+The leaders move towards a chest in the room’s centre, and unlock it. Bellator reaches inside, and takes out a glowing glass shard. He motions you forward, and places it in your hands.  ##Bellator:urgent
 //TODO EXCHANGE ITEMS HERE
 ~get_good_shard()
 ~background=new_nature_main
@@ -302,27 +300,27 @@ The leaders move towards a chest in the room’s centre, and unlock it. Bellator
 ->torch_swap_5
 
 === torch_swap_5 ===
-Bellator and Lyanne lead you outside. 
-Lyanne: Thank you again. Feel free to stay in the town for as long as you want.
-They smile at you, and walk away.
+Bellator and Lyanne lead you outside.  #Lyanne:neutral #Bellator:neutral
+Lyanne: Thank you again. Feel free to stay in the town for as long as you want. #Lyanne:neutral #Bellator:neutral
+They smile at you, and walk away. #Lyanne:veryhappy #Bellator:veryhappy
 ->nature_good_end
 
 /// SEE SHARD ROUTE
 === see_shard ===
-Fysi leads you to a locked glass building. He unlocks it and motions you inside.
-Fysi moves towards a chest in the room’s centre, and unlocks it. He reaches inside, and takes out a glowing glass shard.
+Fysi leads you to a locked glass building. He unlocks it and motions you inside. #Fysi:neutral
+Fysi moves towards a chest in the room’s centre, and unlocks it. He reaches inside, and takes out a glowing glass shard. #Fysi:neutral
 +[Inspect the shard.]
 ->inspect_shard
 +[Grab the shard and run.]
 ->steal_shard
 
 === inspect_shard ===
-You inspect the shard, and recognise it as similar to the previous shards you have encountered. 
-Fysi looks at you. “What would you have us do?
+You inspect the shard, and recognise it as similar to the previous shards you have encountered. #Fysi:neutral
+Fysi looks at you. “What would you have us do? #Fysi:neutral
 ->fysi_shard_explain
 
 === steal_shard ===
-You grab the sprite and run. Fysi shouts, and tries to grab at you. 
+You grab the sprite and run. Fysi shouts, and tries to grab at you. #Fysi:sad
 ->steal_shard_win
 
 
@@ -330,9 +328,9 @@ You grab the sprite and run. Fysi shouts, and tries to grab at you.
 //TODO GET SHARD HERE
 ~background = shard_bad
 ~get_bad_shard()
-Fysi shouts after you as you sprint towards your ship, shard clutched to your chest.
+Fysi shouts after you as you sprint towards your ship, shard clutched to your chest. #Fysi:sad
 ~background = new_nature_main
-Fysi: Come back!  Please, you’ve left us with nothing!
+Fysi: Come back!  Please, you’ve left us with nothing! #Fysi:sad
 You feel the shard cool in your hands.
 You run to your ship, a sense of shame and failure washing over you. You look at the shard, and see it glows red. You are no longer welcome on this planet. You have gained a shard, but at what cost? -> ai_steal_shard_win
 ===ai_steal_shard_win===
@@ -351,8 +349,8 @@ AI: No. There's no way to revert a corrupt shard. You're just going to have to d
 
 
 === steal_shard_lose ===
-Fysi looks at you, breathing heavily, the shard clutched to his chest. He shouts, voice heavy with betrayal
-Fysi: Leave now, and never return!  You are not welcome here.
+Fysi looks at you, breathing heavily, the shard clutched to his chest. He shouts, voice heavy with betrayal #Fysi:sad
+Fysi: Leave now, and never return!  You are not welcome here. #Fysi:sad
 ->steal_shard_lose_1
 
 === steal_shard_lose_1 ===
@@ -366,7 +364,7 @@ AI: You did what?! That wasn't smart, now was it? I must say, I thought you were
 ->nature_end
 
 === heal ===
-Lyanne: Really? Are you a healer of some sort? Thank you so much, I’ll take you to the scouts immediately!
+Lyanne: Really? Are you a healer of some sort? Thank you so much, I’ll take you to the scouts immediately! #Lyanne:veryhappy
 
 Fysi leads you to the healer’s building, where you see seven guards, lying on beds. They have various injuries, which look to have been tended to. They look to be deep in sleep. 
 
@@ -399,15 +397,15 @@ You spend the night in the healer’s building. After a long and difficult night
 
 === heal_end_2 ===
 
-After another night of research and development, you and Fysi develop a powder that will nullify the Ampelos’ sleep spores. You give it to Bellatos, the leader of the Guards, and explain its purpose. 
+After another night of research and development, you and Fysi develop a powder that will nullify the Ampelos’ sleep spores. You give it to Bellator, the leader of the Guards, and explain its purpose. 
 
-Bellatos: This is incredibly impressive! It’s a vital step in preventing any more attacks!  We shall prepare for its use, and put it to the test tonight! Thank you both for your efforts.
+Bellator: This is incredibly impressive! It’s a vital step in preventing any more attacks!  We shall prepare for its use, and put it to the test tonight! Thank you both for your efforts.
 
 You spend the rest of the day sleeping, finally getting some rest after two long days of work. 
 
 You are woken by Fysi, jostling your shoulder.  
 
-Fysi: Bellatos and the Guards are about to fight the Ampelos!
+Fysi: Bellator and the Guards are about to fight the Ampelos!
 
 *[Get up and follow Fysi]
     -> heal_end_3
@@ -416,19 +414,19 @@ Fysi: Bellatos and the Guards are about to fight the Ampelos!
 
 The sounds of fighting, clanging swords and swishing vines emanate from outside the town walls. The townspeople gather behind the gates, trying to gain a glance at the combat.  
 
-After what feels like forever, Bellatos enters through the gate. He has a large cut on his forehead, but looks happy. 
+After what feels like forever, Bellator enters through the gate. He has a large cut on his forehead, but looks happy. #Bellator:happy
 
-Bellatos: The Ampelos is dead!
+Bellator: The Ampelos is dead! #Bellator:veryhappy
 
 The townspeople cheer, and celebrations start.
 
-During the celebrations, you find Lyanne, the leader of the Gardeners, and approach her. 
+During the celebrations, you find Lyanne, the leader of the Gardeners, and approach her. #Lyanne:neutral
 You hand her the torch.
 
-She smiles at you, and takes the torch. 
-Lyanne: Thank you for all that you have done.
+She smiles at you, and takes the torch. #Lyanne:happy
+Lyanne: Thank you for all that you have done. #Lyanne:happy
 She reaches into her robes and retrieves the shard, putting it into your hands. 
-Lyanne: You have done us a great service.
+Lyanne: You have done us a great service. #Lyanne:veryhappy
 
 *[important:Accept the shard.]
     -> heal_end_4
@@ -437,9 +435,9 @@ Lyanne: You have done us a great service.
 ~background = shard_good
 ~get_good_shard()
 
-Lyanne gestures to the surrounding celebrations. 
+Lyanne gestures to the surrounding celebrations. #Lyanne:neutral
 ~background = new_nature_main
-Lyanne: Feel free to stay in the town for as long as you want. You are always welcome here
+Lyanne: Feel free to stay in the town for as long as you want. You are always welcome here #Lyanne:veryhappy
 She smiles at you and walks away.
 -> nature_good_end
 

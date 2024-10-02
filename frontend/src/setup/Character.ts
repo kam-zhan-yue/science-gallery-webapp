@@ -71,4 +71,57 @@ export const characters: { [key: string]: Character } = {
           "veryhappy": "npc_ai_veryhappy.png",
       }
     },
+    "Bellator": {
+        name: "Bellator",
+        fullBody: "npc_bellator_neutral.png",
+        animations: {
+            "neutral": "npc_bellator_neutral.png",
+            "happy": "npc_bellator_happy.png",
+            "veryhappy": "npc_bellator_veryhappy.png",
+            "urgent": "npc_bellator_urgent.png",
+            "sad": "npc_bellator_sad.png",
+        }
+    },
+    "Fysi": {
+        name: "Fysi",
+        fullBody: "npc_fysi_neutral.png",
+        animations: {
+            "neutral": "npc_fysi_neutral.png",
+            "happy": "npc_fysi_happy.png",
+            "veryhappy": "npc_fysi_veryhappy.png",
+            "sad": "npc_fysi_sad.png",
+        }
+    },
+    "Lyanne": {
+        name: "Lyannc",
+        fullBody: "npc_lyanne_neutral.png",
+        animations: {
+            "neutral": "npc_lyanne_neutral.png",
+            "happy": "npc_lyanne_happy.png",
+            "veryhappy": "npc_lyanne_veryhappy.png",
+            "sad": "npc_lyanne_sad.png",
+        }
+    },
+    "NAMAHAGE": {
+        name: "NAMAHAGE",
+        fullBody: "npc_namahage.png",
+        animations: {
+          "neutral": "npc_namahage.png",
+        },
+    },
+    "Manananggal": {
+        name: "Manananggal",
+        fullBody: "npc_manananggal.png",
+        animations: {},
+    },
+    "Huma": {
+        name: "Huma",
+        fullBody: "npc_huma.png",
+        animations: {},
+    },
+    "Ellwyn": {
+        name: "Ellwyn",
+        fullBody: "npc_ellwyn.png",
+        animations: {},
+    },
 };

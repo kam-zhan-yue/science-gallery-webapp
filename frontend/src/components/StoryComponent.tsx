@@ -20,7 +20,7 @@ import { TextStyle } from "./styled/Text.tsx";
 import EndingComponent from "./ending/EndingComponent.tsx";
 import { achievements } from "../setup/Achievements.ts";
 import { reportComplete, updateDatabase } from "./statistics/firestore.tsx";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { Blocker, InteractionOverlay } from "./styled/Blocker.tsx";
 import InputComponent from "./input/InputComponent.tsx";
 import Player from "../classes/Player.ts";

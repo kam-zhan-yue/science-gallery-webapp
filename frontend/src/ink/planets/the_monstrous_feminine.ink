@@ -104,7 +104,7 @@ It chimes twice, satisfied that you carry nothing dangerous, and you are allowed
 ===artist_class_monstrous_feminine===
 You step outside, into a world bristling with forest. A gleaming city rises from the dense maroon vegetation. #Planet overview
 You disembark into a cold clearing. The foliage seeths as the wind whips around you. #A forest of trees with eyes everywhere - birch trees?
-The hairs on the back of your neck stand on end as a realisation washes over you: The entire forest is watching, and audience of countless unseen eyes. 
+The hairs on the back of your neck stand on end as a realisation washes over you - The entire forest is watching, and audience of countless unseen eyes. 
 No... Seen eyes. 
 Panic overtakes you and you break into a sprint towards the city, as you try to wipe the memory of those haunting eyes from your mind.
 Finding the outer wall, you make your way around its perimeter until you come upon an open gate, cold and metallic. 
@@ -206,10 +206,10 @@ It is a royal blue, and seems to be made of fabric, with a woven straw-like patt
 NAMAHAGE: Welcome.
 *[Where am I?] -> where_am_i
 ===where_am_i===
-Creature: You are in my home. The city's data layer. Hundreds of billions of wires and sparks making up every person's data, everything on their devices that they love more than life itself. 
+Creature: You are in my home. The city's data layer. Hundreds of billions of wires and sparks making up every person's data, everything on their devices that they love more than life itself. #NAMAHAGE:neutral
 *[Who are you?] -> who_are_you_namahage
 ===who_are_you_namahage===
-Creature: I am the NAMAHAGE. I watch this world, and many others, from my perch in the data layer. From here, I can see anything that anyone has ever put onto a device. 
+Creature: I am the NAMAHAGE. I watch this world, and many others, from my perch in the data layer. From here, I can see anything that anyone has ever put onto a device.  #NAMAHAGE:neutral
 NAMAHAGE: At the beginning of every new year, I weed the good children from the bad, bringing blessings to the good and disciplining the unsvory.
 *[Children?] -> children_of_technology
 ===children_of_technology===
@@ -275,6 +275,8 @@ NAMAHAGE: A wise choice. Now, I believe I may have something to help you in your
 The being extends its arm, and you see a surprisingly human-like hand emerge from the sleeve. 
 It is holding a pure shard, just like the one you saw reflected so many times. The NAMAHAGE offers it to you. 
 NAMAHAGE: Remember. Knowledge is power, and power is pain. Do with this what you believe is wisest.
+~background = shard_good
+~get_good_shard()
 You take the shard. As soon as it is in your hand, you are in the busy street again. The people bustle around you, you hastily move out of the way as a group of people pass you by. ->leave_namahage
 ===expose===
 The NAMAHAGE looks at you for a long while. You hear the whirring, from its head stop. All is eerily still. There is no movement anywhere, save your own. 
@@ -284,8 +286,11 @@ NAMAHAGE: Before you leave, however, I want to give you something that I believe
 The being extends its arm, and you see a surprisingly human-like hand emerge from the sleeve. 
 It is holding a shard, just like the one you saw reflected so many times. Your stomach drops at its colouration - a deep red. The NAMAHAGE offers it to you. 
 NAMAHAGE: Remember. Knowledge is power, and power is pain. Do with this what you believe is wisest.
+~background = shard_bad
+~get_bad_shard()
 You take the shard. As soon as it is in your hand, you are in the busy street again. The people bustle around you, you hastily move out of the way as a group of people pass you by. ->leave_namahage
 ===leave_namahage===
+~background = monstrous_main
 Looking around, you see no sign of the NAMAHAGE. No sign of the data layer that you were in but a moment before. 
 You look at the shard in your pocket, dazed. That was an experience that you're sure you will never have again.
 You leave the city, encountering no resistance as you pass through the gates. Still in a haze, trying to remember everything you were told, you walk back to your ship. ->justenoughartist
