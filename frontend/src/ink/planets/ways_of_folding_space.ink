@@ -105,10 +105,12 @@ You look closer, and see a small indent behind the now-open panel. You peer insi
 
 {   puzzle_success:
         Inside the hole, you see a glass shard, glowing a deep blue-green, and a carefully rolled-up piece of parchment. You pick them both up.
+        ~background = shard_good
         ~get_good_shard()
         ~get(scroll)
     - else:
         Inside the hole, you see a glass shard, glowing a dark red, and a carefully rolled-up piece of parchment. You pick them both up.
+        ~background = shard_bad
         ~get_bad_shard()
         ~get(scroll)
 }
@@ -147,22 +149,23 @@ You look closer, and see a small indent behind the now-open panel. You peer insi
 
 You peer at the puzzle, then turn and reach into your toolbox. You pull out a small prybar, and carefully pull it left. Right. Excruciatingly slowly, you extricate the panel from the sides, revealing a space within. 
 AI: Oh, look how clever you are! What's inside?
-Inside the hole, you see a glass shard, glowing a deep blue-green, and a carefully rolled-up piece of parchment. You pick them both up.  
+~background = shard_good
+Inside the hole, you see a glass shard, glowing a deep blue-green, and a carefully rolled-up piece of parchment. You pick them both up.
 ~get_good_shard()
 ~get(scroll)
 
 -> flight_words
 
 === folding_words ===
-
 You pocket the shard, and unroll the parchment.  
+~background = obelisks
 “Time and distance are no constraints to the imaginative mind. The inspiration precedes the means. Without creativity, what do any of us have?” 
 You feel these words burn deep in your soul.  
 AI: Oh, what beautiful prose!  I'll add it to my records. This is a fascinating find!
 -> folding_space_end
 
 === flight_words ===
-
+~background = obelisks
 You unfurl the parchment. It has a simple but beautiful illustration of a soaring sparrow. The text around the drawing reads -
 “For flight is freedom, and freedom is life. We may never be truly free until we can see our world from the eyes of the birds.” 
 You feel these words burn deep in your soul. 

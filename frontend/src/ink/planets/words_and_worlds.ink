@@ -245,8 +245,10 @@ You brace yourself. Is she going to hurt you? #Librarian:neutral
 The tentacle returns as quickly as it left, clutching… a shard? #Librarian:neutral
 Librarian: This is what you deserve.
 She hands you the shard. #Librarian:neutral
+~background=shard_bad
 ~get_bad_shard()
 It feels … wrong. It’s so cold it stings your skin. You tuck it into your bag as you sense it’s time for you to leave.
+~background = words_main
 You walk down the halls, trying to find your ship, and stumble upon a long timeline. You wonder if you can learn something from this, maybe where to go next.
 You pause, looking at the Science Fiction Timeline, until you glean enough information to know where to go next.
 You return to your ship, hopeful that your next journey will be better.
@@ -267,8 +269,10 @@ She leads you down one of the aisles to the cosiest space you’ve ever seen. #L
 You settle into a plush reading chair, and spend a few hours sharing your knowledge with the librarian. #Librarian:neutral
 After you’re done. She thanks you, and one of her tentacles reaches out the door. #Librarian:happy
 Shortly after she draws it back inside, holding the shard. She hands it over to you. #Librarian:happy
+~background=shard_good
 ~get_good_shard()
 Despite its glass-like appearance it feels warm. #Librarian:neutral
+~background=words_main
 Librarian: Well, feel free to stay as long as you like. Once you’re done in this room I’d encourage you to go next door and look at our timeline.
 You take advantage of the respite of this cosy room. Your eyes close, and when they open again you feel rested and refreshed.
 The librarian seems to know things, so you should take her up on the suggestion and look at the Sci-Fi timeline next door.
@@ -319,10 +323,12 @@ Use an item to fight the Librarian. #Librarian:angry
 
 === words_fight_success ===
 At last, she is defeated. You grab one of the ladders that should be for getting books, and climb up towards the shard.
+~background = shard_bad
 As you climb, you see the warmth drain from the shard, and the colour change to a muddy red.
 Undeterred, you snatch it up.
 ~get_bad_shard()
 It feels … wrong. It’s so cold it stings your skin. You tuck it into your bag as you sense it’s time for you to leave.
+~background = words_main
 - You start walking away, when suddenly a fire breaks out. You don’t know when it started, but it is consuming the library.
     +[Try to fight the fire]
         You try to extinguish the fire, but your efforts are ineffectual. The blaze is out of control.
@@ -352,9 +358,11 @@ The librarian looks down at you. It seems like she pities you. #Librarian:sad
 Librarian: My dear. Sharing is the foundation of a library. #Librarian:sad
 Librarian: Take this, and think about what you have done here. #Librarian:sad
 She reaches out a tentacle and grabs the shard, passing it gently to you. #Librarian:neutral
+~background=shard_good
 Librarian: Goodbye.
 ~get_good_shard()
 Despite its glass-like appearance, it feels warm. You put it in your bag and walk away.
+~background=words_main
 As you go looking for your ship, you bump into a large metal book. It feels like the library showed you this for a reason.
 Maybe it will have a clue for where you could go next.
 You stay looking at Untitled (Heat Book) until you know where to go next.

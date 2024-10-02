@@ -12,17 +12,17 @@ export function getImage(item: Item | null): string {
 export const items: { [key: string]: Item } = {
     "artist_item": {
         name: "Needle and Thread",
-        image: "apple.png",
+        image: "thread.png",
         description: "A needle and thread. It seems extremely important for something."
     },
     "mechanic_item": {
         name: "The Sentient Toolbox",
-        image: "apple.png",
+        image: "toolbox.png",
         description: "A sentient toolbox. It seems extremely important for something."
     },
     "doctor_item": {
         name: "A Syringe",
-        image: "apple.png",
+        image: "syringe.png",
         description: "A syringe. It seems extremely important for something."
     },
     "book_1": {

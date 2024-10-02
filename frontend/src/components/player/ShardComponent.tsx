@@ -106,9 +106,9 @@ const ShardComponent: React.FC<StatsComponentProps> = ({player, onCloseButton}) 
 
     function getShard (shardType: string) {
         if(shardType == 'good') {
-            return prefix+'apple-pie.png';
+            return prefix+'shard_good.png';
         } else {
-            return prefix+'avocado.png';
+            return prefix+'shard_bad.png';
         }
     }
 

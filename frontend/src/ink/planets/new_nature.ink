@@ -195,7 +195,7 @@ Lyanne takes a flower from the structure, and gives it to you with an air of rev
 Lyanne: Feel free to stay in the town for as long as you want. 
 Lyanne smiles at you, and walks away.
 +[Walk out of the building]
-->nature_end
+->nature_good_end_1
 
 
 === shard_gardeners_flower_decline ===
@@ -292,9 +292,12 @@ Lyanne and Bellator lead you to a locked glass building. They unlock it and moti
 
 
 === torch_swap_4 ===
+~background = shard_good
 The leaders move towards a chest in the room’s centre, and unlock it. Bellator reaches inside, and takes out a glowing glass shard. He motions you forward, and places it in your hands. 
 //TODO EXCHANGE ITEMS HERE
 ~get_good_shard()
+~background=new_nature_main
+~take_ink(torch)
 +[Thank you. (Pocket the shard, give the leaders the torch from your ship)]
 ->torch_swap_5
 
@@ -320,17 +323,15 @@ Fysi looks at you. “What would you have us do?
 
 === steal_shard ===
 You grab the sprite and run. Fysi shouts, and tries to grab at you. 
-//TODO Combat here?
-+[Combat win]
 ->steal_shard_win
-+[Combat lose]
-->steal_shard_lose
 
 
 === steal_shard_win ===
 //TODO GET SHARD HERE
+~background = shard_bad
 ~get_bad_shard()
 Fysi shouts after you as you sprint towards your ship, shard clutched to your chest.
+~background = new_nature_main
 Fysi: Come back!  Please, you’ve left us with nothing!
 You feel the shard cool in your hands.
 You run to your ship, a sense of shame and failure washing over you. You look at the shard, and see it glows red. You are no longer welcome on this planet. You have gained a shard, but at what cost? -> ai_steal_shard_win
@@ -433,10 +434,11 @@ Lyanne: You have done us a great service.
     -> heal_end_4
 
 === heal_end_4 ===
-
+~background = shard_good
 ~get_good_shard()
 
 Lyanne gestures to the surrounding celebrations. 
+~background = new_nature_main
 Lyanne: Feel free to stay in the town for as long as you want. You are always welcome here
 She smiles at you and walks away.
 -> nature_good_end

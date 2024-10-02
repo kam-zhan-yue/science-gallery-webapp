@@ -139,7 +139,7 @@ Ellwyn: Please, take it, it feels right that you should have it
 -> grove_get_shard
 
 === grove_get_shard ===
-
+~background = shard_good
 She passes you the warm glowing shard.
 
 +[speech:Thank her]
@@ -147,6 +147,7 @@ She passes you the warm glowing shard.
 ~get_good_shard()
 
 You: Thank you, I will take good care of it. 
+~background = crafting_main
 
 Ellwyn: Please feel free to spend as much time in Cloudscape as you like.
 
@@ -203,12 +204,14 @@ Give her an item
 
 You: I do need it. Hand it over.
 
+~background = shard_bad
 She passes you the shard, but your joy at success fades as the colour and warmth drain from the shard.
 
 ~get_bad_shard()
 
 It becomes a muddy red, and so cold to the touch it hurts your fingers. You look up and the women are gone.
 
+~background = crafting_main
 You shove it in your bag, and look around Cloudscape until you know where to go next.
 
 You return to your ship with the shard, but not sure if you really succeeded.
@@ -231,12 +234,13 @@ You assess the area and prepare to sneak in and take the shard.
 
 === grove_finesse ===
 
+~background = shard_bad
 Your joy at success fades as the colour and warmth drain from the shard.
 
 ~get_bad_shard()
 
 It becomes a muddy red, and so cold to the touch it hurts your fingers.
-
+~background = crafting_main
 You shove it in your bag, and sneak around Cloudscape until you know where to go next.
 You return to your ship with the shard, but not sure if you really succeeded.
 

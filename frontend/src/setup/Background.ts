@@ -64,4 +64,12 @@ export const backgrounds: { [key: string]: Background } = {
     src: "obelisks.png",
     blur: "LCCSgbs:|{tQqGxs:#t70Q$gDkxt",
   },
+  "shard_good": {
+    src: "shard-good.png",
+    blur: "L64C*Pae8wozyDayMdkCHXfk*0f6",
+  },
+  "shard_bad": {
+    src: "shard-bad.png",
+    blur: "LB9Y#[WV0ww|xuayM{oL1Fn*}bSg",
+  },
 };

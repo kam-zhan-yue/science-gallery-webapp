@@ -274,6 +274,7 @@ The Fate: My darling... you're home! You're home at last!
 The Fate: My dear {name}, you have shown that you are kind of heart. You have done this planet a great service. 
 The Fate: There is so much to be done, but now I feel whole again! Thank you!
 The Fate: I am a spirit of my word - hold out your hand. 
+~background = shard_good
 ~get_good_shard()
 ->fate_whereto
 ===riddleintro===
@@ -298,6 +299,7 @@ The Fate: The myth that surrounds me inspired my make, the marriage of thread, w
     ->riddle1wrong
 ==riddle1wrong==
 The Fate: That is incorrect. However, I do not wish to leave you with nothing. Hold out your hand.
+~background = shard_bad
 ~get_bad_shard()
 ->fate_whereto
 
@@ -323,10 +325,12 @@ The Fate: It binds us together, through thick and through thin, this silk has th
 ==riddlescorrect==
 The Fate: You have answered all of my riddles correctly. You have proven you are kind of heart.
 The Fate: I keep my word - hold out your hand.
+~background = shard_good
 ~get_good_shard()
 ->fate_whereto
 ===fate_whereto===
 The Fate: I still sense some trepidation in you, young traveller.
+~background = new_myths_silk_voice
 That's true, you think to yourself. You feel nervous. 
 *[speech:Yes, you're right.]
     ->yesnervous
