@@ -20,7 +20,7 @@ import { TextStyle } from "./styled/Text.tsx";
 import EndingComponent from "./ending/EndingComponent.tsx";
 import { achievements } from "../setup/Achievements.ts";
 import { reportComplete, updateDatabase } from "./statistics/firestore.tsx";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { Blocker, InteractionOverlay } from "./styled/Blocker.tsx";
 import InputComponent from "./input/InputComponent.tsx";
 import Player from "../classes/Player.ts";
@@ -50,6 +50,34 @@ const DebugPanel = styled(TextStyle)`
     top: 120px;
   }
 `;
+
+const Overlay = styled(motion.div)`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #2a213866;
+
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+`;
+
+const Background = styled(motion.img)`
+  position: absolute;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+`
 
 const StoryComponent: React.FC<StoryComponentProps> = ({ universeRef }) => {
   const [story, setStory] = useState<Story | null>(null);
@@ -412,6 +440,9 @@ const StoryComponent: React.FC<StoryComponentProps> = ({ universeRef }) => {
 
   return (
     <>
+      <Overlay key="main-background">
+        <Background src="../assets/backgrounds/background-main.png"/>
+      </Overlay>
       {storyState !== StoryState.End && (
         <>
           {inkState != "character_selection" && inkState != "name_select" && (
@@ -428,7 +459,7 @@ const StoryComponent: React.FC<StoryComponentProps> = ({ universeRef }) => {
                   text={storyText}
                   tags={tags}
                   next={next}
-                ></DialogueComponent>
+                />
             )}
 
           {inkState === 'input_field' &&

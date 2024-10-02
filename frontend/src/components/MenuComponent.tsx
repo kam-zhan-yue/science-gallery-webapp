@@ -192,6 +192,20 @@ const Slider = styled.label`
   }
 `;
 
+
+const Background = styled(motion.img)`
+  position: absolute;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+`;
+
 const MenuComponent: React.FC<MenuProps> = ({ startGame }) => {
   const { debug, setDebug } = useContext(GameContext) as GameContextType;
   const [statistics, setStatistics] = useState<boolean>(false);
@@ -207,6 +221,7 @@ const MenuComponent: React.FC<MenuProps> = ({ startGame }) => {
   return (
       <Overlay
         key="menuComponent">
+        <Background src="../assets/backgrounds/background-title.png"/>
         <StatisticsButton onClick={toggleStatistics}>
           {!statistics && <>Statistics</>}
           {statistics && <>Game</>}
