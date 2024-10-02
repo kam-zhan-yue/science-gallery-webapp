@@ -115,6 +115,7 @@ const CreditsComponent: React.FC<{complete: () => void }> = ({complete}) => {
             <div className='flex flex-row justify-center gap-4'>
               <CreditLogo src="../assets/ui/science-gallery-logo-white.png" alt="science-gallery-credits"/>
               <CreditLogo src="../assets/ui/unimelb-logo-white.png" alt="unimelb-credits"/>
+              <CreditLogo src="../assets/ui/logo-anz.png" alt="anz-credits"/>
             </div>
           </div>
         </>
