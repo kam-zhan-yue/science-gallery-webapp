@@ -8,7 +8,7 @@ export enum UniverseState {
     Story = 1
 }
 
-const SCALE_FACTOR = 1.6
+const SCALE_FACTOR = 1.75
 const BACKGROUND = true
 
 export class Universe extends Scene {

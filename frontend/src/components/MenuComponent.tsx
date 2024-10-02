@@ -67,16 +67,6 @@ const Title = styled(TextStyle)`
 
   height: 100px;
 
-  font-size: 64px;
-  font-weight: 800;
-  line-height: 1em;
-`;
-
-const Subtitle = styled(TextStyle)`
-  font-size: 24px;
-  font-weight: 800;
-  line-height: 1em;
-  margin-bottom: 10px;
 `;
 
 const StartButton = styled(TextStyle)`
@@ -101,6 +91,12 @@ const LogoContainer = styled.div`
   margin-bottom: 10px;
 `;
 
+const MainLogo = styled.img`
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+`
+
 const Logo = styled.img`
   height: 50px;
   &:hover {
@@ -116,19 +112,6 @@ const Footer = styled(TextStyle)`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-`;
-
-const SubHeading = styled(NormalText)`
-  font-size: 12px;
-  line-height: 1em;
-  font-weight: 100;
-`;
-
-const Warning = styled(NormalText)`
-  font-size: 12px;
-  line-height: 1em;
-  margin-top: 5px;
-  font-weight: 100;
 `;
 
 const ToggleSwitch = styled(TextStyle)`
@@ -206,6 +189,8 @@ const Background = styled(motion.img)`
   z-index: -1;
 `;
 
+const ENABLE_STATISTICS = false
+
 const MenuComponent: React.FC<MenuProps> = ({ startGame }) => {
   const { debug, setDebug } = useContext(GameContext) as GameContextType;
   const [statistics, setStatistics] = useState<boolean>(false);
@@ -222,10 +207,12 @@ const MenuComponent: React.FC<MenuProps> = ({ startGame }) => {
       <Overlay
         key="menuComponent">
         <Background src="../assets/backgrounds/background-title.png"/>
-        <StatisticsButton onClick={toggleStatistics}>
-          {!statistics && <>Statistics</>}
-          {statistics && <>Game</>}
-        </StatisticsButton>
+        {ENABLE_STATISTICS &&
+          <StatisticsButton onClick={toggleStatistics}>
+            {!statistics && <>Statistics</>}
+            {statistics && <>Game</>}
+          </StatisticsButton>
+        }
 
         {statistics && (
           <>
@@ -236,8 +223,9 @@ const MenuComponent: React.FC<MenuProps> = ({ startGame }) => {
         {!statistics && (
           <>
             <TextContainer>
-              <Title>re:COLLECT</Title>
-              <Subtitle>What will you remember?</Subtitle>
+              <Title>
+                <MainLogo src="../assets/backgrounds/logo.png" />
+              </Title>
               <StartButton onClick={startGame}>Start</StartButton>
               <ToggleSwitch>
                 <label>
@@ -258,6 +246,13 @@ const MenuComponent: React.FC<MenuProps> = ({ startGame }) => {
         <Footer>
           <LogoContainer>
             <a
+              href="https://www.unimelb.edu.au/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Logo src="../assets/ui/logo-unimelb.png" alt="unimelb" />
+            </a>
+            <a
               href="https://melbourne.sciencegallery.com/"
               target="_blank"
               rel="noopener noreferrer"
@@ -267,18 +262,17 @@ const MenuComponent: React.FC<MenuProps> = ({ startGame }) => {
                 alt="science-gallery"
               />
             </a>
-            <a
-              href="https://www.unimelb.edu.au/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Logo src="../assets/ui/unimelb-logo-white.png" alt="unimelb" />
-            </a>
+              <a
+                href="https://www.charteredaccountantsanz.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Logo
+                  src="../assets/ui/logo-anz.png"
+                  alt="anz"
+                />
+              </a>
           </LogoContainer>
-          <SubHeading>Made for Science Gallery Melbourne</SubHeading>
-          <Warning>
-            <b>Progress will be lost if page is reloaded</b>
-          </Warning>
         </Footer>
       </Overlay>
   );
