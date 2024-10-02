@@ -49,6 +49,7 @@ AI: I can't wait to hear what adventures you get up to! Enjoy, {name}!
 *[important:Venture into THE MONSTROUS FEMININE]->monstrous
 
 === monstrous ===
+~background = monstrous_main
 {class == Doctor: -> doctor_class_monstrous_feminine}
 
 {class == Mechanic: -> mechanic_class_monstrous_feminine}

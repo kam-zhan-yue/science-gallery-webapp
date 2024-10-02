@@ -4,6 +4,14 @@ export type Background = {
 };
 
 export const backgrounds: { [key: string]: Background } = {
+  "words_main": {
+    src: "words-main.png",
+    blur: "LBF|6hs,w{R-0js.EhNb}poKI?s-"
+  },
+  "monstrous_main": {
+    src: "monstrous-main.png",
+    blur: "L25iHDof8w%$IVkC%gof00o#.9H="
+  },
   "ship_navigation": {
     src: "ship-navigation.png",
     blur: "L33_5TjaQRf*y@ayVtV[HXflueWB",
