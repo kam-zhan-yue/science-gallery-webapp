@@ -190,6 +190,7 @@ const Background = styled(motion.img)`
 `;
 
 const ENABLE_STATISTICS = false
+const ENABLE_DEBUG = false
 
 const MenuComponent: React.FC<MenuProps> = ({ startGame }) => {
   const { debug, setDebug } = useContext(GameContext) as GameContextType;
@@ -227,19 +228,21 @@ const MenuComponent: React.FC<MenuProps> = ({ startGame }) => {
                 <MainLogo src="../assets/backgrounds/logo.png" />
               </Title>
               <StartButton onClick={startGame}>Start</StartButton>
-              <ToggleSwitch>
-                <label>
-                  Debug Mode
-                  <Slider>
-                    <input
-                      type="checkbox"
-                      checked={debug}
-                      onChange={handleToggle}
-                    />
-                    <span className="slider round"></span>
-                  </Slider>
-                </label>
-              </ToggleSwitch>
+              {ENABLE_DEBUG &&
+                <ToggleSwitch>
+                  <label>
+                    Debug Mode
+                    <Slider>
+                      <input
+                        type="checkbox"
+                        checked={debug}
+                        onChange={handleToggle}
+                      />
+                      <span className="slider round"></span>
+                    </Slider>
+                  </label>
+                </ToggleSwitch>
+              }
             </TextContainer>
           </>
         )}
