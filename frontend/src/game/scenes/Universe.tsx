@@ -8,6 +8,9 @@ export enum UniverseState {
     Story = 1
 }
 
+const SCALE_FACTOR = 1.6
+const BACKGROUND = true
+
 export class Universe extends Scene {
     public started: boolean = false;
     private solarSystem?: SolarSystem;
@@ -16,12 +19,14 @@ export class Universe extends Scene {
     public state: UniverseState;
     private centre: string;
     private audioPlayer: AudioPlayer;
+    private background: Phaser.GameObjects.Image | undefined;
 
     constructor() {
         super({ key: 'Universe' });
         this.state = UniverseState.Story;
         this.centre = '';
         this.audioPlayer = new AudioPlayer(this);
+        this.background = undefined
     }
 
     preload() {
@@ -92,7 +97,15 @@ export class Universe extends Scene {
         this.centreX = this.cameras.main.centerX;
         this.centreY = this.cameras.main.centerY;
 
-        this.add.shader('stars', this.centreX, this.centreY, 1000, 1000);
+        // Add the background
+        if (BACKGROUND) {
+          this.background = this.add.image(this.centreX, this.centreY, 'background')
+          this.background.setScale(SCALE_FACTOR / this.cameras.main.zoom)
+        }
+        else {
+          this.add.shader('stars', this.centreX, this.centreY, 1000, 1000);
+        }
+
         this.anims.create({
             key: 'earth_spin',
             frames: this.anims.generateFrameNumbers('earth', {frames:[0,1,2,3,4,5]}),
@@ -218,6 +231,12 @@ export class Universe extends Scene {
     }
 
     update(time: number, delta: number) {
+      if (this.background) {
+        console.log(this.cameras.main.centerX)
+        this.background.x = this.cameras.main.scrollX + this.cameras.main.centerX
+        this.background.y = this.cameras.main.scrollY + this.cameras.main.centerY
+        this.background.setScale(SCALE_FACTOR / this.cameras.main.zoom)
+      }
         this.solarSystem?.simulate(time, delta);
     }
 

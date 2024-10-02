@@ -19,6 +19,7 @@ const Game = forwardRef<Universe, GameProps>((_props, ref) => {
       height: 1000,
       parent: 'game-container',
       backgroundColor: '#1f1137',
+      transparent: true,
       scale: {
         mode: Phaser.Scale.RESIZE,
         autoCenter: Phaser.Scale.CENTER_BOTH,

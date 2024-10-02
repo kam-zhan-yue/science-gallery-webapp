@@ -11,6 +11,7 @@ export class Boot extends Scene {
       this.load.audio('bgm_band_2', 'audio/band_2.mp3')
       this.load.audio('bgm_band_3', 'audio/band_3.mp3')
       this.load.audio('bgm_end', 'audio/end.mp3')
+      this.load.image('background', 'images/background-main.png')
 
       this.load.bitmapFont('pixelFont', 'fonts/pixelFont.png', 'fonts/pixelFont.fnt') ;
 

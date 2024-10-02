@@ -51,34 +51,6 @@ const DebugPanel = styled(TextStyle)`
   }
 `;
 
-const Overlay = styled(motion.div)`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #2a213866;
-
-  -webkit-transition: all 0.2s;
-  transition: all 0.2s;
-`;
-
-const Background = styled(motion.img)`
-  position: absolute;
-  image-rendering: pixelated;
-  image-rendering: -moz-crisp-edges;
-  image-rendering: crisp-edges;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: -1;
-`
-
 const StoryComponent: React.FC<StoryComponentProps> = ({ universeRef }) => {
   const [story, setStory] = useState<Story | null>(null);
   const [background, setBackground] = useState<string>("");
@@ -440,9 +412,6 @@ const StoryComponent: React.FC<StoryComponentProps> = ({ universeRef }) => {
 
   return (
     <>
-      <Overlay key="main-background">
-        <Background src="../assets/backgrounds/background-main.png"/>
-      </Overlay>
       {storyState !== StoryState.End && (
         <>
           {inkState != "character_selection" && inkState != "name_select" && (
