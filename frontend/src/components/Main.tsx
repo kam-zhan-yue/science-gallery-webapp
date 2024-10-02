@@ -8,6 +8,8 @@ import {StyleSheetManager} from "styled-components";
 import isPropValid from "@emotion/is-prop-valid";
 import { AnimatePresence } from 'framer-motion';
 import AudioComponent from './AudioComponent.tsx';
+import { Router } from 'react-router';
+import { BrowserRouter } from 'react-router-dom';
 
 const Main: React.FC = () => {
     const universeRef = useRef<Universe>(null);
@@ -37,6 +39,7 @@ const Main: React.FC = () => {
 
     return (
         <>
+          <BrowserRouter>
             <StyleSheetManager shouldForwardProp={shouldForwardProp}>
             <AnimatePresence>
               {(state == GameState.Menu || state == GameState.Mirror) &&
@@ -53,6 +56,7 @@ const Main: React.FC = () => {
                 </>
             }
             </StyleSheetManager>
+          </BrowserRouter>
         </>
     );
 };

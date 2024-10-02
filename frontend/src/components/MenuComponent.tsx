@@ -5,6 +5,7 @@ import { NormalText, TextStyle } from "./styled/Text.tsx";
 import { colours } from "./styled/Constants.tsx";
 import { GameContext, GameContextType } from "../contexts/GameContext.tsx";
 import StatisticsComponent from "./statistics/StatisticsComponent.tsx";
+import { Route, Routes } from "react-router";
 
 interface MenuProps {
   startGame: () => void;
@@ -189,8 +190,6 @@ const Background = styled(motion.img)`
   z-index: -1;
 `;
 
-const ENABLE_STATISTICS = false
-const ENABLE_DEBUG = false
 
 const MenuComponent: React.FC<MenuProps> = ({ startGame }) => {
   const { debug, setDebug } = useContext(GameContext) as GameContextType;
@@ -208,12 +207,6 @@ const MenuComponent: React.FC<MenuProps> = ({ startGame }) => {
       <Overlay
         key="menuComponent">
         <Background src="../assets/backgrounds/background-title.png"/>
-        {ENABLE_STATISTICS &&
-          <StatisticsButton onClick={toggleStatistics}>
-            {!statistics && <>Statistics</>}
-            {statistics && <>Game</>}
-          </StatisticsButton>
-        }
 
         {statistics && (
           <>
@@ -228,21 +221,29 @@ const MenuComponent: React.FC<MenuProps> = ({ startGame }) => {
                 <MainLogo src="../assets/backgrounds/logo.png" />
               </Title>
               <StartButton onClick={startGame}>Start</StartButton>
-              {ENABLE_DEBUG &&
-                <ToggleSwitch>
-                  <label>
-                    Debug Mode
-                    <Slider>
-                      <input
-                        type="checkbox"
-                        checked={debug}
-                        onChange={handleToggle}
-                      />
-                      <span className="slider round"></span>
-                    </Slider>
-                  </label>
-                </ToggleSwitch>
-              }
+              <Routes>
+                <Route path="/debug/" element={
+                  <>
+                    <StatisticsButton onClick={toggleStatistics}>
+                        {!statistics && <>Statistics</>}
+                        {statistics && <>Game</>}
+                      </StatisticsButton>
+                    <ToggleSwitch>
+                      <label>
+                        Debug Mode
+                        <Slider>
+                          <input
+                            type="checkbox"
+                            checked={debug}
+                            onChange={handleToggle}
+                          />
+                          <span className="slider round"></span>
+                        </Slider>
+                      </label>
+                    </ToggleSwitch>
+                  </>
+                } />
+              </Routes>
             </TextContainer>
           </>
         )}

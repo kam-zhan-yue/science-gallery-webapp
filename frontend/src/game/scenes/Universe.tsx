@@ -232,7 +232,6 @@ export class Universe extends Scene {
 
     update(time: number, delta: number) {
       if (this.background) {
-        console.log(this.cameras.main.centerX)
         this.background.x = this.cameras.main.scrollX + this.cameras.main.centerX
         this.background.y = this.cameras.main.scrollY + this.cameras.main.centerY
         this.background.setScale(SCALE_FACTOR / this.cameras.main.zoom)
