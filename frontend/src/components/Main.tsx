@@ -8,7 +8,6 @@ import {StyleSheetManager} from "styled-components";
 import isPropValid from "@emotion/is-prop-valid";
 import { AnimatePresence } from 'framer-motion';
 import AudioComponent from './AudioComponent.tsx';
-import { Router } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 
 const Main: React.FC = () => {
