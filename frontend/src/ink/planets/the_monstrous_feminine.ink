@@ -329,4 +329,4 @@ AI: You've had to travel so far, and make all the tough decisions... I thought y
 ===movingtoanewlight1===
 AI: Let's float around for a little bit, shall we, {name}?
 The ship blasts off into the aether.
-->navigation
+    ->new_light
