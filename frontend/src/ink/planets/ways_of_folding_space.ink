@@ -87,14 +87,30 @@ AI: Hmm, that looks locked. Let's try and figure out how to open it.
 }
 
 === folding_space_puzzle ===
-Success or failure
-~ puzzle_success = true
--> folding_open
+I am the bridge between here and there, a twist in time, an unseen layer. With a gentle push, I redefine, as what’s close at hand becomes divine. What am I?
+
++[A time machine]
+    -> folding_open
++[A wormhole]
+    ~ puzzle_success = true
+    -> folding_open
++[An idea]
+    -> folding_open
++[A staircase]
+    -> folding_open
 
 === flight_puzzle ===
-Success or failure
-~ puzzle_success = true
--> flight_open
+With no feathers to guide my way, I traverse the night. Though grounded by limits, I long to break free, I carry the dreams of both you and me. What am I?
+
++[An idea]
+    -> flight_open
++[A spaceship]
+    -> flight_open
++[The human spirit]
+    ~ puzzle_success = true
+    -> flight_open
++[A balloon]
+    -> flight_open
 
 === folding_open  ===
 After several minutes of careful deliberation, you solve the puzzle and the panel slides to the side.
