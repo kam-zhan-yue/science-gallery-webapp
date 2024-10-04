@@ -176,4 +176,6 @@ AI: I'm sorry, but we're out of time! Quick quick, get ready, we need to leave!
 AI: "Oh, I almost forgot! This display can be a little confusing, but this is your menu! I can display your physical statistics, as well as any items you pick up and planets you've visited from here. Feel free to check it if you need!"
 ~game_state = exploring
 AI: Now, we need to go!
+AI: Oh! I almost forgot to say, if you’re travelling to another planet you’ll need to find the access code… these are hidden around the exhibition. 
+AI: If you need a hint, you can always ask, but I encourage you to look at the artworks and consider how they correspond to the theme of the planet. 
 -> navigation
