@@ -221,13 +221,13 @@ const MenuComponent: React.FC<MenuProps> = ({ startGame }) => {
                 <MainLogo src="../assets/backgrounds/logo.png" />
               </Title>
               <StartButton onClick={startGame}>Start</StartButton>
+              <StatisticsButton onClick={toggleStatistics}>
+                {!statistics && <>Statistics</>}
+                {statistics && <>Game</>}
+              </StatisticsButton>
               <Routes>
                 <Route path="/debug/" element={
                   <>
-                    <StatisticsButton onClick={toggleStatistics}>
-                        {!statistics && <>Statistics</>}
-                        {statistics && <>Game</>}
-                      </StatisticsButton>
                     <ToggleSwitch>
                       <label>
                         Debug Mode

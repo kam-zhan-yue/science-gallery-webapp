@@ -8,6 +8,13 @@ const Text = styled.div`
   font-style: normal;
   line-height: 1em;
   text-align: center;
+  margin-left: 300px;
+  margin-right: 300px;
+
+  @media (max-width: 768px) {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
 `
 
 const prompts = [
@@ -31,7 +38,7 @@ const GuideComponent: React.FC<{prompt?: string}> = ({prompt}) => {
             {prompt &&
               <Typewriter
                 text={prompt}
-                fontSize={26}
+                fontSize={20}
                 delay={30}/>
             }
             {!prompt &&

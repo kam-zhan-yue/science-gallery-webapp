@@ -11,6 +11,8 @@ export type PlanetData = {
     // soundtrack
     bgm?: string,
     offset: Vector2,
+    hint?: string,
+    help?: string,
 }
 
 export const planets: { [key: string]: PlanetData } = {
@@ -38,6 +40,8 @@ export const planets: { [key: string]: PlanetData } = {
         clockwiseOrbit: true,
         bgm: "band_1",
         offset: new Vector2(-30, -30),
+        hint: "A book radiates heat, hinting at the power of words to ignite worlds. Nearby, images of gods and demons blur the line between spiritual journeys and speculative stories—can you find the connections between them?",
+        help: "You’re looking for any of the artworks titled: Untitled (Heat Book); the Science Fiction Timeline; Parallel worlds, transcendence, and interdimensional travel; or One Hundred Demons.",
     },
     "new_nature": {
         name: "New Nature",
@@ -47,6 +51,8 @@ export const planets: { [key: string]: PlanetData } = {
         clockwiseOrbit: false,
         bgm: 'band_1',
         offset: new Vector2(-3, -3),
+        hint: "In this realm, flowers take breath and gods descend with new life in their wake. Listen closely—are the sounds of the future calling you, or will a hidden self emerge from the shadows?",
+        help: "You’re looking for any of the artworks titled: Galactica V-2.1 Dharma Garden, Latent, Lux Aeterna, or Guài.",
     },
     "ways_of_folding_space": {
         name: "Ways of Folding Space",
@@ -56,6 +62,8 @@ export const planets: { [key: string]: PlanetData } = {
         clockwiseOrbit: false,
         bgm: 'band_2',
         offset: new Vector2(-35, -35),
+        hint: "In a world submerged by time, ancient practices unlock the secrets to bending space and soaring beyond limits. Can the future of creativity rise from the depths?",
+        help: "You’re looking for the artwork titled: Ways of Folding Space and Flying.",
     },
     "crafting_new_worlds": {
         name: "Crafting New Worlds",
@@ -65,6 +73,8 @@ export const planets: { [key: string]: PlanetData } = {
         clockwiseOrbit: false,
         bgm: 'band_2',
         offset: new Vector2(-35, -35),
+        hint: "Step into a world where women bloom like plants, blending cultures and identities in a vibrant new future. Can empathy reshape the way we live and grow together?",
+        help: "You’re looking for the artwork titled: Cloudscape. You will need to go downstairs to find this one. ",
     },
     "the_monstrous_feminine": {
         name: "The Monstrous Feminine",
@@ -74,6 +84,8 @@ export const planets: { [key: string]: PlanetData } = {
         clockwiseOrbit: false,
         bgm: 'band_3',
         offset: new Vector2(-35, -35),
+        hint: "Ancient tales of women once cast as monsters now stir with new meaning. What if the stories we fear could be retold as forces of strength and change?",
+        help: "You’re looking for any of the artworks titled: Re-visiting Folklore, Ex Nilalang: Balud, She Who Sees the Unknown: Huma, Namahage In Tokyo, or Mok Mok Murrup Yakuwa.",
     },
     "new_myths": {
         name: "New Myths",
@@ -83,6 +95,8 @@ export const planets: { [key: string]: PlanetData } = {
         clockwiseOrbit: false,
         bgm: 'band_3',
         offset: new Vector2(-35, -35),
+        hint: "Love, fragile yet unbreakable, is woven into the very fabric of this shrine. Can the power of connection transcend myth and emerge through the threads of living silk?",
+        help: "You’re looking for the artwork titled: The Red Silk of Fate. You will need to go to the far end of the gallery (past the cafe) to find this one.",
     },
     "in_a_new_light": {
         name: "In A New Light",

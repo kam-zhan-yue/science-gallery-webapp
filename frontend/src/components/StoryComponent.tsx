@@ -471,7 +471,6 @@ const StoryComponent: React.FC<StoryComponentProps> = ({ universeRef }) => {
           <AnimatePresence>
           {storyState === StoryState.Keypad && (
             <KeypadComponent
-              choices={choices}
               handleCodeInput={handleCodeInput}
               planet={planet}
             />

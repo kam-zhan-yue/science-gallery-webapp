@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Choice } from 'inkjs/engine/Choice';
 import KeypadButtonComponent, { KeypadType } from '../KeypadButtonComponent';
 import Planet from '../../classes/Planet';
 import {motion} from "framer-motion";
 import {TextStyle} from "../styled/Text.tsx";
 import { EventBus } from '../../EventBus.tsx';
+import { planets } from "../../setup/PlanetData"
+import GuideComponent from "../GuideComponent"
+import { colours } from '../styled/Constants.tsx';
 
 const KeypadOverlay = styled(motion.div)`
   position: fixed;
@@ -28,6 +30,21 @@ const CodeBackground = styled.div`
   margin-bottom: 5px;
 `;
 
+const Text = styled(TextStyle)`
+  text-align: center;
+  font-size: 20px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1em;
+  transition: 0.3s all;
+  -webkit-transition: 0.3s all;
+
+  &:hover {
+    cursor: pointer;
+    color: ${colours.secondary};
+  }
+`
+
 const CodeText = styled.div`
   font-size: 50px;
   font-family: 'VT323', monospace;
@@ -36,28 +53,6 @@ const CodeText = styled.div`
   line-height: 1em;
   color: white;
 `;
-
-// const BackButton = styled(TextStyle)`
-//   margin-top: 10px;
-//   width: 60px;
-//   height: 60px;
-//
-//   display: flex;
-//   align-items: center;
-//   justify-items: center;
-//   justify-content: center;
-//   border: solid 20px #42ffee;
-//   border-image: url("../assets/ui/button.png") 15 fill repeat;
-//
-//   transition: 0.3s;
-//   -webkit-transition: 0.3s;
-//
-//   font-size: 36px;
-//
-//   &:hover {
-//     cursor: pointer;
-//   }
-// `;
 
 const KeypadContainer = styled(motion.div)`
   border: 20px solid;
@@ -73,7 +68,6 @@ const Error = styled(TextStyle)`
 `
 
 interface KeypadComponentProps {
-    choices: Choice[];
     handleCodeInput: (code: number) => void;
     planet: Planet;
 }
@@ -81,6 +75,10 @@ interface KeypadComponentProps {
 const KeypadComponent: React.FC<KeypadComponentProps> = ({planet, handleCodeInput}) => {
     const [inputValue, setInputValue] = useState<string>('');
     const [showError, setShowError] = useState<boolean>(false);
+    const [prompt, setPrompt] = useState<string>('')
+    const planetData = planets[planet.name]
+    const hint = planetData.hint
+    const help = planetData.help
 
     const handleSubmit = () => {
         if (inputValue === planet.code) {
@@ -106,6 +104,7 @@ const KeypadComponent: React.FC<KeypadComponentProps> = ({planet, handleCodeInpu
     };
 
     return (
+      <>
           <KeypadOverlay
               key="keypadComponent"
               initial={{ top: '100%', opacity: 0 }}
@@ -133,7 +132,16 @@ const KeypadComponent: React.FC<KeypadComponentProps> = ({planet, handleCodeInpu
                       <KeypadButtonComponent type={KeypadType.Submit} onClick={handleKeypadClick} />
                   </div>
               </KeypadContainer>
+
+              <div className='flex justify-center gap-20 m-3'>
+                {hint && <Text onClick={() => setPrompt("AI: " + hint)}>Hint</Text>}
+                {help && <Text onClick={() => setPrompt("AI: " + help)}>Help</Text>}
+              </div>
           </KeypadOverlay>
+          <div className="absolute bottom-6">
+            {prompt && <GuideComponent prompt={prompt} />}
+          </div>
+      </>
     );
 };
 
